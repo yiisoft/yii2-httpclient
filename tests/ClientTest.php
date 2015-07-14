@@ -5,9 +5,37 @@ namespace yiiunit\extensions\httpclient;
 use yii\httpclient\Client;
 use yii\httpclient\Request;
 use yii\httpclient\Response;
+use yii\httpclient\Transport;
+use yii\httpclient\TransportCurl;
 
 class ClientTest extends TestCase
 {
+    public function testSetupTransport()
+    {
+        $client = new Client();
+
+        $transport = new TransportCurl();
+        $client->setTransport($transport);
+        $this->assertSame($transport, $client->getTransport());
+        $this->assertSame($client, $transport->client);
+
+        $client->setTransport(TransportCurl::className());
+        $transport = $client->getTransport();
+        $this->assertTrue($transport instanceof TransportCurl);
+        $this->assertSame($client, $transport->client);
+    }
+
+    /**
+     * @depends testSetupTransport
+     */
+    public function testGetDefaultTransport()
+    {
+        $client = new Client();
+        $transport = $client->getTransport();
+        $this->assertTrue($transport instanceof Transport);
+        $this->assertSame($client, $transport->client);
+    }
+
     public function testCreateRequest()
     {
         $client = new Client();
@@ -41,67 +69,5 @@ class ClientTest extends TestCase
         $this->assertEquals($responseContent, $response->getContent());
     }
 
-    /**
-     * @depends testCreateRequest
-     * @depends testCreateResponse
-     */
-    public function testSend()
-    {
-        $client = new Client();
-        $client->baseUrl = 'http://uk.php.net';
-        $response = $client->createRequest()
-            ->setMethod('get')
-            ->setUrl('docs.php')
-            ->send();
 
-        $this->assertTrue($response->getIsOk());
-        $content = $response->getContent();
-        $this->assertNotEmpty($content);
-        $this->assertContains('<h1>Documentation</h1>', $content);
-    }
-
-    /**
-     * @depends testSend
-     */
-    public function testSendPost()
-    {
-        $client = new Client();
-        $client->baseUrl = 'http://uk.php.net';
-        $response = $client->createRequest()
-            ->setMethod('post')
-            ->setUrl('search.php')
-            ->setData(['pattern' => 'curl'])
-            ->send();
-        $this->assertTrue($response->getIsOk());
-    }
-
-    /**
-     * @depends testSend
-     */
-    public function testBatchSend()
-    {
-        $client = new Client();
-        $client->baseUrl = 'http://uk.php.net';
-
-        $requests = [];
-        $requests['docs'] = $client->createRequest()
-            ->setMethod('get')
-            ->setUrl('docs.php');
-        $requests['support'] = $client->createRequest()
-            ->setMethod('get')
-            ->setUrl('support.php');
-
-        $responses = $client->batchSend($requests);
-        $this->assertCount(count($requests), $responses);
-
-        foreach ($responses as $response) {
-            $this->assertTrue($response->getIsOk());
-        }
-
-        $this->assertTrue($responses['docs'] instanceof Response, $responses);
-        $this->assertTrue($responses['support'] instanceof Response, $responses);
-
-        $this->assertContains('<h1>Documentation</h1>', $responses['docs']->getContent());
-        $this->assertContains('Mailing Lists', $responses['support']->getContent());
-    }
 } 

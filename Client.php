@@ -10,10 +10,11 @@ namespace yii\httpclient;
 use yii\base\Exception;
 use yii\base\Component;
 use Yii;
-use yii\helpers\ArrayHelper;
 
 /**
  * Client provide high level interface for HTTP requests execution.
+ *
+ * @property Transport|array|string|callable $transport HTTP message transport, see [[setTransport()]] for details.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -33,6 +34,44 @@ class Client extends Component
      */
     public $responseConfig = [];
 
+    /**
+     * @var Transport|array|string|callable HTTP message transport.
+     */
+    private $_transport = 'yii\httpclient\TransportCurl';
+
+
+    /**
+     * Sets the HTTP message transport. It can be specified in one of the following forms:
+     *
+     * - an instance of `Transport`: actual transport object to be used
+     * - a string: representing the class name of the object to be created
+     * - a configuration array: the array must contain a `class` element which is treated as the object class,
+     *   and the rest of the name-value pairs will be used to initialize the corresponding object properties
+     * - a PHP callable: either an anonymous function or an array representing a class method (`[$class or $object, $method]`).
+     *   The callable should return a new instance of the object being created.
+     * @param Transport|array|string $transport HTTP message transport
+     */
+    public function setTransport($transport)
+    {
+        if (is_object($transport)) {
+            $transport->client = $this;
+        }
+        $this->_transport = $transport;
+    }
+
+    /**
+     * @return Transport HTTP message transport instance.
+     */
+    public function getTransport()
+    {
+        if (!is_object($this->_transport)) {
+            /* @var $transport Transport */
+            $transport = Yii::createObject($this->_transport);
+            $transport->client = $this;
+            $this->_transport = $transport;
+        }
+        return $this->_transport;
+    }
 
     /**
      * @return Request request instance.
@@ -73,22 +112,7 @@ class Client extends Component
      */
     public function send($request)
     {
-        $curlResource = $this->prepare($request);
-
-        $responseContent = curl_exec($curlResource);
-        $responseHeaders = curl_getinfo($curlResource);
-
-        // check cURL error
-        $errorNumber = curl_errno($curlResource);
-        $errorMessage = curl_error($curlResource);
-
-        curl_close($curlResource);
-
-        if ($errorNumber > 0) {
-            throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
-        }
-
-        return $this->createResponse($responseContent, $responseHeaders);
+        return $this->getTransport()->send($request);
     }
 
     /**
@@ -98,136 +122,6 @@ class Client extends Component
      */
     public function batchSend(array $requests)
     {
-        $curlBatchResource = curl_multi_init();
-
-        $curlResources = [];
-        foreach ($requests as $key => $request) {
-            $curlResource = $this->prepare($request);
-            $curlResources[$key] = $curlResource;
-            curl_multi_add_handle($curlBatchResource, $curlResource);
-        }
-
-        $isRunning = null;
-
-        do {
-            // See https://bugs.php.net/bug.php?id=61141
-            if (curl_multi_select($curlBatchResource) == -1) {
-                usleep(100);
-            }
-            do {
-                $curlExecCode = curl_multi_exec($curlBatchResource, $isRunning);
-            } while ($curlExecCode == CURLM_CALL_MULTI_PERFORM);
-        } while ($isRunning > 0 && $curlExecCode == CURLM_OK);
-
-        $responseContents = [];
-        $responseHeaders = [];
-        foreach ($curlResources as $key => $curlResource) {
-            $responseHeaders[$key] = curl_getinfo($curlResource);
-            $responseContents[$key] = curl_multi_getcontent($curlResource);
-            curl_multi_remove_handle($curlBatchResource, $curlResource);
-        }
-
-        curl_multi_close($curlBatchResource);
-
-        $responses = [];
-        foreach ($requests as $key => $request) {
-            $responses[$key] = $this->createResponse($responseContents[$key], $responseHeaders[$key]);
-        }
-        return $responses;
-    }
-
-    /**
-     * Prepare request for execution, creating cURL resource for it.
-     * @param Request $request request instance.
-     * @return resource prepared cURL resource.
-     */
-    protected function prepare($request)
-    {
-        $curlOptions = ArrayHelper::merge(
-            $request->getOptions(),
-            [
-                CURLOPT_HTTPHEADER => $this->composeHeaders($request),
-                CURLOPT_RETURNTRANSFER => true,
-            ]
-        );
-
-        $method = strtoupper($request->getMethod());
-        switch ($method) {
-            case 'GET': {
-                $url = $this->composeUrl($request, true);
-                break;
-            }
-            case 'POST': {
-                $url = $this->composeUrl($request);
-                $curlOptions[CURLOPT_POST] = true;
-                $curlOptions[CURLOPT_POSTFIELDS] = $request->getContent();
-                break;
-            }
-            case 'HEAD': {
-                $curlOptions[CURLOPT_CUSTOMREQUEST] = $method;
-                $url = $this->composeUrl($request, true);
-                break;
-            }
-            default: {
-                $url = $this->composeUrl($request);
-                $curlOptions[CURLOPT_CUSTOMREQUEST] = $method;
-                $curlOptions[CURLOPT_POSTFIELDS] = $request->getContent();
-            }
-        }
-
-        $curlOptions[CURLOPT_URL] = $url;
-
-        $curlResource = curl_init();
-        foreach ($curlOptions as $option => $value) {
-            curl_setopt($curlResource, $option, $value);
-        }
-
-        return $curlResource;
-    }
-
-    /**
-     * Composes actual request URL string.
-     * @param Request $request request instance.
-     * @param boolean $appendData whether to append request data to the URL as GET parameters.
-     * @return string composed URL.
-     */
-    protected function composeUrl($request, $appendData = false)
-    {
-        $requestUrl = $request->getUrl();
-        if (preg_match('/^https?:\\/\\//is', $requestUrl)) {
-            $url = $requestUrl;
-        } else {
-            $url = $this->baseUrl . '/' . $requestUrl;
-        }
-
-        if ($appendData) {
-            $data = $request->getData();
-            if (!empty($data)) {
-                if (strpos($url, '?') === false) {
-                    $url .= '?';
-                } else {
-                    $url .= '&';
-                }
-                $url .= http_build_query($data, '', '&', PHP_QUERY_RFC3986);
-            }
-        }
-        return $url;
-    }
-
-    /**
-     * Composes request headers for the cURL.
-     * @param Request $request request instance.
-     * @return array headers list.
-     */
-    protected function composeHeaders($request)
-    {
-        $headers = [];
-        foreach ($request->getHeaders() as $name => $values) {
-            $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
-            foreach ($values as $value) {
-                $headers[] = "$name: $value";
-            }
-        }
-        return $headers;
+        return $this->getTransport()->batchSend($requests);
     }
 }
