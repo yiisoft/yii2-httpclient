@@ -37,7 +37,7 @@ class Client extends Component
     /**
      * @var Transport|array|string|callable HTTP message transport.
      */
-    private $_transport = 'yii\httpclient\TransportCurl';
+    private $_transport = 'yii\httpclient\TransportStream';
 
 
     /**
