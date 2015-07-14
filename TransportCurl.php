@@ -8,7 +8,6 @@
 namespace yii\httpclient;
 
 use yii\base\Exception;
-use yii\helpers\ArrayHelper;
 
 /**
  * TransportCurl sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
@@ -93,13 +92,7 @@ class TransportCurl extends Transport
      */
     protected function prepare($request)
     {
-        $curlOptions = ArrayHelper::merge(
-            $this->composeCurlOptions($request->getOptions()),
-            [
-                CURLOPT_HTTPHEADER => $this->composeHeaders($request),
-                CURLOPT_RETURNTRANSFER => true,
-            ]
-        );
+        $curlOptions = $this->composeCurlOptions($request->getOptions());
 
         $method = strtoupper($request->getMethod());
         switch ($method) {
@@ -121,7 +114,9 @@ class TransportCurl extends Transport
                 $curlOptions[CURLOPT_POSTFIELDS] = $request->getContent();
         }
 
+        $curlOptions[CURLOPT_RETURNTRANSFER] = true;
         $curlOptions[CURLOPT_URL] = $url;
+        $curlOptions[CURLOPT_HTTPHEADER] = $this->composeHeaders($request);
 
         $curlResource = curl_init();
         foreach ($curlOptions as $option => $value) {

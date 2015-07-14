@@ -41,8 +41,8 @@ abstract class Transport extends Component
     public function batchSend(array $requests)
     {
         $responses = [];
-        foreach ($requests as $request) {
-            $responses[] = $this->send($request);
+        foreach ($requests as $key => $request) {
+            $responses[$key] = $this->send($request);
         }
         return $responses;
     }
