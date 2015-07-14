@@ -92,4 +92,18 @@ abstract class Transport extends Component
         }
         return $headers;
     }
+
+    /**
+     * Composes request cookies value.
+     * @param Request $request request instance.
+     * @return string cookies value.
+     */
+    protected function composeCookies($request)
+    {
+        $parts = [];
+        foreach ($request->getCookies() as $cookie) {
+            $parts[] = $cookie->name . '=' . urlencode($cookie->value);
+        }
+        return implode(';', $parts);
+    }
 }

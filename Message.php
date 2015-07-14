@@ -10,6 +10,8 @@ namespace yii\httpclient;
 use yii\base\ErrorHandler;
 use yii\base\InvalidConfigException;
 use yii\base\Object;
+use yii\web\Cookie;
+use yii\web\CookieCollection;
 use yii\web\HeaderCollection;
 use Yii;
 
@@ -17,6 +19,7 @@ use Yii;
  * Message represents a base HTTP message.
  *
  * @property HeaderCollection|array $headers message headers list.
+ * @property CookieCollection|Cookie[]|array $cookies message cookies list.
  * @property string $content message raw content.
  * @property array $data message content data.
  * @property string $format message content format.
@@ -42,6 +45,10 @@ class Message extends Object implements MessageInterface
      * @var HeaderCollection headers.
      */
     private $_headers;
+    /**
+     * @var CookieCollection cookies.
+     */
+    private $_cookies;
     /**
      * @var string|null raw content
      */
@@ -84,6 +91,39 @@ class Message extends Object implements MessageInterface
             $this->_headers = $headerCollection;
         }
         return $this->_headers;
+    }
+
+    /**
+     * Sets the cookies associated with HTTP message.
+     * @param array|CookieCollection $cookies cookie collection or cookies list.
+     * @return $this self reference.
+     */
+    public function setCookies($cookies)
+    {
+        $this->_cookies = $cookies;
+        return $this;
+    }
+
+    /**
+     * Returns the cookie collection.
+     * The cookie collection contains the cookies associated with HTTP message.
+     * @return CookieCollection|Cookie[] the cookie collection.
+     */
+    public function getCookies()
+    {
+        if (!is_object($this->_cookies)) {
+            $cookieCollection = new CookieCollection();
+            if (is_array($this->_cookies)) {
+                foreach ($this->_cookies as $cookie) {
+                    if (!is_object($cookie)) {
+                        $cookie = new Cookie($cookie);
+                    }
+                    $cookieCollection->add($cookie);
+                }
+            }
+            $this->_cookies = $cookieCollection;
+        }
+        return $this->_cookies;
     }
 
     /**

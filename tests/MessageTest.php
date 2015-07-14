@@ -5,66 +5,86 @@ namespace yiiunit\extensions\httpclient;
 use yii\httpclient\Message;
 use yii\httpclient\FormatterUrlEncoded;
 use yii\httpclient\ParserUrlEncoded;
+use yii\web\Cookie;
+use yii\web\CookieCollection;
 use yii\web\HeaderCollection;
 
 class MessageTest extends TestCase
 {
     public function testSetupHeaders()
     {
-        $document = new Message();
+        $message = new Message();
 
         $headers = [
             'header1' => 'value1',
             'header2' => 'value2',
         ];
-        $document->setHeaders($headers);
+        $message->setHeaders($headers);
 
-        $this->assertTrue($document->getHeaders() instanceof HeaderCollection);
+        $this->assertTrue($message->getHeaders() instanceof HeaderCollection);
         $expectedHeaders = [
             'header1' => ['value1'],
             'header2' => ['value2'],
         ];
-        $this->assertEquals($expectedHeaders, $document->getHeaders()->toArray());
+        $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
 
         $additionalHeaders = [
             'header3' => 'value3'
         ];
-        $document->addHeaders($additionalHeaders);
+        $message->addHeaders($additionalHeaders);
 
         $expectedHeaders = [
             'header1' => ['value1'],
             'header2' => ['value2'],
             'header3' => ['value3'],
         ];
-        $this->assertEquals($expectedHeaders, $document->getHeaders()->toArray());
+        $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
+    }
+
+    public function testSetupCookies()
+    {
+        $message = new Message();
+
+        $cookies = [
+            [
+                'name' => 'test',
+                'domain' => 'test.com',
+            ],
+        ];
+        $message->setCookies($cookies);
+        $cookieCollection = $message->getCookies();
+        $this->assertTrue($cookieCollection instanceof CookieCollection);
+        $cookie = $cookieCollection->get('test');
+        $this->assertTrue($cookie instanceof Cookie);
+        $this->assertEquals('test.com', $cookie->domain);
     }
 
     public function testSetupFormat()
     {
-        $document = new Message();
+        $message = new Message();
 
         $format = 'json';
-        $document->setFormat($format);
-        $this->assertEquals($format, $document->getFormat());
+        $message->setFormat($format);
+        $this->assertEquals($format, $message->getFormat());
     }
 
     public function testSetupBody()
     {
-        $document = new Message();
+        $message = new Message();
         $content = 'test raw body';
-        $document->setContent($content);
-        $this->assertEquals($content, $document->getContent());
+        $message->setContent($content);
+        $this->assertEquals($content, $message->getContent());
     }
 
     public function testSetupData()
     {
-        $document = new Message();
+        $message = new Message();
         $data = [
             'field1' => 'value1',
             'field2' => 'value2',
         ];
-        $document->setData($data);
-        $this->assertEquals($data, $document->getData());
+        $message->setData($data);
+        $this->assertEquals($data, $message->getData());
     }
 
     /**
@@ -72,17 +92,17 @@ class MessageTest extends TestCase
      */
     public function testParseBody()
     {
-        $document = new Message();
+        $message = new Message();
         $format = 'testFormat';
-        $document->setFormat($format);
-        $document->parsers = [
+        $message->setFormat($format);
+        $message->parsers = [
             $format => [
                 'class' => ParserUrlEncoded::className()
             ]
         ];
         $content = 'name=value';
-        $document->setContent($content);
-        $this->assertEquals(['name' => 'value'], $document->getData());
+        $message->setContent($content);
+        $this->assertEquals(['name' => 'value'], $message->getData());
     }
 
     /**
@@ -90,10 +110,10 @@ class MessageTest extends TestCase
      */
     public function testFormatData()
     {
-        $document = new Message();
+        $message = new Message();
         $format = 'testFormat';
-        $document->setFormat($format);
-        $document->formatters = [
+        $message->setFormat($format);
+        $message->formatters = [
             $format => [
                 'class' => FormatterUrlEncoded::className()
             ]
@@ -102,7 +122,7 @@ class MessageTest extends TestCase
         $data = [
             'name' => 'value',
         ];
-        $document->setData($data);
-        $this->assertEquals('name=value', $document->getContent());
+        $message->setData($data);
+        $this->assertEquals('name=value', $message->getContent());
     }
 }

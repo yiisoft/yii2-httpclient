@@ -117,6 +117,7 @@ class TransportCurl extends Transport
         $curlOptions[CURLOPT_RETURNTRANSFER] = true;
         $curlOptions[CURLOPT_URL] = $url;
         $curlOptions[CURLOPT_HTTPHEADER] = $this->composeHeaders($request);
+        $curlOptions[CURLOPT_COOKIE] = $this->composeCookies($request);
 
         $curlResource = curl_init();
         foreach ($curlOptions as $option => $value) {
