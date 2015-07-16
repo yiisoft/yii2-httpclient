@@ -85,7 +85,7 @@ class TransportStream extends Transport
                 $headers[$name] = $value;
             } elseif (strpos($rawHeader, 'HTTP/') === 0) {
                 $parts = explode(' ', $rawHeader, 3);
-                $headers['http_code'] = $parts[1];
+                $headers['http-code'] = $parts[1];
             } else {
                 $headers[] = $rawHeader;
             }

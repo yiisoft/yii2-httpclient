@@ -93,6 +93,7 @@ class ResponseTest extends TestCase
     {
         return [
             [200, true],
+            [201, true],
             [400, false],
         ];
     }

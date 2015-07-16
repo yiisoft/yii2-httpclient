@@ -39,7 +39,7 @@ class TransportCurl extends Transport
             throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
         }
 
-        return $this->client->createResponse($responseContent, $responseHeaders);
+        return $this->client->createResponse($responseContent, $this->normalizeResponseHeaders($responseHeaders));
     }
 
     /**
@@ -80,7 +80,7 @@ class TransportCurl extends Transport
 
         $responses = [];
         foreach ($requests as $key => $request) {
-            $responses[$key] = $this->client->createResponse($responseContents[$key], $responseHeaders[$key]);
+            $responses[$key] = $this->client->createResponse($responseContents[$key], $this->normalizeResponseHeaders($responseHeaders[$key]));
         }
         return $responses;
     }
@@ -144,5 +144,20 @@ class TransportCurl extends Transport
             }
         }
         return $curlOptions;
+    }
+
+    /**
+     * Normalizes headers return via cURL, replacing '_' with '-'.
+     * @param array $rawHeaders raw headers in format: name => value.
+     * @return array normalized headers.
+     */
+    protected function normalizeResponseHeaders($rawHeaders)
+    {
+        $headers = [];
+        foreach ($rawHeaders as $key => $value) {
+            $normalizedKey = str_replace('_', '-', $key);
+            $headers[$normalizedKey] = $value;
+        }
+        return $headers;
     }
 }

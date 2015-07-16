@@ -14,6 +14,7 @@ use yii\web\HeaderCollection;
 /**
  * Response represents HTTP request response.
  *
+ * @property string $statusCode response status code.
  * @property boolean $isOk whether response is OK.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
@@ -31,14 +32,12 @@ class Response extends Message
         $headers = $this->getHeaders();
         if ($headers->has('http-code')) {
             return $headers->get('http-code');
-        } elseif ($headers->has('http_code')) {
-            return $headers->get('http_code');
         }
         throw new Exception('Unable to get status code: referred header information is missing.');
     }
 
     /**
-     * Checks if response status code is OK (status code = 20?)
+     * Checks if response status code is OK (status code = 20x)
      * @return boolean whether response is OK.
      */
     public function getIsOk()
@@ -67,10 +66,6 @@ class Response extends Message
     protected function detectFormatByHeaders(HeaderCollection $headers)
     {
         $contentType = $headers->get('content-type');
-        if ($contentType === null) {
-            $contentType = $headers->get('content_type');
-        }
-
         if (!empty($contentType)) {
             if (stripos($contentType, 'json') !== false) {
                 return self::FORMAT_JSON;
