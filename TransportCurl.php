@@ -26,8 +26,10 @@ class TransportCurl extends Transport
     {
         $curlResource = $this->prepare($request);
 
+        $responseHeaders = [];
+        $this->setHeaderOutput($curlResource, $responseHeaders);
+
         $responseContent = curl_exec($curlResource);
-        $responseHeaders = curl_getinfo($curlResource);
 
         // check cURL error
         $errorNumber = curl_errno($curlResource);
@@ -39,7 +41,7 @@ class TransportCurl extends Transport
             throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
         }
 
-        return $this->client->createResponse($responseContent, $this->normalizeResponseHeaders($responseHeaders));
+        return $this->createResponse($responseContent, $responseHeaders);
     }
 
     /**
@@ -50,8 +52,11 @@ class TransportCurl extends Transport
         $curlBatchResource = curl_multi_init();
 
         $curlResources = [];
+        $responseHeaders = [];
         foreach ($requests as $key => $request) {
             $curlResource = $this->prepare($request);
+            $responseHeaders[$key] = [];
+            $this->setHeaderOutput($curlResource, $responseHeaders[$key]);
             $curlResources[$key] = $curlResource;
             curl_multi_add_handle($curlBatchResource, $curlResource);
         }
@@ -69,9 +74,7 @@ class TransportCurl extends Transport
         } while ($isRunning > 0 && $curlExecCode == CURLM_OK);
 
         $responseContents = [];
-        $responseHeaders = [];
         foreach ($curlResources as $key => $curlResource) {
-            $responseHeaders[$key] = curl_getinfo($curlResource);
             $responseContents[$key] = curl_multi_getcontent($curlResource);
             curl_multi_remove_handle($curlBatchResource, $curlResource);
         }
@@ -80,7 +83,7 @@ class TransportCurl extends Transport
 
         $responses = [];
         foreach ($requests as $key => $request) {
-            $responses[$key] = $this->client->createResponse($responseContents[$key], $this->normalizeResponseHeaders($responseHeaders[$key]));
+            $responses[$key] = $this->createResponse($responseContents[$key], $responseHeaders[$key]);
         }
         return $responses;
     }
@@ -147,17 +150,18 @@ class TransportCurl extends Transport
     }
 
     /**
-     * Normalizes headers return via cURL, replacing '_' with '-'.
-     * @param array $rawHeaders raw headers in format: name => value.
-     * @return array normalized headers.
+     * Setup a variable, which should collect the cURL response headers.
+     * @param resource $curlResource cURL resource.
+     * @param array $output variable, which should collection headers.
      */
-    protected function normalizeResponseHeaders($rawHeaders)
+    protected function setHeaderOutput($curlResource, array &$output)
     {
-        $headers = [];
-        foreach ($rawHeaders as $key => $value) {
-            $normalizedKey = str_replace('_', '-', $key);
-            $headers[$normalizedKey] = $value;
-        }
-        return $headers;
+        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function($resource, $headerString) use (&$output) {
+            $header = trim($headerString, "\n\r");
+            if (strlen($header) > 0) {
+                $output[] = $header;
+            }
+            return strlen($headerString);
+        });
     }
 }

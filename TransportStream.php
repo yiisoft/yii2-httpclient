@@ -62,35 +62,9 @@ class TransportStream extends Transport
         $metaData = stream_get_meta_data($stream);
         fclose($stream);
 
-        $responseHeaders = $this->extractHeadersFromMetaData($metaData);
+        $responseHeaders = isset($metaData['wrapper_data']) ? $metaData['wrapper_data'] : [];
 
-        return $this->client->createResponse($responseContent, $responseHeaders);
-    }
-
-    /**
-     * Extracts headers list from stream meta data.
-     * @param array $metaData stream meta data.
-     * @return array headers in format: [name => value].
-     */
-    protected function extractHeadersFromMetaData($metaData)
-    {
-        if (!isset($metaData['wrapper_data'])) {
-            return [];
-        }
-        $headers = [];
-        foreach ($metaData['wrapper_data'] as $rawHeader) {
-            if (($separatorPos = strpos($rawHeader, ':')) !== false) {
-                $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
-                $value = trim(substr($rawHeader, $separatorPos + 1));
-                $headers[$name] = $value;
-            } elseif (strpos($rawHeader, 'HTTP/') === 0) {
-                $parts = explode(' ', $rawHeader, 3);
-                $headers['http-code'] = $parts[1];
-            } else {
-                $headers[] = $rawHeader;
-            }
-        }
-        return $headers;
+        return $this->createResponse($responseContent, $responseHeaders);
     }
 
     /**
