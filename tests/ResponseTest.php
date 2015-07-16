@@ -4,6 +4,7 @@ namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\MessageInterface;
 use yii\httpclient\Response;
+use yii\web\Cookie;
 
 class ResponseTest extends TestCase
 {
@@ -110,5 +111,31 @@ class ResponseTest extends TestCase
         $response = new Response();
         $response->setHeaders(['http-code' => $statusCode]);
         $this->assertEquals($isOk, $response->getIsOk());
+    }
+
+    public function testParseCookieHeader()
+    {
+        $response = new Response();
+        $this->assertEquals(0, $response->getCookies()->count());
+
+        $response = new Response();
+        $response->setHeaders(['set-cookie' => 'name1=value1; path=/; httponly']);
+        $this->assertEquals(1, $response->getCookies()->count());
+        $cookie = $response->getCookies()->get('name1');
+        $this->assertTrue($cookie instanceof Cookie);
+        $this->assertEquals('value1', $cookie->value);
+        $this->assertEquals('/', $cookie->path);
+        $this->assertEquals(true, $cookie->httpOnly);
+
+        $response = new Response();
+        $response->setHeaders(['set-cookie' => 'COUNTRY=NA%2C195.177.208.1; expires=Thu, 23-Jul-2015 13:39:41 GMT; path=/; domain=.php.net']);
+        $cookie = $response->getCookies()->get('COUNTRY');
+
+        $response = new Response();
+        $response->setHeaders(['set-cookie' => [
+            'name1=value1; path=/; httponly',
+            'name2=value2; path=/; httponly',
+        ]]);
+        $this->assertEquals(2, $response->getCookies()->count());
     }
 }

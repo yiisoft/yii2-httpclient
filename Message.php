@@ -85,7 +85,7 @@ class Message extends Object implements MessageInterface
             $headerCollection = new HeaderCollection();
             if (is_array($this->_headers)) {
                 foreach ($this->_headers as $name => $value) {
-                    $headerCollection->add($name, $value);
+                    $headerCollection->set($name, $value);
                 }
             }
             $this->_headers = $headerCollection;

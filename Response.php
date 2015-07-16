@@ -9,6 +9,7 @@ namespace yii\httpclient;
 
 use yii\base\Exception;
 use yii\base\Object;
+use yii\web\Cookie;
 use yii\web\HeaderCollection;
 
 /**
@@ -22,6 +23,21 @@ use yii\web\HeaderCollection;
  */
 class Response extends Message
 {
+    /**
+     * @inheritdoc
+     */
+    public function getCookies()
+    {
+        $cookieCollection = parent::getCookies();
+        if ($cookieCollection->getCount() === 0 && $this->getHeaders()->has('set-cookie')) {
+            $cookieStrings = $this->getHeaders()->get('set-cookie', [], false);
+            foreach ($cookieStrings as $cookieString) {
+                $cookieCollection->add($this->parseCookie($cookieString));
+            }
+        }
+        return $cookieCollection;
+    }
+
     /**
      * Returns status code.
      * @throws Exception on failure.
@@ -97,5 +113,48 @@ class Response extends Message
             return self::FORMAT_XML;
         }
         return null;
+    }
+
+    /**
+     * Parses cookie value string, creating a [[Cookie]] instance.
+     * @param string $cookieString cookie header string.
+     * @return Cookie cookie object.
+     */
+    protected function parseCookie($cookieString)
+    {
+        $params = [];
+        $pairs = explode(';', $cookieString);
+        foreach ($pairs as $number => $pair) {
+            $pair = trim($pair);
+            if (strpos($pair, '=') === false) {
+                $params[$this->normalizeCookieParamName($pair)] = true;
+            } else {
+                list($name, $value) = explode('=', $pair, 2);
+                if ($number === 0) {
+                    $params['name'] = $name;
+                    $params['value'] = urldecode($value);
+                } else {
+                    $params[$this->normalizeCookieParamName($name)] = urldecode($value);
+                }
+            }
+        }
+        return new Cookie($params);
+    }
+
+    /**
+     * @param string $rawName raw cookie parameter name.
+     * @return string name of [[Cookie]] field.
+     */
+    protected function normalizeCookieParamName($rawName)
+    {
+        static $nameMap = [
+            'expires' => 'expire',
+            'httponly' => 'httpOnly',
+        ];
+        $name = strtolower($rawName);
+        if (isset($nameMap[$name])) {
+            $name = $nameMap[$name];
+        }
+        return $name;
     }
 }
