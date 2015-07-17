@@ -140,7 +140,16 @@ class TransportCurl extends Transport
             if (is_int($key)) {
                 $curlOptions[$key] = $value;
             } else {
-                $constantName = 'CURLOPT_' . strtoupper($key);
+                $key = strtoupper($key);
+                if (strpos($key, 'SSL') === 0) {
+                    $key = substr($key, 3);
+                    $constantName = 'CURLOPT_SSL_' . $key;
+                    if (!defined($constantName)) {
+                        $constantName = 'CURLOPT_SSL' . $key;
+                    }
+                } else {
+                    $constantName = 'CURLOPT_' . strtoupper($key);
+                }
                 $curlOptions[constant($constantName)] = $value;
             }
         }

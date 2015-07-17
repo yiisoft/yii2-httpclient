@@ -8,6 +8,7 @@
 namespace yii\httpclient;
 
 use yii\helpers\ArrayHelper;
+use yii\helpers\Inflector;
 
 /**
  * TransportStream sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
@@ -68,7 +69,13 @@ class TransportStream extends Transport
     {
         $contextOptions = [];
         foreach ($options as $key => $value) {
-            $contextOptions['http'][$key] = $value;
+            $section = 'http';
+            if (strpos($key, 'ssl') === 0) {
+                $section = 'ssl';
+                $key = substr($key, 3);
+            }
+            Inflector::underscore($key);
+            $contextOptions[$section][$key] = $value;
         }
         return $contextOptions;
     }

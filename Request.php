@@ -12,7 +12,7 @@ namespace yii\httpclient;
  *
  * @property string $url target URL.
  * @property string $method request method.
- * @property array $options request options.
+ * @property array $options request options. See [[setOptions()]] for details.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -28,7 +28,7 @@ class Request extends Message
      */
     private $_method = 'get';
     /**
-     * @var array CURL options
+     * @var array request options.
      */
     private $_options = [];
 
@@ -70,6 +70,16 @@ class Request extends Message
     }
 
     /**
+     * Following options are supported:
+     * - timeout: integer, the maximum number of seconds to allow request to be executed.
+     * - port: integer, an alternative port number to connect to.
+     * - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
+     * - followLocation: boolean, whether to follow any "Location: " header that the server sends as part of the HTTP header.
+     * - sslVerifyPeer: boolean, whether verification of the peer's certificate should be performed.
+     *
+     * You may set options using keys, which are specific to particular transport, like `[CURLOPT_VERBOSE => true]` in case
+     * there is a necessity for it.
+     *
      * @param array $options request options.
      * @return $this self reference.
      */
