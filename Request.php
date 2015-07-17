@@ -6,6 +6,7 @@
  */
 
 namespace yii\httpclient;
+use yii\helpers\ArrayHelper;
 
 /**
  * Request represents HTTP request.
@@ -95,6 +96,18 @@ class Request extends Message
     public function getOptions()
     {
         return $this->_options;
+    }
+
+    /**
+     * Adds more options to already defined ones.
+     * Please refer to [[setOptions()]] on how to specify options.
+     * @param array $options additional options
+     * @return $this self reference.
+     */
+    public function addOptions(array $options)
+    {
+        $this->options = ArrayHelper::merge($this->options, $options); // `array_merge()` will produce invalid result for cURL options
+        return $this;
     }
 
     /**

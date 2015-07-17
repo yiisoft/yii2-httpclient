@@ -30,10 +30,37 @@ class RequestTest extends TestCase
         $request = new Request();
 
         $options = [
-            1 => 'test'
+            'timeout' => 10,
+            'userAgent' => 'test',
         ];
         $request->setOptions($options);
         $this->assertEquals($options, $request->getOptions());
+    }
+
+    /**
+     * @depends testSetupOptions
+     */
+    public function testAddOptions()
+    {
+        $request = new Request();
+
+        $options = [
+            'timeout' => 10,
+            'userAgent' => 'test',
+        ];
+        $request->setOptions($options);
+
+        $request->addOptions([
+            'userAgent' => 'override',
+            'test' => 'new',
+        ]);
+
+        $expectedOptions = [
+            'timeout' => 10,
+            'userAgent' => 'override',
+            'test' => 'new',
+        ];
+        $this->assertEquals($expectedOptions, $request->getOptions());
     }
 
     /**

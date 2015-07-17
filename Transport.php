@@ -65,6 +65,9 @@ abstract class Transport extends Component
      */
     protected function composeHeaders($request)
     {
+        if (!$request->hasHeaders()) {
+            return [];
+        }
         $headers = [];
         foreach ($request->getHeaders() as $name => $values) {
             $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
@@ -82,6 +85,9 @@ abstract class Transport extends Component
      */
     protected function composeCookies($request)
     {
+        if (!$request->hasCookies()) {
+            return '';
+        }
         $parts = [];
         foreach ($request->getCookies() as $cookie) {
             $parts[] = $cookie->name . '=' . urlencode($cookie->value);

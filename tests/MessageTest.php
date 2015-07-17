@@ -39,6 +39,22 @@ class MessageTest extends TestCase
         $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
     }
 
+    /**
+     * @depends testSetupHeaders
+     */
+    public function testHasHeaders()
+    {
+        $message = new Message();
+
+        $this->assertFalse($message->hasHeaders());
+
+        $message->getHeaders(); // instantiate `HeaderCollection`
+        $this->assertFalse($message->hasHeaders());
+
+        $message->getHeaders()->add('name', 'value');
+        $this->assertTrue($message->hasHeaders());
+    }
+
     public function testSetupCookies()
     {
         $message = new Message();
@@ -55,6 +71,33 @@ class MessageTest extends TestCase
         $cookie = $cookieCollection->get('test');
         $this->assertTrue($cookie instanceof Cookie);
         $this->assertEquals('test.com', $cookie->domain);
+
+        $additionalCookies = [
+            [
+                'name' => 'additional',
+                'domain' => 'additional.com',
+            ],
+        ];
+        $message->addCookies($additionalCookies);
+        $cookie = $cookieCollection->get('additional');
+        $this->assertTrue($cookie instanceof Cookie);
+        $this->assertEquals('additional.com', $cookie->domain);
+    }
+
+    /**
+     * @depends testSetupCookies
+     */
+    public function testHasCookies()
+    {
+        $message = new Message();
+
+        $this->assertFalse($message->hasCookies());
+
+        $message->getCookies(); // instantiate `CookieCollection`
+        $this->assertFalse($message->hasCookies());
+
+        $message->getCookies()->add(new Cookie());
+        $this->assertTrue($message->hasCookies());
     }
 
     public function testSetupFormat()

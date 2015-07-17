@@ -87,8 +87,35 @@ class Message extends Object
     }
 
     /**
+     * Adds more headers to the already defined ones.
+     * @param array $headers additional headers in format: [headerName => headerValue]
+     * @return $this self reference.
+     */
+    public function addHeaders(array $headers)
+    {
+        $headerCollection = $this->getHeaders();
+        foreach ($headers as $name => $value) {
+            $headerCollection->add($name, $value);
+        }
+        return $this;
+    }
+
+    /**
+     * Checks of HTTP message contains any header.
+     * Using this method you are able to check cookie presence without instantiating [[HeaderCollection]].
+     * @return boolean whether message contains any header.
+     */
+    public function hasHeaders()
+    {
+        if (is_object($this->_headers)) {
+            return $this->_headers->getCount() > 0;
+        }
+        return !empty($this->_headers);
+    }
+
+    /**
      * Sets the cookies associated with HTTP message.
-     * @param array|CookieCollection $cookies cookie collection or cookies list.
+     * @param CookieCollection|Cookie[]|array $cookies cookie collection or cookies list.
      * @return $this self reference.
      */
     public function setCookies($cookies)
@@ -120,17 +147,33 @@ class Message extends Object
     }
 
     /**
-     * Adds HTTP headers to the headers collection.
-     * @param array $headers headers list in format: [headerName => headerValue]
+     * Adds more cookies to the already defined ones.
+     * @param Cookie[]|array $cookies additional cookies.
      * @return $this self reference.
      */
-    public function addHeaders(array $headers)
+    public function addCookies(array $cookies)
     {
-        $headerCollection = $this->getHeaders();
-        foreach ($headers as $name => $value) {
-            $headerCollection->add($name, $value);
+        $cookieCollection = $this->getCookies();
+        foreach ($cookies as $cookie) {
+            if (!is_object($cookie)) {
+                $cookie = new Cookie($cookie);
+            }
+            $cookieCollection->add($cookie);
         }
         return $this;
+    }
+
+    /**
+     * Checks of HTTP message contains any cookie.
+     * Using this method you are able to check cookie presence without instantiating [[CookieCollection]].
+     * @return boolean whether message contains any cookie.
+     */
+    public function hasCookies()
+    {
+        if (is_object($this->_cookies)) {
+            return $this->_cookies->getCount() > 0;
+        }
+        return !empty($this->_cookies);
     }
 
     /**
