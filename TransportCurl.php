@@ -159,7 +159,7 @@ class TransportCurl extends Transport
             if (strlen($header) > 0) {
                 $output[] = $header;
             }
-            return strlen($headerString);
+            return mb_strlen($headerString, '8bit');
         });
     }
 }
