@@ -1,5 +1,5 @@
-MongoDb Extension for Yii 2
-===========================
+HTTP Client Extension for Yii 2
+===============================
 
 This extension provides the HTTP client for the [Yii framework 2.0](http://www.yiiframework.com).
 
@@ -28,6 +28,7 @@ or add
 ```
 
 to the require section of your composer.json.
+
 
 Configuration
 -------------
