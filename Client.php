@@ -221,4 +221,117 @@ class Client extends Component
     {
         return $this->getTransport()->batchSend($requests);
     }
+
+    // Create request shortcut methods :
+
+    /**
+     * Creates 'GET' request.
+     * @param string $url target URL.
+     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array $headers request headers.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function get($url, $data = null, $headers = [], $options = [])
+    {
+        return $this->createRequestShortcut('get', $url, $data, $headers, $options);
+    }
+
+    /**
+     * Creates 'POST' request.
+     * @param string $url target URL.
+     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array $headers request headers.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function post($url, $data = null, $headers = [], $options = [])
+    {
+        return $this->createRequestShortcut('post', $url, $data, $headers, $options);
+    }
+
+    /**
+     * Creates 'PUT' request.
+     * @param string $url target URL.
+     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array $headers request headers.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function put($url, $data = null, $headers = [], $options = [])
+    {
+        return $this->createRequestShortcut('put', $url, $data, $headers, $options);
+    }
+
+    /**
+     * Creates 'PATCH' request.
+     * @param string $url target URL.
+     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array $headers request headers.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function patch($url, $data = null, $headers = [], $options = [])
+    {
+        return $this->createRequestShortcut('patch', $url, $data, $headers, $options);
+    }
+
+    /**
+     * Creates 'DELETE' request.
+     * @param string $url target URL.
+     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array $headers request headers.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function delete($url, $data = null, $headers = [], $options = [])
+    {
+        return $this->createRequestShortcut('delete', $url, $data, $headers, $options);
+    }
+
+    /**
+     * Creates 'HEAD' request.
+     * @param string $url target URL.
+     * @param array $headers request headers.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function head($url, $headers = [], $options = [])
+    {
+        return $this->createRequestShortcut('delete', $url, null, $headers, $options);
+    }
+
+    /**
+     * Creates 'OPTIONS' request.
+     * @param string $url target URL.
+     * @param array $options request options.
+     * @return Request request instance.
+     */
+    public function options($url, $options = [])
+    {
+        return $this->createRequestShortcut('options', $url, null, [], $options);
+    }
+
+    /**
+     * @param string $method
+     * @param string $url
+     * @param array|string $data
+     * @param array $headers
+     * @param array $options
+     * @return Request request instance.
+     */
+    private function createRequestShortcut($method, $url, $data, $headers, $options)
+    {
+        $request = $this->createRequest()
+            ->setMethod($method)
+            ->setUrl($url)
+            ->addHeaders($headers)
+            ->addOptions($options);
+        if (is_array($data)) {
+            $request->setData($data);
+        } else {
+            $request->setContent($data);
+        }
+        return $request;
+    }
 }
