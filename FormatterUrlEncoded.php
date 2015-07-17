@@ -26,16 +26,27 @@ class FormatterUrlEncoded extends Object implements FormatterInterface
      *  - PHP_QUERY_RFC3986 - then encoding is performed according to 'RFC 3986', and spaces will be percent encoded (%20).
      *    This encoding type is required by OpenID and OAuth protocols.
      */
-    public $encodingType = PHP_QUERY_RFC3986;
+    public $encodingType = PHP_QUERY_RFC1738;
 
 
     /**
      * @inheritdoc
      */
-    public function format(MessageInterface $httpDocument)
+    public function format(Request $request)
     {
-        $httpDocument->getHeaders()->set('Content-Type', 'application/x-www-form-urlencoded');
-        $data = $httpDocument->getData();
-        return http_build_query($data, '', '&', $this->encodingType);
+        $data = (array)$request->getData();
+        $content = http_build_query($data, '', '&', $this->encodingType);
+
+        if (strcasecmp('get', $request->getMethod()) === 0) {
+            $url = $request->getUrl();
+            $url .= (strpos($url, '?') === false) ? '?' : '&';
+            $url .= $content;
+            $request->setUrl($url);
+            return $request;
+        }
+
+        $request->getHeaders()->set('Content-Type', 'application/x-www-form-urlencoded');
+        $request->setContent($content);
+        return $request;
     }
 }

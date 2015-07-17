@@ -22,7 +22,10 @@ class TransportStream extends Transport
      */
     public function send($request)
     {
-        $method = strtoupper($request->getMethod());
+        $request->prepare();
+
+        $url = $request->getUrl();
+        $method = strtolower($request->getMethod());
 
         $contextOptions = [
             'http' => [
@@ -34,20 +37,9 @@ class TransportStream extends Transport
             ],
         ];
 
-        switch ($method) {
-            case 'GET':
-                $url = $this->composeUrl($request, true);
-                break;
-            case 'POST':
-                $url = $this->composeUrl($request);
-                $contextOptions['http']['content'] = $request->getContent();
-                break;
-            case 'HEAD':
-                $url = $this->composeUrl($request, true);
-                break;
-            default:
-                $url = $this->composeUrl($request);
-                $contextOptions['http']['content'] = $request->getContent();
+        $content = $request->getContent();
+        if ($content !== null) {
+            $contextOptions['http']['content'] = $content;
         }
 
         $headers = $this->composeHeaders($request);

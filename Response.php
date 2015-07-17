@@ -26,6 +26,22 @@ class Response extends Message
     /**
      * @inheritdoc
      */
+    public function getData()
+    {
+        $data = parent::getData();
+        if ($data === null) {
+            $content = $this->getContent();
+            if (!empty($content)) {
+                $data = $this->getParser()->parse($this);
+                $this->setData($data);
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getCookies()
     {
         $cookieCollection = parent::getCookies();
@@ -84,13 +100,13 @@ class Response extends Message
         $contentType = $headers->get('content-type');
         if (!empty($contentType)) {
             if (stripos($contentType, 'json') !== false) {
-                return self::FORMAT_JSON;
+                return Client::FORMAT_JSON;
             }
             if (stripos($contentType, 'urlencoded') !== false) {
-                return self::FORMAT_URLENCODED;
+                return Client::FORMAT_URLENCODED;
             }
             if (stripos($contentType, 'xml') !== false) {
-                return self::FORMAT_XML;
+                return Client::FORMAT_XML;
             }
         }
         return null;
@@ -104,13 +120,13 @@ class Response extends Message
     protected function detectFormatByContent($content)
     {
         if (preg_match('/^\\{.*\\}$/is', $content)) {
-            return self::FORMAT_JSON;
+            return Client::FORMAT_JSON;
         }
         if (preg_match('/^[^=|^&]+=[^=|^&]+(&[^=|^&]+=[^=|^&]+)*$/is', $content)) {
-            return self::FORMAT_URLENCODED;
+            return Client::FORMAT_URLENCODED;
         }
         if (preg_match('/^<.*>$/is', $content)) {
-            return self::FORMAT_XML;
+            return Client::FORMAT_XML;
         }
         return null;
     }
@@ -120,7 +136,7 @@ class Response extends Message
      * @param string $cookieString cookie header string.
      * @return Cookie cookie object.
      */
-    protected function parseCookie($cookieString)
+    private function parseCookie($cookieString)
     {
         $params = [];
         $pairs = explode(';', $cookieString);
@@ -145,7 +161,7 @@ class Response extends Message
      * @param string $rawName raw cookie parameter name.
      * @return string name of [[Cookie]] field.
      */
-    protected function normalizeCookieParamName($rawName)
+    private function normalizeCookieParamName($rawName)
     {
         static $nameMap = [
             'expires' => 'expire',
@@ -156,5 +172,13 @@ class Response extends Message
             $name = $nameMap[$name];
         }
         return $name;
+    }
+
+    /**
+     * @return ParserInterface message parser instance.
+     */
+    private function getParser()
+    {
+        return $this->client->getParser($this->getFormat());
     }
 }

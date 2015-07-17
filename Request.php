@@ -20,11 +20,6 @@ namespace yii\httpclient;
 class Request extends Message
 {
     /**
-     * @var Client owner client instance.
-     */
-    public $client;
-
-    /**
      * @var string target URL.
      */
     private $_url;
@@ -93,11 +88,37 @@ class Request extends Message
     }
 
     /**
+     * Prepares this request instance for sending.
+     * This method should be invoked by transport before sending a request.
+     * Do not call this method unless you know what you are doing.
+     * @return $this self reference.
+     */
+    public function prepare()
+    {
+        if (!empty($this->client->baseUrl)) {
+            $url = $this->getUrl();
+            if (!preg_match('/^https?:\\/\\//is', $url)) {
+                $this->setUrl($this->client->baseUrl . '/' . $url);
+            }
+        }
+        $this->getFormatter()->format($this);
+        return $this;
+    }
+
+    /**
      * Sends this request.
      * @return Response response instance.
      */
     public function send()
     {
         return $this->client->send($this);
+    }
+
+    /**
+     * @return FormatterInterface message formatter instance.
+     */
+    private function getFormatter()
+    {
+        return $this->client->getFormatter($this->getFormat());
     }
 }

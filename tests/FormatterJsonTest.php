@@ -10,15 +10,16 @@ class FormatterJsonTest extends TestCase
 {
     public function testFormat()
     {
-        $document = new Request();
+        $request = new Request();
         $data = [
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $document->setData($data);
+        $request->setData($data);
 
-        $parser = new FormatterJson();
-        $this->assertEquals(Json::encode($data), $parser->format($document));
-        $this->assertEquals('application/json; charset=UTF-8', $document->getHeaders()->get('Content-Type'));
+        $formatter = new FormatterJson();
+        $formatter->format($request);
+        $this->assertEquals(Json::encode($data), $request->getContent());
+        $this->assertEquals('application/json; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
     }
 } 

@@ -28,10 +28,10 @@ class FormatterJson extends Object implements FormatterInterface
     /**
      * @inheritdoc
      */
-    public function format(MessageInterface $httpDocument)
+    public function format(Request $request)
     {
-        $httpDocument->getHeaders()->set('Content-Type', 'application/json; charset=UTF-8');
-        $data = $httpDocument->getData();
-        return Json::encode($data, $this->encodeOptions);
+        $request->getHeaders()->set('Content-Type', 'application/json; charset=UTF-8');
+        $request->setContent(Json::encode($request->getData(), $this->encodeOptions));
+        return $request;
     }
-} 
+}

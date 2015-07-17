@@ -4,6 +4,9 @@ namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\TransportCurl;
 
+/**
+ * @group curl
+ */
 class TransportCurlTest extends TransportTestCase
 {
     /**

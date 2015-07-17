@@ -20,10 +20,10 @@ class ParserUrlEncoded extends Object implements ParserInterface
     /**
      * @inheritdoc
      */
-    public function parse(MessageInterface $httpDocument)
+    public function parse(Response $response)
     {
         $data = [];
-        parse_str($httpDocument->getContent(), $data);
+        parse_str($response->getContent(), $data);
         return $data;
     }
 }

@@ -8,7 +8,7 @@
 namespace yii\httpclient;
 
 /**
- * FormatterInterface represents HTTP message formatter.
+ * FormatterInterface represents HTTP request message formatter.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -16,9 +16,9 @@ namespace yii\httpclient;
 interface FormatterInterface
 {
     /**
-     * Formats given HTTP document.
-     * @param MessageInterface $httpDocument HTTP document instance.
-     * @return string formatted content.
+     * Formats given HTTP request message.
+     * @param Request $request HTTP request instance.
+     * @return Request formatted request.
      */
-    public function format(MessageInterface $httpDocument);
-} 
+    public function format(Request $request);
+}

@@ -27,20 +27,13 @@ use Yii;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class Message extends Object implements MessageInterface
+class Message extends Object
 {
     /**
-     * @var array the formatters for converting data into the content of the specified [[format]].
-     * The array keys are the format names, and the array values are the corresponding configurations
-     * for creating the formatter objects.
+     * @var Client owner client instance.
      */
-    public $formatters = [];
-    /**
-     * @var array the parsers for converting content of the specified [[format]] into the data.
-     * The array keys are the format names, and the array values are the corresponding configurations
-     * for creating the parser objects.
-     */
-    public $parsers = [];
+    public $client;
+
     /**
      * @var HeaderCollection headers.
      */
@@ -157,9 +150,6 @@ class Message extends Object implements MessageInterface
      */
     public function getContent()
     {
-        if ($this->_content === null && !empty($this->_data)) {
-            $this->_content = $this->createFormatter()->format($this);
-        }
         return $this->_content;
     }
 
@@ -168,7 +158,7 @@ class Message extends Object implements MessageInterface
      * @param array $data content data fields.
      * @return $this self reference.
      */
-    public function setData(array $data)
+    public function setData($data)
     {
         $this->_data = $data;
         return $this;
@@ -176,13 +166,10 @@ class Message extends Object implements MessageInterface
 
     /**
      * Returns the data fields, parsed from raw content.
-     * @return array content data fields.
+     * @return array|null content data fields.
      */
     public function getData()
     {
-        if ($this->_data === null && !empty($this->_content)) {
-            $this->_data = $this->createParser()->parse($this);
-        }
         return $this->_data;
     }
 
@@ -215,7 +202,7 @@ class Message extends Object implements MessageInterface
      */
     protected function defaultFormat()
     {
-        return MessageInterface::FORMAT_URLENCODED;
+        return Client::FORMAT_URLENCODED;
     }
 
     /**
@@ -246,50 +233,6 @@ class Message extends Object implements MessageInterface
         } catch (\Exception $e) {
             ErrorHandler::convertExceptionToError($e);
             return '';
-        }
-    }
-
-    /**
-     * @return FormatterInterface message formatter instance.
-     * @throws InvalidConfigException on unrecognized format.
-     */
-    private function createFormatter()
-    {
-        $format = $this->getFormat();
-        if (array_key_exists($format, $this->formatters)) {
-            return Yii::createObject($this->formatters[$format]);
-        } else {
-            $defaultFormatters = [
-                MessageInterface::FORMAT_URLENCODED => 'yii\httpclient\FormatterUrlEncoded',
-                MessageInterface::FORMAT_JSON => 'yii\httpclient\FormatterJson',
-                //DocumentInterface::FORMAT_XML => 'yii\httpclient\FormatterXml',
-            ];
-            if (array_key_exists($format, $defaultFormatters)) {
-                return Yii::createObject($defaultFormatters[$format]);
-            }
-            throw new InvalidConfigException("Unrecognized format '{$format}'");
-        }
-    }
-
-    /**
-     * @return ParserInterface message parser instance.
-     * @throws InvalidConfigException on unrecognized format.
-     */
-    private function createParser()
-    {
-        $format = $this->getFormat();
-        if (array_key_exists($format, $this->parsers)) {
-            return Yii::createObject($this->parsers[$format]);
-        } else {
-            $defaultParsers = [
-                MessageInterface::FORMAT_URLENCODED => 'yii\httpclient\ParserUrlEncoded',
-                MessageInterface::FORMAT_JSON => 'yii\httpclient\ParserJson',
-                MessageInterface::FORMAT_XML => 'yii\httpclient\ParserXml',
-            ];
-            if (array_key_exists($format, $defaultParsers)) {
-                return Yii::createObject($defaultParsers[$format]);
-            }
-            throw new InvalidConfigException("Unrecognized format '{$format}'");
         }
     }
 }

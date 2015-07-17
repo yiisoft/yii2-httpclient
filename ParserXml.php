@@ -20,9 +20,9 @@ class ParserXml extends Object implements ParserInterface
     /**
      * @inheritdoc
      */
-    public function parse(MessageInterface $httpDocument)
+    public function parse(Response $response)
     {
-        return $this->convertXmlToArray($httpDocument->getContent());
+        return $this->convertXmlToArray($response->getContent());
     }
 
     /**

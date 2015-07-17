@@ -9,15 +9,34 @@ class FormatterUrlEncodedTest extends TestCase
 {
     public function testFormat()
     {
-        $document = new Request();
+        $request = new Request();
+        $request->setMethod('post');
         $data = [
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $document->setData($data);
+        $request->setData($data);
 
-        $parser = new FormatterUrlEncoded();
-        $this->assertEquals(http_build_query($data), $parser->format($document));
-        $this->assertEquals('application/x-www-form-urlencoded', $document->getHeaders()->get('Content-Type'));
+        $formatter = new FormatterUrlEncoded();
+        $formatter->format($request);
+        $this->assertEquals(http_build_query($data), $request->getContent());
+        $this->assertEquals('application/x-www-form-urlencoded', $request->getHeaders()->get('Content-Type'));
+    }
+
+    public function testFormatMethodGet()
+    {
+        $request = new Request();
+        $request->setMethod('get');
+        $data = [
+            'name1' => 'value1',
+            'name2' => 'value2',
+        ];
+        $request->setData($data);
+
+        $formatter = new FormatterUrlEncoded();
+        $formatter->format($request);
+        $this->assertEmpty($request->getContent());
+        $this->assertContains(http_build_query($data), $request->getUrl());
+        $this->assertFalse($request->getHeaders()->has('Content-Type'));
     }
 } 

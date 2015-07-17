@@ -2,7 +2,7 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\MessageInterface;
+use yii\httpclient\Client;
 use yii\httpclient\Response;
 use yii\web\Cookie;
 
@@ -17,15 +17,15 @@ class ResponseTest extends TestCase
         return [
             [
                 'application/x-www-form-urlencoded',
-                MessageInterface::FORMAT_URLENCODED
+                Client::FORMAT_URLENCODED
             ],
             [
                 'application/json',
-                MessageInterface::FORMAT_JSON
+                Client::FORMAT_JSON
             ],
             [
                 'text/xml',
-                MessageInterface::FORMAT_XML
+                Client::FORMAT_XML
             ],
         ];
     }
@@ -52,15 +52,15 @@ class ResponseTest extends TestCase
         return [
             [
                 'name1=value1&name2=value2',
-                MessageInterface::FORMAT_URLENCODED
+                Client::FORMAT_URLENCODED
             ],
             [
                 '{"name1":"value1", "name2":"value2"}',
-                MessageInterface::FORMAT_JSON
+                Client::FORMAT_JSON
             ],
             [
                 '<?xml version="1.0" encoding="utf-8"?><root></root>',
-                MessageInterface::FORMAT_XML
+                Client::FORMAT_XML
             ],
         ];
     }
@@ -76,6 +76,18 @@ class ResponseTest extends TestCase
         $response = new Response();
         $response->setContent($content);
         $this->assertEquals($expectedFormat, $response->getFormat());
+    }
+
+    public function testParseBody()
+    {
+        $response = new Response([
+            'client' => new Client(),
+            'format' => Client::FORMAT_URLENCODED,
+        ]);
+
+        $content = 'name=value';
+        $response->setContent($content);
+        $this->assertEquals(['name' => 'value'], $response->getData());
     }
 
     public function testGetStatusCode()

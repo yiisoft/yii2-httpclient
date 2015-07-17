@@ -21,8 +21,8 @@ class ParserJson extends Object implements ParserInterface
     /**
      * @inheritdoc
      */
-    public function parse(MessageInterface $httpDocument)
+    public function parse(Response $response)
     {
-        return Json::decode($httpDocument->getContent());
+        return Json::decode($response->getContent());
     }
 }

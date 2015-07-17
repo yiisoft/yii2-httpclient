@@ -3,8 +3,6 @@
 namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\Message;
-use yii\httpclient\FormatterUrlEncoded;
-use yii\httpclient\ParserUrlEncoded;
 use yii\web\Cookie;
 use yii\web\CookieCollection;
 use yii\web\HeaderCollection;
@@ -85,44 +83,5 @@ class MessageTest extends TestCase
         ];
         $message->setData($data);
         $this->assertEquals($data, $message->getData());
-    }
-
-    /**
-     * @depends testSetupBody
-     */
-    public function testParseBody()
-    {
-        $message = new Message();
-        $format = 'testFormat';
-        $message->setFormat($format);
-        $message->parsers = [
-            $format => [
-                'class' => ParserUrlEncoded::className()
-            ]
-        ];
-        $content = 'name=value';
-        $message->setContent($content);
-        $this->assertEquals(['name' => 'value'], $message->getData());
-    }
-
-    /**
-     * @depends testSetupData
-     */
-    public function testFormatData()
-    {
-        $message = new Message();
-        $format = 'testFormat';
-        $message->setFormat($format);
-        $message->formatters = [
-            $format => [
-                'class' => FormatterUrlEncoded::className()
-            ]
-        ];
-
-        $data = [
-            'name' => 'value',
-        ];
-        $message->setData($data);
-        $this->assertEquals('name=value', $message->getContent());
     }
 }

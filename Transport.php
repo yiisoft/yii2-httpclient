@@ -59,35 +59,6 @@ abstract class Transport extends Component
     }
 
     /**
-     * Composes actual request URL string.
-     * @param Request $request request instance.
-     * @param boolean $appendData whether to append request data to the URL as GET parameters.
-     * @return string composed URL.
-     */
-    protected function composeUrl($request, $appendData = false)
-    {
-        $url = $request->getUrl();
-        if (!empty($this->client->baseUrl)) {
-            if (!preg_match('/^https?:\\/\\//is', $url)) {
-                $url = $this->client->baseUrl . '/' . $url;
-            }
-        }
-
-        if ($appendData) {
-            $data = $request->getData();
-            if (!empty($data)) {
-                if (strpos($url, '?') === false) {
-                    $url .= '?';
-                } else {
-                    $url .= '&';
-                }
-                $url .= http_build_query($data, '', '&', PHP_QUERY_RFC3986);
-            }
-        }
-        return $url;
-    }
-
-    /**
      * Composes request headers for the cURL.
      * @param Request $request request instance.
      * @return array headers list.

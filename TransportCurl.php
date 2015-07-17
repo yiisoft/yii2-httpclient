@@ -95,30 +95,28 @@ class TransportCurl extends Transport
      */
     protected function prepare($request)
     {
+        $request->prepare();
+
         $curlOptions = $this->composeCurlOptions($request->getOptions());
 
-        $method = strtoupper($request->getMethod());
+        $method = strtolower($request->getMethod());
         switch ($method) {
-            case 'GET':
-                $url = $this->composeUrl($request, true);
+            case 'get':
                 break;
-            case 'POST':
-                $url = $this->composeUrl($request);
+            case 'post':
                 $curlOptions[CURLOPT_POST] = true;
-                $curlOptions[CURLOPT_POSTFIELDS] = $request->getContent();
-                break;
-            case 'HEAD':
-                $curlOptions[CURLOPT_CUSTOMREQUEST] = $method;
-                $url = $this->composeUrl($request, true);
                 break;
             default:
-                $url = $this->composeUrl($request);
                 $curlOptions[CURLOPT_CUSTOMREQUEST] = $method;
-                $curlOptions[CURLOPT_POSTFIELDS] = $request->getContent();
+        }
+
+        $content = $request->getContent();
+        if ($content !== null) {
+            $curlOptions[CURLOPT_POSTFIELDS] = $content;
         }
 
         $curlOptions[CURLOPT_RETURNTRANSFER] = true;
-        $curlOptions[CURLOPT_URL] = $url;
+        $curlOptions[CURLOPT_URL] = $request->getUrl();
         $curlOptions[CURLOPT_HTTPHEADER] = $this->composeHeaders($request);
         $curlOptions[CURLOPT_COOKIE] = $this->composeCookies($request);
 

@@ -10,6 +10,7 @@ namespace yii\httpclient;
 use yii\base\Exception;
 use yii\base\Component;
 use Yii;
+use yii\base\InvalidParamException;
 
 /**
  * Client provide high level interface for HTTP requests execution.
@@ -22,9 +23,40 @@ use Yii;
 class Client extends Component
 {
     /**
+     * JSON format
+     */
+    const FORMAT_JSON = 'json';
+    /**
+     * urlencoded query string, like name1=value1&name2=value2
+     * @see http://php.net/manual/en/function.urlencode.php
+     */
+    const FORMAT_URLENCODED = 'urlencoded';
+    /**
+     * urlencoded query string, like name1=value1&name2=value2
+     * @see http://php.net/manual/en/function.rawurlencode.php
+     */
+    const FORMAT_RAW_URLENCODED = 'raw-urlencoded';
+    /**
+     * XML format
+     */
+    const FORMAT_XML = 'xml';
+
+    /**
      * @var string base request URL.
      */
     public $baseUrl;
+    /**
+     * @var array the formatters for converting data into the content of the specified [[format]].
+     * The array keys are the format names, and the array values are the corresponding configurations
+     * for creating the formatter objects.
+     */
+    public $formatters = [];
+    /**
+     * @var array the parsers for converting content of the specified [[format]] into the data.
+     * The array keys are the format names, and the array values are the corresponding configurations
+     * for creating the parser objects.
+     */
+    public $parsers = [];
     /**
      * @var array request object configuration.
      */
@@ -74,6 +106,70 @@ class Client extends Component
     }
 
     /**
+     * Returns HTTP message formatter instance for the specified format.
+     * @param string $format format name.
+     * @return FormatterInterface formatter instance.
+     * @throws InvalidParamException on invalid format name.
+     */
+    public function getFormatter($format)
+    {
+        static $defaultFormatters = [
+            self::FORMAT_JSON => 'yii\httpclient\FormatterJson',
+            self::FORMAT_URLENCODED => [
+                'class' => 'yii\httpclient\FormatterUrlEncoded',
+                'encodingType' => PHP_QUERY_RFC1738
+            ],
+            self::FORMAT_RAW_URLENCODED => [
+                'class' => 'yii\httpclient\FormatterUrlEncoded',
+                'encodingType' => PHP_QUERY_RFC3986
+            ],
+            self::FORMAT_XML => 'yii\httpclient\FormatterXML',
+        ];
+
+        if (!isset($this->formatters[$format])) {
+            if (!isset($defaultFormatters[$format])) {
+                throw new InvalidParamException("Unrecognized format '{$format}'");
+            }
+            $this->formatters[$format] = $defaultFormatters[$format];
+        }
+
+        if (!is_object($this->formatters[$format])) {
+            $this->formatters[$format] = Yii::createObject($this->formatters[$format]);
+        }
+
+        return $this->formatters[$format];
+    }
+
+    /**
+     * Returns HTTP message parser instance for the specified format.
+     * @param string $format format name
+     * @return ParserInterface parser instance.
+     * @throws InvalidParamException on invalid format name.
+     */
+    public function getParser($format)
+    {
+        static $defaultParsers = [
+            self::FORMAT_JSON => 'yii\httpclient\ParserJson',
+            self::FORMAT_URLENCODED => 'yii\httpclient\ParserUrlEncoded',
+            self::FORMAT_RAW_URLENCODED => 'yii\httpclient\ParserUrlEncoded',
+            self::FORMAT_XML => 'yii\httpclient\ParserXml',
+        ];
+
+        if (!isset($this->parsers[$format])) {
+            if (!isset($defaultParsers[$format])) {
+                throw new InvalidParamException("Unrecognized format '{$format}'");
+            }
+            $this->parsers[$format] = $defaultParsers[$format];
+        }
+
+        if (!is_object($this->parsers[$format])) {
+            $this->parsers[$format] = Yii::createObject($this->parsers[$format]);
+        }
+
+        return $this->parsers[$format];
+    }
+
+    /**
      * @return Request request instance.
      */
     public function createRequest()
@@ -98,6 +194,7 @@ class Client extends Component
         if (!isset($config['class'])) {
             $config['class'] = Response::className();
         }
+        $config['client'] = $this;
         $response = Yii::createObject($config);
         $response->setContent($content);
         $response->setHeaders($headers);
