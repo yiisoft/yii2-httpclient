@@ -45,7 +45,7 @@ class ClientTest extends TestCase
             [Client::FORMAT_JSON, FormatterJson::className()],
             [Client::FORMAT_URLENCODED, FormatterUrlEncoded::className()],
             [Client::FORMAT_RAW_URLENCODED, FormatterUrlEncoded::className()],
-            //[Client::FORMAT_XML, FormatterXml::className()],
+            [Client::FORMAT_XML, FormatterXml::className()],
         ];
     }
 

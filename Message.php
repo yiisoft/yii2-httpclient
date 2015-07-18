@@ -21,7 +21,7 @@ use Yii;
  * @property HeaderCollection|array $headers message headers list.
  * @property CookieCollection|Cookie[]|array $cookies message cookies list.
  * @property string $content message raw content.
- * @property array $data message content data.
+ * @property mixed $data message content data.
  * @property string $format message content format.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
@@ -47,7 +47,7 @@ class Message extends Object
      */
     private $_content;
     /**
-     * @var array content data
+     * @var mixed content data
      */
     private $_data;
     /**
@@ -198,7 +198,7 @@ class Message extends Object
 
     /**
      * Sets the data fields, which composes message content.
-     * @param array $data content data fields.
+     * @param mixed $data content data fields.
      * @return $this self reference.
      */
     public function setData($data)
@@ -209,7 +209,7 @@ class Message extends Object
 
     /**
      * Returns the data fields, parsed from raw content.
-     * @return array|null content data fields.
+     * @return mixed content data fields.
      */
     public function getData()
     {

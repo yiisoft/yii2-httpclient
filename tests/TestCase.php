@@ -60,4 +60,17 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         Yii::$app = null;
         Yii::$container = new Container();
     }
+
+    /**
+     * Asserting two strings equality ignoring line endings
+     *
+     * @param string $expected
+     * @param string $actual
+     */
+    public function assertEqualsWithoutLE($expected, $actual)
+    {
+        $expected = str_replace(["\r", "\n"], '', $expected);
+        $actual = str_replace(["\r", "\n"], '', $actual);
+        $this->assertEquals($expected, $actual);
+    }
 }
