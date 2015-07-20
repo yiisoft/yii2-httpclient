@@ -264,6 +264,26 @@ class Message extends Object
     }
 
     /**
+     * Composes raw header lines from [[headers]].
+     * Each line will be a string in format: 'header-name: value'.
+     * @return array raw header lines.
+     */
+    public function composeHeaderLines()
+    {
+        if (!$this->hasHeaders()) {
+            return [];
+        }
+        $headers = [];
+        foreach ($this->getHeaders() as $name => $values) {
+            $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
+            foreach ($values as $value) {
+                $headers[] = "$name: $value";
+            }
+        }
+        return $headers;
+    }
+
+    /**
      * Returns string representation of this HTTP message.
      * @return string the string representation of this HTTP message.
      */

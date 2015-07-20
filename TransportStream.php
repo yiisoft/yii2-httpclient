@@ -42,10 +42,8 @@ class TransportStream extends Transport
         if ($content !== null) {
             $contextOptions['http']['content'] = $content;
         }
-
-        $headers = $this->composeHeaders($request);
-        $headers[] = 'Cookie: ' . $this->composeCookies($request);
-        $contextOptions['http']['header'] = $this->composeHeaders($request);
+        $headers = $request->composeHeaderLines($request);
+        $contextOptions['http']['header'] = $headers;
 
         $contextOptions = ArrayHelper::merge($contextOptions, $this->composeContextOptions($request->getOptions()));
 

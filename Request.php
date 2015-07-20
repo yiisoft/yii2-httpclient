@@ -129,6 +129,22 @@ class Request extends Message
     }
 
     /**
+     * @inheritdoc
+     */
+    public function composeHeaderLines()
+    {
+        $headers = parent::composeHeaderLines();
+        if ($this->hasCookies()) {
+            $parts = [];
+            foreach ($this->getCookies() as $cookie) {
+                $parts[] = $cookie->name . '=' . urlencode($cookie->value);
+            }
+            $headers[] = 'Cookie: ' . implode(';', $parts);
+        }
+        return $headers;
+    }
+
+    /**
      * Sends this request.
      * @return Response response instance.
      */

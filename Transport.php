@@ -40,41 +40,4 @@ abstract class Transport extends Component
         }
         return $responses;
     }
-
-    /**
-     * Composes request headers for the cURL.
-     * @param Request $request request instance.
-     * @return array headers list.
-     */
-    protected function composeHeaders($request)
-    {
-        if (!$request->hasHeaders()) {
-            return [];
-        }
-        $headers = [];
-        foreach ($request->getHeaders() as $name => $values) {
-            $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
-            foreach ($values as $value) {
-                $headers[] = "$name: $value";
-            }
-        }
-        return $headers;
-    }
-
-    /**
-     * Composes request cookies value.
-     * @param Request $request request instance.
-     * @return string cookies value.
-     */
-    protected function composeCookies($request)
-    {
-        if (!$request->hasCookies()) {
-            return '';
-        }
-        $parts = [];
-        foreach ($request->getCookies() as $cookie) {
-            $parts[] = $cookie->name . '=' . urlencode($cookie->value);
-        }
-        return implode(';', $parts);
-    }
 }
