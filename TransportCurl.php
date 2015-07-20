@@ -8,6 +8,7 @@
 namespace yii\httpclient;
 
 use yii\base\Exception;
+use Yii;
 
 /**
  * TransportCurl sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
@@ -24,12 +25,19 @@ class TransportCurl extends Transport
      */
     public function send($request)
     {
-        $curlResource = $this->prepare($request);
+        $curlOptions = $this->prepare($request);
+        $curlResource = $this->initCurl($curlOptions);
 
         $responseHeaders = [];
         $this->setHeaderOutput($curlResource, $responseHeaders);
 
+        $token = $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent());
+        Yii::info($token, __METHOD__);
+        Yii::beginProfile($token, __METHOD__);
+
         $responseContent = curl_exec($curlResource);
+
+        Yii::endProfile($token, __METHOD__);
 
         // check cURL error
         $errorNumber = curl_errno($curlResource);
@@ -51,18 +59,26 @@ class TransportCurl extends Transport
     {
         $curlBatchResource = curl_multi_init();
 
+        $token = '';
         $curlResources = [];
         $responseHeaders = [];
         foreach ($requests as $key => $request) {
-            $curlResource = $this->prepare($request);
+            /* @var $request Request */
+            $curlOptions = $this->prepare($request);
+            $curlResource = $this->initCurl($curlOptions);
+
+            $token .= $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent()) . "\n\n";
+
             $responseHeaders[$key] = [];
             $this->setHeaderOutput($curlResource, $responseHeaders[$key]);
             $curlResources[$key] = $curlResource;
             curl_multi_add_handle($curlBatchResource, $curlResource);
         }
 
-        $isRunning = null;
+        Yii::info($token, __METHOD__);
+        Yii::beginProfile($token, __METHOD__);
 
+        $isRunning = null;
         do {
             // See https://bugs.php.net/bug.php?id=61141
             if (curl_multi_select($curlBatchResource) == -1) {
@@ -72,6 +88,8 @@ class TransportCurl extends Transport
                 $curlExecCode = curl_multi_exec($curlBatchResource, $isRunning);
             } while ($curlExecCode == CURLM_CALL_MULTI_PERFORM);
         } while ($isRunning > 0 && $curlExecCode == CURLM_OK);
+
+        Yii::endProfile($token, __METHOD__);
 
         $responseContents = [];
         foreach ($curlResources as $key => $curlResource) {
@@ -91,19 +109,19 @@ class TransportCurl extends Transport
     /**
      * Prepare request for execution, creating cURL resource for it.
      * @param Request $request request instance.
-     * @return resource prepared cURL resource.
+     * @return array cURL options.
      */
-    protected function prepare($request)
+    private function prepare($request)
     {
         $request->prepare();
 
         $curlOptions = $this->composeCurlOptions($request->getOptions());
 
-        $method = strtolower($request->getMethod());
+        $method = strtoupper($request->getMethod());
         switch ($method) {
-            case 'get':
+            case 'GET':
                 break;
-            case 'post':
+            case 'POST':
                 $curlOptions[CURLOPT_POST] = true;
                 break;
             default:
@@ -119,6 +137,16 @@ class TransportCurl extends Transport
         $curlOptions[CURLOPT_URL] = $request->getUrl();
         $curlOptions[CURLOPT_HTTPHEADER] = $request->composeHeaderLines($request);
 
+        return $curlOptions;
+    }
+
+    /**
+     * Initializes cURL resource.
+     * @param array $curlOptions cURL options.
+     * @return resource prepared cURL resource.
+     */
+    private function initCurl(array $curlOptions)
+    {
         $curlResource = curl_init();
         foreach ($curlOptions as $option => $value) {
             curl_setopt($curlResource, $option, $value);
@@ -132,7 +160,7 @@ class TransportCurl extends Transport
      * @param array $options raw request options.
      * @return array cURL options, in format: [curl_constant => value].
      */
-    protected function composeCurlOptions(array $options)
+    private function composeCurlOptions(array $options)
     {
         $curlOptions = [];
         foreach ($options as $key => $value) {
@@ -160,7 +188,7 @@ class TransportCurl extends Transport
      * @param resource $curlResource cURL resource.
      * @param array $output variable, which should collection headers.
      */
-    protected function setHeaderOutput($curlResource, array &$output)
+    private function setHeaderOutput($curlResource, array &$output)
     {
         curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function($resource, $headerString) use (&$output) {
             $header = trim($headerString, "\n\r");

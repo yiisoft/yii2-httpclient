@@ -10,6 +10,11 @@ use yii\httpclient\Response;
  */
 abstract class TransportTestCase extends TestCase
 {
+    protected function setUp()
+    {
+        $this->mockApplication();
+    }
+
     /**
      * @return mixed transport configuration.
      */

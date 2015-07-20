@@ -11,6 +11,7 @@ use yii\base\Exception;
 use yii\base\Component;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\StringHelper;
 
 /**
  * Client provide high level interface for HTTP requests execution.
@@ -65,6 +66,12 @@ class Client extends Component
      * @var array response config configuration.
      */
     public $responseConfig = [];
+    /**
+     * @var integer maximum symbols count of the request content, which should be taken to compose a
+     * log and profile messages. Exceeding content will be truncated.
+     * @see createRequestLogToken()
+     */
+    public $contentLoggingMaxSize = 2000;
 
     /**
      * @var Transport|array|string|callable HTTP message transport.
@@ -214,6 +221,27 @@ class Client extends Component
     public function batchSend(array $requests)
     {
         return $this->getTransport()->batchSend($requests);
+    }
+
+    /**
+     * Composes the log/profiling message token for the given HTTP request parameters.
+     * This method should be used by transports during request sending logging.
+     * @param string $method request method name.
+     * @param string $url request URL.
+     * @param array $headers request headers.
+     * @param string $content request content.
+     * @return string log token.
+     */
+    public function createRequestLogToken($method, $url, $headers, $content)
+    {
+        $token = strtoupper($method) . ' ' . $url;
+        if (!empty($headers)) {
+            $token .= "\n" . implode("\n", (array)$headers);
+        }
+        if ($content !== null) {
+            $token .= "\n\n" . StringHelper::truncate($content, $this->contentLoggingMaxSize);
+        }
+        return $token;
     }
 
     // Create request shortcut methods :

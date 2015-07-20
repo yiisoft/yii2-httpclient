@@ -9,6 +9,7 @@ namespace yii\httpclient;
 
 use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
+use Yii;
 
 /**
  * TransportStream sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
@@ -26,7 +27,7 @@ class TransportStream extends Transport
         $request->prepare();
 
         $url = $request->getUrl();
-        $method = strtolower($request->getMethod());
+        $method = strtoupper($request->getMethod());
 
         $contextOptions = [
             'http' => [
@@ -47,11 +48,22 @@ class TransportStream extends Transport
 
         $contextOptions = ArrayHelper::merge($contextOptions, $this->composeContextOptions($request->getOptions()));
 
-        $context = stream_context_create($contextOptions);
-        $stream = fopen($url, 'rb', false, $context);
-        $responseContent = stream_get_contents($stream);
-        $metaData = stream_get_meta_data($stream);
-        fclose($stream);
+        $token = $request->client->createRequestLogToken($method, $url, $headers, $content);
+        Yii::info($token, __METHOD__);
+        Yii::beginProfile($token, __METHOD__);
+
+        try {
+            $context = stream_context_create($contextOptions);
+            $stream = fopen($url, 'rb', false, $context);
+            $responseContent = stream_get_contents($stream);
+            $metaData = stream_get_meta_data($stream);
+            fclose($stream);
+        } catch (\Exception $exception) {
+            Yii::endProfile($token, __METHOD__);
+            throw $exception;
+        }
+
+        Yii::endProfile($token, __METHOD__);
 
         $responseHeaders = isset($metaData['wrapper_data']) ? $metaData['wrapper_data'] : [];
 
@@ -63,7 +75,7 @@ class TransportStream extends Transport
      * @param array $options raw request options.
      * @return array stream context options.
      */
-    protected function composeContextOptions(array $options)
+    private function composeContextOptions(array $options)
     {
         $contextOptions = [];
         foreach ($options as $key => $value) {

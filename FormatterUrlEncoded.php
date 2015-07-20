@@ -38,10 +38,12 @@ class FormatterUrlEncoded extends Object implements FormatterInterface
         $content = http_build_query($data, '', '&', $this->encodingType);
 
         if (strcasecmp('get', $request->getMethod()) === 0) {
-            $url = $request->getUrl();
-            $url .= (strpos($url, '?') === false) ? '?' : '&';
-            $url .= $content;
-            $request->setUrl($url);
+            if (!empty($content)) {
+                $url = $request->getUrl();
+                $url .= (strpos($url, '?') === false) ? '?' : '&';
+                $url .= $content;
+                $request->setUrl($url);
+            }
             return $request;
         }
 
