@@ -41,7 +41,7 @@ class TransportCurl extends Transport
             throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
         }
 
-        return $this->createResponse($responseContent, $responseHeaders);
+        return $request->client->createResponse($responseContent, $responseHeaders);
     }
 
     /**
@@ -83,7 +83,7 @@ class TransportCurl extends Transport
 
         $responses = [];
         foreach ($requests as $key => $request) {
-            $responses[$key] = $this->createResponse($responseContents[$key], $responseHeaders[$key]);
+            $responses[$key] = $request->client->createResponse($responseContents[$key], $responseHeaders[$key]);
         }
         return $responses;
     }

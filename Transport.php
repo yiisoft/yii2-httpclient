@@ -19,12 +19,6 @@ use yii\base\Exception;
 abstract class Transport extends Component
 {
     /**
-     * @var Client owner client instance.
-     */
-    public $client;
-
-
-    /**
      * Performs given request.
      * @param Request $request request to be sent.
      * @return Response response instance.
@@ -45,17 +39,6 @@ abstract class Transport extends Component
             $responses[$key] = $this->send($request);
         }
         return $responses;
-    }
-
-    /**
-     * Creates a response instance.
-     * @param string $content raw content
-     * @param array $headers headers list.
-     * @return Response request instance.
-     */
-    protected function createResponse($content, $headers)
-    {
-        return $this->client->createResponse($content, $this->normalizeResponseHeaders($headers));
     }
 
     /**
@@ -93,33 +76,5 @@ abstract class Transport extends Component
             $parts[] = $cookie->name . '=' . urlencode($cookie->value);
         }
         return implode(';', $parts);
-    }
-
-    /**
-     * Normalizes response headers.
-     * @param array $rawHeaders raw headers in format: name => value.
-     * @return array normalized headers.
-     */
-    protected function normalizeResponseHeaders($rawHeaders)
-    {
-        $headers = [];
-        foreach ($rawHeaders as $rawHeader) {
-            if (($separatorPos = strpos($rawHeader, ':')) !== false) {
-                $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
-                $value = trim(substr($rawHeader, $separatorPos + 1));
-                if (isset($headers[$name])) {
-                    $headers[$name] = (array)$headers[$name];
-                    $headers[$name][] = $value;
-                } else {
-                    $headers[$name] = $value;
-                }
-            } elseif (strpos($rawHeader, 'HTTP/') === 0) {
-                $parts = explode(' ', $rawHeader, 3);
-                $headers['http-code'] = $parts[1];
-            } else {
-                $headers[] = $rawHeader;
-            }
-        }
-        return $headers;
     }
 }

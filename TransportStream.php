@@ -57,7 +57,7 @@ class TransportStream extends Transport
 
         $responseHeaders = isset($metaData['wrapper_data']) ? $metaData['wrapper_data'] : [];
 
-        return $this->createResponse($responseContent, $responseHeaders);
+        return $request->client->createResponse($responseContent, $responseHeaders);
     }
 
     /**

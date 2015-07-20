@@ -85,9 +85,6 @@ class Client extends Component
      */
     public function setTransport($transport)
     {
-        if (is_object($transport)) {
-            $transport->client = $this;
-        }
         $this->_transport = $transport;
     }
 
@@ -97,10 +94,7 @@ class Client extends Component
     public function getTransport()
     {
         if (!is_object($this->_transport)) {
-            /* @var $transport Transport */
-            $transport = Yii::createObject($this->_transport);
-            $transport->client = $this;
-            $this->_transport = $transport;
+            $this->_transport = Yii::createObject($this->_transport);
         }
         return $this->_transport;
     }

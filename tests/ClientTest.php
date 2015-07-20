@@ -144,12 +144,10 @@ class ClientTest extends TestCase
         $transport = new TransportCurl();
         $client->setTransport($transport);
         $this->assertSame($transport, $client->getTransport());
-        $this->assertSame($client, $transport->client);
 
         $client->setTransport(TransportCurl::className());
         $transport = $client->getTransport();
         $this->assertTrue($transport instanceof TransportCurl);
-        $this->assertSame($client, $transport->client);
     }
 
     /**
@@ -160,7 +158,6 @@ class ClientTest extends TestCase
         $client = new Client();
         $transport = $client->getTransport();
         $this->assertTrue($transport instanceof Transport);
-        $this->assertSame($client, $transport->client);
     }
 
     public function testCreateRequest()

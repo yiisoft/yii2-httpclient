@@ -42,6 +42,27 @@ class MessageTest extends TestCase
     /**
      * @depends testSetupHeaders
      */
+    public function testSetupRawHeaders()
+    {
+        $message = new Message();
+
+        $headers = [
+            'header1: value1',
+            'header2: value2',
+        ];
+        $message->setHeaders($headers);
+
+        $this->assertTrue($message->getHeaders() instanceof HeaderCollection);
+        $expectedHeaders = [
+            'header1' => ['value1'],
+            'header2' => ['value2'],
+        ];
+        $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
+    }
+
+    /**
+     * @depends testSetupHeaders
+     */
     public function testHasHeaders()
     {
         $message = new Message();

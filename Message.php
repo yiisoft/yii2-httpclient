@@ -78,7 +78,22 @@ class Message extends Object
             $headerCollection = new HeaderCollection();
             if (is_array($this->_headers)) {
                 foreach ($this->_headers as $name => $value) {
-                    $headerCollection->set($name, $value);
+                    if (is_int($name)) {
+                        // parse raw header :
+                        $rawHeader = $value;
+                        if (($separatorPos = strpos($rawHeader, ':')) !== false) {
+                            $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
+                            $value = trim(substr($rawHeader, $separatorPos + 1));
+                            $headerCollection->add($name, $value);
+                        } elseif (strpos($rawHeader, 'HTTP/') === 0) {
+                            $parts = explode(' ', $rawHeader, 3);
+                            $headerCollection->add('http-code', $parts[1]);
+                        } else {
+                            $headerCollection->add('raw', $rawHeader);
+                        }
+                    } else {
+                        $headerCollection->set($name, $value);
+                    }
                 }
             }
             $this->_headers = $headerCollection;
