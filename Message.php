@@ -289,13 +289,23 @@ class Message extends Object
      */
     public function toString()
     {
-        $headerParts = [];
-        foreach ($this->getHeaders() as $name => $values) {
-            foreach ($values as $value) {
-                $headerParts[] = "$name : $value";
+        $result = '';
+        if ($this->hasHeaders()) {
+            $headers = [];
+            foreach ($this->getHeaders() as $name => $values) {
+                foreach ($values as $value) {
+                    $headers[] = "$name : $value";
+                }
             }
+            $result .= implode("\n", $headers);
         }
-        return implode("\n", $headerParts) . "\n\n" . $this->getContent();
+
+        $content = $this->getContent();
+        if ($content !== null) {
+            $result .= "\n\n" . $content;
+        }
+
+        return $result;
     }
 
     /**
