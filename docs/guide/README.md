@@ -8,4 +8,17 @@ Getting Started
 ---------------
 
 * [Installation](installation.md)
-* [Quick Start](quick-start.md)
+* [Basic Usage](basic-usage.md)
+
+Usage
+-----
+
+* [Data formats](usage-data-formats.md)
+* [Transports](usage-transports.md)
+* [Logging and profiling](usage-logging.md)
+* [Setup Client instance](usage-setup-client-instance.md)
+
+Additional topics
+-----------------
+
+* [Using the HTTP client DebugPanel](topics-debug.md)

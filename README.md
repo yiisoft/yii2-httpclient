@@ -28,9 +28,3 @@ or add
 ```
 
 to the require section of your composer.json.
-
-
-Configuration
--------------
-
-To use this extension, simply

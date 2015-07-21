@@ -1,7 +1,5 @@
-Quick Start
+Basic Usage
 ===========
-
-## Basic usage
 
 In order to send HTTP requests, you'll need to instantiate [[\yii\httpclient\Client]] and use its
 `createRequest()` method to create new HTTP request. Then you should configure all request parameters
