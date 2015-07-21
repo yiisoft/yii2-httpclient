@@ -81,4 +81,28 @@ class RequestTest extends TestCase
         $request->prepare();
         $this->assertEquals('name=value', $request->getContent());
     }
+
+    public function testToString()
+    {
+        $request = new Request([
+            'client' => new Client(),
+            'format' => Client::FORMAT_URLENCODED,
+            'method' => 'post',
+            'url' => 'http://domain.com/test',
+        ]);
+
+        $data = [
+            'name' => 'value',
+        ];
+        $request->setData($data);
+        $request->prepare();
+
+        $expectedResult = <<<EOL
+POST http://domain.com/test
+content-type : application/x-www-form-urlencoded
+
+name=value
+EOL;
+        $this->assertEquals($expectedResult, $request->toString());
+    }
 } 

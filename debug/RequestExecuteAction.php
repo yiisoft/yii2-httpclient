@@ -24,7 +24,14 @@ class RequestExecuteAction extends Action
      */
     public $panel;
 
-    public function run($seq, $tag)
+    /**
+     * @param string $seq
+     * @param string $tag
+     * @param boolean $passthru whether to send response to the browser or render it as plain text
+     * @return Response
+     * @throws HttpException
+     */
+    public function run($seq, $tag, $passthru = false)
     {
         $this->controller->loadData($tag);
 
@@ -42,12 +49,18 @@ class RequestExecuteAction extends Action
 
         $response = new Response([
             'format' => Response::FORMAT_RAW,
-            'content' => $httpResponse->content,
         ]);
-        foreach ($httpResponse->getHeaders() as $name => $value) {
-            $response->getHeaders()->set($name, $value);
+
+        if ($passthru) {
+            foreach ($httpResponse->getHeaders() as $name => $value) {
+                $response->getHeaders()->set($name, $value);
+            }
+            $response->content = $httpResponse->content;
+            return $response;
         }
 
+        $response->getHeaders()->add('content-type', 'text/plain');
+        $response->content = $httpResponse->toString();
         return $response;
     }
 

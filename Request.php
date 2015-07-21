@@ -135,11 +135,7 @@ class Request extends Message
     {
         $headers = parent::composeHeaderLines();
         if ($this->hasCookies()) {
-            $parts = [];
-            foreach ($this->getCookies() as $cookie) {
-                $parts[] = $cookie->name . '=' . urlencode($cookie->value);
-            }
-            $headers[] = 'Cookie: ' . implode(';', $parts);
+            $headers[] = $this->composeCookieHeader();
         }
         return $headers;
     }
@@ -151,6 +147,49 @@ class Request extends Message
     public function send()
     {
         return $this->client->send($this);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function toString()
+    {
+        $result = strtoupper($this->getMethod()) . ' ' . $this->getUrl();
+
+        $headers = [];
+        if ($this->hasHeaders()) {
+            foreach ($this->getHeaders() as $name => $values) {
+                foreach ($values as $value) {
+                    $headers[] = "$name : $value";
+                }
+            }
+        }
+        if ($this->hasCookies()) {
+            $headers[] = $this->composeCookieHeader();
+        }
+
+        if (!empty($headers)) {
+            $result .= "\n" . implode("\n", $headers);
+        }
+
+        $content = $this->getContent();
+        if ($content !== null) {
+            $result .= "\n\n" . $content;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return string cookie header value.
+     */
+    private function composeCookieHeader()
+    {
+        $parts = [];
+        foreach ($this->getCookies() as $cookie) {
+            $parts[] = $cookie->name . '=' . urlencode($cookie->value);
+        }
+        return 'Cookie: ' . implode(';', $parts);
     }
 
     /**

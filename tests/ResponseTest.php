@@ -150,4 +150,21 @@ class ResponseTest extends TestCase
         ]]);
         $this->assertEquals(2, $response->getCookies()->count());
     }
+
+    public function testToString()
+    {
+        $response = new Response([
+            'headers' => [
+                'content-type' => 'text/html; charset=UTF-8'
+            ],
+            'content' => '<html>Content</html>'
+        ]);
+
+        $expectedResult = <<<EOL
+content-type : text/html; charset=UTF-8
+
+<html>Content</html>
+EOL;
+        $this->assertEquals($expectedResult, $response->toString());
+    }
 }
