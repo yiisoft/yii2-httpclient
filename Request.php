@@ -124,7 +124,9 @@ class Request extends Message
                 $this->setUrl($this->client->baseUrl . '/' . $url);
             }
         }
-        $this->getFormatter()->format($this);
+        if ($this->getContent() === null) {
+            $this->getFormatter()->format($this);
+        }
         return $this;
     }
 
