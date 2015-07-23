@@ -99,7 +99,7 @@ class RequestTest extends TestCase
 
         $expectedResult = <<<EOL
 POST http://domain.com/test
-content-type : application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded
 
 name=value
 EOL;

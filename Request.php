@@ -305,25 +305,9 @@ class Request extends Message
     {
         $result = strtoupper($this->getMethod()) . ' ' . $this->getUrl();
 
-        $headers = [];
-        if ($this->hasHeaders()) {
-            foreach ($this->getHeaders() as $name => $values) {
-                foreach ($values as $value) {
-                    $headers[] = "$name : $value";
-                }
-            }
-        }
-        if ($this->hasCookies()) {
-            $headers[] = $this->composeCookieHeader();
-        }
-
-        if (!empty($headers)) {
-            $result .= "\n" . implode("\n", $headers);
-        }
-
-        $content = $this->getContent();
-        if ($content !== null) {
-            $result .= "\n\n" . $content;
+        $parentResult = parent::toString();
+        if ($parentResult !== '') {
+            $result .= "\n" . $parentResult;
         }
 
         return $result;

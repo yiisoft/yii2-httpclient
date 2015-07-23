@@ -161,7 +161,7 @@ class ResponseTest extends TestCase
         ]);
 
         $expectedResult = <<<EOL
-content-type : text/html; charset=UTF-8
+Content-Type: text/html; charset=UTF-8
 
 <html>Content</html>
 EOL;

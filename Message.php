@@ -291,12 +291,7 @@ class Message extends Object
     {
         $result = '';
         if ($this->hasHeaders()) {
-            $headers = [];
-            foreach ($this->getHeaders() as $name => $values) {
-                foreach ($values as $value) {
-                    $headers[] = "$name : $value";
-                }
-            }
+            $headers = $this->composeHeaderLines();
             $result .= implode("\n", $headers);
         }
 
