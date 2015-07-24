@@ -15,6 +15,7 @@ Usage
 
 * [Data formats](usage-data-formats.md)
 * [Transports](usage-transports.md)
+* [Request options](usage-request-options.md)
 * [Multi-part content](usage-multi-part-content.md)
 * [Logging and profiling](usage-logging.md)
 * [Setup Client instance](usage-setup-client-instance.md)

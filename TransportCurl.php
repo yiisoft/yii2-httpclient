@@ -15,6 +15,8 @@ use Yii;
  *
  * Note: this transport requires PHP 'curl' extension installed.
  *
+ * For this transport, you may setup request options as [cURL Options](http://php.net/manual/en/function.curl-setopt.php)
+ *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */

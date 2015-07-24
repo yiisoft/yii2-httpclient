@@ -14,6 +14,8 @@ use Yii;
 /**
  * TransportStream sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
  *
+ * For this transport, you may setup request options using [Context Options](http://php.net/manual/en/context.php)
+ *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
