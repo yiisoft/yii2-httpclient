@@ -74,10 +74,14 @@ class Request extends Message
     /**
      * Following options are supported:
      * - timeout: integer, the maximum number of seconds to allow request to be executed.
-     * - port: integer, an alternative port number to connect to.
+     * - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
      * - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
      * - followLocation: boolean, whether to follow any "Location: " header that the server sends as part of the HTTP header.
+     * - maxRedirects: integer, the max number of redirects to follow.
      * - sslVerifyPeer: boolean, whether verification of the peer's certificate should be performed.
+     * - sslCafile: string, location of Certificate Authority file on local filesystem which should be used with
+     *   the 'sslVerifyPeer' option to authenticate the identity of the remote peer.
+     * - sslCapath: string, a directory that holds multiple CA certificates.
      *
      * You may set options using keys, which are specific to particular transport, like `[CURLOPT_VERBOSE => true]` in case
      * there is a necessity for it.
