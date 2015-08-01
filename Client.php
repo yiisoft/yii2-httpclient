@@ -320,7 +320,7 @@ class Client extends Component
      */
     public function head($url, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('delete', $url, null, $headers, $options);
+        return $this->createRequestShortcut('head', $url, null, $headers, $options);
     }
 
     /**
