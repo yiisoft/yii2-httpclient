@@ -8,7 +8,6 @@
 namespace yii\httpclient;
 
 use yii\base\Exception;
-use yii\base\Object;
 use yii\web\Cookie;
 use yii\web\HeaderCollection;
 
@@ -122,10 +121,10 @@ class Response extends Message
         if (preg_match('/^\\{.*\\}$/is', $content)) {
             return Client::FORMAT_JSON;
         }
-        if (preg_match('/^[^=|^&]+=[^=|^&]+(&[^=|^&]+=[^=|^&]+)*$/is', $content)) {
+        if (preg_match('/^[^=|^&]+=[^=|^&]+(&[^=|^&]+=[^=|^&]+)*$/', $content)) {
             return Client::FORMAT_URLENCODED;
         }
-        if (preg_match('/^<.*>$/is', $content)) {
+        if (preg_match('/^<.*>$/s', $content)) {
             return Client::FORMAT_XML;
         }
         return null;

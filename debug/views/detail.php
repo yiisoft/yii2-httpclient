@@ -5,7 +5,6 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\web\View;
 
 ?>
 <h1><?= $panel->getName(); ?> Requests</h1>

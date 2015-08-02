@@ -190,7 +190,7 @@ class Request extends Message
     {
         if (!empty($this->client->baseUrl)) {
             $url = $this->getUrl();
-            if (!preg_match('/^https?:\\/\\//is', $url)) {
+            if (!preg_match('/^https?:\\/\\//i', $url)) {
                 $this->setUrl($this->client->baseUrl . '/' . $url);
             }
         }
@@ -242,7 +242,7 @@ class Request extends Message
 
         // generate safe boundary :
         do {
-            $boundary = "---------------------" . md5(mt_rand() . microtime());
+            $boundary = '---------------------' . md5(mt_rand() . microtime());
         } while (preg_grep("/{$boundary}/", $contentParts));
 
         // add boundary for each part :

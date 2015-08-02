@@ -8,7 +8,6 @@
 namespace yii\httpclient;
 
 use yii\base\ErrorHandler;
-use yii\base\InvalidConfigException;
 use yii\base\Object;
 use yii\web\Cookie;
 use yii\web\CookieCollection;

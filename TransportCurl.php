@@ -83,13 +83,13 @@ class TransportCurl extends Transport
         $isRunning = null;
         do {
             // See https://bugs.php.net/bug.php?id=61141
-            if (curl_multi_select($curlBatchResource) == -1) {
+            if (curl_multi_select($curlBatchResource) === -1) {
                 usleep(100);
             }
             do {
                 $curlExecCode = curl_multi_exec($curlBatchResource, $isRunning);
-            } while ($curlExecCode == CURLM_CALL_MULTI_PERFORM);
-        } while ($isRunning > 0 && $curlExecCode == CURLM_OK);
+            } while ($curlExecCode === CURLM_CALL_MULTI_PERFORM);
+        } while ($isRunning > 0 && $curlExecCode === CURLM_OK);
 
         Yii::endProfile($token, __METHOD__);
 
