@@ -2,10 +2,11 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\ParserUrlEncoded;
+use yii\helpers\Json;
+use yii\httpclient\JsonParser;
 use yii\httpclient\Response;
 
-class ParserUrlEncodedTest extends TestCase
+class JsonParserTest extends TestCase
 {
     public function testParse()
     {
@@ -14,9 +15,9 @@ class ParserUrlEncodedTest extends TestCase
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $document->setContent(http_build_query($data));
+        $document->setContent(Json::encode($data));
 
-        $parser = new ParserUrlEncoded();
+        $parser = new JsonParser();
         $this->assertEquals($data, $parser->parse($document));
     }
-} 
+}

@@ -11,7 +11,7 @@ use yii\base\Exception;
 use Yii;
 
 /**
- * TransportCurl sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
+ * CurlTransport sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
  *
  * Note: this transport requires PHP 'curl' extension installed.
  *
@@ -20,7 +20,7 @@ use Yii;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class TransportCurl extends Transport
+class CurlTransport extends Transport
 {
     /**
      * @inheritdoc

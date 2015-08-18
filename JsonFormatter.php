@@ -11,12 +11,12 @@ use yii\base\Object;
 use yii\helpers\Json;
 
 /**
- * FormatterJson formats HTTP message as JSON.
+ * JsonFormatter formats HTTP message as JSON.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class FormatterJson extends Object implements FormatterInterface
+class JsonFormatter extends Object implements FormatterInterface
 {
     /**
      * @var integer the encoding options.For more details please refer to

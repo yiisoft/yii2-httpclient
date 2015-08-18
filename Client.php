@@ -76,7 +76,7 @@ class Client extends Component
     /**
      * @var Transport|array|string|callable HTTP message transport.
      */
-    private $_transport = 'yii\httpclient\TransportStream';
+    private $_transport = 'yii\httpclient\StreamTransport';
 
 
     /**
@@ -115,16 +115,16 @@ class Client extends Component
     public function getFormatter($format)
     {
         static $defaultFormatters = [
-            self::FORMAT_JSON => 'yii\httpclient\FormatterJson',
+            self::FORMAT_JSON => 'yii\httpclient\JsonFormatter',
             self::FORMAT_URLENCODED => [
-                'class' => 'yii\httpclient\FormatterUrlEncoded',
+                'class' => 'yii\httpclient\UrlEncodedFormatter',
                 'encodingType' => PHP_QUERY_RFC1738
             ],
             self::FORMAT_RAW_URLENCODED => [
-                'class' => 'yii\httpclient\FormatterUrlEncoded',
+                'class' => 'yii\httpclient\UrlEncodedFormatter',
                 'encodingType' => PHP_QUERY_RFC3986
             ],
-            self::FORMAT_XML => 'yii\httpclient\FormatterXML',
+            self::FORMAT_XML => 'yii\httpclient\XMLFormatter',
         ];
 
         if (!isset($this->formatters[$format])) {
@@ -150,10 +150,10 @@ class Client extends Component
     public function getParser($format)
     {
         static $defaultParsers = [
-            self::FORMAT_JSON => 'yii\httpclient\ParserJson',
-            self::FORMAT_URLENCODED => 'yii\httpclient\ParserUrlEncoded',
-            self::FORMAT_RAW_URLENCODED => 'yii\httpclient\ParserUrlEncoded',
-            self::FORMAT_XML => 'yii\httpclient\ParserXml',
+            self::FORMAT_JSON => 'yii\httpclient\JsonParser',
+            self::FORMAT_URLENCODED => 'yii\httpclient\UrlEncodedParser',
+            self::FORMAT_RAW_URLENCODED => 'yii\httpclient\UrlEncodedParser',
+            self::FORMAT_XML => 'yii\httpclient\XmlParser',
         ];
 
         if (!isset($this->parsers[$format])) {

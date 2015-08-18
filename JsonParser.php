@@ -8,22 +8,21 @@
 namespace yii\httpclient;
 
 use yii\base\Object;
+use yii\helpers\Json;
 
 /**
- * ParserUrlEncoded parses HTTP message content as 'application/x-www-form-urlencoded'.
+ * JsonParser parses HTTP message content as JSON.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class ParserUrlEncoded extends Object implements ParserInterface
+class JsonParser extends Object implements ParserInterface
 {
     /**
      * @inheritdoc
      */
     public function parse(Response $response)
     {
-        $data = [];
-        parse_str($response->getContent(), $data);
-        return $data;
+        return Json::decode($response->getContent());
     }
 }

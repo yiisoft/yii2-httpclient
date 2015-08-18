@@ -12,14 +12,14 @@ use yii\helpers\Inflector;
 use Yii;
 
 /**
- * TransportStream sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
+ * StreamTransport sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
  *
  * For this transport, you may setup request options using [Context Options](http://php.net/manual/en/context.php)
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class TransportStream extends Transport
+class StreamTransport extends Transport
 {
     /**
      * @inheritdoc

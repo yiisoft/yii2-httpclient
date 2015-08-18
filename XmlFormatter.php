@@ -17,12 +17,12 @@ use Yii;
 use yii\helpers\StringHelper;
 
 /**
- * FormatterXml formats HTTP message as XML.
+ * XmlFormatter formats HTTP message as XML.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class FormatterXml extends Object implements FormatterInterface
+class XmlFormatter extends Object implements FormatterInterface
 {
     /**
      * @var string the Content-Type header for the response

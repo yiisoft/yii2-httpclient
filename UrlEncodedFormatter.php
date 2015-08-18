@@ -10,12 +10,12 @@ namespace yii\httpclient;
 use yii\base\Object;
 
 /**
- * FormatterUrlEncoded formats HTTP message as 'application/x-www-form-urlencoded'.
+ * UrlEncodedFormatter formats HTTP message as 'application/x-www-form-urlencoded'.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class FormatterUrlEncoded extends Object implements FormatterInterface
+class UrlEncodedFormatter extends Object implements FormatterInterface
 {
     /**
      * @var integer URL encoding type.

@@ -4,10 +4,10 @@ namespace yiiunit\extensions\httpclient;
 
 use DOMDocument;
 use DOMElement;
-use yii\httpclient\FormatterXml;
+use yii\httpclient\XmlFormatter;
 use yii\httpclient\Request;
 
-class FormatterXmlTest extends TestCase
+class XmlFormatterTest extends TestCase
 {
     protected function setUp()
     {
@@ -25,7 +25,7 @@ class FormatterXmlTest extends TestCase
         ];
         $request->setData($data);
 
-        $formatter = new FormatterXml();
+        $formatter = new XmlFormatter();
         $formatter->format($request);
         $expectedContent = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -46,7 +46,7 @@ XML;
         $data->appendChild($root);
         $request->setData($data);
 
-        $formatter = new FormatterXml();
+        $formatter = new XmlFormatter();
         $formatter->format($request);
         $expectedContent = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,7 +69,7 @@ XML;
         $simpleXmlElement = simplexml_load_string($xml);
         $request->setData($simpleXmlElement);
 
-        $formatter = new FormatterXml();
+        $formatter = new XmlFormatter();
         $formatter->format($request);
         $this->assertEqualsWithoutLE($xml, $request->getContent());
     }

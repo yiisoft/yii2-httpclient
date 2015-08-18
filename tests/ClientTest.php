@@ -3,16 +3,16 @@
 namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\Client;
-use yii\httpclient\FormatterJson;
-use yii\httpclient\FormatterUrlEncoded;
-use yii\httpclient\FormatterXml;
-use yii\httpclient\ParserJson;
-use yii\httpclient\ParserUrlEncoded;
-use yii\httpclient\ParserXml;
+use yii\httpclient\JsonFormatter;
+use yii\httpclient\UrlEncodedFormatter;
+use yii\httpclient\XmlFormatter;
+use yii\httpclient\JsonParser;
+use yii\httpclient\UrlEncodedParser;
+use yii\httpclient\XmlParser;
 use yii\httpclient\Request;
 use yii\httpclient\Response;
 use yii\httpclient\Transport;
-use yii\httpclient\TransportCurl;
+use yii\httpclient\CurlTransport;
 
 class ClientTest extends TestCase
 {
@@ -20,18 +20,18 @@ class ClientTest extends TestCase
     {
         $client = new Client();
         $client->formatters = [
-            'testString' => FormatterUrlEncoded::className(),
+            'testString' => UrlEncodedFormatter::className(),
             'testConfig' => [
-                'class' => FormatterUrlEncoded::className(),
+                'class' => UrlEncodedFormatter::className(),
                 'encodingType' => PHP_QUERY_RFC3986
             ],
         ];
 
         $formatter = $client->getFormatter('testString');
-        $this->assertTrue($formatter instanceof FormatterUrlEncoded);
+        $this->assertTrue($formatter instanceof UrlEncodedFormatter);
 
         $formatter = $client->getFormatter('testConfig');
-        $this->assertTrue($formatter instanceof FormatterUrlEncoded);
+        $this->assertTrue($formatter instanceof UrlEncodedFormatter);
         $this->assertEquals(PHP_QUERY_RFC3986, $formatter->encodingType);
     }
 
@@ -42,10 +42,10 @@ class ClientTest extends TestCase
     public function dataProviderDefaultFormatters()
     {
         return [
-            [Client::FORMAT_JSON, FormatterJson::className()],
-            [Client::FORMAT_URLENCODED, FormatterUrlEncoded::className()],
-            [Client::FORMAT_RAW_URLENCODED, FormatterUrlEncoded::className()],
-            [Client::FORMAT_XML, FormatterXml::className()],
+            [Client::FORMAT_JSON, JsonFormatter::className()],
+            [Client::FORMAT_URLENCODED, UrlEncodedFormatter::className()],
+            [Client::FORMAT_RAW_URLENCODED, UrlEncodedFormatter::className()],
+            [Client::FORMAT_XML, XmlFormatter::className()],
         ];
     }
 
@@ -71,27 +71,27 @@ class ClientTest extends TestCase
     {
         $client = new Client();
         $client->formatters = [
-            Client::FORMAT_JSON => FormatterUrlEncoded::className(),
+            Client::FORMAT_JSON => UrlEncodedFormatter::className(),
         ];
         $formatter = $client->getFormatter(Client::FORMAT_JSON);
-        $this->assertTrue($formatter instanceof FormatterUrlEncoded);
+        $this->assertTrue($formatter instanceof UrlEncodedFormatter);
     }
 
     public function testSetupParsers()
     {
         $client = new Client();
         $client->parsers = [
-            'testString' => ParserUrlEncoded::className(),
+            'testString' => UrlEncodedParser::className(),
             'testConfig' => [
-                'class' => ParserUrlEncoded::className(),
+                'class' => UrlEncodedParser::className(),
             ],
         ];
 
         $parser = $client->getParser('testString');
-        $this->assertTrue($parser instanceof ParserUrlEncoded);
+        $this->assertTrue($parser instanceof UrlEncodedParser);
 
         $parser = $client->getParser('testConfig');
-        $this->assertTrue($parser instanceof ParserUrlEncoded);
+        $this->assertTrue($parser instanceof UrlEncodedParser);
     }
 
     /**
@@ -101,10 +101,10 @@ class ClientTest extends TestCase
     public function dataProviderDefaultParsers()
     {
         return [
-            [Client::FORMAT_JSON, ParserJson::className()],
-            [Client::FORMAT_URLENCODED, ParserUrlEncoded::className()],
-            [Client::FORMAT_RAW_URLENCODED, ParserUrlEncoded::className()],
-            [Client::FORMAT_XML, ParserXml::className()],
+            [Client::FORMAT_JSON, JsonParser::className()],
+            [Client::FORMAT_URLENCODED, UrlEncodedParser::className()],
+            [Client::FORMAT_RAW_URLENCODED, UrlEncodedParser::className()],
+            [Client::FORMAT_XML, XmlParser::className()],
         ];
     }
 
@@ -130,24 +130,24 @@ class ClientTest extends TestCase
     {
         $client = new Client();
         $client->parsers = [
-            Client::FORMAT_JSON => ParserUrlEncoded::className(),
+            Client::FORMAT_JSON => UrlEncodedParser::className(),
         ];
 
         $parser = $client->getParser(Client::FORMAT_JSON);
-        $this->assertTrue($parser instanceof ParserUrlEncoded);
+        $this->assertTrue($parser instanceof UrlEncodedParser);
     }
 
     public function testSetupTransport()
     {
         $client = new Client();
 
-        $transport = new TransportCurl();
+        $transport = new CurlTransport();
         $client->setTransport($transport);
         $this->assertSame($transport, $client->getTransport());
 
-        $client->setTransport(TransportCurl::className());
+        $client->setTransport(CurlTransport::className());
         $transport = $client->getTransport();
-        $this->assertTrue($transport instanceof TransportCurl);
+        $this->assertTrue($transport instanceof CurlTransport);
     }
 
     /**

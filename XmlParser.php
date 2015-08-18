@@ -10,12 +10,12 @@ namespace yii\httpclient;
 use yii\base\Object;
 
 /**
- * ParserXml parses HTTP message content as XML.
+ * XmlParser parses HTTP message content as XML.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class ParserXml extends Object implements ParserInterface
+class XmlParser extends Object implements ParserInterface
 {
     /**
      * @inheritdoc

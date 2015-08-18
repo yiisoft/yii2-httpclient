@@ -2,18 +2,18 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\TransportStream;
+use yii\httpclient\StreamTransport;
 
 /**
  * @group stream
  */
-class TransportStreamTest extends TransportTestCase
+class StreamTransportTest extends TransportTestCase
 {
     /**
      * @inheritdoc
      */
     protected function transport()
     {
-        return TransportStream::className();
+        return StreamTransport::className();
     }
 }

@@ -2,18 +2,18 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\TransportCurl;
+use yii\httpclient\CurlTransport;
 
 /**
  * @group curl
  */
-class TransportCurlTest extends TransportTestCase
+class CurlTransportTest extends TransportTestCase
 {
     /**
      * @inheritdoc
      */
     protected function transport()
     {
-        return TransportCurl::className();
+        return CurlTransport::className();
     }
 }

@@ -4,10 +4,10 @@ Transports
 [[\yii\httpclient\Client]] provides several different ways to actually send an HTTP message - several transports.
 Predefined transports are:
 
- - [[\yii\httpclient\TransportStream]] - sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php).
+ - [[\yii\httpclient\StreamTransport]] - sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php).
    This transport is used by default. It does not require any additional PHP extensions or libraries installed,
    but does not support advanced features like batch sending.
- - [[\yii\httpclient\TransportCurl]] - sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
+ - [[\yii\httpclient\CurlTransport]] - sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
    This transport requires PHP 'curl' extension to be installed, but provides support for advanced features, like
    batch sending.
 
@@ -17,7 +17,7 @@ You may configure the transport to be used by particular client using [[\yii\htt
 use yii\httpclient\Client;
 
 $client = new Client([
-    'transport' => 'yii\httpclient\TransportCurl'
+    'transport' => 'yii\httpclient\CurlTransport'
 ]);
 ```
 

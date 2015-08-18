@@ -3,10 +3,10 @@
 namespace yiiunit\extensions\httpclient;
 
 use yii\helpers\Json;
-use yii\httpclient\FormatterJson;
+use yii\httpclient\JsonFormatter;
 use yii\httpclient\Request;
 
-class FormatterJsonTest extends TestCase
+class JsonFormatterTest extends TestCase
 {
     public function testFormat()
     {
@@ -17,7 +17,7 @@ class FormatterJsonTest extends TestCase
         ];
         $request->setData($data);
 
-        $formatter = new FormatterJson();
+        $formatter = new JsonFormatter();
         $formatter->format($request);
         $this->assertEquals(Json::encode($data), $request->getContent());
         $this->assertEquals('application/json; charset=UTF-8', $request->getHeaders()->get('Content-Type'));

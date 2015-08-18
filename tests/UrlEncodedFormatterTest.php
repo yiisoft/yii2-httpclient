@@ -2,10 +2,10 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\FormatterUrlEncoded;
+use yii\httpclient\UrlEncodedFormatter;
 use yii\httpclient\Request;
 
-class FormatterUrlEncodedTest extends TestCase
+class UrlEncodedFormatterTest extends TestCase
 {
     public function testFormat()
     {
@@ -17,7 +17,7 @@ class FormatterUrlEncodedTest extends TestCase
         ];
         $request->setData($data);
 
-        $formatter = new FormatterUrlEncoded();
+        $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertEquals(http_build_query($data), $request->getContent());
         $this->assertEquals('application/x-www-form-urlencoded', $request->getHeaders()->get('Content-Type'));
@@ -33,7 +33,7 @@ class FormatterUrlEncodedTest extends TestCase
         ];
         $request->setData($data);
 
-        $formatter = new FormatterUrlEncoded();
+        $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertEmpty($request->getContent());
         $this->assertContains(http_build_query($data), $request->getUrl());
