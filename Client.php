@@ -124,7 +124,7 @@ class Client extends Component
                 'class' => 'yii\httpclient\UrlEncodedFormatter',
                 'encodingType' => PHP_QUERY_RFC3986
             ],
-            self::FORMAT_XML => 'yii\httpclient\XMLFormatter',
+            self::FORMAT_XML => 'yii\httpclient\XmlFormatter',
         ];
 
         if (!isset($this->formatters[$format])) {
