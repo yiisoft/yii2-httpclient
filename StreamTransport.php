@@ -45,7 +45,7 @@ class StreamTransport extends Transport
         if ($content !== null) {
             $contextOptions['http']['content'] = $content;
         }
-        $headers = $request->composeHeaderLines($request);
+        $headers = $request->composeHeaderLines();
         $contextOptions['http']['header'] = $headers;
 
         $contextOptions = ArrayHelper::merge($contextOptions, $this->composeContextOptions($request->getOptions()));

@@ -236,7 +236,7 @@ class Client extends Component
     {
         $token = strtoupper($method) . ' ' . $url;
         if (!empty($headers)) {
-            $token .= "\n" . implode("\n", (array)$headers);
+            $token .= "\n" . implode("\n", $headers);
         }
         if ($content !== null) {
             $token .= "\n\n" . StringHelper::truncate($content, $this->contentLoggingMaxSize);
