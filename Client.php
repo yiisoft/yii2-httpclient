@@ -215,6 +215,20 @@ class Client extends Component
 
     /**
      * Performs multiple HTTP requests in parallel.
+     * This method accepts an array of the [[Request]] objects and returns an array of the  [[Response]] objects.
+     * Keys of the response array correspond the ones from request array.
+     *
+     * ```php
+     * $client = new Client();
+     * $requests = [
+     *     'news' => $client->get('http://domain.com/news'),
+     *     'friends' => $client->get('http://domain.com/user/friends', ['userId' => 12]),
+     * ];
+     * $responses = $client->batchSend($requests);
+     * var_dump($responses['news']->isOk);
+     * var_dump($responses['friends']->isOk);
+     * ```
+     *
      * @param Request[] $requests requests to perform.
      * @return Response[] responses list.
      */

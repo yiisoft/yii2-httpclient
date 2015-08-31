@@ -29,6 +29,8 @@ abstract class Transport extends Component
     /**
      * Performs multiple HTTP requests.
      * Particular transport may benefit from this method, allowing sending requests in parallel.
+     * This method accepts an array of the [[Request]] objects and returns an array of the  [[Response]] objects.
+     * Keys of the response array correspond the ones from request array.
      * @param Request[] $requests requests to perform.
      * @return Response[] responses list.
      */
