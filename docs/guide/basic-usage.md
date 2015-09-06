@@ -43,7 +43,7 @@ $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'arti
 By default HTTP request data is send as 'form-urlencoded', e.g. `param1=value1&param2=value2`.
 This is a common format for the web forms, but not for the REST API, which usually demands content
 should be in JSON or XML format. You may setup format being used for request content using `format`
-property or `setFormat()` method
+property or `setFormat()` method.
 Following formats are supported:
 
  - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON format
@@ -71,7 +71,7 @@ $response = $client->createRequest()
 
 The response object detects content format automatically based on 'Content-Type' header and content itself.
 So in most cases you don't need to specify format for response, you can parse it simply using `getData()`
-method or `data` property. In continue the above example we can get response data in following way:
+method or `data` property. Continuing the above example, we can get response data in the following way:
 
 ```php
 $responseData = $response->getData(); // get all articles
@@ -166,7 +166,7 @@ Although Cookies are transferred just as header values, [[\yii\httpclient\Reques
 provides separated interface to work with them using [[\yii\web\Cookie]] and [[\yii\web\CookieCollection]].
 
 You may specify request Cookies using `setCookies()` or `addCookies()` methods.
-You may use `getCookies()` method or `headers` property to get already defined Cookies as
+You may use `getCookies()` method or `cookies` property to get already defined Cookies as
 [[\yii\web\CookieCollection]] instance. For example:
 
 ```php
