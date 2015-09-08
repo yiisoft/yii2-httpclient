@@ -46,8 +46,8 @@ $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'arti
 下記の形式がサポートされています。
 
  - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON 形式
- - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - RFC1738 による urlencode されたクエリ文字列
- - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - PHP_QUERY_RFC3986 による urlencode されたクエリ文字列
+ - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - RFC1738 によって urlencode されたクエリ文字列
+ - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - PHP_QUERY_RFC3986 によって urlencode されたクエリ文字列
  - [[\yii\httpclient\Client::FORMAT_XML]] - XML 形式
 
 例えば、

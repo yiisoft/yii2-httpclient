@@ -13,11 +13,11 @@ Yii 2 HTTP クライアント エクステンション
 使用方法
 --------
 
-* [データフォーマット](usage-data-formats.md)
+* [データ形式](usage-data-formats.md)
 * [トランスポート](usage-transports.md)
 * [リクエストのオプション](usage-request-options.md)
-* [マルチパート コンテント](usage-multi-part-content.md)
-* [バッチリクエストの送信](usage-batch-request-sending.md)
+* [マルチパートコンテント](usage-multi-part-content.md)
+* [バッチリクエスト送信](usage-batch-request-sending.md)
 * [ロギングとプロファイリング](usage-logging.md)
 * [クライアントのインスタンスをセットアップする](usage-setup-client-instance.md)
 
