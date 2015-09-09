@@ -23,7 +23,7 @@ enabled, it is sufficient to just add the panels configuration):
     // ...
 ```
 
-This panel allows you execution of the logged HTTP request to see its response. You may get the response as
+This panel allows you to execute a logged HTTP request to see its response. You may get the response as
 a text representation or pass it directly to the browser.
 
 > Note: only regular logged HTTP requests can be executed via debug panel, requests sending in batch can not.
