@@ -24,4 +24,4 @@ Yii 2 HTTP クライアント エクステンション
 追加のトピック
 --------------
 
-* [HTTP クライアントの DebugPanel を使用する](topics-debug.md)
+* [HTTP Client DebugPanel を使う](topics-debug.md)
