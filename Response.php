@@ -62,7 +62,9 @@ class Response extends Message
     {
         $headers = $this->getHeaders();
         if ($headers->has('http-code')) {
-            return $headers->get('http-code');
+            // take into account possible 'follow location'
+            $statusCodeHeaders = $headers->get('http-code', null, false);
+            return empty($statusCodeHeaders) ? null : end($statusCodeHeaders);
         }
         throw new Exception('Unable to get status code: referred header information is missing.');
     }

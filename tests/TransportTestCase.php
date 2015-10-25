@@ -31,7 +31,7 @@ abstract class TransportTestCase extends TestCase
     public function testSend()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://uk.php.net';
+        $client->baseUrl = 'http://us.php.net';
         $response = $client->createRequest()
             ->setMethod('get')
             ->setUrl('docs.php')
@@ -49,7 +49,7 @@ abstract class TransportTestCase extends TestCase
     public function testSendPost()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://uk.php.net';
+        $client->baseUrl = 'http://us.php.net';
         $response = $client->createRequest()
             ->setMethod('post')
             ->setUrl('search.php')
@@ -64,7 +64,7 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSend()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://uk.php.net';
+        $client->baseUrl = 'http://us.php.net';
 
         $requests = [];
         $requests['docs'] = $client->createRequest()
@@ -77,7 +77,7 @@ abstract class TransportTestCase extends TestCase
         $responses = $client->batchSend($requests);
         $this->assertCount(count($requests), $responses);
 
-        foreach ($responses as $response) {
+        foreach ($responses as $name => $response) {
             $this->assertTrue($response->getIsOk());
         }
 
@@ -86,5 +86,32 @@ abstract class TransportTestCase extends TestCase
 
         $this->assertContains('<h1>Documentation</h1>', $responses['docs']->getContent());
         $this->assertContains('Mailing Lists', $responses['support']->getContent());
+    }
+
+    /**
+     * @depends testSend
+     */
+    public function testFollowLocation()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://us.php.net';
+
+        $request = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('search.php')
+            ->setData([
+                'show' => 'quickref',
+                'pattern' => 'array_merge'
+            ]);
+
+        $response = $request->setOptions([
+            'followLocation' => false,
+        ])->send();
+        $this->assertEquals('302', $response->statusCode);
+
+        $response = $request->setOptions([
+            'followLocation' => true,
+        ])->send();
+        $this->assertTrue($response->getIsOk());
     }
 }

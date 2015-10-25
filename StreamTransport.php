@@ -86,7 +86,7 @@ class StreamTransport extends Transport
                 $section = 'ssl';
                 $key = substr($key, 3);
             }
-            Inflector::underscore($key);
+            $key = Inflector::underscore($key);
             $contextOptions[$section][$key] = $value;
         }
         return $contextOptions;
