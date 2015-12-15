@@ -30,7 +30,7 @@ $response = $client->createRequest()
     ->send();
 ```
 
-> Tip|ヒント: デフォルトのリクエストオプションを [[\yii\httpclient\Client::requestConfig]] によって設定することが出来ます。
+> Tip: デフォルトのリクエストオプションを [[\yii\httpclient\Client::requestConfig]] によって設定することが出来ます。
   その場合、特別なリクエストオプションを追加したいときは、設定済みのオプションを保持するために [[\yii\httpclient\Request::addOptions()]] を使ってください。
 
 特定のリクエストのトランスポートに対してのみ適用するオプションを渡すことも出来ます。
