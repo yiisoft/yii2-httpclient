@@ -18,7 +18,11 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "2.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*",
+        "symfony/yaml": "2.*"
     },
     "autoload": {
         "psr-4": { "yii\\httpclient\\": "" }
