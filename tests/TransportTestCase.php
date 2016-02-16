@@ -61,6 +61,22 @@ abstract class TransportTestCase extends TestCase
     /**
      * @depends testSend
      */
+    public function testSendHead()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://us.php.net';
+        $response = $client->createRequest()
+            ->setMethod('head')
+            ->setUrl('docs.php')
+            ->send();
+        $content = $response->getContent();
+        $this->assertEmpty($content);
+        $this->assertTrue($response->getIsOk());
+    }
+
+    /**
+     * @depends testSend
+     */
     public function testBatchSend()
     {
         $client = $this->createClient();
