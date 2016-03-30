@@ -129,7 +129,11 @@ class HttpClientPanel extends Panel
     public function save()
     {
         $target = $this->module->logTarget;
-        $messages = $target->filterMessages($target->messages, Logger::LEVEL_PROFILE, ['yii\httpclient\Transport*']);
+        $messages = $target->filterMessages($target->messages, Logger::LEVEL_PROFILE, [
+            'yii\httpclient\Transport::*',
+            'yii\httpclient\CurlTransport::*',
+            'yii\httpclient\StreamTransport::*',
+        ]);
         return ['messages' => $messages];
     }
 
