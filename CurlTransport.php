@@ -129,7 +129,11 @@ class CurlTransport extends Transport
         }
 
         $content = $request->getContent();
-        if ($content !== null) {
+        if ($content === null) {
+            if (in_array($method, ['GET', 'HEAD', 'OPTIONS'])) {
+                $curlOptions[CURLOPT_NOBODY] = true;
+            }
+        } else {
             $curlOptions[CURLOPT_POSTFIELDS] = $content;
         }
 
