@@ -121,8 +121,6 @@ class CurlTransport extends Transport
 
         $method = strtoupper($request->getMethod());
         switch ($method) {
-            case 'GET':
-                break;
             case 'POST':
                 $curlOptions[CURLOPT_POST] = true;
                 break;
