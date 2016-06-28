@@ -16,4 +16,16 @@ class StreamTransportTest extends TransportTestCase
     {
         return StreamTransport::className();
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function testFollowLocation()
+    {
+        if (defined('HHVM_VERSION')) {
+            $this->markTestSkipped('HHVM does not support `follow_location` option for stream');
+        }
+
+        parent::testFollowLocation();
+    }
 }
