@@ -60,9 +60,9 @@ class StreamTransport extends Transport
             $responseContent = stream_get_contents($stream);
             $metaData = stream_get_meta_data($stream);
             fclose($stream);
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
             Yii::endProfile($token, __METHOD__);
-            throw $exception;
+            throw new Exception($e->getMessage(), $e->getCode(), $e);
         }
 
         Yii::endProfile($token, __METHOD__);

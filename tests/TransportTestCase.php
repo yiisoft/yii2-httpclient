@@ -114,4 +114,21 @@ abstract class TransportTestCase extends TestCase
         ])->send();
         $this->assertTrue($response->getIsOk());
     }
+
+    /**
+     * @depends testSend
+     */
+    public function testSendError()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://unexisting.domain';
+        $request = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('unexisting.php')
+            ->addOptions(['timeout' => 1]);
+
+        $this->setExpectedException('yii\httpclient\Exception');
+
+        $request->send();
+    }
 }

@@ -7,7 +7,6 @@
 
 namespace yii\httpclient;
 
-use yii\base\Exception;
 use Yii;
 
 /**
@@ -37,7 +36,12 @@ class CurlTransport extends Transport
         Yii::info($token, __METHOD__);
         Yii::beginProfile($token, __METHOD__);
 
-        $responseContent = curl_exec($curlResource);
+        try {
+            $responseContent = curl_exec($curlResource);
+        } catch (\Exception $e) {
+            Yii::endProfile($token, __METHOD__);
+            throw new Exception($e->getMessage(), $e->getCode(), $e);
+        }
 
         Yii::endProfile($token, __METHOD__);
 
@@ -80,16 +84,21 @@ class CurlTransport extends Transport
         Yii::info($token, __METHOD__);
         Yii::beginProfile($token, __METHOD__);
 
-        $isRunning = null;
-        do {
-            // See https://bugs.php.net/bug.php?id=61141
-            if (curl_multi_select($curlBatchResource) === -1) {
-                usleep(100);
-            }
+        try {
+            $isRunning = null;
             do {
-                $curlExecCode = curl_multi_exec($curlBatchResource, $isRunning);
-            } while ($curlExecCode === CURLM_CALL_MULTI_PERFORM);
-        } while ($isRunning > 0 && $curlExecCode === CURLM_OK);
+                // See https://bugs.php.net/bug.php?id=61141
+                if (curl_multi_select($curlBatchResource) === -1) {
+                    usleep(100);
+                }
+                do {
+                    $curlExecCode = curl_multi_exec($curlBatchResource, $isRunning);
+                } while ($curlExecCode === CURLM_CALL_MULTI_PERFORM);
+            } while ($isRunning > 0 && $curlExecCode === CURLM_OK);
+        } catch (\Exception $e) {
+            Yii::endProfile($token, __METHOD__);
+            throw new Exception($e->getMessage(), $e->getCode(), $e);
+        }
 
         Yii::endProfile($token, __METHOD__);
 
