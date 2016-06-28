@@ -105,4 +105,29 @@ name=value
 EOL;
         $this->assertEquals($expectedResult, $request->toString());
     }
+
+    /**
+     * @depends testSetupUrl
+     */
+    public function testPrepareUrl()
+    {
+        $client = new Client();
+        $client->baseUrl = 'http://some-domain.com';
+        $request = new Request(['client' => $client]);
+
+        $url = 'test/url';
+        $request->setUrl($url);
+        $request->prepare();
+        $this->assertEquals('http://some-domain.com/test/url', $request->getUrl());
+
+        $url = 'http://another-domain.com/test';
+        $request->setUrl($url);
+        $request->prepare();
+        $this->assertEquals($url, $request->getUrl());
+
+        $url = ['test/url', 'param1' => 'name1'];
+        $request->setUrl($url);
+        $request->prepare();
+        $this->assertEquals('http://some-domain.com/test/url?param1=name1', $request->getUrl());
+    }
 } 

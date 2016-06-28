@@ -12,7 +12,7 @@ use yii\helpers\FileHelper;
 /**
  * Request represents HTTP request.
  *
- * @property string $url target URL.
+ * @property string|array $url target URL.
  * @property string $method request method.
  * @property array $options request options. See [[setOptions()]] for details.
  *
@@ -22,7 +22,7 @@ use yii\helpers\FileHelper;
 class Request extends Message
 {
     /**
-     * @var string target URL.
+     * @var string|array target URL.
      */
     private $_url;
     /**
@@ -36,7 +36,9 @@ class Request extends Message
 
 
     /**
-     * @param string $url target URL
+     * Sets target URL.
+     * @param string|array $url use a string to represent a URL (e.g. `http://some-domain.com`, `item/list`),
+     * or an array to represent a URL with query parameters (e.g. `['item/list', 'param1' => 'value1']`).
      * @return $this self reference.
      */
     public function setUrl($url)
@@ -46,7 +48,8 @@ class Request extends Message
     }
 
     /**
-     * @return string target URL
+     * Returns target URL.
+     * @return string|array target URL or URL parameters
      */
     public function getUrl()
     {
@@ -188,19 +191,47 @@ class Request extends Message
      */
     public function prepare()
     {
-        if (!empty($this->client->baseUrl)) {
-            $url = $this->getUrl();
-            if (!preg_match('/^https?:\\/\\//i', $url)) {
-                $this->setUrl($this->client->baseUrl . '/' . $url);
-            }
-        }
+        $this->prepareUrl();
+
         $content = $this->getContent();
         if ($content === null) {
             $this->getFormatter()->format($this);
         } elseif (is_array($content)) {
             $this->prepareMultiPartContent($content);
         }
+
         return $this;
+    }
+
+    /**
+     * Normalizes [[url]] value, filling it with actual string URL value.
+     */
+    private function prepareUrl()
+    {
+        $url = $this->getUrl();
+        if (is_array($url)) {
+            $params = $url;
+            if (isset($params[0])) {
+                $url = $params[0];
+                unset($params[0]);
+            }
+            if (!empty($params)) {
+                if (strpos($url, '?') === false) {
+                    $url .= '?';
+                } else {
+                    $url .= '&';
+                }
+                $url .= http_build_query($params);
+            }
+        }
+
+        if (!empty($this->client->baseUrl)) {
+            if (!preg_match('/^https?:\\/\\//i', $url)) {
+                $url = $this->client->baseUrl . '/' . $url;
+            }
+        }
+
+        $this->setUrl($url);
     }
 
     /**
