@@ -13,8 +13,8 @@ use yii\httpclient\Client;
 $client = new Client();
 $response = $client->createRequest()
     ->setMethod('post')
-    ->setUrl('http://domain.com/api/1.0/users')
-    ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+    ->setUrl('http://example.com/api/1.0/users')
+    ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
     ->send();
 if ($response->isOk) {
     $newUserId = $response->data['id'];
@@ -30,9 +30,9 @@ Thus the several request to some REST API may look like following:
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 
-$newUserResponse = $client->post('users', ['name' => 'John Doe', 'email' => 'johndoe@domain.com'])->send();
+$newUserResponse = $client->post('users', ['name' => 'John Doe', 'email' => 'johndoe@example.com'])->send();
 $articleResponse = $client->get('articles', ['name' => 'Yii 2.0'])->send();
 $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'article_id' => $articleResponse->data['id']])->send();
 ```
@@ -56,7 +56,7 @@ For example:
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $response = $client->createRequest()
     ->setFormat(Client::FORMAT_JSON)
     ->setUrl('articles/search')
@@ -88,7 +88,7 @@ as well as you can process a raw content of the response. For example:
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $response = $client->createRequest()
     ->setUrl('articles/search')
     ->addHeaders(['content-type' => 'application/json'])
@@ -115,7 +115,7 @@ For example: you may want to setup JSON format for all request, created by parti
 use yii\httpclient\Client;
 
 $client = new Client([
-    'baseUrl' => 'http://domain.com/api/1.0',
+    'baseUrl' => 'http://example.com/api/1.0',
     'requestConfig' => [
         'format' => Client::FORMAT_JSON
     ],
@@ -141,7 +141,7 @@ You may use `getHeaders()` method or `headers` property to get already defined h
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $request = $client->createRequest()
     ->setHeaders(['content-type' => 'application/json'])
     ->addHeaders(['user-agent' => 'My User Agent']);
@@ -173,7 +173,7 @@ You may use `getCookies()` method or `cookies` property to get already defined C
 use yii\httpclient\Client;
 use yii\web\Cookie;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $request = $client->createRequest()
     ->setCookies([
         ['name' => 'country', 'value' => 'USA'],
@@ -202,7 +202,7 @@ after login, so we need to log in first and use created session for further acti
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com']);
+$client = new Client(['baseUrl' => 'http://example.com']);
 
 $loginResponse = $client->post('login', [
     'username' => 'johndoe',
