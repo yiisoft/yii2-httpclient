@@ -155,7 +155,15 @@ class Response extends Message
                 }
             }
         }
-        return new Cookie($params);
+
+        $cookie = new Cookie();
+        foreach ($params as $name => $value) {
+            if ($cookie->canSetProperty($name)) {
+                // Cookie string may contain custom unsupported params
+                $cookie->$name = $value;
+            }
+        }
+        return $cookie;
     }
 
     /**
@@ -167,6 +175,7 @@ class Response extends Message
         static $nameMap = [
             'expires' => 'expire',
             'httponly' => 'httpOnly',
+            'max-age' => 'maxAge',
         ];
         $name = strtolower($rawName);
         if (isset($nameMap[$name])) {
