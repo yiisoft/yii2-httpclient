@@ -6,15 +6,16 @@
  */
 
 namespace yii\httpclient;
+
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 
 /**
  * Request represents HTTP request.
  *
- * @property string|array $url target URL.
- * @property string $method request method.
- * @property array $options request options. See [[setOptions()]] for details.
+ * @property string $method Request method.
+ * @property array $options Request options. This property is read-only.
+ * @property string|array $url Target URL or URL parameters.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
