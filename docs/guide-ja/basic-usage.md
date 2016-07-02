@@ -13,8 +13,8 @@ use yii\httpclient\Client;
 $client = new Client();
 $response = $client->createRequest()
     ->setMethod('post')
-    ->setUrl('http://domain.com/api/1.0/users')
-    ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+    ->setUrl('http://example.com/api/1.0/users')
+    ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
     ->send();
 if ($response->isOk) {
     $newUserId = $response->data['id'];
@@ -30,9 +30,9 @@ if ($response->isOk) {
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 
-$newUserResponse = $client->post('users', ['name' => 'John Doe', 'email' => 'johndoe@domain.com'])->send();
+$newUserResponse = $client->post('users', ['name' => 'John Doe', 'email' => 'johndoe@example.com'])->send();
 $articleResponse = $client->get('articles', ['name' => 'Yii 2.0'])->send();
 $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'article_id' => $articleResponse->data['id']])->send();
 ```
@@ -55,7 +55,7 @@ $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'arti
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $response = $client->createRequest()
     ->setFormat(Client::FORMAT_JSON)
     ->setUrl('articles/search')
@@ -88,7 +88,7 @@ HTTP ƒŠƒNƒGƒXƒg‚É¶‚ÌƒRƒ“ƒeƒ“ƒg‚ðŽg—p‚·‚éŽ–‚àAƒŒƒXƒ|ƒ“ƒX‚Ì¶‚ÌƒRƒ“ƒeƒ“ƒg‚ðˆ—‚
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $response = $client->createRequest()
     ->setUrl('articles/search')
     ->addHeaders(['content-type' => 'application/json'])
@@ -113,7 +113,7 @@ echo $response->content;
 use yii\httpclient\Client;
 
 $client = new Client([
-    'baseUrl' => 'http://domain.com/api/1.0',
+    'baseUrl' => 'http://example.com/api/1.0',
     'requestConfig' => [
         'format' => Client::FORMAT_JSON
     ],
@@ -138,7 +138,7 @@ echo $request->format; // o—Í: 'json'
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $request = $client->createRequest()
     ->setHeaders(['content-type' => 'application/json'])
     ->addHeaders(['user-agent' => 'My User Agent']);
@@ -168,7 +168,7 @@ echo $response->headers->get('content-encoding');
 use yii\httpclient\Client;
 use yii\web\Cookie;
 
-$client = new Client(['baseUrl' => 'http://domain.com/api/1.0']);
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $request = $client->createRequest()
     ->setCookies([
         ['name' => 'country', 'value' => 'USA'],
@@ -196,7 +196,7 @@ echo $response->headers->get('PHPSESSID');
 ```php
 use yii\httpclient\Client;
 
-$client = new Client(['baseUrl' => 'http://domain.com']);
+$client = new Client(['baseUrl' => 'http://example.com']);
 
 $loginResponse = $client->post('login', [
     'username' => 'johndoe',
