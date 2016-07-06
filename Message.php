@@ -17,11 +17,13 @@ use Yii;
 /**
  * Message represents a base HTTP message.
  *
- * @property HeaderCollection|array $headers message headers list.
- * @property CookieCollection|Cookie[]|array $cookies message cookies list.
- * @property string $content message raw content.
- * @property mixed $data message content data.
- * @property string $format message content format.
+ * @property string $content Raw body.
+ * @property CookieCollection|Cookie[] $cookies The cookie collection. Note that the type of this property
+ * differs in getter and setter. See [[getCookies()]] and [[setCookies()]] for details.
+ * @property mixed $data Content data fields.
+ * @property string $format Body format name.
+ * @property HeaderCollection $headers The header collection. Note that the type of this property differs in
+ * getter and setter. See [[getHeaders()]] and [[setHeaders()]] for details.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
