@@ -25,7 +25,7 @@ return [
 ];
 ```
 
-You may as well use [HTTP client DebugPanel](topics-debug.md) to see all related logs.
+You may also use [HTTP client DebugPanel](topics-debug.md) to see all related logs.
 
 > Attention: since content of the some HTTP requests may be very long, saving it in full inside the logs
   may lead to certain problems. Thus there is a restriction on the maximum length of the request content,
