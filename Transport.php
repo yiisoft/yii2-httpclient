@@ -8,7 +8,6 @@
 namespace yii\httpclient;
 
 use yii\base\Component;
-use yii\base\Exception;
 
 /**
  * Transport performs actual HTTP request sending.

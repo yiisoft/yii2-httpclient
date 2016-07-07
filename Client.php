@@ -7,7 +7,6 @@
 
 namespace yii\httpclient;
 
-use yii\base\Exception;
 use yii\base\Component;
 use Yii;
 use yii\base\InvalidParamException;

@@ -7,7 +7,6 @@
 
 namespace yii\httpclient;
 
-use yii\base\Exception;
 use yii\web\Cookie;
 use yii\web\HeaderCollection;
 
