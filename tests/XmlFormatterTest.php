@@ -38,6 +38,64 @@ XML;
     /**
      * @depends testFormat
      */
+    public function testFormatArrayWithNumericKey()
+    {
+        $request = new Request();
+        $data = [
+            'group' => [
+                [
+                    'name1' => 'value1',
+                    'name2' => 'value2',
+                ],
+            ],
+        ];
+        $request->setData($data);
+
+        $formatter = new XmlFormatter();
+        $formatter->format($request);
+        $expectedContent = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<request><group><item><name1>value1</name1><name2>value2</name2></item></group></request>
+XML;
+        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+    }
+
+    /**
+     * @depends testFormat
+     */
+    public function testFormatTraversable()
+    {
+        $request = new Request();
+
+        $postsStack = new \SplStack();
+        $post = new \stdClass();
+        $post->name = 'name1';
+        $postsStack->push($post);
+
+        $request->setData($postsStack);
+
+        $formatter = new XmlFormatter();
+
+        $formatter->useTraversableAsArray = true;
+        $formatter->format($request);
+        $expectedContent = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<request><stdClass><name>name1</name></stdClass></request>
+XML;
+        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+
+        $formatter->useTraversableAsArray = false;
+        $formatter->format($request);
+        $expectedContent = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<request><SplStack><stdClass><name>name1</name></stdClass></SplStack></request>
+XML;
+        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+    }
+
+    /**
+     * @depends testFormat
+     */
     public function testFormatFromDom()
     {
         $request = new Request();
