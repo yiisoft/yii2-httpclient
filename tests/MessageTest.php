@@ -147,5 +147,11 @@ class MessageTest extends TestCase
         ];
         $message->setData($data);
         $this->assertEquals($data, $message->getData());
+
+        $additionalData = [
+            'field3' => 'value3'
+        ];
+        $message->addData($additionalData);
+        $this->assertEquals(array_merge($data, $additionalData), $message->getData());
     }
 }

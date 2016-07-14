@@ -233,6 +233,22 @@ class Message extends Object
     }
 
     /**
+     * Adds data fields to the existing ones.
+     * @param array $data additional content data fields.
+     * @return $this self reference.
+     * @since 2.0.1
+     */
+    public function addData($data)
+    {
+        if (empty($this->_data)) {
+            $this->_data = $data;
+        } else {
+            $this->_data = array_merge($this->_data, $data);
+        }
+        return $this;
+    }
+
+    /**
      * Sets body format.
      * @param string $format body format name.
      * @return $this self reference.
