@@ -28,7 +28,7 @@ class StreamTransport extends Transport
     {
         $request->prepare();
 
-        $url = $request->getUrl();
+        $url = $request->getFullUrl();
         $method = strtoupper($request->getMethod());
 
         $contextOptions = [

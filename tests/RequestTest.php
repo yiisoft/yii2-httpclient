@@ -109,7 +109,7 @@ EOL;
     /**
      * @depends testSetupUrl
      */
-    public function testPrepareUrl()
+    public function testGetFullUrl()
     {
         $client = new Client();
         $client->baseUrl = 'http://some-domain.com';
@@ -117,17 +117,14 @@ EOL;
 
         $url = 'test/url';
         $request->setUrl($url);
-        $request->prepare();
-        $this->assertEquals('http://some-domain.com/test/url', $request->getUrl());
+        $this->assertEquals('http://some-domain.com/test/url', $request->getFullUrl());
 
         $url = 'http://another-domain.com/test';
         $request->setUrl($url);
-        $request->prepare();
-        $this->assertEquals($url, $request->getUrl());
+        $this->assertEquals($url, $request->getFullUrl());
 
         $url = ['test/url', 'param1' => 'name1'];
         $request->setUrl($url);
-        $request->prepare();
-        $this->assertEquals('http://some-domain.com/test/url?param1=name1', $request->getUrl());
+        $this->assertEquals('http://some-domain.com/test/url?param1=name1', $request->getFullUrl());
     }
 } 
