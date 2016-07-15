@@ -3,6 +3,8 @@
 namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\Client;
+use yii\httpclient\Request;
+use yii\httpclient\RequestEvent;
 use yii\httpclient\Response;
 
 /**
@@ -130,5 +132,108 @@ abstract class TransportTestCase extends TestCase
         $this->setExpectedException('yii\httpclient\Exception');
 
         $request->send();
+    }
+
+    /**
+     * @depends testSend
+     */
+    public function testSendEvents()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://us.php.net';
+
+        $request = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('docs.php');
+
+        $beforeSendEvent = null;
+        $request->on(Request::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendEvent) {
+            $beforeSendEvent = $event;
+        });
+
+        $afterSendEvent = null;
+        $request->on(Request::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendEvent) {
+            $afterSendEvent = $event;
+        });
+
+        $response = $request->send();
+
+        $this->assertTrue($beforeSendEvent instanceof RequestEvent);
+        $this->assertSame($request, $beforeSendEvent->request);
+        $this->assertNull($beforeSendEvent->response);
+
+        $this->assertTrue($afterSendEvent instanceof RequestEvent);
+        $this->assertSame($request, $afterSendEvent->request);
+        $this->assertSame($response, $afterSendEvent->response);
+    }
+
+    /**
+     * @depends testSendEvents
+     */
+    public function testClientSendEvents()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://us.php.net';
+
+        $request = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('docs.php');
+
+        $beforeSendEvent = null;
+        $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendEvent) {
+            $beforeSendEvent = $event;
+        });
+
+        $afterSendEvent = null;
+        $client->on(Client::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendEvent) {
+            $afterSendEvent = $event;
+        });
+
+        $response = $request->send();
+
+        $this->assertTrue($beforeSendEvent instanceof RequestEvent);
+        $this->assertSame($request, $beforeSendEvent->request);
+        $this->assertNull($beforeSendEvent->response);
+
+        $this->assertTrue($afterSendEvent instanceof RequestEvent);
+        $this->assertSame($request, $afterSendEvent->request);
+        $this->assertSame($response, $afterSendEvent->response);
+    }
+
+    /**
+     * @depends testBatchSend
+     * @depends testClientSendEvents
+     */
+    public function testBatchSendEvents()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://us.php.net';
+
+        $beforeSendUrls = [];
+        $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendUrls) {
+            $beforeSendUrls[] = $event->request->getFullUrl();
+        });
+
+        $afterSendUrls = [];
+        $client->on(Client::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendUrls) {
+            $afterSendUrls[] = $event->request->getFullUrl();
+        });
+
+        $requests = [];
+        $requests['docs'] = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('docs.php');
+        $requests['support'] = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('support.php');
+
+        $responses = $client->batchSend($requests);
+
+        $expectedUrls = [
+            $client->baseUrl . '/docs.php',
+            $client->baseUrl . '/support.php',
+        ];
+        $this->assertEquals($expectedUrls, $beforeSendUrls);
+        $this->assertEquals($expectedUrls, $afterSendUrls);
     }
 }

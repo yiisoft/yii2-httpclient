@@ -26,6 +26,8 @@ class CurlTransport extends Transport
      */
     public function send($request)
     {
+        $request->beforeSend();
+
         $curlOptions = $this->prepare($request);
         $curlResource = $this->initCurl($curlOptions);
 
@@ -55,7 +57,11 @@ class CurlTransport extends Transport
             throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
         }
 
-        return $request->client->createResponse($responseContent, $responseHeaders);
+        $response = $request->client->createResponse($responseContent, $responseHeaders);
+
+        $request->afterSend($response);
+
+        return $response;
     }
 
     /**
@@ -70,6 +76,8 @@ class CurlTransport extends Transport
         $responseHeaders = [];
         foreach ($requests as $key => $request) {
             /* @var $request Request */
+            $request->beforeSend();
+
             $curlOptions = $this->prepare($request);
             $curlResource = $this->initCurl($curlOptions);
 
@@ -112,7 +120,9 @@ class CurlTransport extends Transport
 
         $responses = [];
         foreach ($requests as $key => $request) {
-            $responses[$key] = $request->client->createResponse($responseContents[$key], $responseHeaders[$key]);
+            $response = $request->client->createResponse($responseContents[$key], $responseHeaders[$key]);
+            $request->afterSend($response);
+            $responses[$key] = $response;
         }
         return $responses;
     }

@@ -26,6 +26,8 @@ class StreamTransport extends Transport
      */
     public function send($request)
     {
+        $request->beforeSend();
+
         $request->prepare();
 
         $url = $request->getFullUrl();
@@ -69,7 +71,11 @@ class StreamTransport extends Transport
 
         $responseHeaders = isset($metaData['wrapper_data']) ? $metaData['wrapper_data'] : [];
 
-        return $request->client->createResponse($responseContent, $responseHeaders);
+        $response = $request->client->createResponse($responseContent, $responseHeaders);
+
+        $request->afterSend($response);
+
+        return $response;
     }
 
     /**

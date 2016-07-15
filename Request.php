@@ -24,6 +24,15 @@ use yii\helpers\FileHelper;
 class Request extends Message
 {
     /**
+     * @event RequestEvent an event raised right before sending request.
+     */
+    const EVENT_BEFORE_SEND = 'beforeSend';
+    /**
+     * @event RequestEvent an event raised right after request has been sent.
+     */
+    const EVENT_AFTER_SEND = 'afterSend';
+
+    /**
      * @var string|array target URL.
      */
     private $_url;
@@ -349,6 +358,36 @@ class Request extends Message
     public function send()
     {
         return $this->client->send($this);
+    }
+
+    /**
+     * This method is invoked right before this request is sent.
+     * The method will invoke [[Client::beforeSend()]] and trigger the [[EVENT_BEFORE_SEND]] event.
+     * @since 2.0.1
+     */
+    public function beforeSend()
+    {
+        $this->client->beforeSend($this);
+
+        $event = new RequestEvent();
+        $event->request = $this;
+        $this->trigger(self::EVENT_BEFORE_SEND, $event);
+    }
+
+    /**
+     * This method is invoked right after this request is sent.
+     * The method will invoke [[Client::afterSend()]] and trigger the [[EVENT_AFTER_SEND]] event.
+     * @param Response $response received response instance.
+     * @since 2.0.1
+     */
+    public function afterSend($response)
+    {
+        $this->client->afterSend($this, $response);
+
+        $event = new RequestEvent();
+        $event->request = $this;
+        $event->response = $response;
+        $this->trigger(self::EVENT_AFTER_SEND, $event);
     }
 
     /**

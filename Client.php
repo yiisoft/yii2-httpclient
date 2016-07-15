@@ -24,6 +24,15 @@ use yii\helpers\StringHelper;
 class Client extends Component
 {
     /**
+     * @event RequestEvent an event raised right before sending request.
+     */
+    const EVENT_BEFORE_SEND = 'beforeSend';
+    /**
+     * @event RequestEvent an event raised right after request has been sent.
+     */
+    const EVENT_AFTER_SEND = 'afterSend';
+
+    /**
      * JSON format
      */
     const FORMAT_JSON = 'json';
@@ -346,6 +355,34 @@ class Client extends Component
     public function options($url, $options = [])
     {
         return $this->createRequestShortcut('options', $url, null, [], $options);
+    }
+
+    /**
+     * This method is invoked right before request is sent.
+     * The method will trigger the [[EVENT_BEFORE_SEND]] event.
+     * @param Request $request request instance.
+     * @since 2.0.1
+     */
+    public function beforeSend($request)
+    {
+        $event = new RequestEvent();
+        $event->request = $request;
+        $this->trigger(self::EVENT_BEFORE_SEND, $event);
+    }
+
+    /**
+     * This method is invoked right after request is sent.
+     * The method will trigger the [[EVENT_AFTER_SEND]] event.
+     * @param Request $request request instance.
+     * @param Response $response received response instance.
+     * @since 2.0.1
+     */
+    public function afterSend($request, $response)
+    {
+        $event = new RequestEvent();
+        $event->request = $request;
+        $event->response = $response;
+        $this->trigger(self::EVENT_AFTER_SEND, $event);
     }
 
     /**

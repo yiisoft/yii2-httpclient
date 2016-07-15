@@ -7,8 +7,8 @@
 
 namespace yii\httpclient;
 
+use yii\base\Component;
 use yii\base\ErrorHandler;
-use yii\base\Object;
 use yii\web\Cookie;
 use yii\web\CookieCollection;
 use yii\web\HeaderCollection;
@@ -28,7 +28,7 @@ use Yii;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class Message extends Object
+class Message extends Component
 {
     /**
      * @var Client owner client instance.
