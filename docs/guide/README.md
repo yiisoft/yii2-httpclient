@@ -18,6 +18,7 @@ Usage
 * [Request options](usage-request-options.md)
 * [Multi-part content](usage-multi-part-content.md)
 * [Batch request sending](usage-batch-request-sending.md)
+* [Events](usage-events.md)
 * [Logging and profiling](usage-logging.md)
 * [Setup Client instance](usage-setup-client-instance.md)
 
