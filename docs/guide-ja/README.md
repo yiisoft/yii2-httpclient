@@ -18,6 +18,7 @@ Yii 2 HTTP クライアント エクステンション
 * [リクエストのオプション](usage-request-options.md)
 * [マルチパートコンテント](usage-multi-part-content.md)
 * [バッチリクエスト送信](usage-batch-request-sending.md)
+* [イベント](usage-events.md)
 * [ロギングとプロファイリング](usage-logging.md)
 * [クライアントのインスタンスをセットアップする](usage-setup-client-instance.md)
 
