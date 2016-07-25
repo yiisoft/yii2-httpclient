@@ -109,6 +109,7 @@ class Request extends Message
      * - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
      * - followLocation: boolean, whether to follow any "Location: " header that the server sends as part of the HTTP header.
      * - maxRedirects: integer, the max number of redirects to follow.
+     * - protocolVersion: float|string, HTTP protocol version.
      * - sslVerifyPeer: boolean, whether verification of the peer's certificate should be performed.
      * - sslCafile: string, location of Certificate Authority file on local filesystem which should be used with
      *   the 'sslVerifyPeer' option to authenticate the identity of the remote peer.

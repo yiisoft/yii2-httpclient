@@ -186,6 +186,7 @@ class CurlTransport extends Transport
     private function composeCurlOptions(array $options)
     {
         static $optionMap = [
+            'protocolVersion' => CURLOPT_HTTP_VERSION,
             'maxRedirects' => CURLOPT_MAXREDIRS,
             'sslCapath' => CURLOPT_CAPATH,
             'sslCafile' => CURLOPT_CAINFO,
