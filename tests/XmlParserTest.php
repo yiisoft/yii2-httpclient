@@ -26,4 +26,27 @@ XML;
         $parser = new XmlParser();
         $this->assertEquals($data, $parser->parse($document));
     }
-} 
+
+    /**
+     * @depends testParse
+     */
+    public function testParseCData()
+    {
+        $document = new Response();
+        $xml = <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<main>
+    <name1><![CDATA[<tag>]]></name1>
+    <name2><![CDATA[value2]]></name2>
+</main>
+XML;
+        $document->setContent($xml);
+
+        $data = [
+            'name1' => '<tag>',
+            'name2' => 'value2',
+        ];
+        $parser = new XmlParser();
+        $this->assertEquals($data, $parser->parse($document));
+    }
+}
