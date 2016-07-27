@@ -4,9 +4,9 @@
 /* @var $queryTime integer */
 ?>
 <?php if ($queryCount): ?>
-<div class="yii-debug-toolbar-block">
+<div class="yii-debug-toolbar__block">
     <a href="<?= $panel->getUrl() ?>" title="Executed <?= $queryCount ?> database queries which took <?= $queryTime ?>.">
-        HTTP Requests <span class="label label-info"><?= $queryCount ?></span> <span class="label"><?= $queryTime ?></span>
+        HTTP Requests <span class="yii-debug-toolbar__label yii-debug-toolbar__label_info"><?= $queryCount ?></span> <span class="yii-debug-toolbar__label"><?= $queryTime ?></span>
     </a>
 </div>
 <?php endif; ?>
