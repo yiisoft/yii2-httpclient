@@ -7,6 +7,13 @@ use yii\httpclient\Request;
 
 class UrlEncodedFormatterTest extends TestCase
 {
+    protected function setUp()
+    {
+        $this->mockApplication();
+    }
+
+    // Tests :
+
     public function testFormat()
     {
         $request = new Request();
@@ -20,7 +27,7 @@ class UrlEncodedFormatterTest extends TestCase
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertEquals(http_build_query($data), $request->getContent());
-        $this->assertEquals('application/x-www-form-urlencoded', $request->getHeaders()->get('Content-Type'));
+        $this->assertEquals('application/x-www-form-urlencoded; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
     }
 
     public function testFormatMethodGet()

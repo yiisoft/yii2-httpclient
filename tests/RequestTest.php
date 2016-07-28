@@ -7,6 +7,13 @@ use yii\httpclient\Request;
 
 class RequestTest extends TestCase
 {
+    protected function setUp()
+    {
+        $this->mockApplication();
+    }
+
+    // Tests :
+
     public function testSetupUrl()
     {
         $request = new Request();
@@ -99,7 +106,7 @@ class RequestTest extends TestCase
 
         $expectedResult = <<<EOL
 POST http://domain.com/test
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
 name=value
 EOL;

@@ -12,6 +12,7 @@ Yii Framework 2 HTTP client extension Change Log
 - Enh #46: Added `Request::getFullUrl()` allowing getting the full actual request URL (klimov-paul)
 - Enh #47: Added `Message::addData()` allowing addition of the content data to already existing one (klimov-paul)
 - Enh #50: Option 'protocolVersion' added to `Request::options` allowing specification of the HTTP protocol version (klimov-paul)
+- Enh #58: Added `UrlEncodedFormatter::charset` allowing specification of content charset (klimov-paul)
 - Enh: Added `XmlFormatter::useTraversableAsArray` allowing processing `\Traversable` as array (klimov-paul)
 
 
