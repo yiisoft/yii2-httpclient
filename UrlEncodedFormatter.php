@@ -30,6 +30,7 @@ class UrlEncodedFormatter extends Object implements FormatterInterface
     public $encodingType = PHP_QUERY_RFC1738;
     /**
      * @var string the content charset. If not set, it will use the value of [[\yii\base\Application::charset]].
+     * @since 2.0.1
      */
     public $charset;
 
