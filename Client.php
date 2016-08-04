@@ -31,7 +31,6 @@ class Client extends Component
      * @event RequestEvent an event raised right after request has been sent.
      */
     const EVENT_AFTER_SEND = 'afterSend';
-
     /**
      * JSON format
      */

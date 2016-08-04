@@ -13,10 +13,10 @@ use yii\helpers\FileHelper;
 /**
  * Request represents HTTP request.
  *
+ * @property string $fullUrl Full target URL. This property is read-only.
  * @property string $method Request method.
  * @property array $options Request options. This property is read-only.
  * @property string|array $url Target URL or URL parameters.
- * @property string $fullUrl Full Target URL. This property is read-only.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

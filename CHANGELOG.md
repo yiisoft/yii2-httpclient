@@ -1,8 +1,8 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.1 under development
--------------------------
+2.0.1 August 04, 2016
+---------------------
 
 - Bug #44: Fixed exception name collision at `Response` and `Transport` (cebe)
 - Bug #45: Fixed `XmlFormatter` unable to handle array with numeric keys (klimov-paul)
