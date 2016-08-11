@@ -60,7 +60,8 @@ class StreamTransport extends Transport
             $context = stream_context_create($contextOptions);
             $stream = fopen($url, 'rb', false, $context);
             $responseContent = stream_get_contents($stream);
-            $metaData = stream_get_meta_data($stream);
+            // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
+            $responseHeaders = $http_response_header;
             fclose($stream);
         } catch (\Exception $e) {
             Yii::endProfile($token, __METHOD__);
@@ -68,8 +69,6 @@ class StreamTransport extends Transport
         }
 
         Yii::endProfile($token, __METHOD__);
-
-        $responseHeaders = isset($metaData['wrapper_data']) ? $metaData['wrapper_data'] : [];
 
         $response = $request->client->createResponse($responseContent, $responseHeaders);
 
