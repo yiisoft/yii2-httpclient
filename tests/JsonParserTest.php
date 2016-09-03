@@ -20,4 +20,46 @@ class JsonParserTest extends TestCase
         $parser = new JsonParser();
         $this->assertEquals($data, $parser->parse($document));
     }
+
+    public function testParse2()
+    {
+        $document = new Response();
+        $data = [
+            'code' => 412,
+            'httpMessage' => 'Precondition Failed',
+            'message' => 'Request Active',
+            'data' => [
+                'requestId' => 10,
+                'userId' => '17',
+                'registryDate' => '2016-08-19 21:54:40',
+                'contractedServiceData' => [
+                        'id' => 6,
+                        'status' => true,
+                    ],
+            ],
+            'errors' => null,
+        ];
+        $document->setContent(<<<JSON
+{
+  "code": 412,
+  "httpMessage": "Precondition Failed",
+  "message": "Request Active",
+  "data": {
+    "requestId": 10,
+    "userId": "17",
+    "registryDate": "2016-08-19 21:54:40",
+    "contractedServiceData": {
+      "id": 6,
+      "status": true
+    }
+  },
+  "errors": null
+}
+JSON
+        );
+
+
+        $parser = new JsonParser();
+        $this->assertEquals($data, $parser->parse($document));
+    }
 }
