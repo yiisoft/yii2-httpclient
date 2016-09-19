@@ -7,8 +7,9 @@
 
 ### Additional info
 
-| Q                | A
-| ---------------- | ---
-| Yii version       |
-| PHP version      |
-| Operating system |
+| Q                       | A
+| ----------------------- | ---
+| Yii version             |
+| Yii HTTP Client version |
+| PHP version             |
+| Operating system        |
