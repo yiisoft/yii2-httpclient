@@ -48,6 +48,11 @@ class Request extends Message
      * @var array request options.
      */
     private $_options = [];
+    /**
+     * @var boolean whether request object has been prepared for sending or not.
+     * @see prepare()
+     */
+    private $isPrepared = false;
 
 
     /**
@@ -227,6 +232,8 @@ class Request extends Message
             $this->prepareMultiPartContent($content);
         }
 
+        $this->isPrepared = true;
+
         return $this;
     }
 
@@ -396,6 +403,10 @@ class Request extends Message
      */
     public function toString()
     {
+        if (!$this->isPrepared) {
+            $this->prepare();
+        }
+
         $result = strtoupper($this->getMethod()) . ' ' . $this->getFullUrl();
 
         $parentResult = parent::toString();
