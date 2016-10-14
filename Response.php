@@ -79,7 +79,7 @@ class Response extends Message
 
     /**
      * Returns default format automatically detected from headers and content.
-     * @return null|string format name, 'null' - if detection failed.
+     * @return string|null format name, 'null' - if detection failed.
      */
     protected function defaultFormat()
     {
@@ -87,6 +87,7 @@ class Response extends Message
         if ($format === null) {
             $format = $this->detectFormatByContent($this->getContent());
         }
+
         return $format;
     }
 
@@ -122,7 +123,7 @@ class Response extends Message
         if (preg_match('/^\\{.*\\}$/is', $content)) {
             return Client::FORMAT_JSON;
         }
-        if (preg_match('/^[^=|^&]+=[^=|^&]+(&[^=|^&]+=[^=|^&]+)*$/', $content)) {
+        if (preg_match('/^([^=&])+=[^=&]+(&[^=&]+=[^=&]+)*$/', $content)) {
             return Client::FORMAT_URLENCODED;
         }
         if (preg_match('/^<.*>$/s', $content)) {
@@ -185,9 +186,14 @@ class Response extends Message
 
     /**
      * @return ParserInterface message parser instance.
+     * @throws Exception if unable to detect parser.
      */
     private function getParser()
     {
-        return $this->client->getParser($this->getFormat());
+        $format = $this->getFormat();
+        if ($format === null) {
+            throw new Exception("Unable to detect format for content parsing. Raw response:\n\n" . $this->toString());
+        }
+        return $this->client->getParser($format);
     }
 }
