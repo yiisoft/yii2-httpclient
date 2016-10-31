@@ -1,8 +1,8 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.2 under development
------------------------
+2.0.2 October 31, 2016
+----------------------
 
 - Bug #61: Response headers extraction at `StreamTransport` changed to use `$http_response_header` to be more reliable (klimov-paul)
 - Bug #70: Fixed `Request::toString()` triggers `E_NOTICE` for not prepared request (klimov-paul)

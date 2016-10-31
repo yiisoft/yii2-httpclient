@@ -119,7 +119,7 @@ class Message extends Component
     /**
      * Checks of HTTP message contains any header.
      * Using this method you are able to check cookie presence without instantiating [[HeaderCollection]].
-     * @return boolean whether message contains any header.
+     * @return bool whether message contains any header.
      */
     public function hasHeaders()
     {
@@ -182,7 +182,7 @@ class Message extends Component
     /**
      * Checks of HTTP message contains any cookie.
      * Using this method you are able to check cookie presence without instantiating [[CookieCollection]].
-     * @return boolean whether message contains any cookie.
+     * @return bool whether message contains any cookie.
      */
     public function hasCookies()
     {

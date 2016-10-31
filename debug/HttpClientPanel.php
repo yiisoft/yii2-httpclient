@@ -198,7 +198,7 @@ class HttpClientPanel extends Panel
      * Returns total request time.
      *
      * @param array $timings
-     * @return integer total time
+     * @return int total time
      */
     protected function getTotalRequestTime($timings)
     {

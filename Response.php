@@ -13,7 +13,7 @@ use yii\web\HeaderCollection;
 /**
  * Response represents HTTP request response.
  *
- * @property boolean $isOk Whether response is OK. This property is read-only.
+ * @property bool $isOk Whether response is OK. This property is read-only.
  * @property string $statusCode Status code. This property is read-only.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
@@ -70,7 +70,7 @@ class Response extends Message
 
     /**
      * Checks if response status code is OK (status code = 20x)
-     * @return boolean whether response is OK.
+     * @return bool whether response is OK.
      */
     public function getIsOk()
     {

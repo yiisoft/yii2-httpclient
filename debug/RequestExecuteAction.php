@@ -28,7 +28,7 @@ class RequestExecuteAction extends Action
     /**
      * @param string $seq
      * @param string $tag
-     * @param boolean $passthru whether to send response to the browser or render it as plain text
+     * @param bool $passthru whether to send response to the browser or render it as plain text
      * @return Response
      * @throws HttpException
      */
