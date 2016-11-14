@@ -153,6 +153,32 @@ class Request extends Message
     }
 
     /**
+     * @inheritdoc
+     */
+    public function setData($data)
+    {
+        if ($this->isPrepared) {
+            $this->setContent(null);
+            $this->isPrepared = false;
+        }
+
+        return parent::setData($data);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function addData($data)
+    {
+        if ($this->isPrepared) {
+            $this->setContent(null);
+            $this->isPrepared = false;
+        }
+
+        return parent::addData($data);
+    }
+
+    /**
      * Adds a content part for multi-part content request.
      * @param string $name part (form input) name.
      * @param string $content content.

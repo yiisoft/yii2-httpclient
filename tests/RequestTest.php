@@ -150,4 +150,43 @@ EOL;
         $request->setUrl($url);
         $this->assertEquals('http://some-domain.com/test/url?param1=name1', $request->getFullUrl());
     }
+
+    /**
+     * @depends testToString
+     */
+    public function testReuse()
+    {
+        $request = new Request([
+            'client' => new Client(),
+            'format' => Client::FORMAT_URLENCODED,
+            'method' => 'post',
+            'url' => 'http://domain.com/test',
+        ]);
+
+        $data = [
+            'param1' => 'value1',
+        ];
+        $request->setData($data);
+
+        $expectedResult = <<<EOL
+POST http://domain.com/test
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+param1=value1
+EOL;
+        $this->assertEquals($expectedResult, $request->toString());
+
+        $data = [
+            'param2' => 'value2',
+        ];
+        $request->setData($data);
+
+        $expectedResult = <<<EOL
+POST http://domain.com/test
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+
+param2=value2
+EOL;
+        $this->assertEquals($expectedResult, $request->toString());
+    }
 } 
