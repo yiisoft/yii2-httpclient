@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 -----------------------
 
 - Bug #74: Fixed unable to reuse `Request` instance for sending several requests with different data (klimov-paul)
+- Bug #76: Fixed `HttpClientPanel` triggers `E_WARNING` on attempt to view history debug entry, generated without panel being attached (klimov-paul)
 
 
 2.0.2 October 31, 2016
