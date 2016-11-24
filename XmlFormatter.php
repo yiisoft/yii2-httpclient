@@ -46,7 +46,7 @@ class XmlFormatter extends Object implements FormatterInterface
      */
     public $itemTag = 'item';
     /**
-     * @var boolean whether to interpret objects implementing the [[\Traversable]] interface as arrays.
+     * @var bool whether to interpret objects implementing the [[\Traversable]] interface as arrays.
      * Defaults to `true`.
      * @since 2.0.1
      */

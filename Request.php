@@ -49,7 +49,7 @@ class Request extends Message
      */
     private $_options = [];
     /**
-     * @var boolean whether request object has been prepared for sending or not.
+     * @var bool whether request object has been prepared for sending or not.
      * @see prepare()
      */
     private $isPrepared = false;
@@ -109,13 +109,13 @@ class Request extends Message
 
     /**
      * Following options are supported:
-     * - timeout: integer, the maximum number of seconds to allow request to be executed.
+     * - timeout: int, the maximum number of seconds to allow request to be executed.
      * - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
      * - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
-     * - followLocation: boolean, whether to follow any "Location: " header that the server sends as part of the HTTP header.
-     * - maxRedirects: integer, the max number of redirects to follow.
+     * - followLocation: bool, whether to follow any "Location: " header that the server sends as part of the HTTP header.
+     * - maxRedirects: int, the max number of redirects to follow.
      * - protocolVersion: float|string, HTTP protocol version.
-     * - sslVerifyPeer: boolean, whether verification of the peer's certificate should be performed.
+     * - sslVerifyPeer: bool, whether verification of the peer's certificate should be performed.
      * - sslCafile: string, location of Certificate Authority file on local filesystem which should be used with
      *   the 'sslVerifyPeer' option to authenticate the identity of the remote peer.
      * - sslCapath: string, a directory that holds multiple CA certificates.

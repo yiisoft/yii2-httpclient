@@ -19,7 +19,7 @@ use yii\helpers\Json;
 class JsonFormatter extends Object implements FormatterInterface
 {
     /**
-     * @var integer the encoding options.For more details please refer to
+     * @var int the encoding options.For more details please refer to
      * <http://www.php.net/manual/en/function.json-encode.php>.
      */
     public $encodeOptions = 0;

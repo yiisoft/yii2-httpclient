@@ -123,8 +123,8 @@ class ResponseTest extends TestCase
      * @dataProvider dataProviderIsOk
      * @depends testGetStatusCode
      *
-     * @param integer $statusCode
-     * @param boolean $isOk
+     * @param int $statusCode
+     * @param bool $isOk
      */
     public function testIsOk($statusCode, $isOk)
     {

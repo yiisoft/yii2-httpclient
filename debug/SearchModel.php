@@ -22,7 +22,7 @@ class SearchModel extends Base
      */
     public $method;
     /**
-     * @var integer request attribute input search value
+     * @var int request attribute input search value
      */
     public $request;
 

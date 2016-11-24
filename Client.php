@@ -75,7 +75,7 @@ class Client extends Component
      */
     public $responseConfig = [];
     /**
-     * @var integer maximum symbols count of the request content, which should be taken to compose a
+     * @var int maximum symbols count of the request content, which should be taken to compose a
      * log and profile messages. Exceeding content will be truncated.
      * @see createRequestLogToken()
      */
