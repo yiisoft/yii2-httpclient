@@ -130,25 +130,56 @@ EOL;
     }
 
     /**
-     * @depends testSetupUrl
+     * Data provider for [[testGetFullUrl()]]
+     * @return array test data
      */
-    public function testGetFullUrl()
+    public function dataProviderGetFullUrl()
+    {
+        return [
+            [
+                'http://some-domain.com',
+                'test/url',
+                'http://some-domain.com/test/url'
+            ],
+            [
+                'http://some-domain.com',
+                'http://another-domain.com/test',
+                'http://another-domain.com/test',
+            ],
+            [
+                'http://some-domain.com',
+                ['test/url', 'param1' => 'name1'],
+                'http://some-domain.com/test/url?param1=name1'
+            ],
+            [
+                'http://some-domain.com?base-param=base',
+                null,
+                'http://some-domain.com?base-param=base',
+            ],
+            [
+                'http://some-domain.com?base-param=base',
+                ['param1' => 'name1'],
+                'http://some-domain.com?base-param=base&param1=name1',
+            ],
+        ];
+    }
+
+    /**
+     * @depends testSetupUrl
+     * @dataProvider dataProviderGetFullUrl
+     *
+     * @param string $baseUrl
+     * @param mixed $url
+     * @param string $expectedFullUrl
+     */
+    public function testGetFullUrl($baseUrl, $url, $expectedFullUrl)
     {
         $client = new Client();
-        $client->baseUrl = 'http://some-domain.com';
+        $client->baseUrl = $baseUrl;
         $request = new Request(['client' => $client]);
 
-        $url = 'test/url';
         $request->setUrl($url);
-        $this->assertEquals('http://some-domain.com/test/url', $request->getFullUrl());
-
-        $url = 'http://another-domain.com/test';
-        $request->setUrl($url);
-        $this->assertEquals($url, $request->getFullUrl());
-
-        $url = ['test/url', 'param1' => 'name1'];
-        $request->setUrl($url);
-        $this->assertEquals('http://some-domain.com/test/url?param1=name1', $request->getFullUrl());
+        $this->assertEquals($expectedFullUrl, $request->getFullUrl());
     }
 
     /**

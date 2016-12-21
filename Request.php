@@ -275,21 +275,26 @@ class Request extends Message
             if (isset($params[0])) {
                 $url = $params[0];
                 unset($params[0]);
-            }
-            if (!empty($params)) {
-                if (strpos($url, '?') === false) {
-                    $url .= '?';
-                } else {
-                    $url .= '&';
-                }
-                $url .= http_build_query($params);
+            } else {
+                $url = '';
             }
         }
 
         if (!empty($this->client->baseUrl)) {
-            if (!preg_match('/^https?:\\/\\//i', $url)) {
+            if (empty($url)) {
+                $url = $this->client->baseUrl;
+            } elseif (!preg_match('/^https?:\\/\\//i', $url)) {
                 $url = $this->client->baseUrl . '/' . $url;
             }
+        }
+
+        if (!empty($params)) {
+            if (strpos($url, '?') === false) {
+                $url .= '?';
+            } else {
+                $url .= '&';
+            }
+            $url .= http_build_query($params);
         }
 
         return $url;
