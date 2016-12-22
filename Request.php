@@ -314,7 +314,7 @@ class Request extends Message
         if (!empty($data)) {
             foreach ($this->composeFormInputs($data) as $name => $value) {
                 $name = str_replace($disallowedChars, '_', $name);
-                $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '";';
+                $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '"';
                 $contentParts[] = implode("\r\n", [$contentDisposition, '', $value]);
             }
         }
@@ -323,10 +323,10 @@ class Request extends Message
         foreach ($content as $name => $contentParams) {
             $headers = [];
             $name = str_replace($disallowedChars, '_', $name);
-            $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '";';
+            $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '"';
             if (isset($contentParams['fileName'])) {
                 $fileName = str_replace($disallowedChars, '_', $contentParams['fileName']);
-                $contentDisposition .= ' filename="' . $fileName . '"';
+                $contentDisposition .= '; filename="' . $fileName . '"';
             }
             $headers[] = $contentDisposition;
             if (isset($contentParams['contentType'])) {
