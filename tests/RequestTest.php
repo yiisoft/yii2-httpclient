@@ -220,4 +220,79 @@ param2=value2
 EOL;
         $this->assertEquals($expectedResult, $request->toString());
     }
+
+    public function testMultiPartRequest()
+    {
+        $request = new Request([
+            'client' => new Client([
+                'baseUrl' => '/api'
+            ]),
+//            'format' => Client::FORMAT_URLENCODED,
+            'method' => 'post',
+        ]);
+
+        $request->setData(['data1' => 'data1=123']);
+        $request->addContent('data2', 'data2=456', ['contentType' => 'text/plain']);
+        $request->addFileContent('data3', 'file1', ['fileName' => 'file1.txt']);
+        $request->addFileContent('data4', 'file2', ['fileName' => 'file2.txt', 'mimeType' => 'text/plain']);
+        $this->assertEquals([
+            'data2' => [
+                'content' => 'data2=456',
+                'contentType' => 'text/plain',
+            ],
+            'data3' => [
+                'content' => 'file1',
+                'fileName' => 'file1.txt',
+                'mimeType' => 'application/octet-stream'
+            ],
+            'data4' => [
+                'content' => 'file2',
+                'fileName' => 'file2.txt',
+                'mimeType' => 'text/plain',
+            ],
+        ], $request->getContent());
+
+        $request->prepare();
+
+        $requestString = $request->toString();
+        $this->assertTrue((bool)preg_match('~Content-Type: multipart/form-data; boundary=([\w-]+)\n.*\1~s', $requestString, $matches));
+        $boundary = $matches[1];
+        $parts = explode("--$boundary", $requestString);
+        $this->assertCount(6, $parts);
+        $this->assertEquals(str_replace(PHP_EOL, "\r\n", <<<PART1
+
+Content-Disposition: form-data; name="data1"
+
+data1=123
+
+PART1
+        ), $parts[1]);
+        $this->assertEquals(str_replace(PHP_EOL, "\r\n", <<<PART2
+
+Content-Disposition: form-data; name="data2"
+Content-Type: text/plain
+
+data2=456
+
+PART2
+        ), $parts[2]);
+        $this->assertEquals(str_replace(PHP_EOL, "\r\n", <<<PART2
+
+Content-Disposition: form-data; name="data3"; filename="file1.txt"
+Content-Type: application/octet-stream
+
+file1
+
+PART2
+        ), $parts[3]);
+        $this->assertEquals(str_replace(PHP_EOL, "\r\n", <<<PART2
+
+Content-Disposition: form-data; name="data4"; filename="file2.txt"
+Content-Type: text/plain
+
+file2
+
+PART2
+        ), $parts[4]);
+    }
 } 

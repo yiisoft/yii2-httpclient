@@ -303,6 +303,9 @@ class Request extends Message
     /**
      * Prepares multi-part content.
      * @param array $content multi part content.
+     * @see https://tools.ietf.org/html/rfc7578
+     * @see https://tools.ietf.org/html/rfc2616#section-19.5.1 for the Content-Disposition header
+     * @see https://tools.ietf.org/html/rfc6266 for more details on the Content-Disposition header
      */
     private function prepareMultiPartContent(array $content)
     {
@@ -314,7 +317,7 @@ class Request extends Message
         if (!empty($data)) {
             foreach ($this->composeFormInputs($data) as $name => $value) {
                 $name = str_replace($disallowedChars, '_', $name);
-                $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '";';
+                $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '"';
                 $contentParts[] = implode("\r\n", [$contentDisposition, '', $value]);
             }
         }
@@ -323,10 +326,10 @@ class Request extends Message
         foreach ($content as $name => $contentParams) {
             $headers = [];
             $name = str_replace($disallowedChars, '_', $name);
-            $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '";';
+            $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '"';
             if (isset($contentParams['fileName'])) {
                 $fileName = str_replace($disallowedChars, '_', $contentParams['fileName']);
-                $contentDisposition .= ' filename="' . $fileName . '"';
+                $contentDisposition .= '; filename="' . $fileName . '"';
             }
             $headers[] = $contentDisposition;
             if (isset($contentParams['contentType'])) {
