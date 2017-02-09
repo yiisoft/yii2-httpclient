@@ -46,6 +46,26 @@ abstract class TransportTestCase extends TestCase
     }
 
     /**
+     * @see https://github.com/yiisoft/yii2-httpclient/issues/88
+     */
+    public function testSendGetWithData()
+    {
+        $client = $this->createClient();
+        $client->baseUrl = 'http://us.php.net';
+        $request = $client->get('docs.php', ['example' => '123']);
+        $this->assertEquals('http://us.php.net/docs.php?example=123', $request->fullUrl);
+        $this->assertEquals('GET http://us.php.net/docs.php?example=123', $request->toString());
+        $this->assertEquals('http://us.php.net/docs.php?example=123', $request->fullUrl);
+        $response = $request->send();
+        $this->assertEquals('http://us.php.net/docs.php?example=123', $request->fullUrl);
+
+        $this->assertTrue($response->getIsOk());
+        $content = $response->getContent();
+        $this->assertNotEmpty($content);
+        $this->assertContains('<h1>Documentation</h1>', $content);
+    }
+
+    /**
      * @depends testSend
      */
     public function testSendPost()
