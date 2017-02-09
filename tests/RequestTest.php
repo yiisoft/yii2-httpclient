@@ -68,6 +68,53 @@ class RequestTest extends TestCase
             'test' => 'new',
         ];
         $this->assertEquals($expectedOptions, $request->getOptions());
+
+        // merging stream options :
+        $request = new Request();
+        $request->setOptions([
+            'http' => [
+                'method' => 'get',
+                'ignore_errors' => true,
+            ],
+        ]);
+        $request->addOptions([
+            'http' => [
+                'method' => 'post',
+            ],
+            'ssl' => [
+                'verify_peer' => true,
+            ],
+        ]);
+        $expectedOptions = [
+            'http' => [
+                'method' => 'post',
+                'ignore_errors' => true,
+            ],
+            'ssl' => [
+                'verify_peer' => true,
+            ],
+        ];
+        $this->assertEquals($expectedOptions, $request->getOptions());
+
+        // merging CURL options :
+        $request = new Request();
+        $request->setOptions([
+            52 => true,
+            58 => false,
+        ]);
+        $request->addOptions([
+            'timeout' => 300,
+            10006 => '',
+            52 => true,
+            58 => true,
+        ]);
+        $expectedOptions = [
+            'timeout' => 300,
+            10006 => '',
+            52 => true,
+            58 => true,
+        ];
+        $this->assertEquals($expectedOptions, $request->getOptions());
     }
 
     /**

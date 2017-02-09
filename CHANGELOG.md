@@ -8,6 +8,7 @@ Yii Framework 2 HTTP client extension Change Log
 - Bug #76: Fixed `HttpClientPanel` triggers `E_WARNING` on attempt to view history debug entry, generated without panel being attached (klimov-paul)
 - Bug #79: Fixed inability to use URL with query parameters as `Client::$baseUrl` (klimov-paul)
 - Bug #81: Fixed invalid Content-Disposition header in multipart request (cebe, PowerGamer1)
+- Bug #87: Fixed `Request::addOptions()` unable to override already set CURL options (klimov-paul)
 - Bug #88: Fixed `UrlEncodedFormatter` duplicates GET parameters during multiple request preparations (klimov-paul)
 
 2.0.2 October 31, 2016

@@ -160,7 +160,14 @@ class Request extends Message
      */
     public function addOptions(array $options)
     {
-        $this->options = ArrayHelper::merge($this->options, $options); // `array_merge()` will produce invalid result for cURL options
+        // `array_merge()` will produce invalid result for cURL options,
+        // while `ArrayHelper::merge()` is unable to override cURL options
+        foreach ($options as $key => $value) {
+            if (is_array($value) && isset($this->_options[$key])) {
+                $value = ArrayHelper::merge($this->_options[$key], $value);
+            }
+            $this->_options[$key] = $value;
+        }
         return $this;
     }
 
