@@ -295,4 +295,28 @@ file2
 PART2
         ), $parts[4]);
     }
-} 
+
+    /**
+     * @see https://github.com/yiisoft/yii2-httpclient/issues/88
+     *
+     * @depends testToString
+     */
+    public function testGetParamsReuse()
+    {
+        $request = new Request([
+            'client' => new Client([
+                'baseUrl' => 'http://us.php.net',
+            ]),
+            'format' => Client::FORMAT_URLENCODED,
+            'method' => 'get',
+            'url' => 'docs.php',
+            'data' => [
+                'example' => '123',
+            ],
+        ]);
+
+        $this->assertEquals('GET http://us.php.net/docs.php?example=123', $request->toString());
+        $request->prepare();
+        $this->assertEquals('GET http://us.php.net/docs.php?example=123', $request->toString());
+    }
+}

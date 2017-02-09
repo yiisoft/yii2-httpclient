@@ -13,7 +13,7 @@ use yii\helpers\FileHelper;
 /**
  * Request represents HTTP request.
  *
- * @property string $fullUrl Full target URL. This property is read-only.
+ * @property string $fullUrl Full target URL.
  * @property string $method Request method.
  * @property array $options Request options. This property is read-only.
  * @property string|array $url Target URL or URL parameters.
@@ -75,6 +75,18 @@ class Request extends Message
     public function getUrl()
     {
         return $this->_url;
+    }
+
+    /**
+     * Sets full target URL.
+     * This method can be use during request formatting and preparation.
+     * Do not use it for the target URL specification, use [[setUrl()]] instead.
+     * @param string $fullUrl full target URL.
+     * @since 2.0.3
+     */
+    public function setFullUrl($fullUrl)
+    {
+        $this->_fullUrl = $fullUrl;
     }
 
     /**
