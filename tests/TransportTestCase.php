@@ -236,4 +236,14 @@ abstract class TransportTestCase extends TestCase
         $this->assertEquals($expectedUrls, $beforeSendUrls);
         $this->assertEquals($expectedUrls, $afterSendUrls);
     }
+
+    public function testInvalidUrl()
+    {
+        $client = $this->createClient();
+        $request = $client->get('http:/example.com');
+        $this->assertEquals('http:/example.com', $request->fullUrl);
+
+        $this->setExpectedException('yii\httpclient\Exception');
+        $request->send();
+    }
 }
