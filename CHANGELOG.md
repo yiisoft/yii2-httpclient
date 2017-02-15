@@ -1,7 +1,7 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.3 under development
+2.0.3 February 15, 2017
 -----------------------
 
 - Bug #74: Fixed unable to reuse `Request` instance for sending several requests with different data (klimov-paul)
@@ -10,6 +10,7 @@ Yii Framework 2 HTTP client extension Change Log
 - Bug #81: Fixed invalid Content-Disposition header in multipart request (cebe, PowerGamer1)
 - Bug #87: Fixed `Request::addOptions()` unable to override already set CURL options (klimov-paul)
 - Bug #88: Fixed `UrlEncodedFormatter` duplicates GET parameters during multiple request preparations (klimov-paul)
+
 
 2.0.2 October 31, 2016
 ----------------------
