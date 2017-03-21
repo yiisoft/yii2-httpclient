@@ -61,7 +61,7 @@ echo GridView::widget([
         [
             'attribute' => 'request',
             'value' => function ($data) {
-                $query = Html::encode($data['request']);
+                $query = Html::encode(urldecode($data['request']));
 
                 if (!empty($data['trace'])) {
                     $query .= Html::ul($data['trace'], [
