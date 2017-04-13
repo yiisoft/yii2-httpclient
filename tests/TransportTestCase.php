@@ -129,7 +129,7 @@ abstract class TransportTestCase extends TestCase
             ->setUrl('unexisting.php')
             ->addOptions(['timeout' => 1]);
 
-        $this->setExpectedException('yii\httpclient\Exception');
+        $this->expectException('yii\httpclient\Exception');
 
         $request->send();
     }
@@ -243,7 +243,7 @@ abstract class TransportTestCase extends TestCase
         $request = $client->get('http:/example.com');
         $this->assertEquals('http:/example.com', $request->fullUrl);
 
-        $this->setExpectedException('yii\httpclient\Exception');
+        $this->expectException('yii\httpclient\Exception');
         $request->send();
     }
 }
