@@ -49,4 +49,26 @@ XML;
         $parser = new XmlParser();
         $this->assertEquals($data, $parser->parse($document));
     }
+
+    /**
+     * @depends testParse
+     */
+    public function testParseEncoding()
+    {
+        $response = new Response();
+        $xml = <<<XML
+<?xml version="1.0" encoding="windows-1251"?>
+<main>
+    <enname>test</enname>
+    <rusname>тест</rusname>
+</main>
+XML;
+        $response->setContent($xml);
+        $response->addHeaders(['content-type' => 'text/xml; charset=windows-1251']);
+
+        $parser = new XmlParser();
+        $data = $parser->parse($response);
+        $this->assertEquals('test', $data['enname']);
+        $this->assertNotEquals('тест', $data['rusname']); // UTF characters should be broken during parsing by 'windows-1251'
+    }
 }
