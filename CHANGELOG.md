@@ -4,6 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.4 under development
 -----------------------
 
+- Enh: Added `XmlFormatter::removeDeclaration` allowing remove XML declaration which is not required in all XML documents (yyxx9988)
 - Bug #94: Fixed `XmlParser` does not respects character encoding from response headers (klimov-paul)
 
 

@@ -96,6 +96,36 @@ XML;
     /**
      * @depends testFormat
      */
+    public function testFormatDeclaration()
+    {
+        $request = new Request();
+        $data = [
+            'name1' => 'value1',
+            'name2' => 'value2',
+        ];
+        $request->setData($data);
+
+        $formatter = new XmlFormatter();
+
+        $formatter->removeDeclaration = false;
+        $formatter->format($request);
+        $expectedContent = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<request><name1>value1</name1><name2>value2</name2></request>
+XML;
+        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+
+        $formatter->removeDeclaration = true;
+        $formatter->format($request);
+        $expectedContent = <<<XML
+<request><name1>value1</name1><name2>value2</name2></request>
+XML;
+        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+    }
+
+    /**
+     * @depends testFormat
+     */
     public function testFormatFromDom()
     {
         $request = new Request();
