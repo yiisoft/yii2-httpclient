@@ -1,14 +1,14 @@
-Setup Client instance
-=====================
+Konfigurowanie instancji klienta
+================================
 
-Using of this extension starts from instantiating [[\yii\httpclient\Client]] object. There are several ways
-you can integrate [[\yii\httpclient\Client]] to your program. Here the most common approaches are described.
+Każde użycie tego rozszerzenia należy rozpocząć od stworzenia obiektu klasy [[\yii\httpclient\Client]]. Integrację 
+klienta z własną aplikacją można wykonać na kilka sposobów - poniżej prezentujemy najbardziej popularne.
 
 
-## Setup client as application component
+## Skonfigurowanie klienta jako komponent aplikacji
 
-[[\yii\httpclient\Client]] extends [[\yii\base\Component]] and thus it can be setup at [[\yii\di\Container]]
-level: as module or application component. For example:
+[[\yii\httpclient\Client]] rozszerza [[\yii\base\Component]], dzięki czemu może być skonfigurowany za pomocą 
+[[\yii\di\Container]]: jako moduł lub komponent aplikacji. Przykładowo:
 
 ```php
 return [
@@ -27,10 +27,10 @@ echo Yii::$app->phpNetHttp->get('docs.php')->send()->content;
 ```
 
 
-## Extending client class
+## Rozszerzenie klasy klienta
 
-Since [[\yii\httpclient\Client]] can be used as application component, you can just extend it, adding some
-custom logic, which you need. For example:
+Ponieważ [[\yii\httpclient\Client]] można użyć jako komponentu aplikacji, można go również rozszerzyć, dodając własną 
+wymaganą logikę. Dla przykładu:
 
 ```php
 use yii\httpclient\Client;
@@ -43,7 +43,7 @@ class MyRestApi extends Client
     {
         $response = $this->post('users', $data)->send();
         if (!$response->isOk) {
-            throw new \Exception('Unable to add user.');
+            throw new \Exception('Nie można dodać użytkownika.');
         }
         return $response->data['id'];
     }
@@ -53,10 +53,10 @@ class MyRestApi extends Client
 ```
 
 
-## Wrapping client object
+## Opakowanie obiektu klienta
 
-You may use [[\yii\httpclient\Client]] instance as internal field for component, which provides some complex
-functionality. For example:
+Można użyć instancji [[\yii\httpclient\Client]] jako wewnętrznego pola dla komponentu, który dostarczy jakiejś 
+skomplikowanej funkcjonalności. Przykład:
 
 ```php
 use yii\base\Component;
@@ -83,7 +83,7 @@ class MyRestApi extends Component
     {
         $response = $this->getHttpClient()->post('users', $data)->send();
         if (!$response->isOk) {
-            throw new \Exception('Unable to add user.');
+            throw new \Exception('Nie można dodać użytkownika.');
         }
         return $response->data['id'];
     }

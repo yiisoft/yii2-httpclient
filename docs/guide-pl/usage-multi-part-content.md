@@ -1,10 +1,10 @@
-Multi-part content
-==================
+Treść wieloczęściowa
+====================
 
-HTTP message content may consist of several parts with different content type. This is usually necessary
-in case of a file upload request. You may compose a multi-part content using `addContent()`, `addFile()` or
-`addFileContent()` methods of [[\yii\httpclient\Request]].
-For example, if you wish to emulate file uploading via web form, you can use code like following:
+Treść wiadomości HTTP może składać się z kilku części o różnych typach. Taka struktura jest zwykle wymagana w przypadku 
+przesyłania plików. Wieloczęściową treść można skomponować za pomocą metod `addContent()`, `addFile()` i `addFileContent()` 
+klasy [[\yii\httpclient\Request]].
+Przykładowo, aby zasymulować przesyłanie plików za pomocą formularza web, można użyć następującego kodu:
 
 ```php
 use yii\httpclient\Client;
@@ -17,9 +17,9 @@ $response = $client->createRequest()
     ->send();
 ```
 
-If there is [[\yii\httpclient\Request::data]] specified, its values will be sent automatically as content parts
-in case request is marked as multi-part one.
-For example: assume we wish emulate submitting of the following form:
+Jeśli określono właściwość [[\yii\httpclient\Request::data]], jej wartości zostaną automatycznie przesłane jako części 
+treści w przypadku, gdy żądanie jest oznaczone jako wieloczęściowe.
+Przykładowo, aby zasymulować wysłanie następującego formularza:
 
 ```html
 <form name="profile-form" method="post" action="http://domain.com/user/profile" enctype="multipart/form-data">
@@ -30,7 +30,7 @@ For example: assume we wish emulate submitting of the following form:
 </form>
 ```
 
-you can do this using following code:
+można użyć poniższego kodu:
 
 ```php
 use yii\httpclient\Client;

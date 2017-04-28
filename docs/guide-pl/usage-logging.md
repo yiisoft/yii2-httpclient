@@ -1,9 +1,9 @@
-Logging and Profiling
-=====================
+Logowanie i profilowanie
+========================
 
-This extension allows logging HTTP requests being sent and profiling their execution.
-In order to setup a log target, which can capture all entries related to HTTP requests, you should
-use category `yii\httpclient\Transport*`. For example:
+To rozszerzenie pozwala na zalogowanie wysyłanych żądań HTTP i profilowanie ich wykonywania.
+Aby skonfigurować cel logu, który będzie przechwytywał wszystkie wydarzenia związane z żądaniami HTTP, należy użyć 
+kategorii `yii\httpclient\Transport*`. Przykładowo:
 
 ```php
 return [
@@ -25,9 +25,8 @@ return [
 ];
 ```
 
-You may also use [HTTP client DebugPanel](topics-debug.md) to see all related logs.
+Można również użyć [panelu debugowania klienta HTTP](topics-debug.md), aby przejrzeć wszystkie powiązane logi.
 
-> Attention: since content of the some HTTP requests may be very long, saving it in full inside the logs
-  may lead to certain problems. Thus there is a restriction on the maximum length of the request content,
-  which will be placed in log. It is controlled by [[\yii\httpclient\Client::contentLoggingMaxSize]].
-  Any exceeding content will be trimmed before logging.
+> Attention: treść niektórych żądań HTTP może być wyjątkowo długa i z tego powodu zapis ich w całości w logach może być 
+  problematyczny. Maksymalna długość treści żądania, która może być umieszczona w logu jest kontrolowana za pomocą 
+  wartości [[\yii\httpclient\Client::contentLoggingMaxSize]]. Nadmiarowa treść jest ucinana przed umieszczeniem w logu.

@@ -1,7 +1,7 @@
-Batch request sending
+Wysyłanie serii żądań
 =====================
 
-HTTP Client allows sending multiple requests at once using [[\yii\httpclient\Client::batchSend()]] method:
+Klient HTTP pozwala na wysłanie wielu żądań jednocześnie za pomocą metody [[\yii\httpclient\Client::batchSend()]]:
 
 ```php
 use yii\httpclient\Client;
@@ -15,16 +15,18 @@ $requests = [
 $responses = $client->batchSend($requests);
 ```
 
-Particular [transport](usage-transports.md) may benefit from this method usage, allowing to increase the performance.
-Among the built-in transports, only [[\yii\httpclient\CurlTransport]] does this. It allows to send requests in parallel,
-which saves the program execution time.
+Metoda ta pozwala na zwiększenie wydajności w kontekście [przesyłania danych](usage-transports.md).
+Spośród wbudowanych metod przesyłania jedynie [[\yii\httpclient\CurlTransport]] jest przystosowany do jej wykorzystania. 
+Za pomocą powyższej metody możliwe jest wysłanie żądań równolegle, dzięki czemu można zmniejszyć łączny czas pracy 
+programu.
 
-> Note: only some particular transports allows processing requests at `batchSend()` in special way, which provides some
-  benefit. By default transport just sends them one by one without any error or warning thrown. Make sure you have
-  configured correct transport for the client, if you wish to achieve performance boost.
+> Note: nie każda metoda pzesyłania danych pozwala na przetwarzanie żądań wysłanych za pomocą `batchSend()` w specjalny 
+  sposób, który mógłby zapewnić dodatkowe korzyści. Domyślnie są one wysyłane jedno za drugim, bez zwracania błędów lub 
+  wyrzucania wyjątków. Należy upewnić się, czy klient jest skonfigurowany z odpowiednią metodą transportu, aby uzyskać 
+  wzrost wydajności.
 
-`batchSend()` method returns the array of the responses, which keys correspond the ones from array of requests.
-This allows you to process particular request response in easy way:
+Metoda `batchSend()` zwraca tablicę odpowiedzi, której klucze odpowiadają tym użytym w tablicy żądań.
+Dzięki temu można przetworzyć odpowiednie żądanie w prosty sposób:
 
 ```php
 use yii\httpclient\Client;
@@ -34,22 +36,22 @@ $client = new Client();
 $requests = [
     'news' => $client->get('http://domain.com/news'),
     'friends' => $client->get('http://domain.com/user/friends', ['userId' => 12]),
-    'newComment' => $client->post('http://domain.com/user/comments', ['userId' => 12, 'content' => 'New comment']),
+    'newComment' => $client->post('http://domain.com/user/comments', ['userId' => 12, 'content' => 'Nowy komentarz']),
 ];
 $responses = $client->batchSend($requests);
 
-// result of `GET http://domain.com/news` :
+// rezultat `GET http://domain.com/news` :
 if ($responses['news']->isOk) {
     echo $responses['news']->content;
 }
 
-// result of `GET http://domain.com/user/friends` :
+// rezultat `GET http://domain.com/user/friends` :
 if ($responses['friends']->isOk) {
     echo $responses['friends']->content;
 }
 
-// result of `POST http://domain.com/user/comments` :
+// rezultat `POST http://domain.com/user/comments` :
 if ($responses['newComment']->isOk) {
-    echo "Comment has been added successfully";
+    echo "Komentarz został dodany";
 }
 ```

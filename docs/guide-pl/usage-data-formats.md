@@ -1,37 +1,37 @@
-Data Formats
-============
+Formatowanie danych
+===================
 
-Data format determines the way content of HTTP message should be composed or parsed, e.g. it determines
-how [[\yii\httpclient\Message::data]] should be converted into [[\yii\httpclient\Message::content]] and vice versa.
+Format danych decyduje o sposobie w jaki treść wiadomości HTTP powinna być skomponowana lub przetworzona, w szczególności 
+w jaki sposób [[\yii\httpclient\Message::data]] powinna być przekonwertowana na [[\yii\httpclient\Message::content]] i vice versa.
 
-Following formats are supported by default:
+Domyślnie wspierane są poniższe typy formatowania:
 
- - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON format
- - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - urlencoded by RFC1738 query string
- - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - urlencoded by PHP_QUERY_RFC3986 query string
- - [[\yii\httpclient\Client::FORMAT_XML]] - XML format
+ - [[\yii\httpclient\Client::FORMAT_JSON]] - format JSON,
+ - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - łańcuch znaków kwerendy zakodowany wg wytycznych dokumentu RFC1738,
+ - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] -łańcuch znaków kwerendy zakodowany z opcjami predefiniowanej stałej PHP_QUERY_RFC3986,
+ - [[\yii\httpclient\Client::FORMAT_XML]] - format XML.
 
-Each format is covered by 2 entities: 'formatter' and 'parser'. Formatter determines the way content of the
-request should be composed from data. Parser determines how raw response content should be parsed into data.
+Każdy format składa się z dwóch jednostek: 'formatera' i 'parsera'. Formater ustala w jaki sposób treść żądania 
+powinna zostać skomponowana z podanych danych. Parser ustala w jaki sposób surowa treść odpowiedzi powinna być przetworzona na dane.
 
-[[\yii\httpclient\Client]] automatically chooses corresponding formatter and parser for all format mentioned above.
-However you can alter this behavior using [[\yii\httpclient\Client::formatters]] and [[\yii\httpclient\Client::parsers]].
-With these fields you can add you own formats or alter standard ones.
-For example:
+[[\yii\httpclient\Client]] automatycznie wybiera odpowiedni formater i parser dla wszystkich powyższcyh tyów formatowania, 
+ale można wpłynąć na ten mechanizm za pomocą [[\yii\httpclient\Client::formatters]] i [[\yii\httpclient\Client::parsers]].
+Dzięki tym polom można dodać własne typy formatowania lub zmienić standardowe.
+Dla przykładu:
 
 ```php
 use yii\httpclient\Client;
 
 $client = new Client([
     'formatters' => [
-        'myformat' => 'app\components\http\MyFormatter', // add new formatter
-        Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // override default XML formatter
+        'myformat' => 'app\components\http\MyFormatter', // dodaj nowy formater
+        Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // przeciąż domyślny formater XML
     ],
 ]);
 ```
 
-While creating your own parser you should implement [[\yii\httpclient\ParserInterface]], while creating
-formatter - [[\yii\httpclient\FormatterInterface]]. For example:
+Tworząc własny parser należy zaimplementować [[\yii\httpclient\ParserInterface]], a tworząc formater - 
+[[\yii\httpclient\FormatterInterface]]. Przykładowo:
 
 ```php
 use yii\httpclient\FormatterInterface;
@@ -50,9 +50,9 @@ class FormatterIni implements FormatterInterface
 {
     public function format(Request $request)
     {
-        $request->getHeaders()->set('Content-Type', 'text/ini   ; charset=UTF-8');
+        $request->getHeaders()->set('Content-Type', 'text/ini; charset=UTF-8');
 
-        $pairs = []
+        $pairs = [];
         foreach ($request->data as $name => $value) {
             $pairs[] = "$name=$value";
         }

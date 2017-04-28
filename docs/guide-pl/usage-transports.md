@@ -1,17 +1,16 @@
-Transports
-==========
+Przesyłanie danych
+==================
 
-[[\yii\httpclient\Client]] provides several different ways to actually send an HTTP message - several transports.
-Predefined transports are:
+[[\yii\httpclient\Client]] dostarcza kilku różnych metod do przesyłania wiadomości HTTP - transportów.
+Predefiniowane transporty to:
 
- - [[\yii\httpclient\StreamTransport]] - sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php).
-   This transport is used by default. It does not require any additional PHP extensions or libraries installed,
-   but does not support advanced features like batch sending.
- - [[\yii\httpclient\CurlTransport]] - sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
-   This transport requires PHP 'curl' extension to be installed, but provides support for advanced features, like
-   batch sending.
+ - [[\yii\httpclient\StreamTransport]] - wysyła wiadomości HTTP za pomocą [Streams](http://php.net/manual/pl/book.stream.php).
+   Ten transport jest używany domyślnie. Nie wymaga on instalowania dodatkowych rozszerzeń lub bibliotek PHP, ale nie 
+   wspiera zaawansowanych funkcjonalności jak wysyłanie serii żądań.
+ - [[\yii\httpclient\CurlTransport]] - wysyła wiadomości HTTP za pomocą [Client URL Library (cURL)](http://php.net/manual/pl/book.curl.php)
+   Ten transport wymaga zainstalowanego rozszerzenia PHP 'curl', ale zapewnia zaawansowane funkcjonalności jak wysyłanie serii żądań.
 
-You may configure the transport to be used by particular client using [[\yii\httpclient\Client::transport]]:
+Można skonfigurować transport używany przez poszczególnego klienta za pomocą [[\yii\httpclient\Client::transport]]:
 
 ```php
 use yii\httpclient\Client;
@@ -22,11 +21,11 @@ $client = new Client([
 ```
 
 
-## Creating custom transport
+## Tworzenie własnego transportu
 
-You may create your own transport, which will perform message sending in its own way. To do so you should
-extend [[\yii\httpclient\Transport]] class and implement at least `send()` method. All you need to do is
-determine HTTP response content and headers, then you can compose a response object from them using
+Można stworzyć własny typ transportu, który będzie przesyłał dane w określony sposób. Aby tego dokonać, należy rozszerzyć 
+klasę [[\yii\httpclient\Transport]] i zaimplementować w niej przynajmniej metodę `send()`. Jedyne co trzeba zrobić, to 
+określić treść odpowiedzi HTTP i nagłówki, a następnie skomponować z nich obiekt odpowiedzi za pomocą 
 [[\yii\httpclient\Client::createResponse()]]:
 
 ```php
@@ -47,5 +46,5 @@ class MyTransport extends Transport
 }
 ```
 
-You may as well override `batchSend()` method if there is a way to send multiple requests with better performance
-like sending them asynchronously in parallel.
+Można również przeciążyć metodę `batchSend()`, jeśli dostępny jest sposób na wysłanie wielu żądań z większą wydajnością, 
+jak w przypadku wysyłania ich równolegle i asynchronicznie.

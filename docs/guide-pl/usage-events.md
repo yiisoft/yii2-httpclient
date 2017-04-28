@@ -1,13 +1,13 @@
-Events
-======
+Zdarzenia
+=========
 
-[[\yii\httpclient\Request]] provides several events, which can be handled via event handler or behavior:
+[[\yii\httpclient\Request]] dostarcza kilku zdarzeń, które można obsłużyć za pomocą procedur lub behawiorów:
 
-- [[\yii\httpclient\Request::EVENT_BEFORE_SEND]] - raised before sending request.
-- [[\yii\httpclient\Request::EVENT_AFTER_SEND]] - raised after sending request.
+- [[\yii\httpclient\Request::EVENT_BEFORE_SEND]] - wywołane przed wysłaniem żądania,
+- [[\yii\httpclient\Request::EVENT_AFTER_SEND]] - wywołane po wysłaniu żądania.
 
-These events may be used to adjust request parameters or received response.
-For example:
+Powyższe zdarzenia mogą być użyte do zmodyfikowania parametrów żądania lub otrzymanej odpowiedzi.
+Przykładowo:
 
 ```php
 use yii\httpclient\Client;
@@ -21,7 +21,7 @@ $request = $client->createRequest()
     ->setUrl('http://api.domain.com')
     ->setData(['param' => 'value']);
 
-// Ensure signature generation based on final data set:
+// Zapewnij wygenerowanie odpowiedniej sygnatury na podstawie zestawu danych:
 $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) {
     $data = $event->request->getData();
 
@@ -31,7 +31,7 @@ $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) {
     $event->request->setData($data);
 });
 
-// Normalize response data:
+// Normalizuj dane odpowiedzi:
 $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) {
     $data = $event->response->getData();
 
@@ -43,15 +43,15 @@ $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) {
 $response = $request->send();
 ```
 
-Attaching event handlers to the [[\yii\httpclient\Request]] instance is not very practical.
-You may handle same use cases using events of [[\yii\httpclient\Client]] class:
+Dołączanie procedur obsługi zdarzeń do instancji [[\yii\httpclient\Request]] nie jest zbyt praktyczne.
+Zamiast tego można jednak obsłużyć służące identycznym celom zdarzenia klasy [[\yii\httpclient\Client]]:
 
-- [[\yii\httpclient\Client::EVENT_BEFORE_SEND]] - raised before sending request.
-- [[\yii\httpclient\Client::EVENT_AFTER_SEND]] - raised after sending request.
+- [[\yii\httpclient\Client::EVENT_BEFORE_SEND]] - wywołane przed wysłaniem żądania,
+- [[\yii\httpclient\Client::EVENT_AFTER_SEND]] - wywołane po wysłaniu żądania.
 
-These events are triggered for all requests created via client in the same way and with the same signature as
-the ones from [[\yii\httpclient\Request]].
-For example:
+Powyższe zdarzenia wywoływane są dla wszystkich żądań przesłanych przez klienta w identyczny sposób i z taką samą 
+sygnaturą jak te w [[\yii\httpclient\Request]].
+Dla przykładu:
 
 ```php
 use yii\httpclient\Client;
@@ -67,5 +67,5 @@ $client->on(Client::EVENT_AFTER_SEND, function (RequestEvent $event) {
 });
 ```
 
-> Note: [[\yii\httpclient\Client]] and [[\yii\httpclient\Request]] share the same names for `EVENT_BEFORE_SEND` and
-  `EVENT_AFTER_SEND` events, so you can create behavior which can be applied for both of these classes.
+> Note: [[\yii\httpclient\Client]] i [[\yii\httpclient\Request]] używają tych samych nazw dla zdarzeń 
+  `EVENT_BEFORE_SEND` i `EVENT_AFTER_SEND`, dzięki czemu można stworzyć behawior, który może być użyty dla obu tych klas.

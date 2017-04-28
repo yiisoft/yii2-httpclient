@@ -45,9 +45,9 @@ JSON lub XML. Format żądania można ustawić za pomocą właściwości `format
 Wspierane są następujące formaty:
 
  - [[\yii\httpclient\Client::FORMAT_JSON]] - format JSON,
- - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - łańcuch znaków kwerendy zakodowany wg wytycznych dokumentu RFC1738
- - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - łańcuch znaków kwerendy zakodowany z opcjami predefiniowanej stałej PHP_QUERY_RFC3986
- - [[\yii\httpclient\Client::FORMAT_XML]] - format XML
+ - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - łańcuch znaków kwerendy zakodowany wg wytycznych dokumentu RFC1738,
+ - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - łańcuch znaków kwerendy zakodowany z opcjami predefiniowanej stałej PHP_QUERY_RFC3986,
+ - [[\yii\httpclient\Client::FORMAT_XML]] - format XML.
 
 Przykładowo:
 

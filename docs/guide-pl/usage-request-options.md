@@ -1,19 +1,19 @@
-Request Options
-===============
+Opcje żądania
+=============
 
-You may use [[\yii\httpclient\Request::options]] to adjust particular request execution.
-Following options are supported:
- - timeout: integer, the maximum number of seconds to allow request to be executed.
- - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
- - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
- - followLocation: boolean, whether to follow any "Location: " header that the server sends as part of the HTTP header.
- - maxRedirects: integer, the max number of redirects to follow.
- - sslVerifyPeer: boolean, whether verification of the peer's certificate should be performed.
- - sslCafile: string, location of Certificate Authority file on local filesystem which should be used with
-   the 'sslVerifyPeer' option to authenticate the identity of the remote peer.
- - sslCapath: string, a directory that holds multiple CA certificates.
+Do celu modyfikacji procedury wykonania poszczególnego żądania służy [[\yii\httpclient\Request::options]].
+Dostępne są poniższe opcje:
+ - timeout: integer, maksymalna liczba sekund przez którą żądanie może się wykonywać.
+ - proxy: string, URI określający adres serwera proxy (np. tcp://proxy.example.com:5100).
+ - userAgent: string, wartość nagłówka "User-Agent: ", który zostanie użyty w żądaniu HTTP.
+ - followLocation: boolean, flaga określająca, czy należy przekierować lokację wg wskazania nagłówka "Location: ", który jest wysyłany przez serwer.
+ - maxRedirects: integer, maksymalna liczba śledzonych przekierowań.
+ - sslVerifyPeer: boolean, flaga określająca, czy powinna zostać przeprowadzona weryfikacja certyfikatu serwera.
+ - sslCafile: string, lokalizacja pliku urzędu certyfikacji w lokalnym systemie plików, która powinna być skonfigurowana 
+   w parze z opcją 'sslVerifyPeer' do uwierzytelnienia tożsamości zdalnego serwera.
+ - sslCapath: string, folder przechowujący wiele certyfikatów CA.
 
-For example:
+Dla przykładu:
 
 ```php
 use yii\httpclient\Client;
@@ -25,25 +25,24 @@ $response = $client->createRequest()
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
-        'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-        'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+        'proxy' => 'tcp://proxy.example.com:5100', // użyj proxy
+        'timeout' => 5, // ustaw timeout na 5 sekund, gdyby serwer nie odpowiadał
     ])
     ->send();
 ```
 
-> Tip: you may setup default request options via [[\yii\httpclient\Client::requestConfig]]. If you do so,
-  use [[\yii\httpclient\Request::addOptions()]] to preserve their values, if you wish to add extra specific
-  options for request.
+> Tip: można ustawić domyślne opcje żądania za pomocą [[\yii\httpclient\Client::requestConfig]]. W takim wypadku, aby 
+  dodać kolejne opcje zachowując parametry domyślnych należy skorzystać z metody [[\yii\httpclient\Request::addOptions()]].
 
-You may as well pass options, which are specific for particular request transport. Usually it comes to this
-in case of using [[\yii\httpclient\CurlTransport]]. For example: you may want to specify separated timeout
-for connection and receiving data, which supported by PHP cURL library. You can do this in following way:
+Można również przekazać opcje odnoszące się do konkretnej metody przesyłania danych. Zwykle dotyczy to przypadku 
+korzystania z [[\yii\httpclient\CurlTransport]], np. aby określić oddzielną wartość timeout dla połączenia i odbierania 
+danych, dostarczaną w bibliotece PHP cURL. Można to zrobić w następujący sposób:
 
 ```php
 use yii\httpclient\Client;
 
 $client = new Client([
-    'transport' => 'yii\httpclient\CurlTransport' // only cURL supports the options we need
+    'transport' => 'yii\httpclient\CurlTransport' // tylko cURL dostarcza wymaganą przez nas opcję
 ]);
 
 $response = $client->createRequest()
@@ -51,10 +50,10 @@ $response = $client->createRequest()
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
-        CURLOPT_CONNECTTIMEOUT => 5, // connection timeout
-        CURLOPT_TIMEOUT => 10, // data receiving timeout
+        CURLOPT_CONNECTTIMEOUT => 5, // timeout połączenia
+        CURLOPT_TIMEOUT => 10, // timeout pobierania danych
     ])
     ->send();
 ```
 
-Please refer to the particular transport class docs for details about specific options support.
+Informacje na temat możliwych opcji metod przesyłania danych można znaleść w ich dokumentacji.
