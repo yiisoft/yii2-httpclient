@@ -1,7 +1,7 @@
 Installation
 ============
 
-## Installing an extension
+## Installing the extension
 
 In order to install extension use Composer. Either run
                                             

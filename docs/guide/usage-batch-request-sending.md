@@ -1,4 +1,4 @@
-Batch request sending
+Batch Request Sending
 =====================
 
 HTTP Client allows sending multiple requests at once using [[\yii\httpclient\Client::batchSend()]] method:
@@ -23,7 +23,7 @@ which saves the program execution time.
   benefit. By default transport just sends them one by one without any error or warning thrown. Make sure you have
   configured correct transport for the client, if you wish to achieve performance boost.
 
-`batchSend()` method returns the array of the responses, which keys correspond the ones from array of requests.
+`batchSend()` method returns the array of the responses, which keys correspond to the ones from array of requests.
 This allows you to process particular request response in easy way:
 
 ```php
