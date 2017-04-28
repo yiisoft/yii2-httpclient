@@ -13,14 +13,14 @@ Getting Started
 Usage
 -----
 
-* [Data formats](usage-data-formats.md)
+* [Data Formats](usage-data-formats.md)
 * [Transports](usage-transports.md)
-* [Request options](usage-request-options.md)
-* [Multi-part content](usage-multi-part-content.md)
-* [Batch request sending](usage-batch-request-sending.md)
+* [Request Options](usage-request-options.md)
+* [Multi-part Content](usage-multi-part-content.md)
+* [Batch Request Sending](usage-batch-request-sending.md)
 * [Events](usage-events.md)
-* [Logging and profiling](usage-logging.md)
-* [Setup Client instance](usage-setup-client-instance.md)
+* [Logging and Profiling](usage-logging.md)
+* [Setup Client Instance](usage-setup-client-instance.md)
 
 Additional topics
 -----------------

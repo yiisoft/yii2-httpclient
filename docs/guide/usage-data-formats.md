@@ -11,7 +11,7 @@ Following formats are supported by default:
  - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - urlencoded by PHP_QUERY_RFC3986 query string
  - [[\yii\httpclient\Client::FORMAT_XML]] - XML format
 
-Each format is covered by 2 entities: 'formatter' and 'parser'. Formatter determines the way content of the
+Each format is covered by two entities: 'formatter' and 'parser'. Formatter determines the way content of the
 request should be composed from data. Parser determines how raw response content should be parsed into data.
 
 [[\yii\httpclient\Client]] automatically chooses corresponding formatter and parser for all format mentioned above.
@@ -50,9 +50,9 @@ class FormatterIni implements FormatterInterface
 {
     public function format(Request $request)
     {
-        $request->getHeaders()->set('Content-Type', 'text/ini   ; charset=UTF-8');
+        $request->getHeaders()->set('Content-Type', 'text/ini; charset=UTF-8');
 
-        $pairs = []
+        $pairs = [];
         foreach ($request->data as $name => $value) {
             $pairs[] = "$name=$value";
         }

@@ -1,4 +1,4 @@
-Setup Client instance
+Setup Client Instance
 =====================
 
 Using of this extension starts from instantiating [[\yii\httpclient\Client]] object. There are several ways

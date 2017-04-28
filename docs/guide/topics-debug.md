@@ -1,10 +1,10 @@
 Using the HTTP Client DebugPanel
 ================================
 
-The yii2 HTTP Client  extension provides a debug panel that can be integrated with the yii debug module
+The Yii 2 HTTP Client extension provides a debug panel that can be integrated with the Yii 2 Debug Module
 and shows the executed HTTP requests.
 
-Add the following to you application config to enable it (if you already have the debug module
+Add the following to you application config to enable it (if you already have the Debug Module
 enabled, it is sufficient to just add the panels configuration):
 
 ```php

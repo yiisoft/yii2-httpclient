@@ -37,7 +37,7 @@ $response = $client->createRequest()
 
 You may as well pass options, which are specific for particular request transport. Usually it comes to this
 in case of using [[\yii\httpclient\CurlTransport]]. For example: you may want to specify separated timeout
-for connection and receiving data, which supported by PHP cURL library. You can do this in following way:
+for connection and receiving data, which is supported by PHP cURL library. You can do this in following way:
 
 ```php
 use yii\httpclient\Client;
