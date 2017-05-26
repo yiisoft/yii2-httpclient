@@ -366,4 +366,32 @@ PART2
         $request->prepare();
         $this->assertEquals('GET http://us.php.net/docs.php?example=123', $request->toString());
     }
+
+    /**
+     * Data provider for [[testValidateCookie()]]
+     * @return array test data
+     */
+    public function dataProviderValidateCookie()
+    {
+        return [
+            ['foo', true],
+            ['utf-абвгд', true],
+            [';', false],
+            ["new\nline", false],
+            ['/', false],
+            ['\\', false],
+        ];
+    }
+
+    /**
+     * @dataProvider dataProviderValidateCookie
+     *
+     * @param string $value
+     * @param bool $isValid
+     */
+    public function testValidateCookie($value, $isValid)
+    {
+        $request = new Request();
+        $this->assertEquals($isValid, $this->invoke($request, 'validateCookieValue', [$value]));
+    }
 }
