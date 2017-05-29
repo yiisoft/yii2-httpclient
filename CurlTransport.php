@@ -143,6 +143,9 @@ class CurlTransport extends Transport
             case 'POST':
                 $curlOptions[CURLOPT_POST] = true;
                 break;
+            case 'HEAD':
+                $curlOptions[CURLOPT_NOBODY] = true;
+                // don't break
             default:
                 $curlOptions[CURLOPT_CUSTOMREQUEST] = $method;
         }
