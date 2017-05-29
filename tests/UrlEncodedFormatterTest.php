@@ -30,6 +30,9 @@ class UrlEncodedFormatterTest extends TestCase
         $this->assertEquals('application/x-www-form-urlencoded; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
     }
 
+    /**
+     * @depends testFormat
+     */
     public function testFormatMethodGet()
     {
         $request = new Request();
@@ -46,4 +49,17 @@ class UrlEncodedFormatterTest extends TestCase
         $this->assertContains(http_build_query($data), $request->getFullUrl());
         $this->assertFalse($request->getHeaders()->has('Content-Type'));
     }
-} 
+
+    /**
+     * @depends testFormatMethodGet
+     */
+    public function testFormatEmpty()
+    {
+        $request = new Request();
+        $request->setMethod('head');
+
+        $formatter = new UrlEncodedFormatter();
+        $formatter->format($request);
+        $this->assertNull($request->getContent());
+    }
+}

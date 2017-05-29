@@ -22,4 +22,16 @@ class JsonFormatterTest extends TestCase
         $this->assertEquals(Json::encode($data), $request->getContent());
         $this->assertEquals('application/json; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
     }
+
+    /**
+     * @depends testFormat
+     */
+    public function testFormatEmpty()
+    {
+        $request = new Request();
+
+        $formatter = new JsonFormatter();
+        $formatter->format($request);
+        $this->assertNull($request->getContent());
+    }
 } 

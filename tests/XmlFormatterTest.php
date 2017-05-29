@@ -131,4 +131,16 @@ XML;
         $formatter->format($request);
         $this->assertEqualsWithoutLE($xml, $request->getContent());
     }
+
+    /**
+     * @depends testFormat
+     */
+    public function testFormatEmpty()
+    {
+        $request = new Request();
+
+        $formatter = new XmlFormatter();
+        $formatter->format($request);
+        $this->assertNull($request->getContent());
+    }
 }

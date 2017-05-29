@@ -40,8 +40,9 @@ class UrlEncodedFormatter extends Object implements FormatterInterface
      */
     public function format(Request $request)
     {
-        $data = (array)$request->getData();
-        $content = http_build_query($data, '', '&', $this->encodingType);
+        if (($data = $request->getData()) !== null) {
+            $content = http_build_query((array)$data, '', '&', $this->encodingType);
+        }
 
         if (strcasecmp('get', $request->getMethod()) === 0) {
             if (!empty($content)) {
@@ -55,9 +56,12 @@ class UrlEncodedFormatter extends Object implements FormatterInterface
         }
 
         $charset = $this->charset === null ? Yii::$app->charset : $this->charset;
-
         $request->getHeaders()->set('Content-Type', 'application/x-www-form-urlencoded; charset=' . $charset);
-        $request->setContent($content);
+
+        if (isset($content)) {
+            $request->setContent($content);
+        }
+
         return $request;
     }
 }

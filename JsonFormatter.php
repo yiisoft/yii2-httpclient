@@ -19,7 +19,7 @@ use yii\helpers\Json;
 class JsonFormatter extends Object implements FormatterInterface
 {
     /**
-     * @var int the encoding options.For more details please refer to
+     * @var int the encoding options. For more details please refer to
      * <http://www.php.net/manual/en/function.json-encode.php>.
      */
     public $encodeOptions = 0;
@@ -31,7 +31,9 @@ class JsonFormatter extends Object implements FormatterInterface
     public function format(Request $request)
     {
         $request->getHeaders()->set('Content-Type', 'application/json; charset=UTF-8');
-        $request->setContent(Json::encode($request->getData(), $this->encodeOptions));
+        if (($data = $request->getData()) !== null) {
+            $request->setContent(Json::encode($request->getData(), $this->encodeOptions));
+        }
         return $request;
     }
 }
