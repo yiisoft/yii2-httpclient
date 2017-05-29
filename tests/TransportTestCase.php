@@ -106,10 +106,15 @@ abstract class TransportTestCase extends TestCase
                 'pattern' => 'array_merge'
             ]);
 
-        $response = $request->setOptions([
-            'followLocation' => false,
-        ])->send();
-        $this->assertEquals('302', $response->statusCode);
+        /**
+         * HHVM does not take `follow_location` option
+         */
+        if (!defined('HHVM_VERSION')) {
+            $response = $request->setOptions([
+                'followLocation' => false,
+            ])->send();
+            $this->assertEquals('302', $response->statusCode);
+        }
 
         $response = $request->setOptions([
             'followLocation' => true,
