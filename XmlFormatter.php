@@ -51,7 +51,11 @@ class XmlFormatter extends Object implements FormatterInterface
      * @since 2.0.1
      */
     public $useTraversableAsArray = true;
-
+    /**
+     * @var bool whether to remove XML declaration which is not required in all XML documents.
+     * @since 2.0.4
+     */
+    public $removeDeclaration = false;
 
     /**
      * @inheritdoc
@@ -68,15 +72,23 @@ class XmlFormatter extends Object implements FormatterInterface
         $data = $request->getData();
         if ($data !== null) {
             if ($data instanceof DOMDocument) {
-                $content = $data->saveXML();
+                $content = $this->removeDeclaration ? $data->saveXML($data->documentElement) : $data->saveXML();
             } elseif ($data instanceof SimpleXMLElement) {
-                $content = $data->saveXML();
+                if ($this->removeDeclaration) {
+                    $domSimpleXML = dom_import_simplexml($data);
+                    $dom = new DOMDocument($this->version, $charset);
+                    $domSimpleXML = $dom->importNode($domSimpleXML, true);
+                    $dom->appendChild($domSimpleXML);
+                    $content = $dom->saveXML($dom->documentElement);
+                } else {
+                    $content = $data->saveXML();
+                }
             } else {
                 $dom = new DOMDocument($this->version, $charset);
                 $root = new DOMElement($this->rootTag);
                 $dom->appendChild($root);
                 $this->buildXml($root, $data);
-                $content = $dom->saveXML();
+                $content = $this->removeDeclaration ? $dom->saveXML($dom->documentElement) : $dom->saveXML();
             }
             $request->setContent($content);
         }
