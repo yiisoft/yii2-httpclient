@@ -293,7 +293,7 @@ class Request extends Message
         if (is_array($url)) {
             $params = $url;
             if (isset($params[0])) {
-                $url = $params[0];
+                $url = (string)$params[0];
                 unset($params[0]);
             } else {
                 $url = '';
