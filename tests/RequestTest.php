@@ -394,4 +394,29 @@ PART2
         $request = new Request();
         $this->assertEquals($isValid, $this->invoke($request, 'validateCookieValue', [$value]));
     }
+
+    /**
+     * @depends testValidateCookie
+     */
+    public function testComposeCookieHeader()
+    {
+        $request = new Request();
+        $request->setCookies([
+            [
+                'name' => 'some',
+                'value' => 'foo',
+            ]
+        ]);
+        $headers = $request->composeHeaderLines();
+        $this->assertEquals(['Cookie: some=foo'], $headers);
+
+        $request->setCookies([
+            [
+                'name' => "invalid\nname",
+                'value' => 'foo',
+            ]
+        ]);
+        $this->expectException('yii\base\InvalidConfigException');
+        $request->composeHeaderLines();
+    }
 }

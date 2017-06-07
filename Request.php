@@ -479,10 +479,10 @@ class Request extends Message
     {
         $parts = [];
         foreach ($this->getCookies() as $cookie) {
-            if ($this->validateCookieValue($cookie->name)) {
+            if (!$this->validateCookieValue($cookie->name)) {
                 throw new InvalidConfigException("Cookie name '{$cookie->name}' is invalid");
             }
-            if ($this->validateCookieValue($cookie->value)) {
+            if (!$this->validateCookieValue($cookie->value)) {
                 throw new InvalidConfigException("Cookie '{$cookie->name}' value '{$cookie->value}' is invalid");
             }
             $parts[] = $cookie->name . '=' . $cookie->value;
