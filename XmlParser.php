@@ -41,12 +41,12 @@ class XmlParser extends Object implements ParserInterface
      */
     protected function convertXmlToArray($xml)
     {
-        if (!is_object($xml)) {
+        if (is_string($xml)) {
             $xml = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
         }
         $result = (array) $xml;
         foreach ($result as $key => $value) {
-            if (is_object($value)) {
+            if (is_object($value) || is_array($value)) {
                 $result[$key] = $this->convertXmlToArray($value);
             }
         }
