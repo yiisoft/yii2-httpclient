@@ -71,4 +71,43 @@ XML;
         $this->assertEquals('test', $data['enname']);
         $this->assertNotEquals('тест', $data['rusname']); // UTF characters should be broken during parsing by 'windows-1251'
     }
+
+    /**
+     * @see https://github.com/yiisoft/yii2-httpclient/issues/102
+     *
+     * @depends testParse
+     */
+    public function testParseGroupTag()
+    {
+        $document = new Response();
+        $xml = <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <id>1</id>
+        <name>item1</name>
+    </item>
+    <item>
+        <id>2</id>
+        <name>item2</name>
+    </item>
+</items>
+XML;
+        $document->setContent($xml);
+
+        $data = [
+            'item' => [
+                [
+                    'id' => '1',
+                    'name' => 'item1',
+                ],
+                [
+                    'id' => '2',
+                    'name' => 'item2',
+                ],
+            ],
+        ];
+        $parser = new XmlParser();
+        $this->assertEquals($data, $parser->parse($document));
+    }
 }

@@ -7,6 +7,7 @@ Yii Framework 2 HTTP client extension Change Log
 - Bug #94: Fixed `XmlParser` does not respects character encoding from response headers (klimov-paul)
 - Bug #98: Fixed `Request::composeCookieHeader()` no longer performs url-encoding over cookie value (klimov-paul)
 - Bug #99: Fixed `Request::$content` is set to empty string by `UrlEncodedFormatter` and `JsonFormatter` from empty data (klimov-paul)
+- Bug #102: Fixed `XmlParser` does not converts `\SimpleXMLElement` into array for the grouped tags (kids-return)
 
 
 2.0.3 February 15, 2017
