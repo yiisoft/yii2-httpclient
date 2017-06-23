@@ -1,8 +1,8 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.4 under development
------------------------
+2.0.4 June 23, 2017
+-------------------
 
 - Bug #94: Fixed `XmlParser` does not respects character encoding from response headers (klimov-paul)
 - Bug #98: Fixed `Request::composeCookieHeader()` no longer performs url-encoding over cookie value (klimov-paul)
