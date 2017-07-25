@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.5 under development
 -----------------------
 
-- no changes in this release.
+- Bug #106: Fixed cookie validation at `Request` not compatible with RFC6265 (klimov-paul)
 
 
 2.0.4 June 23, 2017
