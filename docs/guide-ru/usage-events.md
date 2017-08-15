@@ -68,4 +68,4 @@ $client->on(Client::EVENT_AFTER_SEND, function (RequestEvent $event) {
 ```
 
 > Note: [[\yii\httpclient\Client]] и [[\yii\httpclient\Request]] используют одинаковые имена для событий `EVENT_BEFORE_SEND` и
-  `EVENT_AFTER_SEND`, поэтому Вы можете создать поведение, которое может применяться для обоих этих классов.
+  `EVENT_AFTER_SEND`, поэтому вы можете создать поведение, которое может применяться для обоих этих классов.

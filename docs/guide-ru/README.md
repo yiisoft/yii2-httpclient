@@ -1,4 +1,4 @@
-HTTP-клиент расширение для Yii 2
+HTTP-клиент для Yii 2
 ===============================
 
 Данное расширение предоставляет HTTP-клиент для [Yii framework 2.0](http://www.yiiframework.com).
@@ -16,7 +16,7 @@ HTTP-клиент расширение для Yii 2
 * [Форматы данных](usage-data-formats.md)
 * [Транспорты](usage-transports.md)
 * [Параметры запроса](usage-request-options.md)
-* [Многочастное содержимое](usage-multi-part-content.md)
+* [Multipart-содержимое](usage-multi-part-content.md)
 * [Пакетная отправка запросов](usage-batch-request-sending.md)
 * [События](usage-events.md)
 * [Журналирование и профилирование](usage-logging.md)

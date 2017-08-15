@@ -6,17 +6,17 @@
 
 По умолчанию поддерживаются следующие форматы:
 
- - [[\yii\httpclient\Client::FORMAT_JSON]] - формат JSON
- - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - *urlencoded строка запроса по RFC1738*
- - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - *urlencoded строка запроса по PHP_QUERY_RFC3986*
- - [[\yii\httpclient\Client::FORMAT_XML]] - формат XML
+ - [[\yii\httpclient\Client::FORMAT_JSON]] - формат JSON;
+ - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - urlencoded строка запроса согласно RFC1738;
+ - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - urlencoded строка запроса согласно PHP_QUERY_RFC3986;
+ - [[\yii\httpclient\Client::FORMAT_XML]] - формат XML.
 
-Каждый формат представлен в виде двух объектов: *'formatter'* и *'parser'*. *Formatter* определяет, как содержимое запроса должно быть составлено из данных. 
-*Parser* определяет, как содержимое сырого ответа должно преобразовываться в данные.
+Каждый формат представлен в виде двух объектов: 'форматтер' и 'парсер'. Форматтер определяет, как содержимое запроса должно быть составлено из данных. 
+Парсер определяет, как содержимое сырого ответа должно преобразовываться в данные.
 
-[[\yii\httpclient\Client]] автоматически выбирает соответствующий *formatter* и *parser* для указанных выше форматов.
-Однако, Вы можете изменить это поведение,  используя [[\yii\httpclient\Client::formatters]] и [[\yii\httpclient\Client::parsers]].
-При помощи этих свойств, Вы можете добавлять свои собственные форматы и или изменять стандартные.
+[[\yii\httpclient\Client]] автоматически выбирает соответствующий форматтер и парсер для указанных выше форматов.
+Однако, вы можете изменить это поведение,  используя [[\yii\httpclient\Client::formatters]] и [[\yii\httpclient\Client::parsers]].
+При помощи этих свойств, вы можете добавлять свои собственные форматы и/или изменять стандартные.
 Например:
 
 ```php
@@ -24,14 +24,14 @@ use yii\httpclient\Client;
 
 $client = new Client([
     'formatters' => [
-        'myformat' => 'app\components\http\MyFormatter', // добавить новый formatter
-        Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // переопределить дефолтный XML formatter
+        'myformat' => 'app\components\http\MyFormatter', // добавить новый форматтер
+        Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // переопределить форматтер XML, используемый по умолчанию
     ],
 ]);
 ```
 
-При создании  собственного *parser'а* вам необходимо реализовать [[\yii\httpclient\ParserInterface]], 
-при создании *formatter'а* - [[\yii\httpclient\FormatterInterface]]. Например:
+При создании  собственного парсера вам необходимо реализовать [[\yii\httpclient\ParserInterface]], 
+при создании форматера - [[\yii\httpclient\FormatterInterface]]. Например:
 
 ```php
 use yii\httpclient\FormatterInterface;
