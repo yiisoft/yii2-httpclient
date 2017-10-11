@@ -55,13 +55,32 @@ class UrlEncodedFormatter extends Object implements FormatterInterface
             return $request;
         }
 
-        $charset = $this->charset === null ? Yii::$app->charset : $this->charset;
-        $request->getHeaders()->set('Content-Type', 'application/x-www-form-urlencoded; charset=' . $charset);
+        $request->getHeaders()->set('Content-Type', 'application/x-www-form-urlencoded; charset=' . $this->getCharset());
 
         if (isset($content)) {
             $request->setContent($content);
         }
 
         return $request;
+    }
+
+    /**
+     * Determine what $charset, if any we need to set. Default to utf8
+     *
+     * @var string
+     */
+    public function getCharset()
+    {
+        if(empty($this->charset)) {
+            if(isset(Yii::$app->charset) && !empty(Yii::$app->charset)) {
+                return Yii::$app->charset;
+            } else {
+                return 'UTF-8';
+            }
+        } else {
+            return $this->charset;
+        }
+
+        $this->charset === null ? Yii::$app->charset : $this->charset;
     }
 }
