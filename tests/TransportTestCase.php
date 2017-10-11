@@ -2,6 +2,8 @@
 
 namespace yiiunit\extensions\httpclient;
 
+use Yii;
+use yii\helpers\FileHelper;
 use yii\httpclient\Client;
 use yii\httpclient\Request;
 use yii\httpclient\RequestEvent;
@@ -245,5 +247,59 @@ abstract class TransportTestCase extends TestCase
 
         $this->expectException('yii\httpclient\Exception');
         $request->send();
+    }
+
+    /**
+     * @depends testSend
+     */
+    public function testCustomSslCertificate()
+    {
+        if (!function_exists('openssl_pkey_new')) {
+            $this->markTestSkipped('OpenSSL PHP extension required.');
+        }
+
+        $dn = [
+            'countryName' => 'GB',
+            'stateOrProvinceName' => 'State',
+            'localityName' => 'SomewhereCity',
+            'organizationName' => 'MySelf',
+            'organizationalUnitName' => 'Whatever',
+            'commonName' => 'mySelf',
+            'emailAddress' => 'user@domain.com'
+        ];
+        $passphrase = '1234';
+
+        $res = openssl_pkey_new();
+        $csr = openssl_csr_new($dn, $res);
+        $sscert = openssl_csr_sign($csr, null, $res, 365);
+        openssl_x509_export($sscert, $publicKey);
+        openssl_pkey_export($res, $privateKey, $passphrase);
+        openssl_csr_export($csr, $csrStr);
+
+        $filePath = Yii::getAlias('@runtime');
+        FileHelper::createDirectory($filePath);
+
+        $privateKeyFilename = $filePath . DIRECTORY_SEPARATOR . 'private.pem';
+        $publicKeyFilename = $filePath . DIRECTORY_SEPARATOR . 'public.pem';
+
+        file_put_contents($publicKeyFilename, $publicKey);
+        file_put_contents($privateKeyFilename, $privateKey);
+
+        $client = $this->createClient();
+        $client->baseUrl = 'https://secure.php.net/';
+        $response = $client->createRequest()
+            ->setMethod('get')
+            ->setUrl('docs.php')
+            ->setOptions([
+                'sslLocalCert' => $publicKeyFilename,
+                'sslLocalPk' => $privateKeyFilename,
+                'sslPassphrase' => $passphrase,
+            ])
+            ->send();
+
+        $this->assertTrue($response->getIsOk());
+        $content = $response->getContent();
+        $this->assertNotEmpty($content);
+        $this->assertContains('<h1>Documentation</h1>', $content);
     }
 }
