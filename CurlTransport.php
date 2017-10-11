@@ -190,6 +190,9 @@ class CurlTransport extends Transport
             'maxRedirects' => CURLOPT_MAXREDIRS,
             'sslCapath' => CURLOPT_CAPATH,
             'sslCafile' => CURLOPT_CAINFO,
+            'sslLocalCert' => CURLOPT_SSLCERT,
+            'sslLocalPk' => CURLOPT_SSLKEY,
+            'sslPassphrase' => CURLOPT_SSLCERTPASSWD,
         ];
 
         $curlOptions = [];
