@@ -42,7 +42,7 @@ class CurlTransport extends Transport
             $responseContent = curl_exec($curlResource);
         } catch (\Exception $e) {
             Yii::endProfile($token, __METHOD__);
-            throw new Exception($e->getMessage(), $e->getCode(), $e);
+            throw new \Exception($e->getMessage(), $e->getCode(), $e);
         }
 
         Yii::endProfile($token, __METHOD__);
@@ -54,7 +54,7 @@ class CurlTransport extends Transport
         curl_close($curlResource);
 
         if ($errorNumber > 0) {
-            throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
+            throw new \Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
         }
 
         $response = $request->client->createResponse($responseContent, $responseHeaders);
@@ -105,7 +105,7 @@ class CurlTransport extends Transport
             } while ($isRunning > 0 && $curlExecCode === CURLM_OK);
         } catch (\Exception $e) {
             Yii::endProfile($token, __METHOD__);
-            throw new Exception($e->getMessage(), $e->getCode(), $e);
+            throw new \Exception($e->getMessage(), $e->getCode(), $e);
         }
 
         Yii::endProfile($token, __METHOD__);

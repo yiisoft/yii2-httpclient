@@ -65,7 +65,7 @@ class StreamTransport extends Transport
             fclose($stream);
         } catch (\Exception $e) {
             Yii::endProfile($token, __METHOD__);
-            throw new Exception($e->getMessage(), $e->getCode(), $e);
+            throw new \Exception($e->getMessage(), $e->getCode(), $e);
         }
 
         Yii::endProfile($token, __METHOD__);
