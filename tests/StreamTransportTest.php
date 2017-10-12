@@ -43,6 +43,9 @@ class StreamTransportTest extends TransportTestCase
             'sslVerifyPeer' => true,
             'sslCafile' => '/path/to/some/file',
             'sslCapath' => '/some/path',
+            'sslLocalCert' => '/path/to/client.crt',
+            'sslLocalPk' => '/path/to/client.key',
+            'sslPassphrase' => 'passphrase of client.crt',
         ];
         $contextOptions = $this->invoke($transport, 'composeContextOptions', [$options]);
 
@@ -59,6 +62,9 @@ class StreamTransportTest extends TransportTestCase
                 'verify_peer' => $options['sslVerifyPeer'],
                 'cafile' => $options['sslCafile'],
                 'capath' => $options['sslCapath'],
+                'local_cert' => $options['sslLocalCert'],
+                'local_pk' => $options['sslLocalPk'],
+                'passphrase' => $options['sslPassphrase'],
             ],
         ];
         $this->assertEquals($expectedContextOptions, $contextOptions);
