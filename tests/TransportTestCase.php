@@ -96,7 +96,7 @@ abstract class TransportTestCase extends TestCase
     public function testFollowLocation()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
             ->setMethod('get')
