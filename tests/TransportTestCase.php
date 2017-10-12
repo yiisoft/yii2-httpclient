@@ -33,7 +33,7 @@ abstract class TransportTestCase extends TestCase
     public function testSend()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
         $response = $client->createRequest()
             ->setMethod('get')
             ->setUrl('docs.php')
@@ -51,7 +51,7 @@ abstract class TransportTestCase extends TestCase
     public function testSendPost()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
         $response = $client->createRequest()
             ->setMethod('post')
             ->setUrl('search.php')
@@ -66,7 +66,7 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSend()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
 
         $requests = [];
         $requests['docs'] = $client->createRequest()
@@ -96,7 +96,7 @@ abstract class TransportTestCase extends TestCase
     public function testFollowLocation()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
             ->setMethod('get')
@@ -140,7 +140,7 @@ abstract class TransportTestCase extends TestCase
     public function testSendEvents()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
             ->setMethod('get')
@@ -173,7 +173,7 @@ abstract class TransportTestCase extends TestCase
     public function testClientSendEvents()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
             ->setMethod('get')
@@ -207,7 +207,7 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSendEvents()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://us.php.net';
+        $client->baseUrl = 'http://php.net';
 
         $beforeSendUrls = [];
         $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendUrls) {

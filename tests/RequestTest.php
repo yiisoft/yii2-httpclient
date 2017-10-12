@@ -352,7 +352,7 @@ PART2
     {
         $request = new Request([
             'client' => new Client([
-                'baseUrl' => 'http://us.php.net',
+                'baseUrl' => 'http://php.net',
             ]),
             'format' => Client::FORMAT_URLENCODED,
             'method' => 'get',
@@ -362,9 +362,9 @@ PART2
             ],
         ]);
 
-        $this->assertEquals('GET http://us.php.net/docs.php?example=123', $request->toString());
+        $this->assertEquals('GET http://php.net/docs.php?example=123', $request->toString());
         $request->prepare();
-        $this->assertEquals('GET http://us.php.net/docs.php?example=123', $request->toString());
+        $this->assertEquals('GET http://php.net/docs.php?example=123', $request->toString());
     }
 
     /**
