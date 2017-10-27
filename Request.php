@@ -7,7 +7,6 @@
 
 namespace yii\httpclient;
 
-use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 
@@ -473,47 +472,14 @@ class Request extends Message
 
     /**
      * @return string cookie header value.
-     * @throws InvalidConfigException on invalid cookies.
      */
     private function composeCookieHeader()
     {
         $parts = [];
         foreach ($this->getCookies() as $cookie) {
-            if (!$this->validateCookieName($cookie->name)) {
-                throw new InvalidConfigException("Cookie name '{$cookie->name}' is invalid");
-            }
-            if (!$this->validateCookieValue($cookie->value)) {
-                throw new InvalidConfigException("Cookie '{$cookie->name}' value '{$cookie->value}' is invalid");
-            }
             $parts[] = $cookie->name . '=' . $cookie->value;
         }
         return 'Cookie: ' . implode(';', $parts);
-    }
-
-    /**
-     * Validates cookie name.
-     * @param string $name cookie name.
-     * @return bool whether value is valid
-     * @see http://www.ietf.org/rfc/rfc6265.txt
-     * @since 2.0.5
-     */
-    private function validateCookieName($name)
-    {
-        // According to RFC6265 (RFC2616) invalid are: control characters (0-31;127), space, tab and the following: ()<>@,;:\"/?={}'
-        return !preg_match('/[\x00-\x20\x22\x27-\x29\x2c\x2f\x3a-\x40\x5c\x7b\x7d\x7f]/', $name);
-    }
-
-    /**
-     * Validates cookie value.
-     * @param string $value cookie value.
-     * @return bool whether value is valid
-     * @see http://www.ietf.org/rfc/rfc6265.txt
-     * @since 2.0.4
-     */
-    private function validateCookieValue($value)
-    {
-        // According to RFC6265 invalid are: control characters (0-31;127), space, tab and the following: ,;\"
-        return !preg_match('/[\x00-\x20\x22\x2c\x3b\x5c\x7f]/', $value);
     }
 
     /**

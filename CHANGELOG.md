@@ -4,8 +4,8 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.5 under development
 -----------------------
 
-- Bug #106: Fixed cookie validation at `Request` not compatible with RFC6265 (klimov-paul)
 - Enh #119: Options for client SSL certificate specification added to `Request::$options` (bscheshirwork)
+- Chg #118: Enforced cookie validation removed from `Request` (klimov-paul)
 
 
 2.0.4 June 23, 2017

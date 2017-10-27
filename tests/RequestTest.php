@@ -367,77 +367,6 @@ PART2
         $this->assertEquals('GET http://php.net/docs.php?example=123', $request->toString());
     }
 
-    /**
-     * Data provider for [[testValidateCookieName()]]
-     * @return array test data
-     */
-    public function dataProviderValidateCookieName()
-    {
-        return [
-            ['foo', true],
-            ['utf-абвгд', true],
-            [';', false],
-            [',', false],
-            ["new\nline", false],
-            ['double"quotes', false],
-            ["single'quotes", false],
-            ['/', false],
-            ['x+y=z', false],
-            ['\\', false],
-            ['({<brackets>})', false],
-            ['user@domain.com', false],
-        ];
-    }
-
-    /**
-     * @dataProvider dataProviderValidateCookieName
-     *
-     * @param string $name
-     * @param bool $isValid
-     */
-    public function testValidateCookieName($name, $isValid)
-    {
-        $request = new Request();
-        $this->assertEquals($isValid, $this->invoke($request, 'validateCookieName', [$name]));
-    }
-
-    /**
-     * Data provider for [[testValidateCookieValue()]]
-     * @return array test data
-     */
-    public function dataProviderValidateCookieValue()
-    {
-        return [
-            ['foo', true],
-            ['utf-абвгд', true],
-            [';', false],
-            [',', false],
-            ["new\nline", false],
-            ['double"quotes', false],
-            ["single'quotes", true],
-            ['/', true],
-            ['x+y=z', true],
-            ['\\', false],
-            ['({<brackets>})', true],
-            ['user@domain.com', true],
-        ];
-    }
-
-    /**
-     * @dataProvider dataProviderValidateCookieValue
-     *
-     * @param string $value
-     * @param bool $isValid
-     */
-    public function testValidateCookieValue($value, $isValid)
-    {
-        $request = new Request();
-        $this->assertEquals($isValid, $this->invoke($request, 'validateCookieValue', [$value]));
-    }
-
-    /**
-     * @depends testValidateCookieValue
-     */
     public function testComposeCookieHeader()
     {
         $request = new Request();
@@ -450,13 +379,14 @@ PART2
         $headers = $request->composeHeaderLines();
         $this->assertEquals(['Cookie: some=foo'], $headers);
 
+        // @see https://github.com/yiisoft/yii2-httpclient/issues/118
         $request->setCookies([
             [
-                'name' => "invalid\nname",
+                'name' => "invalid/name",
                 'value' => 'foo',
             ]
         ]);
-        $this->expectException('yii\base\InvalidConfigException');
-        $request->composeHeaderLines();
+        $headers = $request->composeHeaderLines();
+        $this->assertEquals(['Cookie: invalid/name=foo'], $headers);
     }
 }
