@@ -270,7 +270,7 @@ class Client extends Component
 
     /**
      * Creates 'GET' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array|string $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
@@ -283,7 +283,7 @@ class Client extends Component
 
     /**
      * Creates 'POST' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array|string $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
@@ -296,7 +296,7 @@ class Client extends Component
 
     /**
      * Creates 'PUT' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array|string $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
@@ -309,7 +309,7 @@ class Client extends Component
 
     /**
      * Creates 'PATCH' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array|string $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
@@ -322,7 +322,7 @@ class Client extends Component
 
     /**
      * Creates 'DELETE' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array|string $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
@@ -335,7 +335,7 @@ class Client extends Component
 
     /**
      * Creates 'HEAD' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -347,7 +347,7 @@ class Client extends Component
 
     /**
      * Creates 'OPTIONS' request.
-     * @param string $url target URL.
+     * @param array|string $url target URL.
      * @param array $options request options.
      * @return Request request instance.
      */
@@ -386,7 +386,7 @@ class Client extends Component
 
     /**
      * @param string $method
-     * @param string $url
+     * @param array|string $url
      * @param array|string $data
      * @param array $headers
      * @param array $options
