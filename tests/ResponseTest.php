@@ -44,6 +44,19 @@ class ResponseTest extends TestCase
     }
 
     /**
+     * @depends testDetectFormatByHeaders
+     */
+    public function testDetectFormatByHeadersMultiple()
+    {
+        $response = new Response();
+        $response->setHeaders(['Content-type' => [
+            'text/html; charset=utf-8',
+            'application/json',
+        ]]);
+        $this->assertEquals(Client::FORMAT_JSON, $response->getFormat());
+    }
+
+    /**
      * Data provider for [[testDetectFormatByContent()]]
      * @return array test data
      */
@@ -101,8 +114,16 @@ class ResponseTest extends TestCase
     public function testGetStatusCode()
     {
         $response = new Response();
+
         $statusCode = 123;
         $response->setHeaders(['http-code' => $statusCode]);
+        $this->assertEquals($statusCode, $response->getStatusCode());
+
+        $statusCode = 123;
+        $response->setHeaders(['http-code' => [
+            $statusCode + 10,
+            $statusCode,
+        ]]);
         $this->assertEquals($statusCode, $response->getStatusCode());
     }
 

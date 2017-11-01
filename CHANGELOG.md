@@ -4,6 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.5 under development
 -----------------------
 
+- Bug #128: Fixed `Response` with redirection takes wrong 'Content-Type' header value for content parsing (klimov-paul)
 - Enh #119: Options for client SSL certificate specification added to `Request::$options` (bscheshirwork)
 - Chg #118: Enforced cookie validation removed from `Request` (klimov-paul)
 

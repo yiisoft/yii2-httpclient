@@ -98,8 +98,10 @@ class Response extends Message
      */
     protected function detectFormatByHeaders(HeaderCollection $headers)
     {
-        $contentType = $headers->get('content-type');
-        if (!empty($contentType)) {
+        $contentTypeHeaders = $headers->get('content-type', null, false);
+
+        if (!empty($contentTypeHeaders)) {
+            $contentType = end($contentTypeHeaders);
             if (stripos($contentType, 'json') !== false) {
                 return Client::FORMAT_JSON;
             }
@@ -110,6 +112,7 @@ class Response extends Message
                 return Client::FORMAT_XML;
             }
         }
+
         return null;
     }
 
