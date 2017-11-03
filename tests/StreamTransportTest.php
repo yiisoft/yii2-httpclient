@@ -10,7 +10,7 @@ use yii\httpclient\StreamTransport;
 class StreamTransportTest extends TransportTestCase
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function transport()
     {
@@ -18,7 +18,7 @@ class StreamTransportTest extends TransportTestCase
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function testFollowLocation()
     {

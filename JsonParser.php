@@ -19,7 +19,7 @@ use yii\helpers\Json;
 class JsonParser extends BaseObject implements ParserInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function parse(Response $response)
     {

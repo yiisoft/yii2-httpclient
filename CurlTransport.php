@@ -22,7 +22,7 @@ use Yii;
 class CurlTransport extends Transport
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function send($request)
     {
@@ -65,7 +65,7 @@ class CurlTransport extends Transport
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function batchSend(array $requests)
     {

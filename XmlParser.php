@@ -18,7 +18,7 @@ use yii\base\BaseObject;
 class XmlParser extends BaseObject implements ParserInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function parse(Response $response)
     {

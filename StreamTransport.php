@@ -22,7 +22,7 @@ use Yii;
 class StreamTransport extends Transport
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function send($request)
     {

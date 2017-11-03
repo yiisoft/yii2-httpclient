@@ -22,7 +22,7 @@ use yii\web\HeaderCollection;
 class Response extends Message
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getData()
     {
@@ -38,7 +38,7 @@ class Response extends Message
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getCookies()
     {

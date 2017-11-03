@@ -26,7 +26,7 @@ class JsonFormatter extends BaseObject implements FormatterInterface
 
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function format(Request $request)
     {

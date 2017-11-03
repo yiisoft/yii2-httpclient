@@ -10,7 +10,7 @@ use yii\httpclient\CurlTransport;
 class CurlTransportTest extends TransportTestCase
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function transport()
     {
@@ -18,7 +18,7 @@ class CurlTransportTest extends TransportTestCase
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function testCustomSslCertificate()
     {

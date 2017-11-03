@@ -172,7 +172,7 @@ class Request extends Message
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function setData($data)
     {
@@ -185,7 +185,7 @@ class Request extends Message
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function addData($data)
     {
@@ -401,7 +401,7 @@ class Request extends Message
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function composeHeaderLines()
     {
@@ -452,7 +452,7 @@ class Request extends Message
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function toString()
     {
