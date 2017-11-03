@@ -7,7 +7,7 @@
 
 namespace yii\httpclient;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\helpers\Json;
 
 /**
@@ -16,7 +16,7 @@ use yii\helpers\Json;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class JsonFormatter extends Object implements FormatterInterface
+class JsonFormatter extends BaseObject implements FormatterInterface
 {
     /**
      * @var int the encoding options. For more details please refer to

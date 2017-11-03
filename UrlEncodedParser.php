@@ -7,7 +7,7 @@
 
 namespace yii\httpclient;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * UrlEncodedParser parses HTTP message content as 'application/x-www-form-urlencoded'.
@@ -15,7 +15,7 @@ use yii\base\Object;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class UrlEncodedParser extends Object implements ParserInterface
+class UrlEncodedParser extends BaseObject implements ParserInterface
 {
     /**
      * @inheritdoc

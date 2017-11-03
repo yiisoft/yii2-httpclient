@@ -8,7 +8,7 @@
 namespace yii\httpclient;
 
 use Yii;
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * UrlEncodedFormatter formats HTTP message as 'application/x-www-form-urlencoded'.
@@ -16,7 +16,7 @@ use yii\base\Object;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class UrlEncodedFormatter extends Object implements FormatterInterface
+class UrlEncodedFormatter extends BaseObject implements FormatterInterface
 {
     /**
      * @var int URL encoding type.

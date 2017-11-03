@@ -12,7 +12,7 @@ use DOMElement;
 use DOMText;
 use SimpleXMLElement;
 use yii\base\Arrayable;
-use yii\base\Object;
+use yii\base\BaseObject;
 use Yii;
 use yii\helpers\StringHelper;
 
@@ -22,7 +22,7 @@ use yii\helpers\StringHelper;
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class XmlFormatter extends Object implements FormatterInterface
+class XmlFormatter extends BaseObject implements FormatterInterface
 {
     /**
      * @var string the Content-Type header for the response
