@@ -61,6 +61,28 @@ class MessageTest extends TestCase
     }
 
     /**
+     * @depends testSetupRawHeaders
+     */
+    public function testParseHttpCode()
+    {
+        $message = new Message();
+
+        $headers = [
+            'HTTP/1.0 404 Not Found',
+            'header1: value1',
+        ];
+        $message->setHeaders($headers);
+        $this->assertEquals('404', $message->getHeaders()->get('http-code'));
+
+        $headers = [
+            'HTTP/1.0 400 {some: "json"}',
+            'header1: value1',
+        ];
+        $message->setHeaders($headers);
+        $this->assertEquals('400', $message->getHeaders()->get('http-code'));
+    }
+
+    /**
      * @depends testSetupHeaders
      */
     public function testHasHeaders()
