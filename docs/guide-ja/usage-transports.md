@@ -1,16 +1,16 @@
-ƒgƒ‰ƒ“ƒXƒ|[ƒg
+ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½g
 ==============
 
-[[\yii\httpclient\Client]] ‚ÍAŽÀÛ‚É HTTP ƒƒbƒZ[ƒW‚ð‘—M‚·‚é‚¢‚­‚Â‚©‚ÌˆÙ‚È‚é•û–@A‚·‚È‚í‚¿A‚¢‚­‚Â‚©‚Ìƒgƒ‰ƒ“ƒXƒ|[ƒg‚ðƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚·B
-Ž–‘O’è‹`‚³‚ê‚Ä‚¢‚éƒgƒ‰ƒ“ƒXƒ|[ƒg‚ÍˆÈ‰º‚Ì‚à‚Ì‚Å‚·B
+[[\yii\httpclient\Client]] ï¿½ÍAï¿½ï¿½ï¿½Û‚ï¿½ HTTP ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ð‘—Mï¿½ï¿½ï¿½é‚¢ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ÌˆÙ‚È‚ï¿½ï¿½ï¿½@ï¿½Aï¿½ï¿½ï¿½È‚í‚¿ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½Ìƒgï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½Oï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ÍˆÈ‰ï¿½ï¿½Ì‚ï¿½ï¿½Ì‚Å‚ï¿½ï¿½B
 
- - [[\yii\httpclient\StreamTransport]] - HTTP ƒƒbƒZ[ƒW‚ð‘—M‚·‚é‚Ì‚É [Streams](http://php.net/manual/ja/book.stream.php) ‚ðŽg‚¢‚Ü‚·B
-   ‚±‚Ìƒgƒ‰ƒ“ƒXƒ|[ƒg‚ªƒfƒtƒHƒ‹ƒg‚Æ‚µ‚ÄŽg—p‚³‚ê‚Ü‚·B
-   ‚±‚ê‚ÍA‰½‚ç‚©‚Ì PHP Šg’£‚ð’Ç‰Á‚µ‚½‚èAƒ‰ƒCƒuƒ‰ƒŠ‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚½‚è‚·‚é‚±‚Æ‚ð—v‹‚µ‚Ü‚¹‚ñ‚ªAƒoƒbƒ`‘—M‚Ì‚æ‚¤‚È‚“x‚È‹@”\‚ÍƒTƒ|[ƒg‚µ‚Ü‚¹‚ñB
- - [[\yii\httpclient\CurlTransport]] - HTTP ƒƒbƒZ[ƒW‚ð‘—M‚·‚é‚Ì‚É [Client URL ƒ‰ƒCƒuƒ‰ƒŠ (cURL)](http://php.net/manual/ja/book.curl.php) ‚ðŽg—p‚µ‚Ü‚·B
-   ‚±‚Ìƒgƒ‰ƒ“ƒXƒ|[ƒg‚Í PHP 'curl' Šg’£‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ð—v‹‚µ‚Ü‚·‚ªAƒoƒbƒ`‘—M‚Ì‚æ‚¤‚È‚“x‚È‹@”\‚É‘Î‚·‚éƒTƒ|[ƒg‚ð’ñ‹Ÿ‚µ‚Ü‚·B
+ - [[\yii\httpclient\StreamTransport]] - HTTP ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ð‘—Mï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ [Streams](http://php.net/manual/ja/book.stream.php) ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+   ï¿½ï¿½ï¿½Ìƒgï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Æ‚ï¿½ï¿½ÄŽgï¿½pï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+   ï¿½ï¿½ï¿½ï¿½ÍAï¿½ï¿½ï¿½ç‚©ï¿½ï¿½ PHP ï¿½gï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½é‚±ï¿½Æ‚ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ñ‚ªAï¿½oï¿½bï¿½`ï¿½ï¿½ï¿½Mï¿½Ì‚æ‚¤ï¿½Èï¿½ï¿½xï¿½È‹@ï¿½\ï¿½ÍƒTï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B
+ - [[\yii\httpclient\CurlTransport]] - HTTP ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ð‘—Mï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ [Client URL ï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ (cURL)](http://php.net/manual/ja/book.curl.php) ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+   ï¿½ï¿½ï¿½Ìƒgï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ï¿½ PHP 'curl' ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚±ï¿½Æ‚ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Aï¿½oï¿½bï¿½`ï¿½ï¿½ï¿½Mï¿½Ì‚æ‚¤ï¿½Èï¿½ï¿½xï¿½È‹@ï¿½\ï¿½É‘Î‚ï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ñ‹Ÿ‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-“Á’è‚ÌƒNƒ‰ƒCƒAƒ“ƒg‚É‚æ‚Á‚ÄŽg—p‚³‚ê‚é‚×‚«ƒgƒ‰ƒ“ƒXƒ|[ƒg‚ð [[\yii\httpclient\Client::transport]] ‚ðŽg‚Á‚Ä\¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ï¿½ï¿½ï¿½ï¿½ÌƒNï¿½ï¿½ï¿½Cï¿½Aï¿½ï¿½ï¿½gï¿½É‚ï¿½ï¿½ï¿½ÄŽgï¿½pï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ï¿½ [[\yii\httpclient\Client::$transport]] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä\ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 ```php
 use yii\httpclient\Client;
@@ -21,12 +21,12 @@ $client = new Client([
 ```
 
 
-## ƒJƒXƒ^ƒ€ƒgƒ‰ƒ“ƒXƒ|[ƒg‚ðì¬‚·‚é
+## ï¿½Jï¿½Xï¿½^ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½
 
-ƒƒbƒZ[ƒW‚Ì‘—M‚ð“ÆŽ©‚Ì•û–@‚Ås‚¤‚ ‚È‚½Ž©g‚Ìƒgƒ‰ƒ“ƒXƒ|[ƒg‚ðì¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
-‚»‚¤‚·‚é‚½‚ß‚É‚ÍA[[\yii\httpclient\Transport]] ƒNƒ‰ƒX‚ðŠg’£‚µ‚ÄAÅ’áŒÀA`send()` ƒƒ\ƒbƒh‚ðŽÀ‘•‚µ‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-•K—v‚È‚±‚Æ‚ÍAHTTP ƒŒƒXƒ|ƒ“ƒX‚ÌƒRƒ“ƒeƒ“ƒg‚Æƒwƒbƒ_‚ðŒˆ’è‚·‚é‚±‚Æ‚ª‘S‚Ä‚Å‚·B
-‚»‚¤‚·‚ê‚ÎA‚»‚ê‚ç‚©‚ç [[\yii\httpclient\Client::createResponse()]] ‚ðŽg‚Á‚ÄƒŒƒXƒ|ƒ“ƒXƒIƒuƒWƒFƒNƒg‚ðì¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Ì‘ï¿½ï¿½Mï¿½ï¿½ÆŽï¿½ï¿½Ì•ï¿½ï¿½@ï¿½Åsï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½gï¿½Ìƒgï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚É‚ÍA[[\yii\httpclient\Transport]] ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ÄAï¿½Å’ï¿½ï¿½ï¿½A`send()` ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Î‚È‚ï¿½Ü‚ï¿½ï¿½ï¿½B
+ï¿½Kï¿½vï¿½È‚ï¿½ï¿½Æ‚ÍAHTTP ï¿½ï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½Xï¿½ÌƒRï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½Æƒwï¿½bï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Sï¿½Ä‚Å‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½ï¿½ç‚©ï¿½ï¿½ [[\yii\httpclient\Client::createResponse()]] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Äƒï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½Xï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 ```php
 use yii\httpclient\Transport;
@@ -46,4 +46,4 @@ class MyTransport extends Transport
 }
 ```
 
-‚Ü‚½A”ñ“¯Šú‚Ì•À—ñ‘—M‚È‚ÇA•¡”‚ÌƒŠƒNƒGƒXƒg‚ðŒø—¦“I‚É‘—M‚·‚é•û–@‚ª‚ ‚éê‡‚ÍA`batchSend()` ƒƒ\ƒbƒh‚ðƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚±‚Æ‚ào—ˆ‚Ü‚·B
+ï¿½Ü‚ï¿½ï¿½Aï¿½ñ“¯Šï¿½ï¿½Ì•ï¿½ï¿½ñ‘—Mï¿½È‚ÇAï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½É‘ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍA`batchSend()` ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B

@@ -43,7 +43,7 @@ class Request extends Message
     /**
      * @var string request method.
      */
-    private $_method = 'get';
+    private $_method = 'GET';
     /**
      * @var array request options.
      */

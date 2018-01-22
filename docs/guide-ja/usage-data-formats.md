@@ -1,39 +1,39 @@
-ƒf[ƒ^Œ`®
+ï¿½fï¿½[ï¿½^ï¿½`ï¿½ï¿½
 ==========
 
-ƒf[ƒ^Œ`®‚ª HTTP ƒƒbƒZ[ƒW‚ÌƒRƒ“ƒeƒ“ƒg‚ğì¬‚Ü‚½‚Í‰ğÍ‚·‚é•û–@‚ğŒˆ’è‚µ‚Ü‚·B
-Œ¾‚¢Š·‚¦‚é‚ÆAƒf[ƒ^Œ`®‚É‚æ‚Á‚ÄA[[\yii\httpclient\Message::data]] ‚Æ [[\yii\httpclient\Message::content]] ‚ª‘ŠŒİ‚É‚Ç‚Ì‚æ‚¤‚É•ÏŠ·‚³‚ê‚é‚×‚«‚©‚ªŒˆ’è‚³‚ê‚Ü‚·B
+ï¿½fï¿½[ï¿½^ï¿½`ï¿½ï¿½ï¿½ï¿½ HTTP ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ÌƒRï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ì¬ï¿½Ü‚ï¿½ï¿½Í‰ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½è‚µï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆAï¿½fï¿½[ï¿½^ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ÄA[[\yii\httpclient\Message::$data]] ï¿½ï¿½ [[\yii\httpclient\Message::$content]] ï¿½ï¿½ï¿½ï¿½ï¿½İ‚É‚Ç‚Ì‚æ‚¤ï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è‚³ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-Ÿ‚ÌŒ`®‚ªƒfƒtƒHƒ‹ƒg‚ÅƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚·B
+ï¿½ï¿½ï¿½ÌŒ`ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÅƒTï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
- - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON Œ`®
- - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - RFC1738 ‚É‚æ‚Á‚Ä urlencode ‚³‚ê‚½ƒNƒGƒŠ•¶š—ñ
- - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - PHP_QUERY_RFC3986 ‚É‚æ‚Á‚Ä urlencode ‚³‚ê‚½ƒNƒGƒŠ•¶š—ñ
- - [[\yii\httpclient\Client::FORMAT_XML]] - XML Œ`®
+ - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON ï¿½`ï¿½ï¿½
+ - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - RFC1738 ï¿½É‚ï¿½ï¿½ï¿½ï¿½ urlencode ï¿½ï¿½ï¿½ê‚½ï¿½Nï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - PHP_QUERY_RFC3986 ï¿½É‚ï¿½ï¿½ï¿½ï¿½ urlencode ï¿½ï¿½ï¿½ê‚½ï¿½Nï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ - [[\yii\httpclient\Client::FORMAT_XML]] - XML ï¿½`ï¿½ï¿½
 
-‚»‚ê‚¼‚ê‚ÌŒ`®‚Í“ñ‚Â‚ÌÀ‘ÌA'formatter' ‚Æ 'parser' ‚É‚æ‚Á‚ÄƒJƒo[‚³‚ê‚Ü‚·B
-Formatter ‚ÍAƒŠƒNƒGƒXƒg‚ÌƒRƒ“ƒeƒ“ƒg‚ªƒf[ƒ^‚©‚çì¬‚³‚ê‚é•û–@‚ğŒˆ’è‚µ‚Ü‚·B
-Parser ‚ÍA¶‚ÌƒŒƒXƒ|ƒ“ƒXƒRƒ“ƒeƒ“ƒg‚ªƒf[ƒ^‚É‰ğÍ‚³‚ê‚é•û–@‚ğŒˆ’è‚µ‚Ü‚·B
+ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ÌŒ`ï¿½ï¿½ï¿½Í“ï¿½Â‚Ìï¿½ï¿½ÌA'formatter' ï¿½ï¿½ 'parser' ï¿½É‚ï¿½ï¿½ï¿½ÄƒJï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+Formatter ï¿½ÍAï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÌƒRï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½è‚µï¿½Ü‚ï¿½ï¿½B
+Parser ï¿½ÍAï¿½ï¿½ï¿½Ìƒï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½Xï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½É‰ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½è‚µï¿½Ü‚ï¿½ï¿½B
 
-[[\yii\httpclient\Client]] ‚ÍAãq‚ÌŒ`®‚·‚×‚Ä‚É‚Â‚¢‚ÄA©“®“I‚É‘Î‰‚·‚é formatter ‚Æ parser ‚ğ‘I‘ğ‚µ‚Ü‚·B
-‚½‚¾‚µA‚±‚ÌU‚é•‘‚¢‚ÍA[[\yii\httpclient\Client::formatters]] ‚Æ [[\yii\httpclient\Client::parsers]] ‚ğg‚Á‚Ä•ÏX‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
-‚±‚ê‚ç‚ÌƒtƒB[ƒ‹ƒh‚É‚æ‚Á‚ÄA‚ ‚È‚½©g‚ÌŒ`®‚ğ’Ç‰Á‚µ‚½‚èA•W€“I‚ÈŒ`®‚ğ•ÏX‚µ‚½‚è‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
-—á‚¦‚ÎA
+[[\yii\httpclient\Client]] ï¿½ÍAï¿½ï¿½qï¿½ÌŒ`ï¿½ï¿½ï¿½ï¿½ï¿½×‚Ä‚É‚Â‚ï¿½ï¿½ÄAï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½ï¿½ formatter ï¿½ï¿½ parser ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ÌUï¿½é•‘ï¿½ï¿½ï¿½ÍA[[\yii\httpclient\Client::$formatters]] ï¿½ï¿½ [[\yii\httpclient\Client::$parsers]] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä•ÏXï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒtï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½É‚ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½gï¿½ÌŒ`ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Wï¿½ï¿½ï¿½Iï¿½ÈŒ`ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½á‚¦ï¿½ÎA
 
 ```php
 use yii\httpclient\Client;
 
 $client = new Client([
     'formatters' => [
-        'myformat' => 'app\components\http\MyFormatter', // V‚µ‚¢ formatter ‚ğ’Ç‰Á
-        Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // ƒfƒtƒHƒ‹ƒg‚Ì XML formatter ‚ğƒI[ƒo[ƒ‰ƒCƒh
+        'myformat' => 'app\components\http\MyFormatter', // ï¿½Vï¿½ï¿½ï¿½ï¿½ formatter ï¿½ï¿½Ç‰ï¿½
+        Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ XML formatter ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½h
     ],
 ]);
 ```
 
-‚ ‚È‚½©g‚Ì parser ‚ğì¬‚·‚é‚Æ‚«‚Í [[\yii\httpclient\ParserInterface]] ‚ğÀ‘•‚µ‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-formatter ‚Ìê‡‚Í  [[\yii\httpclient\ParserInterface]] ‚Å‚·B
-—á‚¦‚ÎA
+ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ parser ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ [[\yii\httpclient\ParserInterface]] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Î‚È‚ï¿½Ü‚ï¿½ï¿½ï¿½B
+formatter ï¿½Ìê‡ï¿½ï¿½  [[\yii\httpclient\ParserInterface]] ï¿½Å‚ï¿½ï¿½B
+ï¿½á‚¦ï¿½ÎA
 
 ```php
 use yii\httpclient\FormatterInterface;

@@ -1,18 +1,18 @@
-ƒŠƒNƒGƒXƒg‚ÌƒIƒvƒVƒ‡ƒ“
+ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÌƒIï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½
 ======================
 
-[[\yii\httpclient\Request::options]] ‚ðŽg‚Á‚ÄA“Á’è‚ÌƒŠƒNƒGƒXƒg‚ÌŽÀs‚ð’²®‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
-ˆÈ‰º‚ÌƒIƒvƒVƒ‡ƒ“‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚·B
- - timeout: integerAƒŠƒNƒGƒXƒg‚ÌŽÀs‚É‹–—e‚³‚ê‚éÅ‘å•b”B
- - proxy: stringAƒvƒƒLƒVƒT[ƒo‚ÌƒAƒhƒŒƒX‚ðŽw’è‚·‚é URI (—á‚¦‚ÎAtcp://proxy.example.com:5100)B
- - userAgent: stringAHTTP ƒŠƒNƒGƒXƒg‚ÉŽg—p‚³‚ê‚é "User-Agent: " ƒwƒbƒ_‚Ì“à—eB
- - followLocation: booleanAƒT[ƒo‚ª HTTP ƒwƒbƒ_‚Ìˆê•”‚Æ‚µ‚Ä‘—M‚·‚é‚·‚×‚Ä‚Ì "Location:" ƒwƒbƒ_‚É]‚¤‚©”Û‚©B
- - maxRedirects: integerAredirect ‚É]‚¤Å‘å‰ñ”B
- - sslVerifyPeer: booleanApeer ‚ÌØ–¾‘‚ÌŒŸØ‚ð‚·‚é‚©”Û‚©B
- - sslCafile: stringAƒ[ƒJƒ‹‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€ã‚Ì Certificate Authority (CA) ƒtƒ@ƒCƒ‹‚ÌêŠB'sslVerifyPeer' ƒIƒvƒVƒ‡ƒ“‚É‚æ‚Á‚ÄƒŠƒ‚[ƒg‚Ì peer ‚Ì identity ‚ð”FØ‚·‚éÛ‚É‚±‚Ì CA ƒtƒ@ƒCƒ‹‚ð—p‚¢‚éB
- - sslCapath: stringA•¡”‚Ì CA Ø–¾‘‚ð•ÛŽ‚·‚éƒfƒBƒŒƒNƒgƒŠB
+[[\yii\httpclient\Request::$options]] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÌŽï¿½ï¿½sï¿½ð’²ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½È‰ï¿½ï¿½ÌƒIï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+ - timeout: integerï¿½Aï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÌŽï¿½ï¿½sï¿½É‹ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Å‘ï¿½bï¿½ï¿½ï¿½B
+ - proxy: stringï¿½Aï¿½vï¿½ï¿½ï¿½Lï¿½Vï¿½Tï¿½[ï¿½oï¿½ÌƒAï¿½hï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½wï¿½è‚·ï¿½ï¿½ URI (ï¿½á‚¦ï¿½ÎAtcp://proxy.example.com:5100)ï¿½B
+ - userAgent: stringï¿½AHTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÉŽgï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ "User-Agent: " ï¿½wï¿½bï¿½_ï¿½Ì“ï¿½ï¿½eï¿½B
+ - followLocation: booleanï¿½Aï¿½Tï¿½[ï¿½oï¿½ï¿½ HTTP ï¿½wï¿½bï¿½_ï¿½Ìˆê•”ï¿½Æ‚ï¿½ï¿½Ä‘ï¿½ï¿½Mï¿½ï¿½ï¿½é‚·ï¿½×‚Ä‚ï¿½ "Location:" ï¿½wï¿½bï¿½_ï¿½É]ï¿½ï¿½ï¿½ï¿½ï¿½Û‚ï¿½ï¿½B
+ - maxRedirects: integerï¿½Aredirect ï¿½É]ï¿½ï¿½ï¿½Å‘ï¿½ñ”B
+ - sslVerifyPeer: booleanï¿½Apeer ï¿½ÌØ–ï¿½ï¿½ï¿½ï¿½ÌŒï¿½ï¿½Ø‚ï¿½ï¿½ï¿½ï¿½é‚©ï¿½Û‚ï¿½ï¿½B
+ - sslCafile: stringï¿½Aï¿½ï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ Certificate Authority (CA) ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ÌêŠï¿½B'sslVerifyPeer' ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½Äƒï¿½ï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ peer ï¿½ï¿½ identity ï¿½ï¿½Fï¿½Ø‚ï¿½ï¿½ï¿½Û‚É‚ï¿½ï¿½ï¿½ CA ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½B
+ - sslCapath: stringï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ CA ï¿½Ø–ï¿½ï¿½ï¿½ï¿½ï¿½ÛŽï¿½ï¿½ï¿½ï¿½ï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½B
 
-—á‚¦‚ÎA
+ï¿½á‚¦ï¿½ÎA
 
 ```php
 use yii\httpclient\Client;
@@ -20,40 +20,40 @@ use yii\httpclient\Client;
 $client = new Client();
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
-        'proxy' => 'tcp://proxy.example.com:5100', // ƒvƒƒLƒV‚ðŽg—p
-        'timeout' => 5, // ƒT[ƒo‚ª‰ž“š‚µ‚È‚¢ê‡‚Ì‚½‚ß‚É 5 •b‚Ìƒ^ƒCƒ€ƒAƒEƒg‚ðÝ’è
+        'proxy' => 'tcp://proxy.example.com:5100', // ï¿½vï¿½ï¿½ï¿½Lï¿½Vï¿½ï¿½ï¿½gï¿½p
+        'timeout' => 5, // ï¿½Tï¿½[ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½Ì‚ï¿½ï¿½ß‚ï¿½ 5 ï¿½bï¿½Ìƒ^ï¿½Cï¿½ï¿½ï¿½Aï¿½Eï¿½gï¿½ï¿½Ý’ï¿½
     ])
     ->send();
 ```
 
-> Tip: ƒfƒtƒHƒ‹ƒg‚ÌƒŠƒNƒGƒXƒgƒIƒvƒVƒ‡ƒ“‚ð [[\yii\httpclient\Client::requestConfig]] ‚É‚æ‚Á‚ÄÝ’è‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
-  ‚»‚Ìê‡A“Á•Ê‚ÈƒŠƒNƒGƒXƒgƒIƒvƒVƒ‡ƒ“‚ð’Ç‰Á‚µ‚½‚¢‚Æ‚«‚ÍAÝ’èÏ‚Ý‚ÌƒIƒvƒVƒ‡ƒ“‚ð•ÛŽ‚·‚é‚½‚ß‚É [[\yii\httpclient\Request::addOptions()]] ‚ðŽg‚Á‚Ä‚­‚¾‚³‚¢B
+> Tip: ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ìƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ [[\yii\httpclient\Client::$requestConfig]] ï¿½É‚ï¿½ï¿½ï¿½ÄÝ’è‚·ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+  ï¿½ï¿½ï¿½Ìê‡ï¿½Aï¿½ï¿½ï¿½Ê‚Èƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÍAï¿½Ý’ï¿½Ï‚Ý‚ÌƒIï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÛŽï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚ï¿½ [[\yii\httpclient\Request::addOptions()]] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-“Á’è‚ÌƒŠƒNƒGƒXƒg‚Ìƒgƒ‰ƒ“ƒXƒ|[ƒg‚É‘Î‚µ‚Ä‚Ì‚Ý“K—p‚·‚éƒIƒvƒVƒ‡ƒ“‚ð“n‚·‚±‚Æ‚ào—ˆ‚Ü‚·B
-[[\yii\httpclient\CurlTransport]] ‚ðŽg‚¤ê‡‚ÍA’ÊíA‚»‚Ì‚æ‚¤‚É‚µ‚Ü‚·B
-—á‚¦‚ÎAÚ‘±‚Æƒf[ƒ^ŽóM‚É‚Â‚¢‚ÄAPHP cURL ƒ‰ƒCƒuƒ‰ƒŠ‚É‚æ‚Á‚ÄƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚é‚æ‚¤‚ÉAŒÂ•Ê‚Ìƒ^ƒCƒ€ƒAƒEƒg‚ðŽw’è‚µ‚½‚¢‚Å‚µ‚å‚¤B
-ŽŸ‚Ì‚æ‚¤‚É‚µ‚ÄA‚»‚¤‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½Ìƒgï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½É‘Î‚ï¿½ï¿½Ä‚Ì‚Ý“Kï¿½pï¿½ï¿½ï¿½ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+[[\yii\httpclient\CurlTransport]] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ê‡ï¿½ÍAï¿½Êï¿½Aï¿½ï¿½ï¿½Ì‚æ‚¤ï¿½É‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½á‚¦ï¿½ÎAï¿½Ú‘ï¿½ï¿½Æƒfï¿½[ï¿½^ï¿½ï¿½Mï¿½É‚Â‚ï¿½ï¿½ÄAPHP cURL ï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ÄƒTï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½æ‚¤ï¿½ÉAï¿½Â•Ê‚Ìƒ^ï¿½Cï¿½ï¿½ï¿½Aï¿½Eï¿½gï¿½ï¿½ï¿½wï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½å‚¤ï¿½B
+ï¿½ï¿½ï¿½Ì‚æ‚¤ï¿½É‚ï¿½ï¿½ÄAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 ```php
 use yii\httpclient\Client;
 
 $client = new Client([
-    'transport' => 'yii\httpclient\CurlTransport' // ‚±‚±‚ÅŽg‚¤ƒIƒvƒVƒ‡ƒ“‚Í cURL ‚¾‚¯‚ªƒTƒ|[ƒg‚µ‚Ä‚¢‚é
+    'transport' => 'yii\httpclient\CurlTransport' // ï¿½ï¿½ï¿½ï¿½ï¿½ÅŽgï¿½ï¿½ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ cURL ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 ]);
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
-        CURLOPT_CONNECTTIMEOUT => 5, // Ú‘±ƒ^ƒCƒ€ƒAƒEƒg
-        CURLOPT_TIMEOUT => 10, // ƒf[ƒ^ŽóMƒ^ƒCƒ€ƒAƒEƒg
+        CURLOPT_CONNECTTIMEOUT => 5, // ï¿½Ú‘ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½Aï¿½Eï¿½g
+        CURLOPT_TIMEOUT => 10, // ï¿½fï¿½[ï¿½^ï¿½ï¿½Mï¿½^ï¿½Cï¿½ï¿½ï¿½Aï¿½Eï¿½g
     ])
     ->send();
 ```
 
-ŒÅ—L‚ÌƒIƒvƒVƒ‡ƒ“‚ÌƒTƒ|[ƒg‚É‚Â‚¢‚Ä‚ÍAŒÂ•Ê‚Ìƒgƒ‰ƒ“ƒXƒ|[ƒgƒNƒ‰ƒX‚ÌƒhƒLƒ…ƒƒ“ƒg‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+ï¿½Å—Lï¿½ÌƒIï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÌƒTï¿½|ï¿½[ï¿½gï¿½É‚Â‚ï¿½ï¿½Ä‚ÍAï¿½Â•Ê‚Ìƒgï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½|ï¿½[ï¿½gï¿½Nï¿½ï¿½ï¿½Xï¿½Ìƒhï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B

@@ -26,4 +26,4 @@ return [
 
 还可以通过 [使用调试面板](topics-debug.md) 查看所有相关日志。
 
-> 注意：由于一些 HTTP 请求的内容可能非常长，将其完全保存在日志中可能会导致某些问题。 因此，对请求内容的最大长度存在限制。 通过 [[\yii\httpclient\Client::contentLoggingMaxSize]] 控制。 任何超出长度的内容都会被丢弃。
+> 注意：由于一些 HTTP 请求的内容可能非常长，将其完全保存在日志中可能会导致某些问题。 因此，对请求内容的最大长度存在限制。 通过 [[\yii\httpclient\Client::$contentLoggingMaxSize]] 控制。 任何超出长度的内容都会被丢弃。

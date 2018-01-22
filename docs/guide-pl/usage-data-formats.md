@@ -2,7 +2,7 @@ Formatowanie danych
 ===================
 
 Format danych decyduje o sposobie w jaki treść wiadomości HTTP powinna być skomponowana lub przetworzona, w szczególności 
-w jaki sposób [[\yii\httpclient\Message::data]] powinna być przekonwertowana na [[\yii\httpclient\Message::content]] i vice versa.
+w jaki sposób [[\yii\httpclient\Message::$data]] powinna być przekonwertowana na [[\yii\httpclient\Message::$content]] i vice versa.
 
 Domyślnie wspierane są poniższe typy formatowania:
 
@@ -15,7 +15,7 @@ Każdy format składa się z dwóch jednostek: 'formatera' i 'parsera'. Formater
 powinna zostać skomponowana z podanych danych. Parser ustala w jaki sposób surowa treść odpowiedzi powinna być przetworzona na dane.
 
 [[\yii\httpclient\Client]] automatycznie wybiera odpowiedni formater i parser dla wszystkich powyższcyh tyów formatowania, 
-ale można wpłynąć na ten mechanizm za pomocą [[\yii\httpclient\Client::formatters]] i [[\yii\httpclient\Client::parsers]].
+ale można wpłynąć na ten mechanizm za pomocą [[\yii\httpclient\Client::$formatters]] i [[\yii\httpclient\Client::$parsers]].
 Dzięki tym polom można dodać własne typy formatowania lub zmienić standardowe.
 Dla przykładu:
 

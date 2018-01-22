@@ -10,13 +10,13 @@ use yii\httpclient\Client;
 
 $client = new Client();
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/file/upload')
     ->addFile('file', '/path/to/source/file.jpg')
     ->send();
 ```
 
-如果指定了 [[\yii\httpclient\Request::data]] ，普通类型的内容和文件类型将被自动处理。
+如果指定了 [[\yii\httpclient\Request::$data]] ，普通类型的内容和文件类型将被自动处理。
 例如：模拟提交以下表单：
 
 ```html
@@ -35,12 +35,28 @@ use yii\httpclient\Client;
 
 $client = new Client();
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/user/profile')
     ->setData([
         'username' => 'johndoe',
         'email' => 'johndoe@domain.com',
     ])
     ->addFile('avatar', '/path/to/source/image.jpg')
+    ->send();
+```
+
+Note that attaching multiple files with the same name will cause them to be overridden by the latest one.
+You have to control possible tabular input indexes for the attached files on your own, for example:
+
+```php
+use yii\httpclient\Client;
+
+$client = new Client();
+$response = $client->createRequest()
+    ->setMethod('POST')
+    ->setUrl('http://domain.com/gallery')
+    ->addFile('avatar[0]', '/path/to/source/image1.jpg')
+    ->addFile('avatar[1]', '/path/to/source/image2.jpg')
+    ...
     ->send();
 ```

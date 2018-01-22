@@ -28,5 +28,5 @@ tekstu lub przekazać ją bezpośrednio do przeglądarki.
 
 > Note: tylko standardowe zalogowane żądania HTTP mogą być wysłane przez panel debugowania - nie jest to możliwe dla 
   serii żądań. Należy także pamiętać, że treść zalogowanych żądań może być obcięta zgodnie z wartością 
-  [[\yii\httpclient\Client::contentLoggingMaxSize]], zatem wysłanie takich żądań może zakończyć się błędem lub skutkować 
+  [[\yii\httpclient\Client::$contentLoggingMaxSize]], zatem wysłanie takich żądań może zakończyć się błędem lub skutkować
   niespodziewanymi rezultatami.

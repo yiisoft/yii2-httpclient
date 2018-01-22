@@ -37,7 +37,7 @@ abstract class TransportTestCase extends TestCase
         $client = $this->createClient();
         $client->baseUrl = 'http://php.net';
         $response = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('docs.php')
             ->send();
 
@@ -55,7 +55,7 @@ abstract class TransportTestCase extends TestCase
         $client = $this->createClient();
         $client->baseUrl = 'http://php.net';
         $response = $client->createRequest()
-            ->setMethod('post')
+            ->setMethod('POST')
             ->setUrl('search.php')
             ->setData(['pattern' => 'curl'])
             ->send();
@@ -72,10 +72,10 @@ abstract class TransportTestCase extends TestCase
 
         $requests = [];
         $requests['docs'] = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('docs.php');
         $requests['support'] = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('support.php');
 
         $responses = $client->batchSend($requests);
@@ -101,7 +101,7 @@ abstract class TransportTestCase extends TestCase
         $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('search.php')
             ->setData([
                 'show' => 'quickref',
@@ -127,7 +127,7 @@ abstract class TransportTestCase extends TestCase
         $client = $this->createClient();
         $client->baseUrl = 'http://unexisting.domain';
         $request = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('unexisting.php')
             ->addOptions(['timeout' => 1]);
 
@@ -145,7 +145,7 @@ abstract class TransportTestCase extends TestCase
         $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('docs.php');
 
         $beforeSendEvent = null;
@@ -178,7 +178,7 @@ abstract class TransportTestCase extends TestCase
         $client->baseUrl = 'http://php.net';
 
         $request = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('docs.php');
 
         $beforeSendEvent = null;
@@ -223,10 +223,10 @@ abstract class TransportTestCase extends TestCase
 
         $requests = [];
         $requests['docs'] = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('docs.php');
         $requests['support'] = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('support.php');
 
         $responses = $client->batchSend($requests);
@@ -288,7 +288,7 @@ abstract class TransportTestCase extends TestCase
         $client = $this->createClient();
         $client->baseUrl = 'https://secure.php.net/';
         $response = $client->createRequest()
-            ->setMethod('get')
+            ->setMethod('GET')
             ->setUrl('docs.php')
             ->setOptions([
                 'sslLocalCert' => $publicKeyFilename,

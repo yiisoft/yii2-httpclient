@@ -1,9 +1,9 @@
-ƒƒMƒ“ƒO‚Æƒvƒƒtƒ@ƒCƒŠƒ“ƒO
+ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½Æƒvï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½O
 ==========================
 
-‚±‚ÌƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚Å‚ÍA‘—M‚³‚ê‚½ HTTP ƒŠƒNƒGƒXƒg‚ÌƒƒMƒ“ƒO‚ÆA‚»‚ÌŽÀs‚Ìƒvƒƒtƒ@ƒCƒŠƒ“ƒO‚ª‰Â”\‚Å‚·B
-ƒƒOƒ^[ƒQƒbƒg‚ðƒZƒbƒgƒAƒbƒv‚µ‚ÄAHTTP ƒŠƒNƒGƒXƒg‚ÉŠÖŒW‚·‚é‘S‚Ä‚ÌƒGƒ“ƒgƒŠ‚ð•ß‘¨‚·‚é‚½‚ß‚É‚ÍA`yii\httpclient\Transport*` ‚Æ‚¢‚¤ƒJƒeƒSƒŠ‚ðŽg—p‚µ‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
-—á‚¦‚ÎA
+ï¿½ï¿½ï¿½ÌƒGï¿½Nï¿½Xï¿½eï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Å‚ÍAï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ê‚½ HTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½Ìƒï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½ÆAï¿½ï¿½ï¿½ÌŽï¿½ï¿½sï¿½Ìƒvï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Â”\ï¿½Å‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½Oï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ÄAHTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÉŠÖŒWï¿½ï¿½ï¿½ï¿½Sï¿½Ä‚ÌƒGï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ß‘ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚É‚ÍA`yii\httpclient\Transport*` ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½Jï¿½eï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Î‚È‚ï¿½Ü‚ï¿½ï¿½ï¿½B
+ï¿½á‚¦ï¿½ÎA
 
 ```php
 return [
@@ -25,9 +25,9 @@ return [
 ];
 ```
 
-[HTTP ƒNƒ‰ƒCƒAƒ“ƒg DebugPanel] ‚ðŽg‚Á‚Ä‘S‚Ä‚ÌŠÖ˜A‚·‚éƒƒO‚ðŒ©‚é‚±‚Æ‚ào—ˆ‚Ü‚·B
+[HTTP ï¿½Nï¿½ï¿½ï¿½Cï¿½Aï¿½ï¿½ï¿½g DebugPanel] ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä‘Sï¿½Ä‚ÌŠÖ˜Aï¿½ï¿½ï¿½éƒï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 
-> ’ˆÓ: HTTP ƒŠƒNƒGƒXƒg‚ÌƒRƒ“ƒeƒ“ƒg‚É‚Í”ñí‚É’·‚¢‚à‚Ì‚ª‚ ‚é‚½‚ßA‚»‚ê‚ðƒƒO‚Ì’†‚É‘S•”•Û‘¶‚·‚é‚Æ‚È‚é‚ÆA‰½‚ç‚©‚Ì–â‘è‚ª¶‚¶‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
-  ‚±‚Ì‚½‚ßAƒƒO‚É‹L˜^‚³‚ê‚éƒŠƒNƒGƒXƒgƒRƒ“ƒeƒ“ƒg‚ÌÅ‘å’·‚É‘Î‚µ‚Ä‚ÍA§ŒÀ‚ªÝ‚¯‚ç‚ê‚Ä‚¢‚Ü‚·B
-  ƒRƒ“ƒeƒ“ƒg‚ÌÅ‘å’·‚Í [[\yii\httpclient\Client::contentLoggingMaxSize]] ‚É‚æ‚Á‚Ä§Œä‚³‚êA‚±‚ê‚ð’´‚¦‚éƒRƒ“ƒeƒ“ƒg‚Í‚·‚×‚ÄƒƒMƒ“ƒO‚Ì‘O‚ÉØ‚è‹l‚ß‚ç‚ê‚Ü‚·B
+> ï¿½ï¿½ï¿½ï¿½: HTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÌƒRï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½É‚Í”ï¿½ï¿½É’ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ßAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Ì’ï¿½ï¿½É‘Sï¿½ï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚È‚ï¿½ÆAï¿½ï¿½ï¿½ç‚©ï¿½Ì–ï¿½è‚ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+  ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ßAï¿½ï¿½ï¿½Oï¿½É‹Lï¿½^ï¿½ï¿½ï¿½ï¿½éƒŠï¿½Nï¿½Gï¿½Xï¿½gï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½ÌÅ‘å’·ï¿½É‘Î‚ï¿½ï¿½Ä‚ÍAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+  ï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½ÌÅ‘å’·ï¿½ï¿½ [[\yii\httpclient\Client::$contentLoggingMaxSize]] ï¿½É‚ï¿½ï¿½ï¿½Äï¿½ï¿½ä‚³ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ð’´‚ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½Í‚ï¿½ï¿½×‚Äƒï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½Ì‘Oï¿½ÉØ‚ï¿½lï¿½ß‚ï¿½ï¿½Ü‚ï¿½ï¿½B

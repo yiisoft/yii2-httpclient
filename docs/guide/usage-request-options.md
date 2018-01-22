@@ -1,7 +1,7 @@
 Request Options
 ===============
 
-You may use [[\yii\httpclient\Request::options]] to adjust particular request execution.
+You may use [[\yii\httpclient\Request::$options]] to adjust particular request execution.
 Following options are supported (case-sensitive):
  - timeout: integer, the maximum number of seconds to allow request to be executed.
  - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
@@ -24,7 +24,7 @@ use yii\httpclient\Client;
 $client = new Client();
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
@@ -34,7 +34,7 @@ $response = $client->createRequest()
     ->send();
 ```
 
-> Tip: you may setup default request options via [[\yii\httpclient\Client::requestConfig]]. If you do so,
+> Tip: you may setup default request options via [[\yii\httpclient\Client::$requestConfig]]. If you do so,
   use [[\yii\httpclient\Request::addOptions()]] to preserve their values, if you wish to add extra specific
   options for request.
 
@@ -50,7 +50,7 @@ $client = new Client([
 ]);
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([

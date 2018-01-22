@@ -17,7 +17,7 @@ class UrlEncodedFormatterTest extends TestCase
     public function testFormat()
     {
         $request = new Request();
-        $request->setMethod('post');
+        $request->setMethod('POST');
         $data = [
             'name1' => 'value1',
             'name2' => 'value2',
@@ -36,7 +36,7 @@ class UrlEncodedFormatterTest extends TestCase
     public function testFormatMethodGet()
     {
         $request = new Request();
-        $request->setMethod('get');
+        $request->setMethod('GET');
         $data = [
             'name1' => 'value1',
             'name2' => 'value2',

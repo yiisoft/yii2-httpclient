@@ -1,7 +1,7 @@
 Параметры запроса
 ===============
 
-Вы можете использовать [[\yii\httpclient\Request::options]] для настройки выполнения конкретного запроса.
+Вы можете использовать [[\yii\httpclient\Request::$options]] для настройки выполнения конкретного запроса.
 Поддерживаются следующие параметры (регистрозависимые):
  - timeout: integer, максимально разрешенное количество секунд на выполнение запроса.
  - proxy: string, URI, определяющий адрес прокси-сервера. (например tcp://proxy.example.com:5100).
@@ -24,7 +24,7 @@ use yii\httpclient\Client;
 $client = new Client();
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
@@ -34,7 +34,7 @@ $response = $client->createRequest()
     ->send();
 ```
 
-> Tip: Вы можете настроить параметры запроса по умолчанию через свойство [[\yii\httpclient\Client::requestConfig]]. 
+> Tip: Вы можете настроить параметры запроса по умолчанию через свойство [[\yii\httpclient\Client::$requestConfig]].
   Если, настроив параметры запроса по умолчанию, вам понадобится добавить дополнительные специфические параметры для 
   конкретного  запроса, то используйте метод [[\yii\httpclient\Request::addOptions()]], сохраняя при этом значения 
   параметров запроса, указанных по умолчанию ранее.
@@ -51,7 +51,7 @@ $client = new Client([
 ]);
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([

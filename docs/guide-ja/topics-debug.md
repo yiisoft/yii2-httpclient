@@ -1,10 +1,10 @@
-HTTP Client DebugPanel ‚ðŽg‚¤
+HTTP Client DebugPanel ï¿½ï¿½ï¿½gï¿½ï¿½
 =============================
 
-yii2 HTTP Client ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ÍAyii ‚ÌƒfƒoƒbƒOƒ‚ƒWƒ…[ƒ‹‚Æ“‡‰Â”\‚ÈƒfƒoƒbƒOƒpƒlƒ‹‚ð’ñ‹Ÿ‚µAŽÀs‚³‚ê‚½ HTTP ƒŠƒNƒGƒXƒg‚ð•\Ž¦‚µ‚Ü‚·B
+yii2 HTTP Client ï¿½Gï¿½Nï¿½Xï¿½eï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÍAyii ï¿½Ìƒfï¿½oï¿½bï¿½Oï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Æ“ï¿½ï¿½ï¿½ï¿½Â”\ï¿½Èƒfï¿½oï¿½bï¿½Oï¿½pï¿½lï¿½ï¿½ï¿½ï¿½ñ‹Ÿ‚ï¿½ï¿½Aï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ê‚½ HTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-ŽŸ‚ÌƒR[ƒh‚ð‚ ‚È‚½‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì\¬î•ñ‚É’Ç‰Á‚·‚é‚Æ DebugPanel ‚ª—LŒø‚É‚È‚è‚Ü‚·
-(Šù‚ÉƒfƒoƒbƒOƒ‚ƒWƒ…[ƒ‹‚ð—LŒø‚É‚µ‚Ä‚¢‚éê‡‚ÍAƒpƒlƒ‹‚Ì\¬î•ñ‚ð’Ç‰Á‚·‚é‚¾‚¯‚Å\•ª‚Å‚·)B
+ï¿½ï¿½ï¿½ÌƒRï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ÌƒAï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ì\ï¿½ï¿½ï¿½ï¿½ï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DebugPanel ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½É‚È‚ï¿½Ü‚ï¿½
+(ï¿½ï¿½ï¿½Éƒfï¿½oï¿½bï¿½Oï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡ï¿½ÍAï¿½pï¿½lï¿½ï¿½ï¿½Ì\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½é‚¾ï¿½ï¿½ï¿½Å\ï¿½ï¿½ï¿½Å‚ï¿½)ï¿½B
 
 ```php
     // ...
@@ -22,8 +22,8 @@ yii2 HTTP Client ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ÍAyii ‚ÌƒfƒoƒbƒOƒ‚ƒWƒ…[ƒ‹‚Æ“‡‰Â”\‚Èƒfƒoƒbƒ
     // ...
 ```
 
-‚±‚Ìƒpƒlƒ‹‚É‚æ‚Á‚ÄAƒƒO‚É‹L˜^‚³‚ê‚½ HTTP ƒŠƒNƒGƒXƒg‚ðŽÀs‚µ‚ÄA‚»‚ÌƒŒƒXƒ|ƒ“ƒX‚ðŠm”F‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
-ƒŒƒXƒ|ƒ“ƒX‚ÍƒeƒLƒXƒg•\Œ»‚Æ‚µ‚Ä•\Ž¦‚·‚é‚±‚Æ‚àA‚Ü‚½Aƒuƒ‰ƒEƒU‚É’¼Ú“n‚·‚±‚Æ‚ào—ˆ‚Ü‚·B
+ï¿½ï¿½ï¿½Ìƒpï¿½lï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½Oï¿½É‹Lï¿½^ï¿½ï¿½ï¿½ê‚½ HTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½Ìƒï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½ï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½Xï¿½Íƒeï¿½Lï¿½Xï¿½gï¿½\ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä•\ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Aï¿½Ü‚ï¿½ï¿½Aï¿½uï¿½ï¿½ï¿½Eï¿½Uï¿½É’ï¿½ï¿½Ú“nï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-> Note: ƒfƒoƒbƒOƒpƒlƒ‹‚É‚æ‚Á‚ÄŽÀs‚Å‚«‚é‚Ì‚ÍAƒƒO‚É‹L˜^‚³‚ê‚½’Êí‚Ì HTTP ƒŠƒNƒGƒXƒg‚¾‚¯‚Å‚·Bƒoƒbƒ`‘—M‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ÍŽÀs‚Å‚«‚Ü‚¹‚ñB
-  ‚Ü‚½AƒƒO‚É‹L˜^‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ÌƒRƒ“ƒeƒ“ƒg‚ÍA[[\yii\httpclient\Client::contentLoggingMaxSize]] ‚É]‚Á‚ÄØ‚è‹l‚ß‚ç‚ê‚Ä‚¢‚é‚©‚à’m‚ê‚¸A]‚Á‚ÄAŽÀs‚ÉŽ¸”s‚µ‚½‚èA—\Šú‚µ‚È‚¢Œ‹‰Ê‚ð¶‚¶‚½‚è‚·‚éê‡‚ª‚ ‚é‚±‚Æ‚ðS‚É—¯‚ß‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢B
+> Note: ï¿½fï¿½oï¿½bï¿½Oï¿½pï¿½lï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ÄŽï¿½ï¿½sï¿½Å‚ï¿½ï¿½ï¿½Ì‚ÍAï¿½ï¿½ï¿½Oï¿½É‹Lï¿½^ï¿½ï¿½ï¿½ê‚½ï¿½Êï¿½ï¿½ HTTP ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½Bï¿½oï¿½bï¿½`ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÍŽï¿½ï¿½sï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B
+  ï¿½Ü‚ï¿½ï¿½Aï¿½ï¿½ï¿½Oï¿½É‹Lï¿½^ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½ÌƒRï¿½ï¿½ï¿½eï¿½ï¿½ï¿½gï¿½ÍA[[\yii\httpclient\Client::$contentLoggingMaxSize]] ï¿½É]ï¿½ï¿½ï¿½ÄØ‚ï¿½lï¿½ß‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½ï¿½ï¿½mï¿½ê‚¸ï¿½Aï¿½]ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½sï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Ê‚ð¶‚ï¿½ï¿½ï¿½ï¿½è‚·ï¿½ï¿½ê‡ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½Sï¿½É—ï¿½ï¿½ß‚Ä‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B

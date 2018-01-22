@@ -44,7 +44,7 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
             $content = http_build_query((array)$data, '', '&', $this->encodingType);
         }
 
-        if (strcasecmp('get', $request->getMethod()) === 0) {
+        if (strcasecmp('GET', $request->getMethod()) === 0) {
             if (!empty($content)) {
                 $request->setFullUrl(null);
                 $url = $request->getFullUrl();

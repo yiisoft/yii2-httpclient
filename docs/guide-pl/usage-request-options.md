@@ -1,7 +1,7 @@
 Opcje żądania
 =============
 
-Do celu modyfikacji procedury wykonania poszczególnego żądania służy [[\yii\httpclient\Request::options]].
+Do celu modyfikacji procedury wykonania poszczególnego żądania służy [[\yii\httpclient\Request::$options]].
 Dostępne są poniższe opcje:
  - timeout: integer, maksymalna liczba sekund przez którą żądanie może się wykonywać.
  - proxy: string, URI określający adres serwera proxy (np. tcp://proxy.example.com:5100).
@@ -21,7 +21,7 @@ use yii\httpclient\Client;
 $client = new Client();
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
@@ -31,7 +31,7 @@ $response = $client->createRequest()
     ->send();
 ```
 
-> Tip: można ustawić domyślne opcje żądania za pomocą [[\yii\httpclient\Client::requestConfig]]. W takim wypadku, aby 
+> Tip: można ustawić domyślne opcje żądania za pomocą [[\yii\httpclient\Client::$requestConfig]]. W takim wypadku, aby
   dodać kolejne opcje zachowując parametry domyślnych należy skorzystać z metody [[\yii\httpclient\Request::addOptions()]].
 
 Można również przekazać opcje odnoszące się do konkretnej metody przesyłania danych. Zwykle dotyczy to przypadku 
@@ -46,7 +46,7 @@ $client = new Client([
 ]);
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([

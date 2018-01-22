@@ -17,7 +17,7 @@ use yii\httpclient\RequestEvent;
 $client = new Client();
 
 $request = $client->createRequest()
-    ->setMethod('get')
+    ->setMethod('GET')
     ->setUrl('http://api.domain.com')
     ->setData(['param' => 'value']);
 

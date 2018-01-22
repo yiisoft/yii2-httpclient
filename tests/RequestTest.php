@@ -27,7 +27,7 @@ class RequestTest extends TestCase
     {
         $request = new Request();
 
-        $method = 'put';
+        $method = 'PUT';
         $request->setMethod($method);
         $this->assertEquals($method, $request->getMethod());
     }
@@ -73,13 +73,13 @@ class RequestTest extends TestCase
         $request = new Request();
         $request->setOptions([
             'http' => [
-                'method' => 'get',
+                'method' => 'GET',
                 'ignore_errors' => true,
             ],
         ]);
         $request->addOptions([
             'http' => [
-                'method' => 'post',
+                'method' => 'POST',
             ],
             'ssl' => [
                 'verify_peer' => true,
@@ -87,7 +87,7 @@ class RequestTest extends TestCase
         ]);
         $expectedOptions = [
             'http' => [
-                'method' => 'post',
+                'method' => 'POST',
                 'ignore_errors' => true,
             ],
             'ssl' => [
@@ -125,7 +125,7 @@ class RequestTest extends TestCase
         $request = new Request([
             'client' => new Client(),
             'format' => Client::FORMAT_URLENCODED,
-            'method' => 'post',
+            'method' => 'POST',
         ]);
 
         $data = [
@@ -144,7 +144,7 @@ class RequestTest extends TestCase
         $request = new Request([
             'client' => new Client(),
             'format' => Client::FORMAT_URLENCODED,
-            'method' => 'post',
+            'method' => 'POST',
             'url' => 'http://domain.com/test',
         ]);
 
@@ -165,7 +165,7 @@ EOL;
         $request = new Request([
             'client' => new Client(),
             'format' => Client::FORMAT_URLENCODED,
-            'method' => 'post',
+            'method' => 'POST',
             'url' => 'http://domain.com/test',
         ]);
         $request->setData($data);
@@ -237,7 +237,7 @@ EOL;
         $request = new Request([
             'client' => new Client(),
             'format' => Client::FORMAT_URLENCODED,
-            'method' => 'post',
+            'method' => 'POST',
             'url' => 'http://domain.com/test',
         ]);
 
@@ -274,8 +274,7 @@ EOL;
             'client' => new Client([
                 'baseUrl' => '/api'
             ]),
-//            'format' => Client::FORMAT_URLENCODED,
-            'method' => 'post',
+            'method' => 'POST',
         ]);
 
         $request->setData(['data1' => 'data1=123']);
@@ -355,7 +354,7 @@ PART2
                 'baseUrl' => 'http://php.net',
             ]),
             'format' => Client::FORMAT_URLENCODED,
-            'method' => 'get',
+            'method' => 'GET',
             'url' => 'docs.php',
             'data' => [
                 'example' => '123',

@@ -11,7 +11,7 @@ Predefined transports are:
    This transport requires PHP 'curl' extension to be installed, but provides support for advanced features, like
    batch sending.
 
-You may configure the transport to be used by particular client using [[\yii\httpclient\Client::transport]]:
+You may configure the transport to be used by particular client using [[\yii\httpclient\Client::$transport]]:
 
 ```php
 use yii\httpclient\Client;

@@ -1,7 +1,7 @@
 Request 参数
 ===============
 
-使用 [[\yii\httpclient\Request::options]] 来调整特定的请求。
+使用 [[\yii\httpclient\Request::$options]] 来调整特定的请求。
 支持以下参数：
 
  - timeout: integer, 允许执行请求的最大超时时间（秒）。
@@ -21,7 +21,7 @@ use yii\httpclient\Client;
 $client = new Client();
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
@@ -31,7 +31,7 @@ $response = $client->createRequest()
     ->send();
 ```
 
-> 提示：可以通过 [[\yii\httpclient\Client::requestConfig]] 对默认请求进行设置。 可以使用 [[\yii\httpclient\Request::addOptions()]] 在添加其他设置的同时保留原始的其他参数。
+> 提示：可以通过 [[\yii\httpclient\Client::$requestConfig]] 对默认请求进行设置。 可以使用 [[\yii\httpclient\Request::addOptions()]] 在添加其他设置的同时保留原始的其他参数。
 
 在使用 [[\yii\httpclient\CurlTransport]] 时，可配置特殊的请求参数。 例如：指定 cUrl 请求的连接和接收数据的超时时间：
 
@@ -43,7 +43,7 @@ $client = new Client([
 ]);
 
 $response = $client->createRequest()
-    ->setMethod('post')
+    ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
     ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([

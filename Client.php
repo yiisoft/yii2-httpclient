@@ -278,7 +278,7 @@ class Client extends Component
      */
     public function get($url, $data = null, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('get', $url, $data, $headers, $options);
+        return $this->createRequestShortcut('GET', $url, $data, $headers, $options);
     }
 
     /**
@@ -291,7 +291,7 @@ class Client extends Component
      */
     public function post($url, $data = null, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('post', $url, $data, $headers, $options);
+        return $this->createRequestShortcut('POST', $url, $data, $headers, $options);
     }
 
     /**
@@ -304,7 +304,7 @@ class Client extends Component
      */
     public function put($url, $data = null, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('put', $url, $data, $headers, $options);
+        return $this->createRequestShortcut('PUT', $url, $data, $headers, $options);
     }
 
     /**
@@ -317,7 +317,7 @@ class Client extends Component
      */
     public function patch($url, $data = null, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('patch', $url, $data, $headers, $options);
+        return $this->createRequestShortcut('PATCH', $url, $data, $headers, $options);
     }
 
     /**
@@ -330,7 +330,7 @@ class Client extends Component
      */
     public function delete($url, $data = null, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('delete', $url, $data, $headers, $options);
+        return $this->createRequestShortcut('DELETE', $url, $data, $headers, $options);
     }
 
     /**
@@ -342,7 +342,7 @@ class Client extends Component
      */
     public function head($url, $headers = [], $options = [])
     {
-        return $this->createRequestShortcut('head', $url, null, $headers, $options);
+        return $this->createRequestShortcut('HEAD', $url, null, $headers, $options);
     }
 
     /**
@@ -353,7 +353,7 @@ class Client extends Component
      */
     public function options($url, $options = [])
     {
-        return $this->createRequestShortcut('options', $url, null, [], $options);
+        return $this->createRequestShortcut('OPTIONS', $url, null, [], $options);
     }
 
     /**

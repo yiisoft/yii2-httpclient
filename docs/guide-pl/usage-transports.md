@@ -10,7 +10,7 @@ Predefiniowane transporty to:
  - [[\yii\httpclient\CurlTransport]] - wysyła wiadomości HTTP za pomocą [Client URL Library (cURL)](http://php.net/manual/pl/book.curl.php)
    Ten transport wymaga zainstalowanego rozszerzenia PHP 'curl', ale zapewnia zaawansowane funkcjonalności jak wysyłanie serii żądań.
 
-Można skonfigurować transport używany przez poszczególnego klienta za pomocą [[\yii\httpclient\Client::transport]]:
+Można skonfigurować transport używany przez poszczególnego klienta za pomocą [[\yii\httpclient\Client::$transport]]:
 
 ```php
 use yii\httpclient\Client;
