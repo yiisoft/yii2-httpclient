@@ -27,7 +27,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "yii\\httpclient\\": "" }
+        "psr-4": { "yii\\httpclient\\": "src" }
     },
     "extra": {
         "branch-alias": {
