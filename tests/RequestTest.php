@@ -301,7 +301,13 @@ EOL;
         $request->prepare();
 
         $requestString = $request->toString();
-        $this->assertTrue((bool)preg_match('~Content-Type: multipart/form-data; boundary=([\w-]+)\n.*\1~s', $requestString, $matches));
+        $this->assertTrue(
+            (bool)preg_match(
+                '~Content-Type: multipart/form-data; boundary=([\w-]+)\n.*\1~s',
+                $requestString,
+                $matches
+            )
+        );
         $boundary = $matches[1];
         $parts = explode("--$boundary", $requestString);
         $this->assertCount(6, $parts);

@@ -21,11 +21,11 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
     /**
      * @var int URL encoding type.
      * Possible values are:
-     *  - PHP_QUERY_RFC1738 - encoding is performed per 'RFC 1738' and the 'application/x-www-form-urlencoded' media type,
-     *    which implies that spaces are encoded as plus (+) signs. This is most common encoding type used by most web
-     *    applications.
-     *  - PHP_QUERY_RFC3986 - then encoding is performed according to 'RFC 3986', and spaces will be percent encoded (%20).
-     *    This encoding type is required by OpenID and OAuth protocols.
+     *  - PHP_QUERY_RFC1738 - encoding is performed per 'RFC 1738' and the 'application/x-www-form-urlencoded'
+     *    media type, which implies that spaces are encoded as plus (+) signs. This is most common encoding type
+     *    used by most web applications.
+     *  - PHP_QUERY_RFC3986 - then encoding is performed according to 'RFC 3986', and spaces will be
+     *    percent encoded (%20). This encoding type is required by OpenID and OAuth protocols.
      */
     public $encodingType = PHP_QUERY_RFC1738;
     /**

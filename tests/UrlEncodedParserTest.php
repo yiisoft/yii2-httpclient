@@ -19,4 +19,4 @@ class UrlEncodedParserTest extends TestCase
         $parser = new UrlEncodedParser();
         $this->assertEquals($data, $parser->parse($document));
     }
-} 
+}

@@ -42,9 +42,12 @@ before_script:
       PHPUNIT_FLAGS="--coverage-clover=coverage.clover"
     fi
   - composer require --prefer-dist --no-interaction 'phpunit/phpunit:4.8.27|~5.7.21|^6.2'
+  - composer require --prefer-dist --no-interaction 'squizlabs/php_codesniffer'
 
 script:
-  - vendor/bin/phpunit --verbose $PHPUNIT_FLAGS
+  - |
+    vendor/bin/phpcs --standard=PSR2 --ignore=vendor . &&
+    vendor/bin/phpunit --verbose $PHPUNIT_FLAGS
 
 after_script:
   - |

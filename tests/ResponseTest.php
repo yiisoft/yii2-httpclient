@@ -169,7 +169,8 @@ class ResponseTest extends TestCase
         $this->assertEquals(true, $cookie->httpOnly);
 
         $response = new Response();
-        $response->setHeaders(['set-cookie' => 'COUNTRY=NA%2C195.177.208.1; expires=Thu, 23-Jul-2015 13:39:41 GMT; path=/; domain=.php.net']);
+        $response->setHeaders(['set-cookie' => 'COUNTRY=NA%2C195.177.208.1; expires=Thu, 23-Jul-2015 13:39:41 GMT;' .
+            ' path=/; domain=.php.net']);
         $cookie = $response->getCookies()->get('COUNTRY');
         $this->assertTrue($cookie instanceof Cookie);
 

@@ -38,23 +38,23 @@ class Message extends Component
     /**
      * @var HeaderCollection headers.
      */
-    private $_headers;
+    private $headers;
     /**
      * @var CookieCollection cookies.
      */
-    private $_cookies;
+    private $cookies;
     /**
      * @var string|null raw content
      */
-    private $_content;
+    private $content;
     /**
      * @var mixed content data
      */
-    private $_data;
+    private $data;
     /**
      * @var string content format name
      */
-    private $_format;
+    private $format;
 
 
     /**
@@ -64,7 +64,7 @@ class Message extends Component
      */
     public function setHeaders($headers)
     {
-        $this->_headers = $headers;
+        $this->headers = $headers;
         return $this;
     }
 
@@ -75,10 +75,10 @@ class Message extends Component
      */
     public function getHeaders()
     {
-        if (!is_object($this->_headers)) {
+        if (!is_object($this->headers)) {
             $headerCollection = new HeaderCollection();
-            if (is_array($this->_headers)) {
-                foreach ($this->_headers as $name => $value) {
+            if (is_array($this->headers)) {
+                foreach ($this->headers as $name => $value) {
                     if (is_int($name)) {
                         // parse raw header :
                         $rawHeader = $value;
@@ -97,9 +97,9 @@ class Message extends Component
                     }
                 }
             }
-            $this->_headers = $headerCollection;
+            $this->headers = $headerCollection;
         }
-        return $this->_headers;
+        return $this->headers;
     }
 
     /**
@@ -123,10 +123,10 @@ class Message extends Component
      */
     public function hasHeaders()
     {
-        if (is_object($this->_headers)) {
-            return $this->_headers->getCount() > 0;
+        if (is_object($this->headers)) {
+            return $this->headers->getCount() > 0;
         }
-        return !empty($this->_headers);
+        return !empty($this->headers);
     }
 
     /**
@@ -136,7 +136,7 @@ class Message extends Component
      */
     public function setCookies($cookies)
     {
-        $this->_cookies = $cookies;
+        $this->cookies = $cookies;
         return $this;
     }
 
@@ -147,19 +147,19 @@ class Message extends Component
      */
     public function getCookies()
     {
-        if (!is_object($this->_cookies)) {
+        if (!is_object($this->cookies)) {
             $cookieCollection = new CookieCollection();
-            if (is_array($this->_cookies)) {
-                foreach ($this->_cookies as $cookie) {
+            if (is_array($this->cookies)) {
+                foreach ($this->cookies as $cookie) {
                     if (!is_object($cookie)) {
                         $cookie = new Cookie($cookie);
                     }
                     $cookieCollection->add($cookie);
                 }
             }
-            $this->_cookies = $cookieCollection;
+            $this->cookies = $cookieCollection;
         }
-        return $this->_cookies;
+        return $this->cookies;
     }
 
     /**
@@ -186,10 +186,10 @@ class Message extends Component
      */
     public function hasCookies()
     {
-        if (is_object($this->_cookies)) {
-            return $this->_cookies->getCount() > 0;
+        if (is_object($this->cookies)) {
+            return $this->cookies->getCount() > 0;
         }
-        return !empty($this->_cookies);
+        return !empty($this->cookies);
     }
 
     /**
@@ -199,7 +199,7 @@ class Message extends Component
      */
     public function setContent($content)
     {
-        $this->_content = $content;
+        $this->content = $content;
         return $this;
     }
 
@@ -209,7 +209,7 @@ class Message extends Component
      */
     public function getContent()
     {
-        return $this->_content;
+        return $this->content;
     }
 
     /**
@@ -219,7 +219,7 @@ class Message extends Component
      */
     public function setData($data)
     {
-        $this->_data = $data;
+        $this->data = $data;
         return $this;
     }
 
@@ -229,7 +229,7 @@ class Message extends Component
      */
     public function getData()
     {
-        return $this->_data;
+        return $this->data;
     }
 
     /**
@@ -240,10 +240,10 @@ class Message extends Component
      */
     public function addData($data)
     {
-        if (empty($this->_data)) {
-            $this->_data = $data;
+        if (empty($this->data)) {
+            $this->data = $data;
         } else {
-            $this->_data = array_merge($this->_data, $data);
+            $this->data = array_merge($this->data, $data);
         }
         return $this;
     }
@@ -255,7 +255,7 @@ class Message extends Component
      */
     public function setFormat($format)
     {
-        $this->_format = $format;
+        $this->format = $format;
         return $this;
     }
 
@@ -265,10 +265,10 @@ class Message extends Component
      */
     public function getFormat()
     {
-        if ($this->_format === null) {
-            $this->_format = $this->defaultFormat();
+        if ($this->format === null) {
+            $this->format = $this->defaultFormat();
         }
-        return $this->_format;
+        return $this->format;
     }
 
     /**

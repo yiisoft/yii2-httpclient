@@ -48,7 +48,7 @@ echo GridView::widget([
             'attribute' => 'type',
             'value' => function ($data) {
                     return Html::encode($data['type']);
-                },
+            },
             'filter' => $panel->getTypes(),
         ],
         [
@@ -76,8 +76,17 @@ echo GridView::widget([
                     $query .= Html::tag(
                         'div',
                         implode('<br>', [
-                            Html::a('&gt;&gt; Execute', ['request-execute', 'seq' => $data['seq'], 'tag' => Yii::$app->controller->summary['tag']], ['target' => '_blank']),
-                            Html::a('&gt;&gt; Pass Through', ['request-execute', 'seq' => $data['seq'], 'tag' => Yii::$app->controller->summary['tag'], 'passthru' => true], ['target' => '_blank']),
+                            Html::a('&gt;&gt; Execute', [
+                                    'request-execute',
+                                    'seq' => $data['seq'],
+                                    'tag' => Yii::$app->controller->summary['tag']
+                                ], ['target' => '_blank']),
+                            Html::a('&gt;&gt; Pass Through', [
+                                    'request-execute',
+                                    'seq' => $data['seq'],
+                                    'tag' => Yii::$app->controller->summary['tag'],
+                                    'passthru' => true
+                                ], ['target' => '_blank']),
                         ]),
                         ['class' => 'db-explain']
                     );

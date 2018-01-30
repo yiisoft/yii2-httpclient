@@ -14,7 +14,7 @@ use Yii;
  *
  * Note: this transport requires PHP 'curl' extension installed.
  *
- * For this transport, you may setup request options as [cURL Options](http://php.net/manual/en/function.curl-setopt.php)
+ * For this transport you may setup request options as [cURL Options](http://php.net/manual/en/function.curl-setopt.php)
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -34,7 +34,13 @@ class CurlTransport extends Transport
         $responseHeaders = [];
         $this->setHeaderOutput($curlResource, $responseHeaders);
 
-        $token = $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent());
+        $token = $request->client->createRequestLogToken(
+            $request->getMethod(),
+            $curlOptions[CURLOPT_URL],
+            $curlOptions[CURLOPT_HTTPHEADER],
+            $request->getContent()
+        );
+
         Yii::info($token, __METHOD__);
         Yii::beginProfile($token, __METHOD__);
 
@@ -81,7 +87,12 @@ class CurlTransport extends Transport
             $curlOptions = $this->prepare($request);
             $curlResource = $this->initCurl($curlOptions);
 
-            $token .= $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent()) . "\n\n";
+            $token .= $request->client->createRequestLogToken(
+                $request->getMethod(),
+                $curlOptions[CURLOPT_URL],
+                $curlOptions[CURLOPT_HTTPHEADER],
+                $request->getContent()
+            ) . "\n\n";
 
             $responseHeaders[$key] = [];
             $this->setHeaderOutput($curlResource, $responseHeaders[$key]);
@@ -227,7 +238,7 @@ class CurlTransport extends Transport
      */
     private function setHeaderOutput($curlResource, array &$output)
     {
-        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function($resource, $headerString) use (&$output) {
+        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function ($resource, $headerString) use (&$output) {
             $header = trim($headerString, "\n\r");
             if (strlen($header) > 0) {
                 $output[] = $header;

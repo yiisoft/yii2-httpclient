@@ -27,7 +27,10 @@ class UrlEncodedFormatterTest extends TestCase
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertEquals(http_build_query($data), $request->getContent());
-        $this->assertEquals('application/x-www-form-urlencoded; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
+        $this->assertEquals(
+            'application/x-www-form-urlencoded; charset=UTF-8',
+            $request->getHeaders()->get('Content-Type')
+        );
     }
 
     /**

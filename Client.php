@@ -15,8 +15,7 @@ use yii\helpers\StringHelper;
 /**
  * Client provide high level interface for HTTP requests execution.
  *
- * @property Transport $transport HTTP message transport instance. Note that the type of this property differs
- * in getter and setter. See [[getTransport()]] and [[setTransport()]] for details.
+ * @property
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -82,9 +81,13 @@ class Client extends Component
     public $contentLoggingMaxSize = 2000;
 
     /**
-     * @var Transport|array|string|callable HTTP message transport.
+     * @var Transport|array|string|callable HTTP message transport instance.
+     * Note that the type of this property differs in getter and setter.
+     *
+     * @see getTransport()
+     * @see setTransport()
      */
-    private $_transport = 'yii\httpclient\StreamTransport';
+    private $transport = 'yii\httpclient\StreamTransport';
 
 
     /**
@@ -94,13 +97,13 @@ class Client extends Component
      * - a string: representing the class name of the object to be created
      * - a configuration array: the array must contain a `class` element which is treated as the object class,
      *   and the rest of the name-value pairs will be used to initialize the corresponding object properties
-     * - a PHP callable: either an anonymous function or an array representing a class method (`[$class or $object, $method]`).
-     *   The callable should return a new instance of the object being created.
+     * - a PHP callable: either an anonymous function or an array representing a class method
+     *   (`[$class or $object, $method]`). The callable should return a new instance of the object being created.
      * @param Transport|array|string $transport HTTP message transport
      */
     public function setTransport($transport)
     {
-        $this->_transport = $transport;
+        $this->transport = $transport;
     }
 
     /**
@@ -108,10 +111,10 @@ class Client extends Component
      */
     public function getTransport()
     {
-        if (!is_object($this->_transport)) {
-            $this->_transport = Yii::createObject($this->_transport);
+        if (!is_object($this->transport)) {
+            $this->transport = Yii::createObject($this->transport);
         }
-        return $this->_transport;
+        return $this->transport;
     }
 
     /**

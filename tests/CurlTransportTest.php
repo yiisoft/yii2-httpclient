@@ -23,7 +23,7 @@ class CurlTransportTest extends TransportTestCase
     public function testCustomSslCertificate()
     {
         $this->markTestSkipped('Unable to test custom SSL certificate since CURL is too strict checking it.');
-        //parent::testCustomSslCertificate();
+//        parent::testCustomSslCertificate();
     }
 
     public function testComposeCurlOptions()

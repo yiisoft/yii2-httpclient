@@ -35,19 +35,19 @@ class Request extends Message
     /**
      * @var string|array target URL.
      */
-    private $_url;
+    private $url;
     /**
      * @var string|null full target URL.
      */
-    private $_fullUrl;
+    private $fullUrl;
     /**
      * @var string request method.
      */
-    private $_method = 'GET';
+    private $method = 'GET';
     /**
      * @var array request options.
      */
-    private $_options = [];
+    private $options = [];
     /**
      * @var bool whether request object has been prepared for sending or not.
      * @see prepare()
@@ -63,8 +63,8 @@ class Request extends Message
      */
     public function setUrl($url)
     {
-        $this->_url = $url;
-        $this->_fullUrl = null;
+        $this->url = $url;
+        $this->fullUrl = null;
         return $this;
     }
 
@@ -74,7 +74,7 @@ class Request extends Message
      */
     public function getUrl()
     {
-        return $this->_url;
+        return $this->url;
     }
 
     /**
@@ -86,7 +86,7 @@ class Request extends Message
      */
     public function setFullUrl($fullUrl)
     {
-        $this->_fullUrl = $fullUrl;
+        $this->fullUrl = $fullUrl;
     }
 
     /**
@@ -95,10 +95,10 @@ class Request extends Message
      */
     public function getFullUrl()
     {
-        if ($this->_fullUrl === null) {
-            $this->_fullUrl = $this->createFullUrl($this->getUrl());
+        if ($this->fullUrl === null) {
+            $this->fullUrl = $this->createFullUrl($this->getUrl());
         }
-        return $this->_fullUrl;
+        return $this->fullUrl;
     }
 
     /**
@@ -107,7 +107,7 @@ class Request extends Message
      */
     public function setMethod($method)
     {
-        $this->_method = $method;
+        $this->method = $method;
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Request extends Message
      */
     public function getMethod()
     {
-        return $this->_method;
+        return $this->method;
     }
 
     /**
@@ -124,7 +124,8 @@ class Request extends Message
      * - timeout: int, the maximum number of seconds to allow request to be executed.
      * - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
      * - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
-     * - followLocation: bool, whether to follow any "Location: " header that the server sends as part of the HTTP header.
+     * - followLocation: bool, whether to follow any "Location: " header that the server sends
+     *   as part of the HTTP header.
      * - maxRedirects: int, the max number of redirects to follow.
      * - protocolVersion: float|string, HTTP protocol version.
      * - sslVerifyPeer: bool, whether verification of the peer's certificate should be performed.
@@ -132,15 +133,15 @@ class Request extends Message
      *   the 'sslVerifyPeer' option to authenticate the identity of the remote peer.
      * - sslCapath: string, a directory that holds multiple CA certificates.
      *
-     * You may set options using keys, which are specific to particular transport, like `[CURLOPT_VERBOSE => true]` in case
-     * there is a necessity for it.
+     * You may set options using keys, which are specific to particular transport,
+     * like `[CURLOPT_VERBOSE => true]` in case there is a necessity for it.
      *
      * @param array $options request options.
      * @return $this self reference.
      */
     public function setOptions(array $options)
     {
-        $this->_options = $options;
+        $this->options = $options;
         return $this;
     }
 
@@ -149,7 +150,7 @@ class Request extends Message
      */
     public function getOptions()
     {
-        return $this->_options;
+        return $this->options;
     }
 
     /**
@@ -163,10 +164,10 @@ class Request extends Message
         // `array_merge()` will produce invalid result for cURL options,
         // while `ArrayHelper::merge()` is unable to override cURL options
         foreach ($options as $key => $value) {
-            if (is_array($value) && isset($this->_options[$key])) {
-                $value = ArrayHelper::merge($this->_options[$key], $value);
+            if (is_array($value) && isset($this->options[$key])) {
+                $value = ArrayHelper::merge($this->options[$key], $value);
             }
-            $this->_options[$key] = $value;
+            $this->options[$key] = $value;
         }
         return $this;
     }
