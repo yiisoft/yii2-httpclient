@@ -29,15 +29,15 @@ class HttpClientPanel extends Panel
     /**
      * @var array current HTTP request timings
      */
-    private $_timings;
+    private $timings;
     /**
      * @var array HTTP requests info extracted to array as models, to use with data provider.
      */
-    private $_models;
+    private $models;
     /**
      * @var \yii\httpclient\Client|array|string
      */
-    private $_httpClient = 'yii\httpclient\Client';
+    private $httpClient = 'yii\httpclient\Client';
 
 
     /**
@@ -45,7 +45,7 @@ class HttpClientPanel extends Panel
      */
     public function setHttpClient($httpClient)
     {
-        $this->_httpClient = $httpClient;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -53,10 +53,10 @@ class HttpClientPanel extends Panel
      */
     public function getHttpClient()
     {
-        if (!is_object($this->_httpClient)) {
-            $this->_httpClient = Instance::ensure($this->_httpClient, Client::className());
+        if (!is_object($this->httpClient)) {
+            $this->httpClient = Instance::ensure($this->httpClient, Client::className());
         }
-        return $this->_httpClient;
+        return $this->httpClient;
     }
 
     /**
@@ -121,11 +121,13 @@ class HttpClientPanel extends Panel
      */
     public function calculateTimings()
     {
-        if ($this->_timings === null) {
-            $this->_timings = Yii::getLogger()->calculateTimings(isset($this->data['messages']) ? $this->data['messages'] : []);
+        if ($this->timings === null) {
+            $this->timings = Yii::getLogger()->calculateTimings(
+                isset($this->data['messages']) ? $this->data['messages'] : []
+            );
         }
 
-        return $this->_timings;
+        return $this->timings;
     }
 
     /**
@@ -149,12 +151,12 @@ class HttpClientPanel extends Panel
      */
     protected function getModels()
     {
-        if ($this->_models === null) {
-            $this->_models = [];
+        if ($this->models === null) {
+            $this->models = [];
             $timings = $this->calculateTimings();
 
             foreach ($timings as $seq => $dbTiming) {
-                $this->_models[] = [
+                $this->models[] = [
                     'method' => $this->getRequestMethod($dbTiming['info']),
                     'type' => $this->getRequestType($dbTiming['category']),
                     'request' => $dbTiming['info'],
@@ -166,7 +168,7 @@ class HttpClientPanel extends Panel
             }
         }
 
-        return $this->_models;
+        return $this->models;
     }
 
     /**
@@ -219,7 +221,7 @@ class HttpClientPanel extends Panel
     public function getMethods()
     {
         return array_reduce(
-            $this->_models,
+            $this->models,
             function ($result, $item) {
                 $result[$item['method']] = $item['method'];
                 return $result;

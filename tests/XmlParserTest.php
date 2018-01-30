@@ -69,7 +69,8 @@ XML;
         $parser = new XmlParser();
         $data = $parser->parse($response);
         $this->assertEquals('test', $data['enname']);
-        $this->assertNotEquals('тест', $data['rusname']); // UTF characters should be broken during parsing by 'windows-1251'
+        // UTF characters should be broken during parsing by 'windows-1251'
+        $this->assertNotEquals('тест', $data['rusname']);
     }
 
     /**

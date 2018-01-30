@@ -34,4 +34,4 @@ class JsonFormatterTest extends TestCase
         $formatter->format($request);
         $this->assertNull($request->getContent());
     }
-} 
+}

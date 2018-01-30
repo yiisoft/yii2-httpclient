@@ -149,12 +149,12 @@ abstract class TransportTestCase extends TestCase
             ->setUrl('docs.php');
 
         $beforeSendEvent = null;
-        $request->on(Request::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendEvent) {
+        $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) use (&$beforeSendEvent) {
             $beforeSendEvent = $event;
         });
 
         $afterSendEvent = null;
-        $request->on(Request::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendEvent) {
+        $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) use (&$afterSendEvent) {
             $afterSendEvent = $event;
         });
 
@@ -182,12 +182,12 @@ abstract class TransportTestCase extends TestCase
             ->setUrl('docs.php');
 
         $beforeSendEvent = null;
-        $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendEvent) {
+        $client->on(Client::EVENT_BEFORE_SEND, function (RequestEvent $event) use (&$beforeSendEvent) {
             $beforeSendEvent = $event;
         });
 
         $afterSendEvent = null;
-        $client->on(Client::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendEvent) {
+        $client->on(Client::EVENT_AFTER_SEND, function (RequestEvent $event) use (&$afterSendEvent) {
             $afterSendEvent = $event;
         });
 
@@ -212,12 +212,12 @@ abstract class TransportTestCase extends TestCase
         $client->baseUrl = 'http://php.net';
 
         $beforeSendUrls = [];
-        $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendUrls) {
+        $client->on(Client::EVENT_BEFORE_SEND, function (RequestEvent $event) use (&$beforeSendUrls) {
             $beforeSendUrls[] = $event->request->getFullUrl();
         });
 
         $afterSendUrls = [];
-        $client->on(Client::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendUrls) {
+        $client->on(Client::EVENT_AFTER_SEND, function (RequestEvent $event) use (&$afterSendUrls) {
             $afterSendUrls[] = $event->request->getFullUrl();
         });
 

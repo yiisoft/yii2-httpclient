@@ -11,4 +11,11 @@
 				<directory>./tests</directory>
 			</testsuite>
 		</testsuites>
+		<php>
+			<const name="YII_ENABLE_ERROR_HANDLER" value="false" />
+			<const name="YII_DEBUG" value="true" />
+			<ini name="error_reporting" value="E_ALL" />
+			<ini name="display_errors" value="On" />
+			<ini name="display_startup_errors" value="On" />
+		</php>
 </phpunit>

@@ -193,4 +193,4 @@ class ClientTest extends TestCase
         $this->assertEquals($responseFormat, $response->getFormat());
         $this->assertEquals($responseContent, $response->getContent());
     }
-} 
+}
