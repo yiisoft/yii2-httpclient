@@ -303,7 +303,7 @@ class Request extends Message
             if (empty($url)) {
                 $url = $this->client->baseUrl;
             } elseif (!preg_match('/^https?:\\/\\//i', $url)) {
-                $url = $this->client->baseUrl . '/' . $url;
+                $url = rtrim($this->client->baseUrl, '/') . '/' . ltrim($url, '/');
             }
         }
 

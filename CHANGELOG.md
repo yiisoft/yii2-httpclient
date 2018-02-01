@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 -----------------------
 
 - Bug #129: Fixed `Message::getHeaders()` unable to parse HTTP status code in case reason phrase contains `:` character (lan143)
+- Enh #142: `Request::createFullUrl()` now prevents appearance of multiple slashes while combining `Client::$baseUrl` and `Request::$url` (zhangdi)
 
 
 2.0.5 November 03, 2017
