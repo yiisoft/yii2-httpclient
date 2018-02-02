@@ -208,6 +208,21 @@ EOL;
                 ['param1' => 'name1'],
                 'http://some-domain.com?base-param=base&param1=name1',
             ],
+            [
+                'http://some-domain.com/',
+                '/test/url',
+                'http://some-domain.com/test/url'
+            ],
+            [
+                'http://some-domain.com/',
+                'test/url',
+                'http://some-domain.com/test/url'
+            ],
+            [
+                'http://some-domain.com',
+                '/test/url',
+                'http://some-domain.com/test/url'
+            ],
         ];
     }
 
