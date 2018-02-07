@@ -73,7 +73,7 @@ class RequestExecuteAction extends Action
     protected function createRequestFromLog($requestLog)
     {
         if (strpos($requestLog, "\n\n")) {
-            list($head, $content) = explode("\n\n", $requestLog, 2);
+            [$head, $content] = explode("\n\n", $requestLog, 2);
         } else {
             $head = $requestLog;
             $content = null;
@@ -81,7 +81,7 @@ class RequestExecuteAction extends Action
 
         $headers = explode("\n", $head);
         $main = array_shift($headers);
-        list($method, $url) = explode(' ', $main, 2);
+        [$method, $url] = explode(' ', $main, 2);
 
         return $this->panel->getHttpClient()->createRequest()
             ->setMethod($method)

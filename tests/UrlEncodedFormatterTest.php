@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use yii\httpclient\UrlEncodedFormatter;
 use yii\httpclient\Request;

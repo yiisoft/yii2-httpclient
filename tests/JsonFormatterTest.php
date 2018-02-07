@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use yii\helpers\Json;
 use yii\httpclient\JsonFormatter;

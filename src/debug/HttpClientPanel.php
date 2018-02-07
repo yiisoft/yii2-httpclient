@@ -54,7 +54,7 @@ class HttpClientPanel extends Panel
     public function getHttpClient()
     {
         if (!is_object($this->_httpClient)) {
-            $this->_httpClient = Instance::ensure($this->_httpClient, Client::className());
+            $this->_httpClient = Instance::ensure($this->_httpClient, Client::class);
         }
         return $this->_httpClient;
     }
@@ -65,7 +65,7 @@ class HttpClientPanel extends Panel
     public function init()
     {
         $this->actions['request-execute'] = [
-            'class' => 'yii\httpclient\debug\RequestExecuteAction',
+            'class' => \yii\httpclient\debug\RequestExecuteAction::class,
             'panel' => $this,
         ];
     }

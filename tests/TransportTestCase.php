@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use Yii;
 use yii\helpers\FileHelper;

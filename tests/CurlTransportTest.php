@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use yii\httpclient\CurlTransport;
 
@@ -14,7 +14,7 @@ class CurlTransportTest extends TransportTestCase
      */
     protected function transport()
     {
-        return CurlTransport::className();
+        return CurlTransport::class;
     }
 
     /**

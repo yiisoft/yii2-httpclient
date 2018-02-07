@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use yii\httpclient\StreamTransport;
 
@@ -14,7 +14,7 @@ class StreamTransportTest extends TransportTestCase
      */
     protected function transport()
     {
-        return StreamTransport::className();
+        return StreamTransport::class;
     }
 
     /**

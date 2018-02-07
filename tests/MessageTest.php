@@ -1,11 +1,11 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use yii\httpclient\Message;
-use yii\web\Cookie;
-use yii\web\CookieCollection;
-use yii\web\HeaderCollection;
+use yii\http\Cookie;
+use yii\http\CookieCollection;
+use yii\http\HeaderCollection;
 
 class MessageTest extends TestCase
 {

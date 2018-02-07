@@ -7,8 +7,8 @@
 
 namespace yii\httpclient;
 
-use yii\web\Cookie;
-use yii\web\HeaderCollection;
+use yii\http\Cookie;
+use yii\http\HeaderCollection;
 
 /**
  * Response represents HTTP request response.
@@ -149,7 +149,7 @@ class Response extends Message
             if (strpos($pair, '=') === false) {
                 $params[$this->normalizeCookieParamName($pair)] = true;
             } else {
-                list($name, $value) = explode('=', $pair, 2);
+                [$name, $value] = explode('=', $pair, 2);
                 if ($number === 0) {
                     $params['name'] = $name;
                     $params['value'] = urldecode($value);

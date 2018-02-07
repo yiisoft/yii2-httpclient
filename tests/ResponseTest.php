@@ -1,10 +1,10 @@
 <?php
 
-namespace yiiunit\extensions\httpclient;
+namespace yiiunit\httpclient;
 
 use yii\httpclient\Client;
 use yii\httpclient\Response;
-use yii\web\Cookie;
+use yii\http\Cookie;
 
 class ResponseTest extends TestCase
 {

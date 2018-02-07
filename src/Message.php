@@ -9,9 +9,9 @@ namespace yii\httpclient;
 
 use yii\base\Component;
 use yii\base\ErrorHandler;
-use yii\web\Cookie;
-use yii\web\CookieCollection;
-use yii\web\HeaderCollection;
+use yii\http\Cookie;
+use yii\http\CookieCollection;
+use yii\http\HeaderCollection;
 use Yii;
 
 /**
