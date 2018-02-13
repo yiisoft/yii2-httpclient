@@ -1,7 +1,7 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.6 under development
+2.0.6 February 13, 2018
 -----------------------
 
 - Bug #129: Fixed `Message::getHeaders()` unable to parse HTTP status code in case reason phrase contains `:` character (lan143)
