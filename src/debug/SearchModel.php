@@ -11,6 +11,12 @@ use yii\data\ArrayDataProvider;
 use yii\debug\components\search\Filter;
 use yii\debug\models\search\Base;
 
+/**
+ * Log search model.
+ *
+ * @author Paul Klimov <klimov.paul@gmail.com>
+ * @since 2.0
+ */
 class SearchModel extends Base
 {
     /**
