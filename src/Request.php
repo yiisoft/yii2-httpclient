@@ -7,8 +7,12 @@
 
 namespace yii\httpclient;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\UriInterface;
+use yii\di\Instance;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
+use yii\http\Uri;
 
 /**
  * Request represents HTTP request.
@@ -17,11 +21,12 @@ use yii\helpers\FileHelper;
  * @property string $method Request method.
  * @property array $options Request options. This property is read-only.
  * @property string|array $url Target URL or URL parameters.
+ * @property UriInterface $uri the URI instance.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class Request extends Message
+class Request extends Message implements RequestInterface
 {
     /**
      * @event RequestEvent an event raised right before sending request.
@@ -53,7 +58,87 @@ class Request extends Message
      * @see prepare()
      */
     private $isPrepared = false;
+    /**
+     * @var UriInterface URI instance.
+     * @since 2.1.0
+     */
+    private $_uri;
 
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function getRequestTarget()
+    {
+        return $this->getFullUrl();
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function withRequestTarget($requestTarget)
+    {
+        if ($requestTarget === $this->getRequestTarget()) {
+            return $this;
+        }
+
+        $newInstance = clone $this;
+        $newInstance->setFullUrl($requestTarget);
+        return $newInstance;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function getUri()
+    {
+        if (!$this->_uri instanceof UriInterface) {
+            if ($this->_uri === null) {
+                $uri = new Uri(['string' => $this->getFullUrl()]);
+            } elseif ($this->_uri instanceof \Closure) {
+                $uri = call_user_func($this->_uri, $this);
+            } else {
+                $uri = $this->_uri;
+            }
+
+            $this->_uri = Instance::ensure($uri, UriInterface::class);
+        }
+
+        return $this->_uri;
+    }
+
+    /**
+     * Specifies the URI instance.
+     * @param UriInterface|\Closure|array $uri URI instance or its DI compatible configuration.
+     * @since 2.1.0
+     */
+    public function setUri($uri)
+    {
+        $this->_uri = $uri;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function withUri(UriInterface $uri, $preserveHost = false)
+    {
+        if ($this->getUri() === $uri) {
+            return $this;
+        }
+
+        $newInstance = clone $this;
+
+        $newInstance->setUri($uri);
+        if (!$preserveHost) {
+            return $newInstance->withHeader('host', $uri->getHost());
+        }
+
+        return $newInstance;
+    }
 
     /**
      * Sets target URL.
@@ -112,11 +197,26 @@ class Request extends Message
     }
 
     /**
-     * @return string request method
+     * {@inheritdoc}
      */
     public function getMethod()
     {
         return $this->_method;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function withMethod($method)
+    {
+        if ($this->getMethod() === $method) {
+            return $this;
+        }
+
+        $newInstance = clone $this;
+        $newInstance->setMethod($method);
+        return $newInstance;
     }
 
     /**
@@ -271,7 +371,7 @@ class Request extends Message
     public function prepare()
     {
         $content = $this->getContent();
-        if ($content === null) {
+        if (empty($content)) {
             $this->getFormatter()->format($this);
         } elseif (is_array($content)) {
             $this->prepareMultiPartContent($content);
