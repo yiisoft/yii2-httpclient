@@ -7,6 +7,7 @@
 
 namespace yii\httpclient;
 
+use Psr\Http\Message\ResponseInterface;
 use yii\http\Cookie;
 use yii\http\HeaderCollection;
 
@@ -14,13 +15,26 @@ use yii\http\HeaderCollection;
  * Response represents HTTP request response.
  *
  * @property bool $isOk Whether response is OK. This property is read-only.
- * @property string $statusCode Status code. This property is read-only.
+ * @property int $statusCode Status code. This property is read-only.
+ * @property string $reasonPhrase the reason phrase to use with the current status code. This property is read-only.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class Response extends Message
+class Response extends Message implements ResponseInterface
 {
+    /**
+     * @var int status code.
+     * @since 2.1.0
+     */
+    private $_statusCode;
+    /**
+     * @var string the reason phrase to use with the current status code.
+     * @since 2.1.0
+     */
+    private $_reasonPhrase;
+
+
     /**
      * {@inheritdoc}
      */
@@ -43,8 +57,8 @@ class Response extends Message
     public function getCookies()
     {
         $cookieCollection = parent::getCookies();
-        if ($cookieCollection->getCount() === 0 && $this->getHeaders()->has('set-cookie')) {
-            $cookieStrings = $this->getHeaders()->get('set-cookie', [], false);
+        if ($cookieCollection->getCount() === 0 && $this->hasHeader('set-cookie')) {
+            $cookieStrings = $this->getHeader('set-cookie');
             foreach ($cookieStrings as $cookieString) {
                 $cookieCollection->add($this->parseCookie($cookieString));
             }
@@ -53,19 +67,65 @@ class Response extends Message
     }
 
     /**
-     * Returns status code.
-     * @throws Exception on failure.
-     * @return string status code.
+     * {@inheritdoc}
      */
     public function getStatusCode()
     {
-        $headers = $this->getHeaders();
-        if ($headers->has('http-code')) {
+        if ($this->_statusCode === null) {
+            if (!$this->hasHeader('http-code')) {
+                throw new Exception('Unable to get status code: referred header information is missing.');
+            }
             // take into account possible 'follow location'
-            $statusCodeHeaders = $headers->get('http-code', null, false);
-            return empty($statusCodeHeaders) ? null : end($statusCodeHeaders);
+            $statusCodeHeaders = $this->getHeader('http-code');
+            $this->_statusCode = empty($statusCodeHeaders) ? null : (int)end($statusCodeHeaders);
         }
-        throw new Exception('Unable to get status code: referred header information is missing.');
+
+        return $this->_statusCode;
+    }
+
+    /**
+     * Specifies status code and, optionally, reason phrase.
+     * @param int $code the 3-digit integer result code to set.
+     * @param string $reasonPhrase the reason phrase to use with the provided status code.
+     * @since 2.1.0
+     */
+    public function setStatus($code, $reasonPhrase = '')
+    {
+        $this->_statusCode = (int)$code;
+        $this->_reasonPhrase = $reasonPhrase;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function withStatus($code, $reasonPhrase = '')
+    {
+        if ($this->getStatusCode() === $code && $this->getReasonPhrase() === $reasonPhrase) {
+            return $this;
+        }
+
+        $newInstance = clone $this;
+        $newInstance->setStatus($code, $reasonPhrase);
+        return $newInstance;
+    }
+
+    /**
+     * {@inheritdoc}
+     * @since 2.1.0
+     */
+    public function getReasonPhrase()
+    {
+        if (empty($this->_reasonPhrase)) {
+            $statusCode = $this->getStatusCode();
+            if (isset(\yii\web\Response::$httpStatuses[$statusCode])) {
+                $this->_reasonPhrase = \yii\web\Response::$httpStatuses[$statusCode];
+            } else {
+                $this->_reasonPhrase = 'Unknown';
+            }
+        }
+
+        return $this->_reasonPhrase;
     }
 
     /**
@@ -83,7 +143,7 @@ class Response extends Message
      */
     protected function defaultFormat()
     {
-        $format = $this->detectFormatByHeaders($this->getHeaders());
+        $format = $this->detectFormatByHeaders($this->getHeaderCollection());
         if ($format === null) {
             $format = $this->detectFormatByContent($this->getContent());
         }

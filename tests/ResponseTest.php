@@ -111,20 +111,47 @@ class ResponseTest extends TestCase
         $this->assertEquals(['name' => 'value'], $response->getData());
     }
 
+    public function testSetupStatus()
+    {
+        $response = new Response();
+
+        $response->setStatus(123, 'Test status');
+
+        $this->assertSame(123, $response->getStatusCode());
+        $this->assertSame('Test status', $response->getReasonPhrase());
+    }
+
+    /**
+     * @depends testSetupStatus
+     */
+    public function testDetectReasonPhrase()
+    {
+        $response = new Response();
+
+        $response->setStatus(200);
+        $this->assertSame('OK', $response->getReasonPhrase());
+
+        $response->setStatus(404);
+        $this->assertSame('Not Found', $response->getReasonPhrase());
+    }
+
+    /**
+     * @depends testSetupStatus
+     */
     public function testGetStatusCode()
     {
         $response = new Response();
 
         $statusCode = 123;
         $response->setHeaders(['http-code' => $statusCode]);
-        $this->assertEquals($statusCode, $response->getStatusCode());
+        $this->assertSame($statusCode, $response->getStatusCode());
 
         $statusCode = 123;
         $response->setHeaders(['http-code' => [
             $statusCode + 10,
             $statusCode,
         ]]);
-        $this->assertEquals($statusCode, $response->getStatusCode());
+        $this->assertSame($statusCode, $response->getStatusCode());
     }
 
     /**
