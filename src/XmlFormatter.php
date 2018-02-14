@@ -63,7 +63,7 @@ class XmlFormatter extends BaseObject implements FormatterInterface
         if (stripos($contentType, 'charset') === false) {
             $contentType .= '; charset=' . $charset;
         }
-        $request->getHeaders()->set('Content-Type', $contentType);
+        $request->setHeader('Content-Type', $contentType);
 
         $data = $request->getData();
         if ($data !== null) {

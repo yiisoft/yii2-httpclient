@@ -64,7 +64,7 @@ XML;
 </main>
 XML;
         $response->setContent($xml);
-        $response->addHeaders(['content-type' => 'text/xml; charset=windows-1251']);
+        $response->addHeader('content-type', 'text/xml; charset=windows-1251');
 
         $parser = new XmlParser();
         $data = $parser->parse($response);

@@ -22,7 +22,7 @@ class XmlParser extends BaseObject implements ParserInterface
      */
     public function parse(Response $response)
     {
-        $contentType = $response->getHeaders()->get('content-type', '');
+        $contentType = $response->getHeaderLine('content-type');
         if (preg_match('/charset=(.*)/i', $contentType, $matches)) {
             $encoding = $matches[1];
         } else {
@@ -30,7 +30,7 @@ class XmlParser extends BaseObject implements ParserInterface
         }
 
         $dom = new \DOMDocument('1.0', $encoding);
-        $dom->loadXML($response->getContent(), LIBXML_NOCDATA);
+        $dom->loadXML($response->getBody()->__toString(), LIBXML_NOCDATA);
         return $this->convertXmlToArray(simplexml_import_dom($dom->documentElement));
     }
 

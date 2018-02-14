@@ -23,7 +23,7 @@ class UrlEncodedParser extends BaseObject implements ParserInterface
     public function parse(Response $response)
     {
         $data = [];
-        parse_str($response->getContent(), $data);
+        parse_str($response->getBody()->__toString(), $data);
         return $data;
     }
 }

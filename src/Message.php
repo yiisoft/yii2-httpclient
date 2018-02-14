@@ -152,6 +152,11 @@ class Message extends Component implements MessageInterface
      */
     public function setContent($content)
     {
+        if ($content === null) {
+            $this->setBody(null);
+            return $this;
+        }
+
         $body = new MemoryStream();
         $body->write($content);
         $this->setBody($body);
@@ -164,6 +169,10 @@ class Message extends Component implements MessageInterface
      */
     public function getContent()
     {
+        if ($this->_body === null) {
+            return null;
+        }
+
         return $this->getBody()->__toString();
     }
 

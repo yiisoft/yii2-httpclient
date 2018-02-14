@@ -32,7 +32,7 @@ class XmlFormatterTest extends TestCase
 <request><name1>value1</name1><name2>value2</name2></request>
 XML;
         $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
-        $this->assertEquals('application/xml; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
+        $this->assertEquals('application/xml; charset=UTF-8', $request->getHeaderLine('Content-Type'));
     }
 
     /**
@@ -57,7 +57,7 @@ XML;
 <?xml version="1.0" encoding="UTF-8"?>
 <request><group><item><name1>value1</name1><name2>value2</name2></item></group></request>
 XML;
-        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+        $this->assertEqualsWithoutLE($expectedContent, $request->getBody()->__toString());
     }
 
     /**
@@ -82,7 +82,7 @@ XML;
 <?xml version="1.0" encoding="UTF-8"?>
 <request><stdClass><name>name1</name></stdClass></request>
 XML;
-        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+        $this->assertEqualsWithoutLE($expectedContent, $request->getBody()->__toString());
 
         $formatter->useTraversableAsArray = false;
         $formatter->format($request);
@@ -90,7 +90,7 @@ XML;
 <?xml version="1.0" encoding="UTF-8"?>
 <request><SplStack><stdClass><name>name1</name></stdClass></SplStack></request>
 XML;
-        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+        $this->assertEqualsWithoutLE($expectedContent, $request->getBody()->__toString());
     }
 
     /**
@@ -110,7 +110,7 @@ XML;
 <?xml version="1.0" encoding="UTF-8"?>
 <root/>
 XML;
-        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+        $this->assertEqualsWithoutLE($expectedContent, $request->getBody()->__toString());
     }
 
     /**
@@ -129,7 +129,7 @@ XML;
 
         $formatter = new XmlFormatter();
         $formatter->format($request);
-        $this->assertEqualsWithoutLE($xml, $request->getContent());
+        $this->assertEqualsWithoutLE($xml, $request->getBody()->__toString());
     }
 
     /**

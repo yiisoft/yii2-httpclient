@@ -23,6 +23,6 @@ class JsonParser extends BaseObject implements ParserInterface
      */
     public function parse(Response $response)
     {
-        return Json::decode($response->getContent());
+        return Json::decode($response->getBody()->__toString());
     }
 }

@@ -26,8 +26,8 @@ class UrlEncodedFormatterTest extends TestCase
 
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
-        $this->assertEquals(http_build_query($data), $request->getContent());
-        $this->assertEquals('application/x-www-form-urlencoded; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
+        $this->assertEquals(http_build_query($data), $request->getBody()->__toString());
+        $this->assertEquals('application/x-www-form-urlencoded; charset=UTF-8', $request->getHeaderLine('Content-Type'));
     }
 
     /**
@@ -47,7 +47,7 @@ class UrlEncodedFormatterTest extends TestCase
         $formatter->format($request);
         $this->assertEmpty($request->getContent());
         $this->assertContains(http_build_query($data), $request->getFullUrl());
-        $this->assertFalse($request->getHeaders()->has('Content-Type'));
+        $this->assertFalse($request->hasHeader('Content-Type'));
     }
 
     /**
