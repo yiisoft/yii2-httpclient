@@ -7,12 +7,14 @@
 
 namespace yii\httpclient;
 
+use Psr\Http\Message\MessageInterface;
 use yii\base\Component;
 use yii\base\ErrorHandler;
 use yii\http\Cookie;
 use yii\http\CookieCollection;
-use yii\http\HeaderCollection;
 use Yii;
+use yii\http\MemoryStream;
+use yii\http\MessageTrait;
 
 /**
  * Message represents a base HTTP message.
@@ -22,31 +24,23 @@ use Yii;
  * differs in getter and setter. See [[getCookies()]] and [[setCookies()]] for details.
  * @property mixed $data Content data fields.
  * @property string $format Body format name.
- * @property HeaderCollection $headers The header collection. Note that the type of this property differs in
- * getter and setter. See [[getHeaders()]] and [[setHeaders()]] for details.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
  */
-class Message extends Component
+class Message extends Component implements MessageInterface
 {
+    use MessageTrait;
+
     /**
      * @var Client owner client instance.
      */
     public $client;
 
     /**
-     * @var HeaderCollection headers.
-     */
-    private $_headers;
-    /**
      * @var CookieCollection cookies.
      */
     private $_cookies;
-    /**
-     * @var string|null raw content
-     */
-    private $_content;
     /**
      * @var mixed content data
      */
@@ -58,75 +52,34 @@ class Message extends Component
 
 
     /**
-     * Sets the HTTP headers associated with HTTP message.
-     * @param array|HeaderCollection $headers headers collection or headers list in format: [headerName => headerValue]
-     * @return $this self reference.
+     * Sets up message's headers at batch, removing any previously existing ones.
+     * @param string[][] $headers an associative array of the message's headers.
      */
     public function setHeaders($headers)
     {
-        $this->_headers = $headers;
-        return $this;
-    }
+        // @todo move to other place, restoring `MessageTrait::setHeaders()`
 
-    /**
-     * Returns the header collection.
-     * The header collection contains the HTTP headers associated with HTTP message.
-     * @return HeaderCollection the header collection
-     */
-    public function getHeaders()
-    {
-        if (!is_object($this->_headers)) {
-            $headerCollection = new HeaderCollection();
-            if (is_array($this->_headers)) {
-                foreach ($this->_headers as $name => $value) {
-                    if (is_int($name)) {
-                        // parse raw header :
-                        $rawHeader = $value;
-                        if (strpos($rawHeader, 'HTTP/') === 0) {
-                            $parts = explode(' ', $rawHeader, 3);
-                            $headerCollection->add('http-code', $parts[1]);
-                        } elseif (($separatorPos = strpos($rawHeader, ':')) !== false) {
-                            $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
-                            $value = trim(substr($rawHeader, $separatorPos + 1));
-                            $headerCollection->add($name, $value);
-                        } else {
-                            $headerCollection->add('raw', $rawHeader);
-                        }
-                    } else {
-                        $headerCollection->set($name, $value);
-                    }
-                }
-            }
-            $this->_headers = $headerCollection;
-        }
-        return $this->_headers;
-    }
+        $headerCollection = $this->getHeaderCollection();
+        $headerCollection->removeAll();
 
-    /**
-     * Adds more headers to the already defined ones.
-     * @param array $headers additional headers in format: [headerName => headerValue]
-     * @return $this self reference.
-     */
-    public function addHeaders(array $headers)
-    {
-        $headerCollection = $this->getHeaders();
         foreach ($headers as $name => $value) {
-            $headerCollection->add($name, $value);
+            if (is_int($name)) {
+                // parse raw header :
+                $rawHeader = $value;
+                if (strpos($rawHeader, 'HTTP/') === 0) {
+                    $parts = explode(' ', $rawHeader, 3);
+                    $headerCollection->add('http-code', $parts[1]);
+                } elseif (($separatorPos = strpos($rawHeader, ':')) !== false) {
+                    $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
+                    $value = trim(substr($rawHeader, $separatorPos + 1));
+                    $headerCollection->add($name, $value);
+                } else {
+                    $headerCollection->add('raw', $rawHeader);
+                }
+            } else {
+                $headerCollection->set($name, $value);
+            }
         }
-        return $this;
-    }
-
-    /**
-     * Checks of HTTP message contains any header.
-     * Using this method you are able to check cookie presence without instantiating [[HeaderCollection]].
-     * @return bool whether message contains any header.
-     */
-    public function hasHeaders()
-    {
-        if (is_object($this->_headers)) {
-            return $this->_headers->getCount() > 0;
-        }
-        return !empty($this->_headers);
     }
 
     /**
@@ -199,7 +152,9 @@ class Message extends Component
      */
     public function setContent($content)
     {
-        $this->_content = $content;
+        $body = new MemoryStream();
+        $body->write($content);
+        $this->setBody($body);
         return $this;
     }
 
@@ -209,7 +164,7 @@ class Message extends Component
      */
     public function getContent()
     {
-        return $this->_content;
+        return $this->getBody()->__toString();
     }
 
     /**
@@ -287,9 +242,6 @@ class Message extends Component
      */
     public function composeHeaderLines()
     {
-        if (!$this->hasHeaders()) {
-            return [];
-        }
         $headers = [];
         foreach ($this->getHeaders() as $name => $values) {
             $name = str_replace(' ', '-', ucwords(str_replace('-', ' ', $name)));
@@ -306,11 +258,8 @@ class Message extends Component
      */
     public function toString()
     {
-        $result = '';
-        if ($this->hasHeaders()) {
-            $headers = $this->composeHeaderLines();
-            $result .= implode("\n", $headers);
-        }
+        $headers = $this->composeHeaderLines();
+        $result = implode("\n", $headers);
 
         $content = $this->getContent();
         if ($content !== null) {

@@ -5,7 +5,6 @@ namespace yiiunit\httpclient;
 use yii\httpclient\Message;
 use yii\http\Cookie;
 use yii\http\CookieCollection;
-use yii\http\HeaderCollection;
 
 class MessageTest extends TestCase
 {
@@ -19,24 +18,20 @@ class MessageTest extends TestCase
         ];
         $message->setHeaders($headers);
 
-        $this->assertTrue($message->getHeaders() instanceof HeaderCollection);
         $expectedHeaders = [
             'header1' => ['value1'],
             'header2' => ['value2'],
         ];
-        $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
+        $this->assertEquals($expectedHeaders, $message->getHeaders());
 
-        $additionalHeaders = [
-            'header3' => 'value3'
-        ];
-        $message->addHeaders($additionalHeaders);
+        $message->addHeader('header3', 'value3');
 
         $expectedHeaders = [
             'header1' => ['value1'],
             'header2' => ['value2'],
             'header3' => ['value3'],
         ];
-        $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
+        $this->assertEquals($expectedHeaders, $message->getHeaders());
     }
 
     /**
@@ -52,12 +47,11 @@ class MessageTest extends TestCase
         ];
         $message->setHeaders($headers);
 
-        $this->assertTrue($message->getHeaders() instanceof HeaderCollection);
         $expectedHeaders = [
             'header1' => ['value1'],
             'header2' => ['value2'],
         ];
-        $this->assertEquals($expectedHeaders, $message->getHeaders()->toArray());
+        $this->assertEquals($expectedHeaders, $message->getHeaders());
     }
 
     /**
@@ -72,30 +66,27 @@ class MessageTest extends TestCase
             'header1: value1',
         ];
         $message->setHeaders($headers);
-        $this->assertEquals('404', $message->getHeaders()->get('http-code'));
+        $this->assertEquals('404', $message->getHeaderLine('http-code'));
 
         $headers = [
             'HTTP/1.0 400 {some: "json"}',
             'header1: value1',
         ];
         $message->setHeaders($headers);
-        $this->assertEquals('400', $message->getHeaders()->get('http-code'));
+        $this->assertEquals('400', $message->getHeaderLine('http-code'));
     }
 
     /**
      * @depends testSetupHeaders
      */
-    public function testHasHeaders()
+    public function testHasHeader()
     {
         $message = new Message();
 
-        $this->assertFalse($message->hasHeaders());
+        $this->assertFalse($message->hasHeader('foo'));
 
-        $message->getHeaders(); // instantiate `HeaderCollection`
-        $this->assertFalse($message->hasHeaders());
-
-        $message->getHeaders()->add('name', 'value');
-        $this->assertTrue($message->hasHeaders());
+        $message->addHeader('foo', 'some');
+        $this->assertTrue($message->hasHeader('foo'));
     }
 
     public function testSetupCookies()
