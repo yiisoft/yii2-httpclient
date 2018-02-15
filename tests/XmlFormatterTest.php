@@ -141,6 +141,6 @@ XML;
 
         $formatter = new XmlFormatter();
         $formatter->format($request);
-        $this->assertNull($request->getContent());
+        $this->assertFalse($request->hasBody());
     }
 }

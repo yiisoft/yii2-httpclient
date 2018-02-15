@@ -30,7 +30,9 @@ use yii\http\MessageTrait;
  */
 class Message extends Component implements MessageInterface
 {
-    use MessageTrait;
+    use MessageTrait {
+        setHeaders as private setHeadersInternal;
+    }
 
     /**
      * @var Client owner client instance.
@@ -57,29 +59,40 @@ class Message extends Component implements MessageInterface
      */
     public function setHeaders($headers)
     {
-        // @todo move to other place, restoring `MessageTrait::setHeaders()`
-
-        $headerCollection = $this->getHeaderCollection();
-        $headerCollection->removeAll();
-
+        $normalizedHeaders = [];
         foreach ($headers as $name => $value) {
             if (is_int($name)) {
                 // parse raw header :
                 $rawHeader = $value;
                 if (strpos($rawHeader, 'HTTP/') === 0) {
                     $parts = explode(' ', $rawHeader, 3);
-                    $headerCollection->add('http-code', $parts[1]);
+                    $normalizedHeaders['http-code'] = [$parts[1]];
                 } elseif (($separatorPos = strpos($rawHeader, ':')) !== false) {
                     $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
                     $value = trim(substr($rawHeader, $separatorPos + 1));
-                    $headerCollection->add($name, $value);
+                    $normalizedHeaders[$name][] = $value;
                 } else {
-                    $headerCollection->add('raw', $rawHeader);
+                    $normalizedHeaders['raw'][] = $rawHeader;
                 }
             } else {
-                $headerCollection->set($name, $value);
+                $normalizedHeaders[$name] = $value;
             }
         }
+
+        $this->setHeadersInternal($normalizedHeaders);
+    }
+
+    /**
+     * Adds more headers to the already defined ones.
+     * @param array $headers additional headers in format: [headerName => headerValue]
+     * @return $this self reference.
+     */
+    public function addHeaders(array $headers)
+    {
+        foreach ($headers as $name => $value) {
+            $this->addHeader($name, $value);
+        }
+        return $this;
     }
 
     /**
@@ -143,6 +156,16 @@ class Message extends Component implements MessageInterface
             return $this->_cookies->getCount() > 0;
         }
         return !empty($this->_cookies);
+    }
+
+    /**
+     * Checks whether message has body or not.
+     * @return bool whether body is set.
+     * @since 2.1.0
+     */
+    public function hasBody()
+    {
+        return $this->_body !== null;
     }
 
     /**
@@ -270,9 +293,8 @@ class Message extends Component implements MessageInterface
         $headers = $this->composeHeaderLines();
         $result = implode("\n", $headers);
 
-        $content = $this->getContent();
-        if ($content !== null) {
-            $result .= "\n\n" . $content;
+        if ($this->hasBody()) {
+            $result .= "\n\n" . $this->getBody()->__toString();
         }
 
         return $result;

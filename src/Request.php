@@ -370,11 +370,13 @@ class Request extends Message implements RequestInterface
      */
     public function prepare()
     {
-        $content = $this->getContent();
-        if (empty($content)) {
+        if (!$this->hasBody()) {
             $this->getFormatter()->format($this);
-        } elseif (is_array($content)) {
-            $this->prepareMultiPartContent($content);
+        } else {
+            $content = $this->getContent();
+            if (is_array($content)) {
+                $this->prepareMultiPartContent($content);
+            }
         }
 
         $this->isPrepared = true;
@@ -473,7 +475,7 @@ class Request extends Message implements RequestInterface
         $contentParts[] = "--{$boundary}--";
         $contentParts[] = '';
 
-        $this->getHeaders()->set('content-type', "multipart/form-data; boundary={$boundary}");
+        $this->setHeader('content-type', "multipart/form-data; boundary={$boundary}");
         $this->setContent(implode("\r\n", $contentParts));
     }
 

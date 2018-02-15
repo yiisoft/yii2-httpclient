@@ -60,6 +60,6 @@ class UrlEncodedFormatterTest extends TestCase
 
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
-        $this->assertNull($request->getContent());
+        $this->assertFalse($request->hasBody());
     }
 }

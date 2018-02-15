@@ -42,7 +42,7 @@ abstract class TransportTestCase extends TestCase
             ->send();
 
         $this->assertTrue($response->getIsOk());
-        $content = $response->getContent();
+        $content = $response->getBody()->__toString();
         $this->assertNotEmpty($content);
         $this->assertContains('<h1>Documentation</h1>', $content);
     }
@@ -131,7 +131,7 @@ abstract class TransportTestCase extends TestCase
             ->setUrl('unexisting.php')
             ->addOptions(['timeout' => 1]);
 
-        $this->expectException('yii\httpclient\Exception');
+        $this->expectException(\yii\httpclient\Exception::class);
 
         $request->send();
     }
@@ -245,7 +245,7 @@ abstract class TransportTestCase extends TestCase
         $request = $client->get('http:/example.com');
         $this->assertEquals('http:/example.com', $request->fullUrl);
 
-        $this->expectException('yii\httpclient\Exception');
+        $this->expectException(\yii\httpclient\Exception::class);
         $request->send();
     }
 
