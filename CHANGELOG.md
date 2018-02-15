@@ -1,10 +1,10 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.7 under development
+2.1.0 under development
 -----------------------
 
-- no changes in this release.
+- Enh #4: Extension reworked to be compatible with PSR-7 'HTTP Message' (klimov-paul)
 
 
 2.0.6 February 13, 2018
