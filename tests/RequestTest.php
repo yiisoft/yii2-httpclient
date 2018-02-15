@@ -259,7 +259,7 @@ EOL;
         $request = new Request(['client' => $client]);
 
         $request->setUrl($url);
-        $this->assertEquals($expectedFullUrl, $request->getFullUrl());
+        $this->assertEquals($expectedFullUrl, $request->getUri()->__toString());
     }
 
     /**

@@ -17,11 +17,10 @@ use yii\http\Uri;
 /**
  * Request represents HTTP request.
  *
- * @property string $fullUrl Full target URL.
  * @property string $method Request method.
  * @property array $options Request options. This property is read-only.
  * @property string|array $url Target URL or URL parameters.
- * @property UriInterface $uri the URI instance.
+ * @property UriInterface $uri the PSR URI instance.
  * @property array|null $params request params.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
@@ -42,10 +41,6 @@ class Request extends Message implements RequestInterface
      * @var string|array target URL.
      */
     private $_url;
-    /**
-     * @var string|null full target URL.
-     */
-    private $_fullUrl;
     /**
      * @var UriInterface URI instance.
      * @since 2.1.0
@@ -82,7 +77,7 @@ class Request extends Message implements RequestInterface
      */
     public function getRequestTarget()
     {
-        return $this->getFullUrl();
+        return $this->getUri()->__toString();
     }
 
     /**
@@ -96,7 +91,7 @@ class Request extends Message implements RequestInterface
         }
 
         $newInstance = clone $this;
-        $newInstance->setFullUrl($requestTarget);
+        $newInstance->setUri(new Uri(['string' => $requestTarget]));
         return $newInstance;
     }
 
@@ -108,7 +103,7 @@ class Request extends Message implements RequestInterface
     {
         if (!$this->_uri instanceof UriInterface) {
             if ($this->_uri === null) {
-                $uri = new Uri(['string' => $this->getFullUrl()]);
+                $uri = new Uri(['string' => $this->createFullUrl($this->getUrl())]);
             } elseif ($this->_uri instanceof \Closure) {
                 $uri = call_user_func($this->_uri, $this);
             } else {
@@ -160,7 +155,7 @@ class Request extends Message implements RequestInterface
     public function setUrl($url)
     {
         $this->_url = $url;
-        $this->_fullUrl = null;
+        $this->setUri(null);
         return $this;
     }
 
@@ -171,30 +166,6 @@ class Request extends Message implements RequestInterface
     public function getUrl()
     {
         return $this->_url;
-    }
-
-    /**
-     * Sets full target URL.
-     * This method can be use during request formatting and preparation.
-     * Do not use it for the target URL specification, use [[setUrl()]] instead.
-     * @param string $fullUrl full target URL.
-     * @since 2.0.3
-     */
-    public function setFullUrl($fullUrl)
-    {
-        $this->_fullUrl = $fullUrl;
-    }
-
-    /**
-     * Returns full target URL, including [[Client::baseUrl]] as a string.
-     * @return string full target URL.
-     */
-    public function getFullUrl()
-    {
-        if ($this->_fullUrl === null) {
-            $this->_fullUrl = $this->createFullUrl($this->getUrl());
-        }
-        return $this->_fullUrl;
     }
 
     /**
@@ -229,8 +200,6 @@ class Request extends Message implements RequestInterface
         $newInstance->setMethod($method);
         return $newInstance;
     }
-
-
 
     /**
      * Following options are supported:
@@ -404,6 +373,7 @@ class Request extends Message implements RequestInterface
         if (!isset($options['fileName'])) {
             $options['fileName'] = basename($fileName);
         }
+
         return $this->addBodyPart($name, $content, $options);
     }
 
@@ -628,7 +598,7 @@ class Request extends Message implements RequestInterface
             $this->prepare();
         }
 
-        $result = strtoupper($this->getMethod()) . ' ' . $this->getFullUrl();
+        $result = strtoupper($this->getMethod()) . ' ' . $this->getUri();
 
         $parentResult = parent::toString();
         if ($parentResult !== '') {

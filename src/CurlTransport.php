@@ -157,7 +157,7 @@ class CurlTransport extends Transport
         }
 
         $curlOptions[CURLOPT_RETURNTRANSFER] = true;
-        $curlOptions[CURLOPT_URL] = $request->getFullUrl();
+        $curlOptions[CURLOPT_URL] = $request->getUri()->__toString();
         $curlOptions[CURLOPT_HTTPHEADER] = $request->composeHeaderLines();
 
         return $curlOptions;

@@ -9,6 +9,7 @@ namespace yii\httpclient;
 
 use Yii;
 use yii\base\BaseObject;
+use yii\http\MemoryStream;
 
 /**
  * UrlEncodedFormatter formats HTTP message as 'application/x-www-form-urlencoded'.
@@ -46,11 +47,15 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
 
         if (strcasecmp('GET', $request->getMethod()) === 0) {
             if (!empty($content)) {
-                $request->setFullUrl(null);
-                $url = $request->getFullUrl();
-                $url .= (strpos($url, '?') === false) ? '?' : '&';
-                $url .= $content;
-                $request->setFullUrl($url);
+                $request->setUri(null);
+                $uri = $request->getUri();
+                $queryString = $uri->getQuery();
+                if (empty($queryString)) {
+                    $uri = $uri->withQuery($content);
+                } else {
+                    $uri = $uri->withQuery($queryString . '&' . $content);
+                }
+                $request->setUri($uri);
             }
             return $request;
         }
@@ -59,7 +64,9 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
         $request->setHeader('Content-Type', 'application/x-www-form-urlencoded; charset=' . $charset);
 
         if (isset($content)) {
-            $request->setContent($content);
+            $body = new MemoryStream();
+            $body->write($content);
+            $request->setBody($body);
         }
 
         return $request;

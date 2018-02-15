@@ -45,8 +45,8 @@ class UrlEncodedFormatterTest extends TestCase
 
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
-        $this->assertEmpty($request->getContent());
-        $this->assertContains(http_build_query($data), $request->getFullUrl());
+        $this->assertFalse($request->hasBody());
+        $this->assertContains(http_build_query($data), $request->getUri()->__toString());
         $this->assertFalse($request->hasHeader('Content-Type'));
     }
 

@@ -213,12 +213,12 @@ abstract class TransportTestCase extends TestCase
 
         $beforeSendUrls = [];
         $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendUrls) {
-            $beforeSendUrls[] = $event->request->getFullUrl();
+            $beforeSendUrls[] = $event->request->getUri()->__toString();
         });
 
         $afterSendUrls = [];
         $client->on(Client::EVENT_AFTER_SEND, function(RequestEvent $event) use (&$afterSendUrls) {
-            $afterSendUrls[] = $event->request->getFullUrl();
+            $afterSendUrls[] = $event->request->getUri()->__toString();
         });
 
         $requests = [];
@@ -243,7 +243,7 @@ abstract class TransportTestCase extends TestCase
     {
         $client = $this->createClient();
         $request = $client->get('http:/example.com');
-        $this->assertEquals('http:/example.com', $request->fullUrl);
+        $this->assertEquals('http:/example.com', $request->getUri()->__toString());
 
         $this->expectException(\yii\httpclient\Exception::class);
         $request->send();
