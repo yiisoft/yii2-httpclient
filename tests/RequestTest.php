@@ -15,6 +15,23 @@ class RequestTest extends TestCase
 
     // Tests :
 
+    public function testSetupParams()
+    {
+        $message = new Request();
+        $params = [
+            'field1' => 'value1',
+            'field2' => 'value2',
+        ];
+        $message->setParams($params);
+        $this->assertEquals($params, $message->getParams());
+
+        $additionalParams = [
+            'field3' => 'value3'
+        ];
+        $message->addParams($additionalParams);
+        $this->assertEquals(array_merge($params, $additionalParams), $message->getParams());
+    }
+
     public function testSetupUrl()
     {
         $request = new Request();
@@ -132,7 +149,7 @@ class RequestTest extends TestCase
         $data = [
             'name' => 'value',
         ];
-        $request->setData($data);
+        $request->setParams($data);
         $request->prepare();
         $this->assertEquals('name=value', $request->getContent());
     }
@@ -152,7 +169,7 @@ class RequestTest extends TestCase
         $data = [
             'name' => 'value',
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $expectedResult = <<<EOL
 POST http://domain.com/test
@@ -169,7 +186,7 @@ EOL;
             'method' => 'POST',
             'url' => 'http://domain.com/test',
         ]);
-        $request->setData($data);
+        $request->setParams($data);
         $request->addFileContent('some-file', 'some content');
 
         $result = $request->toString();
@@ -260,7 +277,7 @@ EOL;
         $data = [
             'param1' => 'value1',
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $expectedResult = <<<EOL
 POST http://domain.com/test
@@ -273,7 +290,7 @@ EOL;
         $data = [
             'param2' => 'value2',
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $expectedResult = <<<EOL
 POST http://domain.com/test
@@ -293,7 +310,7 @@ EOL;
             'method' => 'POST',
         ]);
 
-        $request->setData(['data1' => 'data1=123']);
+        $request->setParams(['data1' => 'data1=123']);
         $request->addBodyPart('data2', 'data2=456', ['contentType' => 'text/plain']);
         $request->addFileContent('data3', 'file1', ['fileName' => 'file1.txt']);
         $request->addFileContent('data4', 'file2', ['fileName' => 'file2.txt', 'mimeType' => 'text/plain']);
@@ -396,7 +413,7 @@ PART2
             'format' => Client::FORMAT_URLENCODED,
             'method' => 'GET',
             'url' => 'docs.php',
-            'data' => [
+            'params' => [
                 'example' => '123',
             ],
         ]);

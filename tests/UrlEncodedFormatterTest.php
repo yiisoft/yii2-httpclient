@@ -22,7 +22,7 @@ class UrlEncodedFormatterTest extends TestCase
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
@@ -41,7 +41,7 @@ class UrlEncodedFormatterTest extends TestCase
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);

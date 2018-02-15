@@ -150,21 +150,4 @@ class MessageTest extends TestCase
         $message->setContent($content);
         $this->assertEquals($content, $message->getContent());
     }
-
-    public function testSetupData()
-    {
-        $message = new Message();
-        $data = [
-            'field1' => 'value1',
-            'field2' => 'value2',
-        ];
-        $message->setData($data);
-        $this->assertEquals($data, $message->getData());
-
-        $additionalData = [
-            'field3' => 'value3'
-        ];
-        $message->addData($additionalData);
-        $this->assertEquals(array_merge($data, $additionalData), $message->getData());
-    }
 }

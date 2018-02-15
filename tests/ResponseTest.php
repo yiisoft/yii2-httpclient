@@ -108,7 +108,18 @@ class ResponseTest extends TestCase
 
         $content = 'name=value';
         $response->setContent($content);
-        $this->assertEquals(['name' => 'value'], $response->getData());
+        $this->assertEquals(['name' => 'value'], $response->getParsedBody());
+    }
+
+    public function testSetupParsedBody()
+    {
+        $message = new Response();
+        $data = [
+            'field1' => 'value1',
+            'field2' => 'value2',
+        ];
+        $message->setParsedBody($data);
+        $this->assertEquals($data, $message->getParsedBody());
     }
 
     public function testSetupStatus()

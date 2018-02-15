@@ -22,7 +22,6 @@ use yii\http\MessageTrait;
  * @property string $content Raw body.
  * @property CookieCollection|Cookie[] $cookies The cookie collection. Note that the type of this property
  * differs in getter and setter. See [[getCookies()]] and [[setCookies()]] for details.
- * @property mixed $data Content data fields.
  * @property string $format Body format name.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
@@ -43,10 +42,6 @@ class Message extends Component implements MessageInterface
      * @var CookieCollection cookies.
      */
     private $_cookies;
-    /**
-     * @var mixed content data
-     */
-    private $_data;
     /**
      * @var string content format name
      */
@@ -197,42 +192,6 @@ class Message extends Component implements MessageInterface
         }
 
         return $this->getBody()->__toString();
-    }
-
-    /**
-     * Sets the data fields, which composes message content.
-     * @param mixed $data content data fields.
-     * @return $this self reference.
-     */
-    public function setData($data)
-    {
-        $this->_data = $data;
-        return $this;
-    }
-
-    /**
-     * Returns the data fields, parsed from raw content.
-     * @return mixed content data fields.
-     */
-    public function getData()
-    {
-        return $this->_data;
-    }
-
-    /**
-     * Adds data fields to the existing ones.
-     * @param array $data additional content data fields.
-     * @return $this self reference.
-     * @since 2.0.1
-     */
-    public function addData($data)
-    {
-        if (empty($this->_data)) {
-            $this->_data = $data;
-        } else {
-            $this->_data = array_merge($this->_data, $data);
-        }
-        return $this;
     }
 
     /**

@@ -17,6 +17,7 @@ use yii\http\HeaderCollection;
  * @property bool $isOk Whether response is OK. This property is read-only.
  * @property int $statusCode Status code. This property is read-only.
  * @property string $reasonPhrase the reason phrase to use with the current status code. This property is read-only.
+ * @property array|object|null $parsedBody parsed body parameters.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -33,22 +34,40 @@ class Response extends Message implements ResponseInterface
      * @since 2.1.0
      */
     private $_reasonPhrase;
+    /**
+     * @var array|object|null parsed body parameters.
+     * @since 2.1.0
+     */
+    private $_parsedBody;
 
 
     /**
-     * {@inheritdoc}
+     * Specifies body parameters.
+     * @param mixed $data content data fields.
+     * @return $this self reference.
+     * @since 2.1.0
      */
-    public function getData()
+    public function setParsedBody($data)
     {
-        $data = parent::getData();
-        if ($data === null) {
-            $content = $this->getContent();
-            if (!empty($content)) {
-                $data = $this->getParser()->parse($this);
-                $this->setData($data);
+        $this->_parsedBody = $data;
+        return $this;
+    }
+
+    /**
+     * Retrieve any parameters provided in the response body.
+     * This method parses raw body content and returns its structured representation as array or object.
+     * @return array|object|null the deserialized body parameters, `null` in case of empty body content.
+     * @since 2.1.0
+     */
+    public function getParsedBody()
+    {
+        if ($this->_parsedBody === null) {
+            if ($this->hasBody()) {
+                $this->_parsedBody = $this->getParser()->parse($this);
             }
         }
-        return $data;
+
+        return $this->_parsedBody;
     }
 
     /**

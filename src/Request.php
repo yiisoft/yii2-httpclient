@@ -22,6 +22,7 @@ use yii\http\Uri;
  * @property array $options Request options. This property is read-only.
  * @property string|array $url Target URL or URL parameters.
  * @property UriInterface $uri the URI instance.
+ * @property array|null $params request params.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -54,6 +55,11 @@ class Request extends Message implements RequestInterface
      * @var string request method.
      */
     private $_method = 'GET';
+    /**
+     * @var array|null request params
+     * @since 2.1.0
+     */
+    private $_params;
     /**
      * @var array multipart body parts information.
      * @since 2.1.0
@@ -224,6 +230,8 @@ class Request extends Message implements RequestInterface
         return $newInstance;
     }
 
+
+
     /**
      * Following options are supported:
      * - timeout: int, the maximum number of seconds to allow request to be executed.
@@ -277,29 +285,52 @@ class Request extends Message implements RequestInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Sets the request params, which composes HTTP message.
+     * @param array|null $params request params.
+     * @return $this self reference.
+     * @since 2.1.0
      */
-    public function setData($data)
+    public function setParams($params)
     {
         if ($this->isPrepared) {
-            $this->setContent(null);
+            $this->setBody(null);
             $this->isPrepared = false;
         }
 
-        return parent::setData($data);
+        $this->_params = $params;
+        return $this;
     }
 
     /**
-     * {@inheritdoc}
+     * Returns the request params.
+     * @return array|null request params.
+     * @since 2.1.0
      */
-    public function addData($data)
+    public function getParams()
+    {
+        return $this->_params;
+    }
+
+    /**
+     * Adds request params to the existing ones.
+     * @param array $params additional request params.
+     * @return $this self reference.
+     * @since 2.1.0
+     */
+    public function addParams($params)
     {
         if ($this->isPrepared) {
-            $this->setContent(null);
+            $this->setBody(null);
             $this->isPrepared = false;
         }
 
-        return parent::addData($data);
+        if (empty($this->_params)) {
+            $this->_params = $params;
+        } else {
+            $this->_params = array_merge($this->_params, $params);
+        }
+
+        return $this;
     }
 
     /**
@@ -468,7 +499,7 @@ class Request extends Message implements RequestInterface
 
         $contentParts = [];
 
-        $data = $this->getData();
+        $data = $this->getParams();
         if (!empty($data)) {
             foreach ($this->composeFormInputs($data) as $name => $value) {
                 $name = str_replace($disallowedChars, '_', $name);

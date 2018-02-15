@@ -387,12 +387,12 @@ class Client extends Component
     /**
      * @param string $method
      * @param array|string $url
-     * @param array|string $data
+     * @param array|string $params
      * @param array $headers
      * @param array $options
      * @return Request request instance.
      */
-    private function createRequestShortcut($method, $url, $data, $headers, $options)
+    private function createRequestShortcut($method, $url, $params, $headers, $options)
     {
         $request = $this->createRequest()
             ->setMethod($method)
@@ -400,10 +400,10 @@ class Client extends Component
             ->addHeaders($headers)
             ->addOptions($options);
 
-        if (is_array($data)) {
-            $request->setData($data);
+        if (is_array($params)) {
+            $request->setParams($params);
         } else {
-            $request->setContent($data);
+            $request->setContent($params);
         }
 
         return $request;

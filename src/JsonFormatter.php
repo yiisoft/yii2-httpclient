@@ -31,8 +31,8 @@ class JsonFormatter extends BaseObject implements FormatterInterface
     public function format(Request $request)
     {
         $request->setHeader('Content-Type', 'application/json; charset=UTF-8');
-        if (($data = $request->getData()) !== null) {
-            $request->setContent(Json::encode($request->getData(), $this->encodeOptions));
+        if (($data = $request->getParams()) !== null) {
+            $request->setContent(Json::encode($request->getParams(), $this->encodeOptions));
         }
         return $request;
     }

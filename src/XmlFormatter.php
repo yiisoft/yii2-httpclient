@@ -65,7 +65,7 @@ class XmlFormatter extends BaseObject implements FormatterInterface
         }
         $request->setHeader('Content-Type', $contentType);
 
-        $data = $request->getData();
+        $data = $request->getParams();
         if ($data !== null) {
             if ($data instanceof DOMDocument) {
                 $content = $data->saveXML();

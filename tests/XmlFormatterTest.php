@@ -23,7 +23,7 @@ class XmlFormatterTest extends TestCase
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $formatter = new XmlFormatter();
         $formatter->format($request);
@@ -49,7 +49,7 @@ XML;
                 ],
             ],
         ];
-        $request->setData($data);
+        $request->setParams($data);
 
         $formatter = new XmlFormatter();
         $formatter->format($request);
@@ -72,7 +72,7 @@ XML;
         $post->name = 'name1';
         $postsStack->push($post);
 
-        $request->setData($postsStack);
+        $request->setParams($postsStack);
 
         $formatter = new XmlFormatter();
 
@@ -102,7 +102,7 @@ XML;
         $data = new DOMDocument('1.0', 'UTF-8');
         $root = new DOMElement('root');
         $data->appendChild($root);
-        $request->setData($data);
+        $request->setParams($data);
 
         $formatter = new XmlFormatter();
         $formatter->format($request);
@@ -125,7 +125,7 @@ XML;
 <request><name1>value1</name1><name2>value2</name2></request>
 XML;
         $simpleXmlElement = simplexml_load_string($xml);
-        $request->setData($simpleXmlElement);
+        $request->setParams($simpleXmlElement);
 
         $formatter = new XmlFormatter();
         $formatter->format($request);

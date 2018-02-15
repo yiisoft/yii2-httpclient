@@ -40,7 +40,7 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
      */
     public function format(Request $request)
     {
-        if (($data = $request->getData()) !== null) {
+        if (($data = $request->getParams()) !== null) {
             $content = http_build_query((array)$data, '', '&', $this->encodingType);
         }
 

@@ -57,7 +57,7 @@ abstract class TransportTestCase extends TestCase
         $response = $client->createRequest()
             ->setMethod('POST')
             ->setUrl('search.php')
-            ->setData(['pattern' => 'curl'])
+            ->setParams(['pattern' => 'curl'])
             ->send();
         $this->assertTrue($response->getIsOk());
     }
@@ -103,7 +103,7 @@ abstract class TransportTestCase extends TestCase
         $request = $client->createRequest()
             ->setMethod('GET')
             ->setUrl('search.php')
-            ->setData([
+            ->setParams([
                 'show' => 'quickref',
                 'pattern' => 'array_merge'
             ]);
