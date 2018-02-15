@@ -10,7 +10,6 @@ namespace yii\httpclient;
 use yii\base\Component;
 use Yii;
 use yii\base\InvalidArgumentException;
-use yii\helpers\StringHelper;
 use yii\http\MemoryStream;
 
 /**

@@ -1,6 +1,9 @@
 Basic Usage
 ===========
 
+This extension is compatible with [PSR-7 HTTP message standard](https://www.php-fig.org/psr/psr-7/).
+Make sure you are familiar with the concepts introduced by this standard before using this extension.
+
 In order to send HTTP requests, you'll need to instantiate [[\yii\httpclient\Client]] and use its
 `createRequest()` method to create new HTTP request. Then you should configure all request parameters
 according to your goal and send request. As the result you'll get a [[\yii\httpclient\Response]] instance,
@@ -14,10 +17,10 @@ $client = new Client();
 $response = $client->createRequest()
     ->setMethod('POST')
     ->setUrl('http://example.com/api/1.0/users')
-    ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
+    ->setParams(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
     ->send();
 if ($response->isOk) {
-    $newUserId = $response->data['id'];
+    $newUserId = $response->parsedBody['id'];
 }
 ```
 
@@ -60,7 +63,7 @@ $client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $response = $client->createRequest()
     ->setFormat(Client::FORMAT_JSON)
     ->setUrl('articles/search')
-    ->setData([
+    ->setParams([
         'query_string' => 'Yii',
         'filter' => [
             'date' => ['>' => '2015-08-01']
@@ -74,33 +77,38 @@ So in most cases you don't need to specify format for response, you can parse it
 method or `data` property. Continuing the above example, we can get response data in the following way:
 
 ```php
-$responseData = $response->getData(); // get all articles
-count($response->data) // count articles
-$article = $response->data[0] // get first article
+$responseData = $response->getParsedBody(); // get all articles
+count($response->parsedBody) // count articles
+$article = $response->parsedBody[0] // get first article
 ```
 
 
 ## Working with raw content
 
 No one is forcing you to rely on the built-in formats. You can specify raw content for your HTTP request
-as well as you can process a raw content of the response. For example:
+as well as you can process a raw content of the response using PSR-7 stream. For example:
 
 ```php
 use yii\httpclient\Client;
+use yii\http\MemoryStream;
 
 $client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
+
+$body = new MemoryStream();
+$body->write('{query_string: "Yii"}');
+
 $response = $client->createRequest()
     ->setUrl('articles/search')
     ->addHeaders(['content-type' => 'application/json'])
-    ->setContent('{query_string: "Yii"}')
+    ->setBody($body)
     ->send();
 
 echo 'Search results:<br>';
-echo $response->content;
+echo $response->getBody();
 ```
 
-[[\yii\httpclient\Request]] formats specified `data` only if `content` is not set.
-[[\yii\httpclient\Response]] parses the `content` only if `data` is requested.
+[[\yii\httpclient\Request]] formats specified `params` only if `body` is not set.
+[[\yii\httpclient\Response]] parses the `body` only if `parsedBody` is requested.
 
 
 ## Pre-configure request and response objects
@@ -134,9 +142,8 @@ echo $request->format; // outputs: 'json'
 
 ## Working with headers
 
-You may specify request headers using `setHeaders()` and `addHeaders()` methods.
-You may use `getHeaders()` method or `headers` property to get already defined headers as
-[[\yii\web\HeaderCollection]] instance. For example:
+You may specify request headers using corresponding methods declared by [[\Psr\Http\Message\MessageInterface]], as well
+as additional ones: `setHeaders()` and `addHeaders()`. For example:
 
 ```php
 use yii\httpclient\Client;
@@ -146,8 +153,8 @@ $request = $client->createRequest()
     ->setHeaders(['content-type' => 'application/json'])
     ->addHeaders(['user-agent' => 'My User Agent']);
 
-$request->getHeaders()->add('accept-language', 'en-US;en');
-$request->headers->set('user-agent', 'User agent override');
+$request->setHeader('content-type', 'type/override');
+$request->addHeader('accept-language', 'en-US;en');
 ```
 
 Once you have a response object you can access all response headers using `getHeaders()` method
@@ -155,23 +162,23 @@ or `headers` property:
 
 ```php
 $response = $request->send();
-echo $response->getHeaders()->get('content-type');
-echo $response->headers->get('content-encoding');
+echo $response->getHeaderLine('content-encoding');
+var_dump($response->getHeaders());
 ```
 
 
 ## Working with cookies
 
-Although Cookies are transferred just as header values, [[\yii\httpclient\Request]] and [[\yii\httpclient\Request]]
-provides separated interface to work with them using [[\yii\web\Cookie]] and [[\yii\web\CookieCollection]].
+Although Cookies are transferred just as header values, [[\yii\httpclient\Request]] and [[\yii\httpclient\Response]]
+provides separated interface to work with them using [[\yii\http\Cookie]] and [[\yii\http\CookieCollection]].
 
 You may specify request Cookies using `setCookies()` or `addCookies()` methods.
 You may use `getCookies()` method or `cookies` property to get already defined Cookies as
-[[\yii\web\CookieCollection]] instance. For example:
+[[\yii\http\CookieCollection]] instance. For example:
 
 ```php
 use yii\httpclient\Client;
-use yii\web\Cookie;
+use yii\http\Cookie;
 
 $client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
 $request = $client->createRequest()
@@ -192,7 +199,7 @@ or `cookies` property:
 ```php
 $response = $request->send();
 echo $response->getCookies()->get('country');
-echo $response->headers->get('PHPSESSID');
+echo $response->cookies->get('PHPSESSID');
 ```
 
 You may transfer Cookies from response object to request using simple copy.

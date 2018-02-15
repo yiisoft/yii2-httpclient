@@ -26,7 +26,7 @@ $client = new Client([
 
 You may create your own transport, which will perform message sending in its own way. To do so you should
 extend [[\yii\httpclient\Transport]] class and implement at least `send()` method. All you need to do is
-determine HTTP response content and headers, then you can compose a response object from them using
+determine HTTP response body and headers, then you can compose a response object from them using
 [[\yii\httpclient\Client::createResponse()]]:
 
 ```php
@@ -39,10 +39,10 @@ class MyTransport extends Transport
      */
     public function send($request)
     {
-        $responseContent = '???';
+        $responseBody = '???';
         $responseHeaders = ['???'];
 
-        return $request->client->createResponse($responseContent, $responseHeaders);
+        return $request->client->createResponse($responseBody, $responseHeaders);
     }
 }
 ```

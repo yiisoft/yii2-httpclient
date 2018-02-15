@@ -6,7 +6,7 @@
     <br>
 </p>
 
-This extension provides the HTTP client for the [Yii framework 2.0](http://www.yiiframework.com).
+This extension provides the HTTP client for the [Yii framework 2.1](http://www.yiiframework.com).
 
 For license information check the [LICENSE](LICENSE.md)-file.
 

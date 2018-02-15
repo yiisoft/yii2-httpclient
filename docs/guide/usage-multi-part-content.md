@@ -2,7 +2,7 @@ Multi-part content
 ==================
 
 HTTP message content may consist of several parts with different content type. This is usually necessary
-in case of a file upload request. You may compose a multi-part content using `addContent()`, `addFile()` or
+in case of a file upload request. You may compose a multi-part content using `addBodyPart()`, `addFile()` or
 `addFileContent()` methods of [[\yii\httpclient\Request]].
 For example, if you wish to emulate file uploading via web form, you can use code like following:
 
@@ -17,7 +17,7 @@ $response = $client->createRequest()
     ->send();
 ```
 
-If there is [[\yii\httpclient\Request::$data]] specified, its values will be sent automatically as content parts
+If there is [[\yii\httpclient\Request::$params]] specified, its values will be sent automatically as content parts
 in case request is marked as multi-part one.
 For example: assume we wish emulate submitting of the following form:
 
@@ -39,7 +39,7 @@ $client = new Client();
 $response = $client->createRequest()
     ->setMethod('POST')
     ->setUrl('http://domain.com/user/profile')
-    ->setData([
+    ->setParams([
         'username' => 'johndoe',
         'email' => 'johndoe@domain.com',
     ])

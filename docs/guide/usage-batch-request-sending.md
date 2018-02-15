@@ -40,12 +40,12 @@ $responses = $client->batchSend($requests);
 
 // result of `GET http://domain.com/news` :
 if ($responses['news']->isOk) {
-    echo $responses['news']->content;
+    echo $responses['news']->getBody();
 }
 
 // result of `GET http://domain.com/user/friends` :
 if ($responses['friends']->isOk) {
-    echo $responses['friends']->content;
+    echo $responses['friends']->getBody();
 }
 
 // result of `POST http://domain.com/user/comments` :

@@ -16,14 +16,17 @@ return [
     'components' => [
         // ...
         'phpNetHttp' => [
-            'class' => 'yii\httpclient\Client',
+            'class' => yii\httpclient\Client::class,
             'baseUrl' => 'http://uk.php.net',
         ],
     ],
 ];
 
 // ...
-echo Yii::$app->phpNetHttp->get('docs.php')->send()->content;
+echo Yii::$app->get('phpNetHttp')
+    ->get('docs.php')
+    ->send()
+    ->getBody();
 ```
 
 
@@ -45,7 +48,7 @@ class MyRestApi extends Client
         if (!$response->isOk) {
             throw new \Exception('Unable to add user.');
         }
-        return $response->data['id'];
+        return $response->parsedBody['id'];
     }
 
     // ...
@@ -72,7 +75,7 @@ class MyRestApi extends Component
     {
         if (!is_object($this->_httpClient)) {
             $this->_httpClient = Yii::createObject([
-                'class' => Client::className(),
+                'class' => Client::class,
                 'baseUrl' => $this->baseUrl,
             ]);
         }
@@ -85,7 +88,7 @@ class MyRestApi extends Component
         if (!$response->isOk) {
             throw new \Exception('Unable to add user.');
         }
-        return $response->data['id'];
+        return $response->parsedBody['id'];
     }
 
     // ...

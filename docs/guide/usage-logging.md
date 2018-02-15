@@ -3,7 +3,7 @@ Logging and Profiling
 
 This extension allows logging HTTP requests being sent and profiling their execution.
 In order to setup a log target, which can capture all entries related to HTTP requests, you should
-use category `yii\httpclient\Transport*`. For example:
+use category `yii\httpclient\*`. For example:
 
 ```php
 return [

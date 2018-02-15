@@ -3,6 +3,7 @@ Request Options
 
 You may use [[\yii\httpclient\Request::$options]] to adjust particular request execution.
 Following options are supported (case-sensitive):
+
  - timeout: integer, the maximum number of seconds to allow request to be executed.
  - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
  - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
@@ -26,7 +27,7 @@ $client = new Client();
 $response = $client->createRequest()
     ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
-    ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+    ->setParams(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
         'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
         'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -52,7 +53,7 @@ $client = new Client([
 $response = $client->createRequest()
     ->setMethod('POST')
     ->setUrl('http://domain.com/api/1.0/users')
-    ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+    ->setParams(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
     ->setOptions([
         CURLOPT_CONNECTTIMEOUT => 5, // connection timeout
         CURLOPT_TIMEOUT => 10, // data receiving timeout

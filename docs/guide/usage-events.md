@@ -19,25 +19,25 @@ $client = new Client();
 $request = $client->createRequest()
     ->setMethod('GET')
     ->setUrl('http://api.domain.com')
-    ->setData(['param' => 'value']);
+    ->setParams(['param' => 'value']);
 
 // Ensure signature generation based on final data set:
 $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) {
-    $data = $event->request->getData();
+    $params = $event->request->getParams();
 
-    $signature = md5(http_build_query($data));
-    $data['signature'] = $signature;
+    $signature = md5(http_build_query($params));
+    $params['signature'] = $signature;
 
-    $event->request->setData($data);
+    $event->request->setParams($params);
 });
 
 // Normalize response data:
 $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) {
-    $data = $event->response->getData();
+    $data = $event->response->getParsedBody();
 
     $data['content'] = base64_decode($data['encoded_content']);
 
-    $event->response->setData($data);
+    $event->response->getParsedBody($data);
 });
 
 $response = $request->send();
