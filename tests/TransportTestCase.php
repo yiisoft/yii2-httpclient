@@ -85,8 +85,8 @@ abstract class TransportTestCase extends TestCase
             $this->assertTrue($response->getIsOk());
         }
 
-        $this->assertTrue($responses['docs'] instanceof Response, $responses);
-        $this->assertTrue($responses['support'] instanceof Response, $responses);
+        $this->assertTrue($responses['docs'] instanceof Response);
+        $this->assertTrue($responses['support'] instanceof Response);
 
         $this->assertContains('<h1>Documentation</h1>', $responses['docs']->getBody()->__toString());
         $this->assertContains('Mailing Lists', $responses['support']->getBody()->__toString());
