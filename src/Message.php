@@ -87,6 +87,7 @@ class Message extends Component implements MessageInterface
         foreach ($headers as $name => $value) {
             $this->addHeader($name, $value);
         }
+
         return $this;
     }
 
@@ -120,6 +121,7 @@ class Message extends Component implements MessageInterface
             }
             $this->_cookies = $cookieCollection;
         }
+
         return $this->_cookies;
     }
 
@@ -137,6 +139,7 @@ class Message extends Component implements MessageInterface
             }
             $cookieCollection->add($cookie);
         }
+
         return $this;
     }
 

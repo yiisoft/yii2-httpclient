@@ -203,6 +203,7 @@ class Request extends Message implements RequestInterface
 
     /**
      * Following options are supported:
+     *
      * - timeout: int, the maximum number of seconds to allow request to be executed.
      * - proxy: string, URI specifying address of proxy server. (e.g. tcp://proxy.example.com:5100).
      * - userAgent: string, the contents of the "User-Agent: " header to be used in a HTTP request.
@@ -421,8 +422,8 @@ class Request extends Message implements RequestInterface
 
     /**
      * Normalizes given URL value, filling it with actual string URL value.
-     * @param array|string $url raw URL,
-     * @return string full URL
+     * @param array|string $url raw URL.
+     * @return string full URL.
      */
     private function createFullUrl($url)
     {
@@ -626,5 +627,17 @@ class Request extends Message implements RequestInterface
     private function getFormatter()
     {
         return $this->client->getFormatter($this->getFormat());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __clone()
+    {
+        parent::__clone();
+
+        if (is_object($this->_uri)) {
+            $this->_uri = clone $this->_uri;
+        }
     }
 }

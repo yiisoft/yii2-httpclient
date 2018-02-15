@@ -11,6 +11,7 @@ use yii\base\Component;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\helpers\StringHelper;
+use yii\http\MemoryStream;
 
 /**
  * Client provide high level interface for HTTP requests execution.
@@ -55,13 +56,13 @@ class Client extends Component
      */
     public $baseUrl;
     /**
-     * @var array the formatters for converting data into the content of the specified [[format]].
+     * @var array the formatters for converting data into the content of the specified [[Message::$format]].
      * The array keys are the format names, and the array values are the corresponding configurations
      * for creating the formatter objects.
      */
     public $formatters = [];
     /**
-     * @var array the parsers for converting content of the specified [[format]] into the data.
+     * @var array the parsers for converting content of the specified [[Message::$format]] into the data.
      * The array keys are the format names, and the array values are the corresponding configurations
      * for creating the parser objects.
      */
@@ -84,7 +85,7 @@ class Client extends Component
     /**
      * @var Transport|array|string|callable HTTP message transport.
      */
-    private $_transport = 'yii\httpclient\StreamTransport';
+    private $_transport = StreamTransport::class;
 
 
     /**
@@ -123,16 +124,16 @@ class Client extends Component
     public function getFormatter($format)
     {
         static $defaultFormatters = [
-            self::FORMAT_JSON => 'yii\httpclient\JsonFormatter',
+            self::FORMAT_JSON => JsonFormatter::class,
             self::FORMAT_URLENCODED => [
-                'class' => 'yii\httpclient\UrlEncodedFormatter',
+                'class' => UrlEncodedFormatter::class,
                 'encodingType' => PHP_QUERY_RFC1738
             ],
             self::FORMAT_RAW_URLENCODED => [
-                'class' => 'yii\httpclient\UrlEncodedFormatter',
+                'class' => UrlEncodedFormatter::class,
                 'encodingType' => PHP_QUERY_RFC3986
             ],
-            self::FORMAT_XML => 'yii\httpclient\XmlFormatter',
+            self::FORMAT_XML => XmlFormatter::class,
         ];
 
         if (!isset($this->formatters[$format])) {
@@ -158,10 +159,10 @@ class Client extends Component
     public function getParser($format)
     {
         static $defaultParsers = [
-            self::FORMAT_JSON => 'yii\httpclient\JsonParser',
-            self::FORMAT_URLENCODED => 'yii\httpclient\UrlEncodedParser',
-            self::FORMAT_RAW_URLENCODED => 'yii\httpclient\UrlEncodedParser',
-            self::FORMAT_XML => 'yii\httpclient\XmlParser',
+            self::FORMAT_JSON => JsonParser::class,
+            self::FORMAT_URLENCODED => UrlEncodedParser::class,
+            self::FORMAT_RAW_URLENCODED => UrlEncodedParser::class,
+            self::FORMAT_XML => XmlParser::class,
         ];
 
         if (!isset($this->parsers[$format])) {
@@ -193,11 +194,11 @@ class Client extends Component
 
     /**
      * Creates a response instance.
-     * @param string $content raw content
+     * @param \Psr\Http\Message\StreamInterface|string $body raw content
      * @param array $headers headers list.
      * @return Response request instance.
      */
-    public function createResponse($content = null, array $headers = [])
+    public function createResponse($body = null, array $headers = [])
     {
         $config = $this->responseConfig;
         if (!isset($config['class'])) {
@@ -205,7 +206,13 @@ class Client extends Component
         }
         $config['client'] = $this;
         $response = Yii::createObject($config);
-        $response->setContent($content);
+        if (is_string($body)) {
+            $stream = new MemoryStream();
+            $stream->write($body);
+            $response->setBody($stream);
+        } else {
+            $response->setBody($body);
+        }
         $response->setHeaders($headers);
         return $response;
     }
@@ -263,6 +270,7 @@ class Client extends Component
         if ($content !== null) {
             $token .= "\n\n" . StringHelper::truncate($content, $this->contentLoggingMaxSize);
         }
+
         return $token;
     }
 

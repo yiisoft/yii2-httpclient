@@ -138,7 +138,7 @@ class CurlTransport extends Transport
 
         $curlOptions = $this->composeCurlOptions($request->getOptions());
 
-        $method = strtoupper($request->getMethod());
+        $method = $request->getMethod();
         switch ($method) {
             case 'POST':
                 $curlOptions[CURLOPT_POST] = true;
@@ -217,6 +217,7 @@ class CurlTransport extends Transport
                 }
             }
         }
+
         return $curlOptions;
     }
 
