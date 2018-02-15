@@ -9,6 +9,7 @@ namespace yii\httpclient;
 
 use yii\base\BaseObject;
 use yii\helpers\Json;
+use yii\http\MemoryStream;
 
 /**
  * JsonFormatter formats HTTP message as JSON.
@@ -32,7 +33,9 @@ class JsonFormatter extends BaseObject implements FormatterInterface
     {
         $request->setHeader('Content-Type', 'application/json; charset=UTF-8');
         if (($data = $request->getParams()) !== null) {
-            $request->setContent(Json::encode($request->getParams(), $this->encodeOptions));
+            $body = new MemoryStream();
+            $body->write(Json::encode($request->getParams(), $this->encodeOptions));
+            $request->setBody($body);
         }
         return $request;
     }

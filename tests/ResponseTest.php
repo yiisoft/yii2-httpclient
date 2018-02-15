@@ -95,7 +95,7 @@ class ResponseTest extends TestCase
     public function testDetectFormatByContent($content, $expectedFormat)
     {
         $response = new Response();
-        $response->setContent($content);
+        $response->getBody()->write($content);
         $this->assertEquals($expectedFormat, $response->getFormat());
     }
 
@@ -107,7 +107,7 @@ class ResponseTest extends TestCase
         ]);
 
         $content = 'name=value';
-        $response->setContent($content);
+        $response->getBody()->write($content);
         $this->assertEquals(['name' => 'value'], $response->getParsedBody());
     }
 
@@ -227,12 +227,11 @@ class ResponseTest extends TestCase
 
     public function testToString()
     {
-        $response = new Response([
-            'headers' => [
-                'content-type' => 'text/html; charset=UTF-8'
-            ],
-            'content' => '<html>Content</html>'
+        $response = new Response();
+        $response->setHeaders([
+            'content-type' => 'text/html; charset=UTF-8'
         ]);
+        $response->getBody()->write('<html>Content</html>');
 
         $expectedResult = <<<EOL
 Content-Type: text/html; charset=UTF-8

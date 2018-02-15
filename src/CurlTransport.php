@@ -34,7 +34,7 @@ class CurlTransport extends Transport
         $responseHeaders = [];
         $this->setHeaderOutput($curlResource, $responseHeaders);
 
-        $token = $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent());
+        $token = $request->client->createRequestLogToken($request);
         Yii::info($token, __METHOD__);
         Yii::beginProfile($token, __METHOD__);
 
@@ -81,7 +81,7 @@ class CurlTransport extends Transport
             $curlOptions = $this->prepare($request);
             $curlResource = $this->initCurl($curlOptions);
 
-            $token .= $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent()) . "\n\n";
+            $token .= $request->client->createRequestLogToken($request) . "\n\n";
 
             $responseHeaders[$key] = [];
             $this->setHeaderOutput($curlResource, $responseHeaders[$key]);
@@ -147,13 +147,12 @@ class CurlTransport extends Transport
                 $curlOptions[CURLOPT_CUSTOMREQUEST] = $method;
         }
 
-        $content = $request->getContent();
-        if ($content === null) {
+        if (!$request->hasBody()) {
             if ($method === 'HEAD') {
                 $curlOptions[CURLOPT_NOBODY] = true;
             }
         } else {
-            $curlOptions[CURLOPT_POSTFIELDS] = $content;
+            $curlOptions[CURLOPT_POSTFIELDS] = $request->getBody()->__toString();
         }
 
         $curlOptions[CURLOPT_RETURNTRANSFER] = true;

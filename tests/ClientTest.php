@@ -2,6 +2,7 @@
 
 namespace yiiunit\httpclient;
 
+use yii\http\MemoryStream;
 use yii\httpclient\Client;
 use yii\httpclient\JsonFormatter;
 use yii\httpclient\UrlEncodedFormatter;
@@ -168,12 +169,12 @@ class ClientTest extends TestCase
         $this->assertTrue($request instanceof Request);
         $this->assertSame($client, $request->client);
 
-        $requestContent = 'test content';
+        $body = new MemoryStream();
         $client->requestConfig = [
-            'content' => $requestContent
+            'body' => $body
         ];
         $request = $client->createRequest();
-        $this->assertEquals($requestContent, $request->getContent());
+        $this->assertSame($body, $request->getBody());
     }
 
     public function testCreateResponse()
@@ -191,6 +192,6 @@ class ClientTest extends TestCase
         ];
         $response = $client->createResponse($responseContent);
         $this->assertEquals($responseFormat, $response->getFormat());
-        $this->assertEquals($responseContent, $response->getContent());
+        $this->assertEquals($responseContent, $response->getBody()->__toString());
     }
 } 

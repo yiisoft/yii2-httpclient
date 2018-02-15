@@ -255,20 +255,27 @@ class Client extends Component
     /**
      * Composes the log/profiling message token for the given HTTP request parameters.
      * This method should be used by transports during request sending logging.
-     * @param string $method request method name.
-     * @param string $url request URL.
-     * @param array $headers request headers.
-     * @param string $content request content.
+     * @param Request $request request instance.
      * @return string log token.
      */
-    public function createRequestLogToken($method, $url, $headers, $content)
+    public function createRequestLogToken($request)
     {
-        $token = strtoupper($method) . ' ' . $url;
+        $token = $request->getMethod() . ' ' . $request->getUri()->__toString();
+        $headers = $request->getHeaders();
         if (!empty($headers)) {
-            $token .= "\n" . implode("\n", $headers);
+            $token .= "\n" . implode("\n", $request->composeHeaderLines());
         }
-        if ($content !== null) {
-            $token .= "\n\n" . StringHelper::truncate($content, $this->contentLoggingMaxSize);
+        if ($request->hasBody()) {
+            $body = $request->getBody();
+            if ($body->isSeekable()) {
+                // log body only if its pointer can be rewind
+                $body->seek(0);
+                if ($body->getSize() > $this->contentLoggingMaxSize) {
+                    $token .= "\n\n" . $body->read($this->contentLoggingMaxSize) . '...';
+                } else {
+                    $token .= "\n\n" . $body->__toString();
+                }
+            }
         }
 
         return $token;
@@ -411,7 +418,13 @@ class Client extends Component
         if (is_array($params)) {
             $request->setParams($params);
         } else {
-            $request->setContent($params);
+            if (is_string($params)) {
+                $body = new MemoryStream();
+                $body->write($params);
+                $request->setBody($body);
+            } else {
+                $request->setBody($params);
+            }
         }
 
         return $request;

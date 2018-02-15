@@ -13,13 +13,11 @@ use yii\base\ErrorHandler;
 use yii\http\Cookie;
 use yii\http\CookieCollection;
 use Yii;
-use yii\http\MemoryStream;
 use yii\http\MessageTrait;
 
 /**
  * Message represents a base HTTP message.
  *
- * @property string $content Raw body.
  * @property CookieCollection|Cookie[] $cookies The cookie collection. Note that the type of this property
  * differs in getter and setter. See [[getCookies()]] and [[setCookies()]] for details.
  * @property string $format Body format name.
@@ -164,37 +162,6 @@ class Message extends Component implements MessageInterface
     public function hasBody()
     {
         return $this->_body !== null;
-    }
-
-    /**
-     * Sets the HTTP message raw content.
-     * @param string $content raw content.
-     * @return $this self reference.
-     */
-    public function setContent($content)
-    {
-        if ($content === null) {
-            $this->setBody(null);
-            return $this;
-        }
-
-        $body = new MemoryStream();
-        $body->write($content);
-        $this->setBody($body);
-        return $this;
-    }
-
-    /**
-     * Returns HTTP message raw content.
-     * @return string raw body.
-     */
-    public function getContent()
-    {
-        if ($this->_body === null) {
-            return null;
-        }
-
-        return $this->getBody()->__toString();
     }
 
     /**

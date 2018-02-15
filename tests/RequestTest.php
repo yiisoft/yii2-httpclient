@@ -151,7 +151,7 @@ class RequestTest extends TestCase
         ];
         $request->setParams($data);
         $request->prepare();
-        $this->assertEquals('name=value', $request->getContent());
+        $this->assertEquals('name=value', $request->getBody()->__toString());
     }
 
     /**

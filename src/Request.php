@@ -12,6 +12,7 @@ use Psr\Http\Message\UriInterface;
 use yii\di\Instance;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
+use yii\http\MemoryStream;
 use yii\http\Uri;
 
 /**
@@ -512,7 +513,10 @@ class Request extends Message implements RequestInterface
         $contentParts[] = '';
 
         $this->setHeader('content-type', "multipart/form-data; boundary={$boundary}");
-        $this->setContent(implode("\r\n", $contentParts));
+
+        $body = new MemoryStream();
+        $body->write(implode("\r\n", $contentParts));
+        $this->setBody($body);
     }
 
     /**

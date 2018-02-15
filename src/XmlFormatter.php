@@ -15,6 +15,7 @@ use yii\base\Arrayable;
 use yii\base\BaseObject;
 use Yii;
 use yii\helpers\StringHelper;
+use yii\http\MemoryStream;
 
 /**
  * XmlFormatter formats HTTP message as XML.
@@ -78,7 +79,10 @@ class XmlFormatter extends BaseObject implements FormatterInterface
                 $this->buildXml($root, $data);
                 $content = $dom->saveXML();
             }
-            $request->setContent($content);
+
+            $body = new MemoryStream();
+            $body->write($content);
+            $request->setBody($body);
         }
 
         return $request;

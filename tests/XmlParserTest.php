@@ -9,7 +9,7 @@ class XmlParserTest extends TestCase
 {
     public function testParse()
     {
-        $document = new Response();
+        $response = new Response();
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <main>
@@ -17,14 +17,14 @@ class XmlParserTest extends TestCase
     <name2>value2</name2>
 </main>
 XML;
-        $document->setContent($xml);
+        $response->getBody()->write($xml);
 
         $data = [
             'name1' => 'value1',
             'name2' => 'value2',
         ];
         $parser = new XmlParser();
-        $this->assertEquals($data, $parser->parse($document));
+        $this->assertEquals($data, $parser->parse($response));
     }
 
     /**
@@ -32,7 +32,7 @@ XML;
      */
     public function testParseCData()
     {
-        $document = new Response();
+        $response = new Response();
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <main>
@@ -40,14 +40,14 @@ XML;
     <name2><![CDATA[value2]]></name2>
 </main>
 XML;
-        $document->setContent($xml);
+        $response->getBody()->write($xml);
 
         $data = [
             'name1' => '<tag>',
             'name2' => 'value2',
         ];
         $parser = new XmlParser();
-        $this->assertEquals($data, $parser->parse($document));
+        $this->assertEquals($data, $parser->parse($response));
     }
 
     /**
@@ -63,7 +63,7 @@ XML;
     <rusname>тест</rusname>
 </main>
 XML;
-        $response->setContent($xml);
+        $response->getBody()->write($xml);
         $response->addHeader('content-type', 'text/xml; charset=windows-1251');
 
         $parser = new XmlParser();
@@ -79,7 +79,7 @@ XML;
      */
     public function testParseGroupTag()
     {
-        $document = new Response();
+        $response = new Response();
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <items>
@@ -93,7 +93,7 @@ XML;
     </item>
 </items>
 XML;
-        $document->setContent($xml);
+        $response->getBody()->write($xml);
 
         $data = [
             'item' => [
@@ -108,6 +108,6 @@ XML;
             ],
         ];
         $parser = new XmlParser();
-        $this->assertEquals($data, $parser->parse($document));
+        $this->assertEquals($data, $parser->parse($response));
     }
 }

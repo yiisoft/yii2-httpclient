@@ -43,7 +43,7 @@ class StreamTransport extends Transport
             ],
         ];
 
-        $content = $request->getContent();
+        $content = $request->getBody()->__toString();
         if ($content !== null) {
             $contextOptions['http']['content'] = $content;
         }
@@ -52,7 +52,7 @@ class StreamTransport extends Transport
 
         $contextOptions = ArrayHelper::merge($contextOptions, $this->composeContextOptions($request->getOptions()));
 
-        $token = $request->client->createRequestLogToken($method, $url, $headers, $content);
+        $token = $request->client->createRequestLogToken($request);
         Yii::info($token, __METHOD__);
         Yii::beginProfile($token, __METHOD__);
 
@@ -94,6 +94,7 @@ class StreamTransport extends Transport
             $key = Inflector::underscore($key);
             $contextOptions[$section][$key] = $value;
         }
+
         return $contextOptions;
     }
 }

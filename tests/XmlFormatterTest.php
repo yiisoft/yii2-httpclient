@@ -31,7 +31,7 @@ class XmlFormatterTest extends TestCase
 <?xml version="1.0" encoding="UTF-8"?>
 <request><name1>value1</name1><name2>value2</name2></request>
 XML;
-        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+        $this->assertEqualsWithoutLE($expectedContent, $request->getBody()->__toString());
         $this->assertEquals('application/xml; charset=UTF-8', $request->getHeaderLine('Content-Type'));
     }
 

@@ -2,6 +2,7 @@
 
 namespace yiiunit\httpclient;
 
+use yii\http\MemoryStream;
 use yii\httpclient\Message;
 use yii\http\Cookie;
 use yii\http\CookieCollection;
@@ -146,8 +147,9 @@ class MessageTest extends TestCase
     public function testSetupBody()
     {
         $message = new Message();
-        $content = 'test raw body';
-        $message->setContent($content);
-        $this->assertEquals($content, $message->getContent());
+
+        $body = new MemoryStream();
+        $message->setBody($body);
+        $this->assertSame($body, $message->getBody());
     }
 }

@@ -163,8 +163,8 @@ class Response extends Message implements ResponseInterface
     protected function defaultFormat()
     {
         $format = $this->detectFormatByHeaders($this->getHeaderCollection());
-        if ($format === null) {
-            $format = $this->detectFormatByContent($this->getContent());
+        if ($format === null && $this->hasBody()) {
+            $format = $this->detectFormatByContent($this->getBody()->__toString());
         }
 
         return $format;
@@ -211,6 +211,7 @@ class Response extends Message implements ResponseInterface
         if (preg_match('/^<.*>$/s', $content)) {
             return Client::FORMAT_XML;
         }
+
         return null;
     }
 
@@ -259,10 +260,12 @@ class Response extends Message implements ResponseInterface
             'httponly' => 'httpOnly',
             'max-age' => 'maxAge',
         ];
+
         $name = strtolower($rawName);
         if (isset($nameMap[$name])) {
             $name = $nameMap[$name];
         }
+
         return $name;
     }
 

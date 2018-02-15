@@ -8,6 +8,7 @@
 namespace yii\httpclient\debug;
 
 use yii\base\Action;
+use yii\http\MemoryStream;
 use yii\web\HttpException;
 use yii\web\Response;
 
@@ -83,10 +84,13 @@ class RequestExecuteAction extends Action
         $main = array_shift($headers);
         [$method, $url] = explode(' ', $main, 2);
 
+        $body = new MemoryStream();
+        $body->write($content);
+
         return $this->panel->getHttpClient()->createRequest()
             ->setMethod($method)
             ->setUrl($url)
             ->setHeaders($headers)
-            ->setContent($content);
+            ->getBody($body);
     }
 }

@@ -9,14 +9,14 @@ class UrlEncodedParserTest extends TestCase
 {
     public function testParse()
     {
-        $document = new Response();
+        $response = new Response();
         $data = [
             'name1' => 'value1',
             'name2' => 'value2',
         ];
-        $document->setContent(http_build_query($data));
+        $response->getBody()->write(http_build_query($data));
 
         $parser = new UrlEncodedParser();
-        $this->assertEquals($data, $parser->parse($document));
+        $this->assertEquals($data, $parser->parse($response));
     }
 } 
