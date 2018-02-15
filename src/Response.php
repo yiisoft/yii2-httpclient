@@ -9,7 +9,6 @@ namespace yii\httpclient;
 
 use Psr\Http\Message\ResponseInterface;
 use yii\http\Cookie;
-use yii\http\HeaderCollection;
 
 /**
  * Response represents HTTP request response.
@@ -162,7 +161,7 @@ class Response extends Message implements ResponseInterface
      */
     protected function defaultFormat()
     {
-        $format = $this->detectFormatByHeaders($this->getHeaderCollection());
+        $format = $this->detectFormatByHeaders($this->getHeaders());
         if ($format === null && $this->hasBody()) {
             $format = $this->detectFormatByContent($this->getBody()->__toString());
         }
@@ -172,24 +171,26 @@ class Response extends Message implements ResponseInterface
 
     /**
      * Detects format from headers.
-     * @param HeaderCollection $headers source headers.
+     * @param string[][] $headers source headers.
      * @return null|string format name, 'null' - if detection failed.
      */
-    protected function detectFormatByHeaders(HeaderCollection $headers)
+    protected function detectFormatByHeaders(array $headers)
     {
-        $contentTypeHeaders = $headers->get('content-type', null, false);
+        $headers = array_change_key_case($headers, CASE_LOWER);
 
-        if (!empty($contentTypeHeaders)) {
-            $contentType = end($contentTypeHeaders);
-            if (stripos($contentType, 'json') !== false) {
-                return Client::FORMAT_JSON;
-            }
-            if (stripos($contentType, 'urlencoded') !== false) {
-                return Client::FORMAT_URLENCODED;
-            }
-            if (stripos($contentType, 'xml') !== false) {
-                return Client::FORMAT_XML;
-            }
+        if (empty($headers['content-type'])) {
+            return null;
+        }
+
+        $contentType = end($headers['content-type']);
+        if (stripos($contentType, 'json') !== false) {
+            return Client::FORMAT_JSON;
+        }
+        if (stripos($contentType, 'urlencoded') !== false) {
+            return Client::FORMAT_URLENCODED;
+        }
+        if (stripos($contentType, 'xml') !== false) {
+            return Client::FORMAT_XML;
         }
 
         return null;
