@@ -46,9 +46,19 @@ class Request extends Message implements RequestInterface
      */
     private $_fullUrl;
     /**
+     * @var UriInterface URI instance.
+     * @since 2.1.0
+     */
+    private $_uri;
+    /**
      * @var string request method.
      */
     private $_method = 'GET';
+    /**
+     * @var array multipart body parts information.
+     * @since 2.1.0
+     */
+    private $_bodyParts = [];
     /**
      * @var array request options.
      */
@@ -58,11 +68,6 @@ class Request extends Message implements RequestInterface
      * @see prepare()
      */
     private $isPrepared = false;
-    /**
-     * @var UriInterface URI instance.
-     * @since 2.1.0
-     */
-    private $_uri;
 
 
     /**
@@ -298,24 +303,52 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setBody($body)
+    {
+        $this->_bodyParts = [];
+        parent::setBody($body);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBody()
+    {
+        if (!empty($this->_bodyParts)) {
+            $this->prepareMultiPartContent($this->_bodyParts);
+        }
+        return parent::getBody();
+    }
+
+    /**
+     * Returns parts for multipart body.
+     * @return array body parts.
+     * @since 2.1.0
+     */
+    public function getBodyParts()
+    {
+        return $this->_bodyParts;
+    }
+
+    /**
      * Adds a content part for multi-part content request.
      * @param string $name part (form input) name.
-     * @param string $content content.
+     * @param \Psr\Http\Message\StreamInterface|string $bodyPart body part content.
      * @param array $options content part options, valid options are:
+     *
      *  - contentType - string, part content type
      *  - fileName - string, name of the uploading file
      *  - mimeType - string, part content type in case of file uploading
+     *
      * @return $this self reference.
      */
-    public function addContent($name, $content, $options = [])
+    public function addBodyPart($name, $bodyPart, array $options = [])
     {
-        $multiPartContent = $this->getContent();
-        if (!is_array($multiPartContent)) {
-            $multiPartContent = [];
-        }
-        $options['content'] = $content;
-        $multiPartContent[$name] = $options;
-        $this->setContent($multiPartContent);
+        $options['content'] = $bodyPart;
+        $this->_bodyParts[$name] = $options;
+
         return $this;
     }
 
@@ -325,9 +358,11 @@ class Request extends Message implements RequestInterface
      * @param string $name part (form input) name
      * @param string $fileName full name of the source file.
      * @param array $options content part options, valid options are:
+     *
      *  - fileName - string, base name of the uploading file, if not set it base name of the source file will be used.
      *  - mimeType - string, file mime type, if not set it will be determine automatically from source file.
-     * @return $this
+     *
+     * @return $this self reference.
      */
     public function addFile($name, $fileName, $options = [])
     {
@@ -338,7 +373,7 @@ class Request extends Message implements RequestInterface
         if (!isset($options['fileName'])) {
             $options['fileName'] = basename($fileName);
         }
-        return $this->addContent($name, $content, $options);
+        return $this->addBodyPart($name, $content, $options);
     }
 
     /**
@@ -347,9 +382,11 @@ class Request extends Message implements RequestInterface
      * @param string $name part (form input) name
      * @param string $content file content.
      * @param array $options content part options, valid options are:
+     *
      *  - fileName - string, base name of the uploading file.
      *  - mimeType - string, file mime type, if not set it 'application/octet-stream' will be used.
-     * @return $this
+     *
+     * @return $this self reference.
      */
     public function addFileContent($name, $content, $options = [])
     {
@@ -359,7 +396,7 @@ class Request extends Message implements RequestInterface
         if (!isset($options['fileName'])) {
             $options['fileName'] = $name . '.dat';
         }
-        return $this->addContent($name, $content, $options);
+        return $this->addBodyPart($name, $content, $options);
     }
 
     /**
@@ -370,13 +407,10 @@ class Request extends Message implements RequestInterface
      */
     public function prepare()
     {
-        if (!$this->hasBody()) {
+        if (!empty($this->_bodyParts)) {
+            $this->prepareMultiPartContent($this->_bodyParts);
+        } elseif (!$this->hasBody()) {
             $this->getFormatter()->format($this);
-        } else {
-            $content = $this->getContent();
-            if (is_array($content)) {
-                $this->prepareMultiPartContent($content);
-            }
         }
 
         $this->isPrepared = true;
@@ -423,12 +457,12 @@ class Request extends Message implements RequestInterface
 
     /**
      * Prepares multi-part content.
-     * @param array $content multi part content.
+     * @param array $bodyParts multi body parts.
      * @see https://tools.ietf.org/html/rfc7578
      * @see https://tools.ietf.org/html/rfc2616#section-19.5.1 for the Content-Disposition header
      * @see https://tools.ietf.org/html/rfc6266 for more details on the Content-Disposition header
      */
-    private function prepareMultiPartContent(array $content)
+    private function prepareMultiPartContent(array $bodyParts)
     {
         static $disallowedChars = ["\0", '"', "\r", "\n"];
 
@@ -444,7 +478,7 @@ class Request extends Message implements RequestInterface
         }
 
         // process content parts :
-        foreach ($content as $name => $contentParams) {
+        foreach ($bodyParts as $name => $contentParams) {
             $headers = [];
             $name = str_replace($disallowedChars, '_', $name);
             $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '"';
@@ -499,6 +533,7 @@ class Request extends Message implements RequestInterface
                 $result[$key] = $value;
             }
         }
+
         return $result;
     }
 

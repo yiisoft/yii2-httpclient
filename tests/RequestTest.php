@@ -2,6 +2,7 @@
 
 namespace yiiunit\httpclient;
 
+use yii\http\MemoryStream;
 use yii\httpclient\Client;
 use yii\httpclient\Request;
 
@@ -293,7 +294,7 @@ EOL;
         ]);
 
         $request->setData(['data1' => 'data1=123']);
-        $request->addContent('data2', 'data2=456', ['contentType' => 'text/plain']);
+        $request->addBodyPart('data2', 'data2=456', ['contentType' => 'text/plain']);
         $request->addFileContent('data3', 'file1', ['fileName' => 'file1.txt']);
         $request->addFileContent('data4', 'file2', ['fileName' => 'file2.txt', 'mimeType' => 'text/plain']);
         $this->assertEquals([
@@ -311,7 +312,7 @@ EOL;
                 'fileName' => 'file2.txt',
                 'mimeType' => 'text/plain',
             ],
-        ], $request->getContent());
+        ], $request->getBodyParts());
 
         $request->prepare();
 
@@ -355,6 +356,30 @@ file2
 
 PART2
         ), $parts[4]);
+    }
+
+    /**
+     * @depends testMultiPartRequest
+     */
+    public function testAddBodyPartAsStream()
+    {
+        $request = new Request([
+            'client' => new Client([
+                'baseUrl' => '/api'
+            ]),
+            'method' => 'POST',
+        ]);
+
+        $bodyStream = new MemoryStream();
+        $bodyStream->write('data1=123');
+        $request->addBodyPart('data1', $bodyStream, ['contentType' => 'test/stream']);
+
+        $request->prepare();
+
+        $requestString = $request->toString();
+        $this->assertContains('Content-Disposition: form-data; name="data1"', $requestString);
+        $this->assertContains('Content-Type: test/stream', $requestString);
+        $this->assertContains('data1=123', $requestString);
     }
 
     /**

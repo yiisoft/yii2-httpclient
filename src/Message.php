@@ -281,6 +281,7 @@ class Message extends Component implements MessageInterface
                 $headers[] = "$name: $value";
             }
         }
+
         return $headers;
     }
 
@@ -310,9 +311,23 @@ class Message extends Component implements MessageInterface
         // use trigger_error to bypass this limitation
         try {
             return $this->toString();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             ErrorHandler::convertExceptionToError($e);
             return '';
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __clone()
+    {
+        parent::__clone();
+
+        $this->cloneHttpMessageInternals();
+
+        if (is_object($this->_cookies)) {
+            $this->_cookies = clone $this->_cookies;
         }
     }
 }
