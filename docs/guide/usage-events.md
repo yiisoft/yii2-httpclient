@@ -43,6 +43,9 @@ $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) {
 $response = $request->send();
 ```
 
+> Warning: PSR-7 interfaces methods `with*()` cause object cloning to keep immutability, and thus will strip new object
+  from any attached behaviors or event handlers.
+
 Attaching event handlers to the [[\yii\httpclient\Request]] instance is not very practical.
 You may handle same use cases using events of [[\yii\httpclient\Client]] class:
 

@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 -----------------------
 
 - Enh #4: Extension reworked to be compatible with PSR-7 'HTTP Message' (klimov-paul)
+- Bug #143: Fixed `Request` no longer automatically uppercase HTTP method (klimov-paul)
 
 
 2.0.6 February 13, 2018

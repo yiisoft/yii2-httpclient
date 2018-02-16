@@ -110,6 +110,24 @@ echo $response->getBody();
 [[\yii\httpclient\Request]] formats specified `params` only if `body` is not set.
 [[\yii\httpclient\Response]] parses the `body` only if `parsedBody` is requested.
 
+By default [[\yii\httpclient\Request]] instantiates its body with [[\yii\http\MemoryStream]] instance. Thus you can use
+`getBody()` to access blank body from the newly created request. For example:
+
+```php
+use yii\httpclient\Client;
+
+$client = new Client(['baseUrl' => 'http://example.com/api/1.0']);
+
+$request = $client->createRequest()
+    ->setUrl('articles/search')
+    ->addHeaders(['content-type' => 'application/json']);
+
+$request->getBody() // returns blank body
+    ->write('{query_string: "Yii"}'); // setup body content
+
+$response = $request->send();
+```
+
 
 ## Pre-configure request and response objects
 
