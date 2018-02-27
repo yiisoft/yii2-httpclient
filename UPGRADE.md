@@ -11,6 +11,9 @@ for both A and B.
 Upgrade from yii2-httpclient 2.0.6
 ----------------------------------
 
+* Version constraint for "yiisoft/yii2" package has been raised to "~2.1.0". Make sure your code
+  matches this version of the Yii framework. 
+
 * Classes `Request` and `Response` have been updated to match interfaces `Psr\Http\Message\RequestInterface`
   and `Psr\Http\Message\ResponseInterface` accordingly. Make sure you use their methods and properties correctly.
 

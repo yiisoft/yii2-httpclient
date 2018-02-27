@@ -4,6 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.1.0 under development
 -----------------------
 
+- Chg: Required Yii framework version has been raised to '2.1.0' (klimov-paul)
 - Enh #4: Extension reworked to be compatible with PSR-7 'HTTP Message' (klimov-paul)
 - Bug #143: Fixed `Request` no longer automatically uppercase HTTP method (klimov-paul)
 
