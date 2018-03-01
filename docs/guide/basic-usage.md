@@ -155,7 +155,7 @@ echo $request->format; // outputs: 'json'
 ```
 
 > Tip: you may even specify your own classes for the request and response objects to facilitate
-  some extra functionality you need, using 'class' key in configuration array.
+  some extra functionality you need, using '__class' key in configuration array.
 
 
 ## Working with headers

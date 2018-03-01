@@ -27,4 +27,4 @@ before_script:
     fi
 
 script:
-  - phpunit --verbose $PHPUNIT_FLAGS
+  - phpunit $PHPUNIT_FLAGS

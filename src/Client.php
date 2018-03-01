@@ -125,11 +125,11 @@ class Client extends Component
         static $defaultFormatters = [
             self::FORMAT_JSON => JsonFormatter::class,
             self::FORMAT_URLENCODED => [
-                'class' => UrlEncodedFormatter::class,
+                '__class' => UrlEncodedFormatter::class,
                 'encodingType' => PHP_QUERY_RFC1738
             ],
             self::FORMAT_RAW_URLENCODED => [
-                'class' => UrlEncodedFormatter::class,
+                '__class' => UrlEncodedFormatter::class,
                 'encodingType' => PHP_QUERY_RFC3986
             ],
             self::FORMAT_XML => XmlFormatter::class,
@@ -184,8 +184,8 @@ class Client extends Component
     public function createRequest()
     {
         $config = $this->requestConfig;
-        if (!isset($config['class'])) {
-            $config['class'] = Request::class;
+        if (!isset($config['__class'])) {
+            $config['__class'] = Request::class;
         }
         $config['client'] = $this;
         return Yii::createObject($config);
@@ -200,8 +200,8 @@ class Client extends Component
     public function createResponse($body = null, array $headers = [])
     {
         $config = $this->responseConfig;
-        if (!isset($config['class'])) {
-            $config['class'] = Response::class;
+        if (!isset($config['__class'])) {
+            $config['__class'] = Response::class;
         }
         $config['client'] = $this;
         $response = Yii::createObject($config);

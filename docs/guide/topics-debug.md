@@ -12,10 +12,10 @@ enabled, it is sufficient to just add the panels configuration):
     'bootstrap' => ['debug'],
     'modules' => [
         'debug' => [
-            'class' => yii\debug\Module::class,
+            '__class' => yii\debug\Module::class,
             'panels' => [
                 'httpclient' => [
-                    'class' => yii\httpclient\debug\HttpClientPanel::class,
+                    '__class' => yii\httpclient\debug\HttpClientPanel::class,
                 ],
             ],
         ],

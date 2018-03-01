@@ -23,7 +23,7 @@ class ClientTest extends TestCase
         $client->formatters = [
             'testString' => UrlEncodedFormatter::class,
             'testConfig' => [
-                'class' => UrlEncodedFormatter::class,
+                '__class' => UrlEncodedFormatter::class,
                 'encodingType' => PHP_QUERY_RFC3986
             ],
         ];
@@ -84,7 +84,7 @@ class ClientTest extends TestCase
         $client->parsers = [
             'testString' => UrlEncodedParser::class,
             'testConfig' => [
-                'class' => UrlEncodedParser::class,
+                '__class' => UrlEncodedParser::class,
             ],
         ];
 

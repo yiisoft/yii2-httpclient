@@ -16,7 +16,7 @@ return [
     'components' => [
         // ...
         'phpNetHttp' => [
-            'class' => 'yii\httpclient\Client',
+            '__class' => yii\httpclient\Client::class,
             'baseUrl' => 'http://uk.php.net',
         ],
     ],
@@ -71,7 +71,7 @@ class MyRestApi extends Component
     {
         if (!is_object($this->_httpClient)) {
             $this->_httpClient = Yii::createObject([
-                'class' => Client::className(),
+                '__class' => Client::class,
                 'baseUrl' => $this->baseUrl,
             ]);
         }

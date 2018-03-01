@@ -37,7 +37,7 @@ class HttpClientPanel extends Panel
     /**
      * @var \yii\httpclient\Client|array|string
      */
-    private $_httpClient = 'yii\httpclient\Client';
+    private $_httpClient = yii\httpclient\Client::class;
 
 
     /**
@@ -65,7 +65,7 @@ class HttpClientPanel extends Panel
     public function init()
     {
         $this->actions['request-execute'] = [
-            'class' => \yii\httpclient\debug\RequestExecuteAction::class,
+            '__class' => \yii\httpclient\debug\RequestExecuteAction::class,
             'panel' => $this,
         ];
     }

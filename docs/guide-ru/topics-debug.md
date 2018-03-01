@@ -12,10 +12,10 @@
     'bootstrap' => ['debug'],
     'modules' => [
         'debug' => [
-            'class' => 'yii\\debug\\Module',
+            '__class' => yii\debug\Module::class,
             'panels' => [
                 'httpclient' => [
-                    'class' => 'yii\\httpclient\\debug\\HttpClientPanel',
+                    '__class' => yii\httpclient\debug\HttpClientPanel::class,
                 ],
             ],
         ],
