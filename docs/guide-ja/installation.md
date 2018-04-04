@@ -1,16 +1,16 @@
-ƒCƒ“ƒXƒg[ƒ‹
+ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
 ============
 
-## ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é
+## ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹
 
-ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é‚É‚ÍAComposer ‚ðŽg‚¢‚Ü‚·B
+ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã«ã¯ã€Composer ã‚’ä½¿ã„ã¾ã™ã€‚
 
-‰º‹L‚ðŽÀs‚µ‚Ä‚­‚¾‚³‚¢B
+ä¸‹è¨˜ã‚’å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚
 ```
 composer require --prefer-dist yiisoft/yii2-httpclient "*"
 ```
 
-‚ ‚é‚¢‚ÍA‚ ‚È‚½‚Ì composer.json ‚Ì `require` ƒZƒNƒVƒ‡ƒ“‚É‰º‹L‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+ã‚ã‚‹ã„ã¯ã€ã‚ãªãŸã® composer.json ã® `require` ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã«ä¸‹è¨˜ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 
 ```json
 "yiisoft/yii2-httpclient": "*"

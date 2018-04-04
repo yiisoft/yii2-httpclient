@@ -1,7 +1,7 @@
-�o�b�`�E���N�G�X�g���M
+バッチ・リクエスト送信
 ======================
 
-HTTP �N���C�A���g�́A[[\yii\httpclient\Client::batchSend()]] ���\�b�h���g���āA�����̃��N�G�X�g����x�ɑ��M���邱�Ƃ��\�ɂ��Ă��܂��B
+HTTP クライアントは、[[\yii\httpclient\Client::batchSend()]] メソッドを使って、複数のリクエストを一度に送信することを可能にしています。
 
 ```php
 use yii\httpclient\Client;
@@ -15,16 +15,16 @@ $requests = [
 $responses = $client->batchSend($requests);
 ```
 
-[�g�����X�|�[�g](usage-transports.md) �ɂ���ẮA���̃��\�b�h���g�����Ƃɂ��A�p�t�H�[�}���X�����コ����Ƃ������_�𓾂邱�Ƃ��o���܂��B
-�����̃g�����X�|�[�g�̒��ł́A[[\yii\httpclient\CurlTransport]] �݂̂�����ɓ��Ă͂܂�܂��B
-����̓��N�G�X�g����񉻂��đ��M���邱�Ƃ��o���A����ɂ���ăv���O�����̎��s���Ԃ�Z�����邱�Ƃ��o���܂��B
+[トランスポート](usage-transports.md) によっては、このメソッドを使うことにより、パフォーマンスを向上させるという利点を得ることが出来ます。
+内蔵のトランスポートの中では、[[\yii\httpclient\CurlTransport]] のみがこれに当てはまります。
+これはリクエストを並列化して送信することが出来、それによってプログラムの実行時間を短くすることが出来ます。
 
-> Note: `batchSend()` �ɂ����āA���N�G�X�g�����ȕ��@�ŏ������ĉ��炩�̗��_�𓾂邱�Ƃ��o����̂́A�������̓���̃g�����X�|�[�g�Ɍ����Ă��܂��B
-  �f�t�H���g�ł́A�g�����X�|�[�g�́A�G���[���x���������邱�Ƃ͂���܂��񂪁A���N�G�X�g��������Ԃɑ��M���邾���ł��B
-  �p�t�H�[�}���X�̌�������҂���̂ł���΁A�K���A�N���C�A���g�̃g�����X�|�[�g��K�؂ɍ\�����Ȃ���΂Ȃ�܂���B
+> Note: `batchSend()` において、リクエストを特殊な方法で処理して何らかの利点を得ることが出来るのは、いくつかの特定のトランスポートに限られています。
+  デフォルトでは、トランスポートは、エラーも警告も発することはありませんが、リクエストを一つずつ順番に送信するだけです。
+  パフォーマンスの向上を期待するのであれば、必ず、クライアントのトランスポートを適切に構成しなければなりません。
 
-`batchSend()` ���\�b�h�̓��X�|���X�̔z���Ԃ��܂��B���̔z��̃L�[�́A���N�G�X�g�̔z��̃L�[�ɑΉ����Ă��܂��B
-����ɂ���āA����̃��N�G�X�g�ɑ΂��郌�X�|���X���ȒP�ɏ������邱�Ƃ��o����悤�ɂȂ��Ă��܂��B
+`batchSend()` メソッドはレスポンスの配列を返します。その配列のキーは、リクエストの配列のキーに対応しています。
+これによって、特定のリクエストに対するレスポンスを簡単に処理することが出来るようになっています。
 
 ```php
 use yii\httpclient\Client;
@@ -34,22 +34,22 @@ $client = new Client();
 $requests = [
     'news' => $client->get('http://domain.com/news'),
     'friends' => $client->get('http://domain.com/user/friends', ['userId' => 12]),
-    'newComment' => $client->post('http://domain.com/user/comments', ['userId' => 12, 'content' => '�V�����R�����g']),
+    'newComment' => $client->post('http://domain.com/user/comments', ['userId' => 12, 'content' => '新しいコメント']),
 ];
 $responses = $client->batchSend($requests);
 
-// `GET http://domain.com/news` �̌���:
+// `GET http://domain.com/news` の結果:
 if ($responses['news']->isOk) {
     echo $responses['news']->content;
 }
 
-// `GET http://domain.com/user/friends` �̌���:
+// `GET http://domain.com/user/friends` の結果:
 if ($responses['friends']->isOk) {
     echo $responses['friends']->content;
 }
 
-// `POST http://domain.com/user/comments` �̌���:
+// `POST http://domain.com/user/comments` の結果:
 if ($responses['newComment']->isOk) {
-    echo "�R�����g�̒ǉ����������܂����B";
+    echo "コメントの追加が成功しました。";
 }
 ```

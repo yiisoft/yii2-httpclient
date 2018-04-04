@@ -1,28 +1,28 @@
-Yii 2 HTTP ƒNƒ‰ƒCƒAƒ“ƒgEƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“
+Yii 2 HTTP ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ»ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³
 ========================================
 
-‚±‚ÌƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚Í [Yii ƒtƒŒ[ƒ€ƒ[ƒN 2.0](http://www.yiiframework.com) ‚É HTTP ƒNƒ‰ƒCƒAƒ“ƒg‚ğ’ñ‹Ÿ‚·‚é‚à‚Ì‚Å‚·B
+ã“ã®ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ã¯ [Yii ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ 2.0](http://www.yiiframework.com) ã« HTTP ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’æä¾›ã™ã‚‹ã‚‚ã®ã§ã™ã€‚
 
 
-n‚ß‚æ‚¤
+å§‹ã‚ã‚ˆã†
 --------
 
-* [ƒCƒ“ƒXƒg[ƒ‹](installation.md)
-* [Šî–{“I‚Èg—p•û–@](basic-usage.md)
+* [ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«](installation.md)
+* [åŸºæœ¬çš„ãªä½¿ç”¨æ–¹æ³•](basic-usage.md)
 
-g—p•û–@
+ä½¿ç”¨æ–¹æ³•
 --------
 
-* [ƒf[ƒ^Œ`®](usage-data-formats.md)
-* [ƒgƒ‰ƒ“ƒXƒ|[ƒg](usage-transports.md)
-* [ƒŠƒNƒGƒXƒg‚ÌƒIƒvƒVƒ‡ƒ“](usage-request-options.md)
-* [ƒ}ƒ‹ƒ`ƒp[ƒgEƒRƒ“ƒeƒ“ƒg](usage-multi-part-content.md)
-* [ƒoƒbƒ`EƒŠƒNƒGƒXƒg‘—M](usage-batch-request-sending.md)
-* [ƒCƒxƒ“ƒg](usage-events.md)
-* [ƒƒMƒ“ƒO‚Æƒvƒƒtƒ@ƒCƒŠƒ“ƒO](usage-logging.md)
-* [ƒNƒ‰ƒCƒAƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒZƒbƒgƒAƒbƒv‚·‚é](usage-setup-client-instance.md)
+* [ãƒ‡ãƒ¼ã‚¿å½¢å¼](usage-data-formats.md)
+* [ãƒˆãƒ©ãƒ³ã‚¹ãƒãƒ¼ãƒˆ](usage-transports.md)
+* [ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³](usage-request-options.md)
+* [ãƒãƒ«ãƒãƒ‘ãƒ¼ãƒˆãƒ»ã‚³ãƒ³ãƒ†ãƒ³ãƒˆ](usage-multi-part-content.md)
+* [ãƒãƒƒãƒãƒ»ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡](usage-batch-request-sending.md)
+* [ã‚¤ãƒ™ãƒ³ãƒˆ](usage-events.md)
+* [ãƒ­ã‚®ãƒ³ã‚°ã¨ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒªãƒ³ã‚°](usage-logging.md)
+* [ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹](usage-setup-client-instance.md)
 
-’Ç‰Á‚ÌƒgƒsƒbƒN
+è¿½åŠ ã®ãƒˆãƒ”ãƒƒã‚¯
 --------------
 
-* [HTTP ƒNƒ‰ƒCƒAƒ“ƒgEƒfƒoƒbƒOEƒpƒlƒ‹‚ğg‚¤](topics-debug.md)
+* [HTTP ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ»ãƒ‡ãƒãƒƒã‚°ãƒ»ãƒ‘ãƒãƒ«ã‚’ä½¿ã†](topics-debug.md)

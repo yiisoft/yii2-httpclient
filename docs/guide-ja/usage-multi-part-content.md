@@ -1,10 +1,10 @@
-�}���`�E�p�[�g�E�R���e���g
+マルチ・パート・コンテント
 ==========================
 
-HTTP �̃��b�Z�[�W�E�R���e���g�́A�R���e���g�E�^�C�v�̈قȂ邢�����̕������琬��ꍇ������܂��B
-�ʏ�A�t�@�C���̃A�b�v���[�h�����N�G�X�g����ꍇ�ɁA���ꂪ�K�v�ɂȂ�܂��B
-[[\yii\httpclient\Request]] �� `addContent()`�A`addFile()` �܂���`addFileContent()` ���\�b�h���g���āA�}���`�E�p�[�g�̃R���e���g���쐬���邱�Ƃ��o���܂��B
-�Ⴆ�΁A�E�F�u�E�t�H�[�����g���t�@�C���̃A�b�v���[�h���G�~�����[�g�������ꍇ�́A���̂悤�ȃR�[�h���g�p���鎖���o���܂��B
+HTTP のメッセージ・コンテントは、コンテント・タイプの異なるいくつかの部分から成る場合があります。
+通常、ファイルのアップロードをリクエストする場合に、それが必要になります。
+[[\yii\httpclient\Request]] の `addContent()`、`addFile()` または`addFileContent()` メソッドを使って、マルチ・パートのコンテントを作成することが出来ます。
+例えば、ウェブ・フォームを使うファイルのアップロードをエミュレートしたい場合は、次のようなコードを使用する事が出来ます。
 
 ```php
 use yii\httpclient\Client;
@@ -17,8 +17,8 @@ $response = $client->createRequest()
     ->send();
 ```
 
-���N�G�X�g���}���`�E�p�[�g�ł���ƃ}�[�N����Ă���ꍇ�ł����Ă��A[[\yii\httpclient\Request::data]] ���w�肳��Ă���ꍇ�́A���̒l���R���e���g�̈ꕔ�Ƃ��Ď����I�ɑ��M����܂��B
-�Ⴆ�΁A���̂悤�ȃt�H�[���̑��M���G�~�����[�g�������Ɖ��肵�܂��傤�B
+リクエストがマルチ・パートであるとマークされている場合であっても、[[\yii\httpclient\Request::data]] が指定されている場合は、その値がコンテントの一部として自動的に送信されます。
+例えば、次のようなフォームの送信をエミュレートしたいと仮定しましょう。
 ```html
 <form name="profile-form" method="post" action="http://domain.com/user/profile" enctype="multipart/form-data">
     <input type="text" name="username" value="">
@@ -28,7 +28,7 @@ $response = $client->createRequest()
 </form>
 ```
 
-����́A���̂悤�ȃR�[�h���g���Ď��s���邱�Ƃ��o���܂��B
+これは、次のようなコードを使って実行することが出来ます。
 
 ```php
 use yii\httpclient\Client;

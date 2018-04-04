@@ -1,9 +1,9 @@
-���M���O�ƃv���t�@�C�����O
+ロギングとプロファイリング
 ==========================
 
-���̃G�N�X�e���V�����ł́A���M���ꂽ HTTP ���N�G�X�g�̃��M���O�ƁA���̎��s�̃v���t�@�C�����O���\�ł��B
-���O�E�^�[�Q�b�g���Z�b�g�A�b�v���āAHTTP ���N�G�X�g�Ɋ֌W����S�ẴG���g����ߑ����邽�߂ɂ́A`yii\httpclient\Transport*` �Ƃ����J�e�S�����g�p���Ȃ���΂Ȃ�܂���B
-�Ⴆ�΁A
+このエクステンションでは、送信された HTTP リクエストのロギングと、その実行のプロファイリングが可能です。
+ログ・ターゲットをセットアップして、HTTP リクエストに関係する全てのエントリを捕捉するためには、`yii\httpclient\Transport*` というカテゴリを使用しなければなりません。
+例えば、
 
 ```php
 return [
@@ -25,9 +25,9 @@ return [
 ];
 ```
 
-[HTTP �N���C�A���g DebugPanel] ���g���đS�Ă̊֘A���郍�O�����邱�Ƃ��o���܂��B
+[HTTP クライアント DebugPanel] を使って全ての関連するログを見ることも出来ます。
 
 
-> ����: HTTP ���N�G�X�g�̃R���e���g�ɂ͔��ɒ������̂����邽�߁A��������O�̒��ɑS���ۑ�����ƂȂ�ƁA���炩�̖�肪������\��������܂��B
-  ���̂��߁A���O�ɋL�^����郊�N�G�X�g�E�R���e���g�̍ő咷�ɑ΂��ẮA�������݂����Ă��܂��B
-  �R���e���g�̍ő咷�� [[\yii\httpclient\Client::contentLoggingMaxSize]] �ɂ���Đ��䂳��A����𒴂���R���e���g�͂��ׂă��M���O�̑O�ɐ؂�l�߂��܂��B
+> 注意: HTTP リクエストのコンテントには非常に長いものがあるため、それをログの中に全部保存するとなると、何らかの問題が生じる可能性があります。
+  このため、ログに記録されるリクエスト・コンテントの最大長に対しては、制限が設けられています。
+  コンテントの最大長は [[\yii\httpclient\Client::contentLoggingMaxSize]] によって制御され、これを超えるコンテントはすべてロギングの前に切り詰められます。
