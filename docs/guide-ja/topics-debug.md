@@ -1,10 +1,10 @@
-HTTP Client DebugPanel ���g��
-=============================
+HTTP クライアント・デバッグ・パネルを使う
+=========================================
 
-yii2 HTTP Client �G�N�X�e���V�����́Ayii �̃f�o�b�O���W���[���Ɠ����\�ȃf�o�b�O�p�l����񋟂��A���s���ꂽ HTTP ���N�G�X�g��\�����܂��B
+yii2 HTTP Client エクステンションは、yii のデバッグ・モジュールと統合可能なデバッグ・パネルを提供し、実行された HTTP リクエストを表示します。
 
-���̃R�[�h�����Ȃ��̃A�v���P�[�V�����̍\�����ɒǉ������ DebugPanel ���L���ɂȂ�܂�
-(���Ƀf�o�b�O���W���[����L���ɂ��Ă���ꍇ�́A�p�l���̍\������ǉ����邾���ŏ\���ł�)�B
+次のコードをあなたのアプリケーションの構成情報に追加するとデバッグ・パネルが有効になります
+(既にデバッグ・モジュールを有効にしている場合は、パネルの構成情報を追加するだけで十分です)。
 
 ```php
     // ...
@@ -22,8 +22,8 @@ yii2 HTTP Client �G�N�X�e���V�����́Ayii �̃f�o�b�O���W���[���Ɠ����\�ȃf�o�b�
     // ...
 ```
 
-���̃p�l���ɂ���āA���O�ɋL�^���ꂽ HTTP ���N�G�X�g�����s���āA���̃��X�|���X���m�F���邱�Ƃ��o���܂��B
-���X�|���X�̓e�L�X�g�\���Ƃ��ĕ\�����邱�Ƃ��A�܂��A�u���E�U�ɒ��ړn�����Ƃ��o���܂��B
+このパネルによって、ログに記録された HTTP リクエストを実行して、そのレスポンスを確認することが出来ます。
+レスポンスはテキスト表現として表示することも、また、ブラウザに直接渡すことも出来ます。
 
-> Note: �f�o�b�O�p�l���ɂ���Ď��s�ł���̂́A���O�ɋL�^���ꂽ�ʏ�� HTTP ���N�G�X�g�����ł��B�o�b�`���M���ꂽ���N�G�X�g�͎��s�ł��܂���B
-  �܂��A���O�ɋL�^���ꂽ���N�G�X�g�̃R���e���g�́A[[\yii\httpclient\Client::contentLoggingMaxSize]] �ɏ]���Đ؂�l�߂��Ă��邩���m�ꂸ�A�]���āA���s�Ɏ��s������A�\�����Ȃ����ʂ𐶂����肷��ꍇ�����邱�Ƃ�S�ɗ��߂Ă����Ă��������B
+> Note: デバッグ・パネルによって実行できるのは、ログに記録された通常の HTTP リクエストだけです。バッチ送信されたリクエストは実行できません。
+  また、ログに記録されたリクエストのコンテントは、[[\yii\httpclient\Client::contentLoggingMaxSize]] に従って切り詰められているかも知れず、従って、実行に失敗したり、予期しない結果を生じたりする場合があることを心に留めておいてください。

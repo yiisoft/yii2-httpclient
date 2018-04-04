@@ -1,11 +1,11 @@
-��{�I�Ȏg�p���@
+基本的な使用方法
 ================
 
-HTTP ���N�G�X�g�𑗐M���邽�߂ɂ́A[[\yii\httpclient\Client]] ���C���X�^���X�����āA���� `createRequest()`
-���\�b�h���g���āAHTTP ���N�G�X�g���쐬����K�v������܂��B
-���ɁA���Ȃ��̖ړI�ɏ]���ă��N�G�X�g�̑S�Ẵp�����[�^���\�����āA���N�G�X�g�𑗐M���܂��B
-���ʂƂ��āA���Ȃ��́A���X�|���X�̑S�Ă̏��ƃf�[�^��ێ����� [[\yii\httpclient\Response]] �̃C���X�^���X���󂯎�邱�ƂɂȂ�܂��B
-�Ⴆ�΁A
+HTTP リクエストを送信するためには、[[\yii\httpclient\Client]] をインスタンス化して、その `createRequest()`
+メソッドを使って、HTTP リクエストを作成する必要があります。
+次に、あなたの目的に従ってリクエストの全てのパラメータを構成して、リクエストを送信します。
+結果として、あなたは、レスポンスの全ての情報とデータを保持する [[\yii\httpclient\Response]] のインスタンスを受け取ることになります。
+例えば、
 
 ```php
 use yii\httpclient\Client;
@@ -21,11 +21,11 @@ if ($response->isOk) {
 }
 ```
 
-�V�������N�G�X�g�����������Ƃ�P�������邽�߂ɁA`get()`�A`post()`�A`put()` �Ȃǂ̃V���[�g�J�b�g���\�b�h���g���Ă��\���܂���B
-����̃h���C���ɑ΂��ĕ����̃��N�G�X�g�𑗐M����ꍇ (�Ⴆ�� REST API �g�p����ꍇ) �́A
-�P��� [[\yii\httpclient\Client]] �C���X�^���X���g���āA���� `baseUrl` �v���p�e�B�ɂ��̃h���C����ݒ肷�邱�Ƃ��o���܂��B
-���̂悤�ɂ���ƁA�V�������N�G�X�g���쐬����Ƃ��ɁA���� URL �������w�肷�邱�Ƃ��o����悤�ɂȂ�܂��B
-�]���āA���炩�� REST API �ɑ΂��鐔�̃��N�G�X�g�́A���L�̂悤�ɏ������Ƃ��o���܂��B
+新しいリクエストを準備する作業を単純化するために、`get()`、`post()`、`put()` などのショートカット・メソッドを使っても構いません。
+同一のドメインに対して複数のリクエストを送信する場合 (例えば REST API 使用する場合) は、
+単一の [[\yii\httpclient\Client]] インスタンスを使って、その `baseUrl` プロパティにそのドメインを設定することが出来ます。
+そのようにすると、新しいリクエストを作成するときに、相対 URL だけを指定することが出来るようになります。
+従って、何らかの REST API に対する数個のリクエストは、下記のように書くことが出来ます。
 
 ```php
 use yii\httpclient\Client;
@@ -38,19 +38,19 @@ $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'arti
 ```
 
 
-## ���܂��܂ȃR���e���g�`�����g��
+## さまざまなコンテント形式を使う
 
-�f�t�H���g�ł́AHTTP ���N�G�X�g�f�[�^�� 'form-urlencoded'�A�Ⴆ�΁A`param1=value1&param2=value2` �Ƃ��đ��M����܂��B
-����̓E�F�u�t�H�[���ł͈�ʓI�Ȍ`���ł����AREST API �ɂƂ��Ă͂����ł͂Ȃ��A�ʏ�̓R���e���g�� JSON �܂��� XML �̌`���ł��邱�Ƃ��v������܂��B
-���N�G�X�g�R���e���g�Ɏg�p�����`���́A`format` �v���p�e�B�܂��� `setFormat()` ���\�b�h���g�p���Đݒ肷�邱�Ƃ��o���܂��B
-���L�̌`�����T�|�[�g����Ă��܂��B
+デフォルトでは、HTTP リクエス・トデータは 'form-urlencoded'、例えば、`param1=value1&param2=value2` として送信されます。
+これはウェブ・フォームでは一般的な形式ですが、REST API にとってはそうではなく、通常はコンテントが JSON または XML の形式であることが要求されます。
+リクエスト・コンテントに使用される形式は、`format` プロパティまたは `setFormat()` メソッドを使用して設定することが出来ます。
+下記の形式がサポートされています。
 
- - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON �`��
- - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - RFC1738 �ɂ���� urlencode ���ꂽ�N�G��������
- - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - PHP_QUERY_RFC3986 �ɂ���� urlencode ���ꂽ�N�G��������
- - [[\yii\httpclient\Client::FORMAT_XML]] - XML �`��
+ - [[\yii\httpclient\Client::FORMAT_JSON]] - JSON 形式
+ - [[\yii\httpclient\Client::FORMAT_URLENCODED]] - RFC1738 によって urlencode されたクエリ文字列
+ - [[\yii\httpclient\Client::FORMAT_RAW_URLENCODED]] - PHP_QUERY_RFC3986 によって urlencode されたクエリ文字列
+ - [[\yii\httpclient\Client::FORMAT_XML]] - XML 形式
 
-�Ⴆ�΁A
+例えば、
 
 ```php
 use yii\httpclient\Client;
@@ -68,22 +68,22 @@ $response = $client->createRequest()
     ->send();
 ```
 
-���X�|���X�I�u�W�F�N�g�́A'Content-Type' �w�b�_�ƃR���e���g���̂Ɋ�Â��āA�R���e���g�`���������I�Ɍ��o���܂��B
-�]���āA�قƂ�ǂ̏ꍇ���X�|���X�̌`�����w�肷��K�v�͂Ȃ��A�P���� `getData()` ���\�b�h�܂��� `data` �v���p�e�B���g���΁A���X�|���X����͂��邱�Ƃ��o���܂��B
-��L�̗�̑����Ƃ��āA���X�|���X�f�[�^���擾����ɂ͎��̂悤�ɂ��邱�Ƃ��o���܂��B
+レスポンス・オブジェクトは、'Content-Type' ヘッダとコンテント自体に基づいて、コンテント形式を自動的に検出します。
+従って、ほとんどの場合レスポンスの形式を指定する必要はなく、単純に `getData()` メソッドまたは `data` プロパティを使えば、レスポンスを解析することが出来ます。
+上記の例の続きとして、レスポンス・データを取得するには次のようにすることが出来ます。
 
 ```php
-$responseData = $response->getData(); // �S�Ă̋L�����擾
-count($response->data) // �L���̐����擾
-$article = $response->data[0] // �ŏ��̋L�����擾
+$responseData = $response->getData(); // 全ての記事を取得
+count($response->data) // 記事の数を取得
+$article = $response->data[0] // 最初の記事を取得
 ```
 
 
-## ���̃R���e���g������
+## 生のコンテントを扱う
 
-�N�����Ȃ��ɑ΂��ē������ꂽ�`���Ɉˑ����邱�Ƃ�����������̂ł͂���܂���B
-HTTP ���N�G�X�g�ɐ��̃R���e���g���g�p���鎖���A���X�|���X�̐��̃R���e���g���������邱�Ƃ��\�ł��B
-�Ⴆ�΁A
+誰もあなたに対して内蔵された形式に依存することを強制するものではありません。
+HTTP リクエストに生のコンテントを使用する事も、レスポンスの生のコンテントを処理することも可能です。
+例えば、
 
 ```php
 use yii\httpclient\Client;
@@ -99,15 +99,15 @@ echo 'Search results:<br>';
 echo $response->content;
 ```
 
-[[\yii\httpclient\Request]] �́A`content` ���ݒ肳��Ă��Ȃ��ꍇ�ɂ����A�w�肳�ꂽ `data` ���t�H�[�}�b�g���܂��B
-[[\yii\httpclient\Response]] �́A`data` ��v�������ꍇ�ɂ����A`content` ����͂��܂��B
+[[\yii\httpclient\Request]] は、`content` が設定されていない場合にだけ、指定された `data` をフォーマットします。
+[[\yii\httpclient\Response]] は、`data` を要求した場合にだけ、`content` を解析します。
 
 
-## ���N�G�X�g�ƃ��X�|���X�̃I�u�W�F�N�g�����O�ɍ\������
+## リクエストとレスポンスのオブジェクトを事前に構成する
 
-�������̎����悤�ȃ��N�G�X�g��P��� [[\yii\httpclient\Client]] �C���X�^���X���g���ď�������ꍇ�A�Ⴆ�� REST API �������悤�ȏꍇ�́A���N�G�X�g�ƃ��X�|���X�̃I�u�W�F�N�g�̂��߂ɂ��Ȃ����g�̍\������錾���邱�Ƃɂ���āA�R�[�h��P�������č��������邱�Ƃ��o���܂��B
-���̂��߂ɂ́A[[\yii\httpclient\Client]] �� `requestConfig` ����� `responsConfig` �̃t�B�[���h���g�p���܂��B
-�Ⴆ�΁A����̃N���C�A���g�ɂ���č쐬�����S�Ẵ��N�G�X�g�ɑ΂��� JSON �`�����Z�b�g�A�b�v�������ꍇ�́A���̂悤�ɂ��܂��B
+いくつかの似たようなリクエストを単一の [[\yii\httpclient\Client]] インスタンスを使って処理する場合、例えば REST API を扱うような場合は、リクエストとレスポンスのオブジェクトのためにあなた自身の構成情報を宣言することによって、コードを単純化して高速化することが出来ます。
+そのためには、[[\yii\httpclient\Client]] の `requestConfig` および `responsConfig` のフィールドを使用します。
+例えば、特定のクライアントによって作成される全てのリクエストに対して JSON 形式をセットアップしたい場合は、次のようにします。
 
 ```php
 use yii\httpclient\Client;
@@ -123,17 +123,17 @@ $client = new Client([
 ]);
 
 $request = $client->createRequest();
-echo $request->format; // �o��: 'json'
+echo $request->format; // 出力: 'json'
 ```
 
-> Tip: ���炩�̒ǉ��̋@�\�𗘗p���邽�߂ɁA�\�����z��� 'class' �L�[���g���āA���N�G�X�g�ƃ��X�|���X�̃I�u�W�F�N�g�ɂ��Ȃ����g�̃N���X���w�肷�邱�Ƃ��\�ł��B
+> Tip: 何らかの追加の機能を利用するために、構成情報配列の 'class' キーを使って、リクエストとレスポンスのオブジェクトにあなた自身のクラスを指定することも可能です。
 
 
-## �w�b�_������
+## ヘッダを扱う
 
-`setHeaders()` ���\�b�h�� `addHeaders()` ���\�b�h���g���āA���N�G�X�g�w�b�_���w�肷�邱�Ƃ��o���܂��B
-�܂��A`getHeaders()` ���\�b�h�܂��� `headers` �v���p�e�B���g���ƁA���ɒ�`����Ă���w�b�_�� [[\yii\web\HeaderCollection]] �̃C���X�^���X�Ƃ��Ď擾���邱�Ƃ��o���܂��B
-�Ⴆ�΁A
+`setHeaders()` メソッドと `addHeaders()` メソッドを使って、リクエスト・ヘッダを指定することが出来ます。
+また、`getHeaders()` メソッドまたは `headers` プロパティを使うと、既に定義されているヘッダを [[\yii\web\HeaderCollection]] のインスタンスとして取得することが出来ます。
+例えば、
 
 ```php
 use yii\httpclient\Client;
@@ -147,7 +147,7 @@ $request->getHeaders()->add('accept-language', 'en-US;en');
 $request->headers->set('user-agent', 'User agent override');
 ```
 
-���X�|���X�I�u�W�F�N�g���擾������́A`getHeaders()` ���\�b�h�܂��� `headers` �v���p�e�B���g���āA���ׂẴ��X�|���X�w�b�_�ɃA�N�Z�X���邱�Ƃ��o���܂��B
+レスポンス・オブジェクトを取得した後は、`getHeaders()` メソッドまたは `headers` プロパティを使って、すべてのレスポンス・ヘッダにアクセスすることが出来ます。
 
 ```php
 $response = $request->send();
@@ -156,13 +156,13 @@ echo $response->headers->get('content-encoding');
 ```
 
 
-## �N�b�L�[������
+## クッキーを扱う
 
-�N�b�L�[�̓w�b�_�̒l�Ƃ��đ���M����邾���̂��̂ł����A[[\yii\httpclient\Request]] �� [[\yii\httpclient\Request]] �́A[[\yii\web\Cookie]] ����� [[\yii\web\CookieCollection]] ���g���ăN�b�L�[���������߂̓Ɨ������C���^�[�t�F�C�X��񋟂��Ă��܂��B
+クッキーはヘッダの値として送受信されるだけのものですが、[[\yii\httpclient\Request]] と [[\yii\httpclient\Request]] は、[[\yii\web\Cookie]] および [[\yii\web\CookieCollection]] を使ってクッキーを扱うための独立したインターフェイスを提供しています。
 
-���N�G�X�g�̃N�b�L�[�� `setCookies()` �܂��� `addCookies()` ���\�b�h�Ŏw�肷�邱�Ƃ��o���܂��B
-�܂��A`getCookies()` ���\�b�h�܂��� `cookies` �v���p�e�B���g���ƁA���ɒ�`����Ă���N�b�L�[�� [[\yii\web\CookieCollection]] �̃C���X�^���X�Ƃ��Ď擾���邱�Ƃ��o���܂��B
-�Ⴆ�΁A
+リクエストのクッキーは `setCookies()` または `addCookies()` メソッドで指定することが出来ます。
+また、`getCookies()` メソッドまたは `cookies` プロパティを使うと、既に定義されているクッキーを [[\yii\web\CookieCollection]] のインスタンスとして取得することが出来ます。
+例えば、
 
 ```php
 use yii\httpclient\Client;
@@ -181,7 +181,7 @@ $request = $client->createRequest()
 $request->cookies->add(['name' => 'display-notification', 'value' => '0']);
 ```
 
-���X�|���X�I�u�W�F�N�g���擾������́A`getCookies()` ���\�b�h�܂��� `cookies` �v���p�e�B���g���āA���X�|���X�̃N�b�L�[�S�ĂɃA�N�Z�X���邱�Ƃ��o���܂��B
+レスポンス・オブジェクトを取得した後は、`getCookies()` メソッドまたは `cookies` プロパティを使って、レスポンスのクッキー全てにアクセスすることが出来ます。
 
 ```php
 $response = $request->send();
@@ -189,9 +189,9 @@ echo $response->getCookies()->get('country');
 echo $response->headers->get('PHPSESSID');
 ```
 
-�P���ȃR�s�[���g���āA���X�|���X�I�u�W�F�N�g���烊�N�G�X�g�I�u�W�F�N�g�ɃN�b�L�[��]�����邱�Ƃ��o���܂��B
-�Ⴆ�΁A�����̃E�F�u�A�v���P�[�V�����Ń��[�U�̃v���t�@�C����ҏW����K�v������Ƃ��܂��傤�B
-���[�U�̃v���t�@�C���̓��O�C����ɂ̂݃A�N�Z�X�ł��܂��̂ŁA�ŏ��Ƀ��O�C�����āA�����Ő������ꂽ�Z�b�V�������g���čX�ɍ�Ƃ����܂��B
+単純なコピーを使って、レスポンス・オブジェクトからリクエスト・オブジェクトにクッキーを転送することが出来ます。
+例えば、何かのウェブ・アプリケーションでユーザのプロファイルを編集する必要があるとしましょう。
+ユーザのプロファイルはログイン後にのみアクセスできますので、最初にログインして、そこで生成されたセッションを使って更に作業をします。
 
 ```php
 use yii\httpclient\Client;
@@ -203,9 +203,9 @@ $loginResponse = $client->post('login', [
     'password' => 'somepassword',
 ])->send();
 
-// $loginResponse->cookies->get('PHPSESSID') ���V�����Z�b�V���� ID ��ێ����Ă���
+// $loginResponse->cookies->get('PHPSESSID') が新しいセッション ID を保持している
 
 $client->post('account/profile', ['birthDate' => '10/11/1982'])
-    ->setCookies($loginResponse->cookies) // ���X�|���X�̃N�b�L�[�����N�G�X�g�̃N�b�L�[�ɓ]��
+    ->setCookies($loginResponse->cookies) // レスポンスのクッキーをリクエストのクッキーに転送
     ->send();
 ```
