@@ -1,10 +1,10 @@
-HTTP Client DebugPanel ‚ðŽg‚¤
-=============================
+HTTP ƒNƒ‰ƒCƒAƒ“ƒgEƒfƒoƒbƒOEƒpƒlƒ‹‚ðŽg‚¤
+=========================================
 
-yii2 HTTP Client ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ÍAyii ‚ÌƒfƒoƒbƒOƒ‚ƒWƒ…[ƒ‹‚Æ“‡‰Â”\‚ÈƒfƒoƒbƒOƒpƒlƒ‹‚ð’ñ‹Ÿ‚µAŽÀs‚³‚ê‚½ HTTP ƒŠƒNƒGƒXƒg‚ð•\Ž¦‚µ‚Ü‚·B
+yii2 HTTP Client ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ÍAyii ‚ÌƒfƒoƒbƒOEƒ‚ƒWƒ…[ƒ‹‚Æ“‡‰Â”\‚ÈƒfƒoƒbƒOEƒpƒlƒ‹‚ð’ñ‹Ÿ‚µAŽÀs‚³‚ê‚½ HTTP ƒŠƒNƒGƒXƒg‚ð•\Ž¦‚µ‚Ü‚·B
 
-ŽŸ‚ÌƒR[ƒh‚ð‚ ‚È‚½‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì\¬î•ñ‚É’Ç‰Á‚·‚é‚Æ DebugPanel ‚ª—LŒø‚É‚È‚è‚Ü‚·
-(Šù‚ÉƒfƒoƒbƒOƒ‚ƒWƒ…[ƒ‹‚ð—LŒø‚É‚µ‚Ä‚¢‚éê‡‚ÍAƒpƒlƒ‹‚Ì\¬î•ñ‚ð’Ç‰Á‚·‚é‚¾‚¯‚Å\•ª‚Å‚·)B
+ŽŸ‚ÌƒR[ƒh‚ð‚ ‚È‚½‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì\¬î•ñ‚É’Ç‰Á‚·‚é‚ÆƒfƒoƒbƒOEƒpƒlƒ‹‚ª—LŒø‚É‚È‚è‚Ü‚·
+(Šù‚ÉƒfƒoƒbƒOEƒ‚ƒWƒ…[ƒ‹‚ð—LŒø‚É‚µ‚Ä‚¢‚éê‡‚ÍAƒpƒlƒ‹‚Ì\¬î•ñ‚ð’Ç‰Á‚·‚é‚¾‚¯‚Å\•ª‚Å‚·)B
 
 ```php
     // ...
@@ -25,5 +25,5 @@ yii2 HTTP Client ƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“‚ÍAyii ‚ÌƒfƒoƒbƒOƒ‚ƒWƒ…[ƒ‹‚Æ“‡‰Â”\‚Èƒfƒoƒbƒ
 ‚±‚Ìƒpƒlƒ‹‚É‚æ‚Á‚ÄAƒƒO‚É‹L˜^‚³‚ê‚½ HTTP ƒŠƒNƒGƒXƒg‚ðŽÀs‚µ‚ÄA‚»‚ÌƒŒƒXƒ|ƒ“ƒX‚ðŠm”F‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
 ƒŒƒXƒ|ƒ“ƒX‚ÍƒeƒLƒXƒg•\Œ»‚Æ‚µ‚Ä•\Ž¦‚·‚é‚±‚Æ‚àA‚Ü‚½Aƒuƒ‰ƒEƒU‚É’¼Ú“n‚·‚±‚Æ‚ào—ˆ‚Ü‚·B
 
-> Note: ƒfƒoƒbƒOƒpƒlƒ‹‚É‚æ‚Á‚ÄŽÀs‚Å‚«‚é‚Ì‚ÍAƒƒO‚É‹L˜^‚³‚ê‚½’Êí‚Ì HTTP ƒŠƒNƒGƒXƒg‚¾‚¯‚Å‚·Bƒoƒbƒ`‘—M‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ÍŽÀs‚Å‚«‚Ü‚¹‚ñB
+> Note: ƒfƒoƒbƒOEƒpƒlƒ‹‚É‚æ‚Á‚ÄŽÀs‚Å‚«‚é‚Ì‚ÍAƒƒO‚É‹L˜^‚³‚ê‚½’Êí‚Ì HTTP ƒŠƒNƒGƒXƒg‚¾‚¯‚Å‚·Bƒoƒbƒ`‘—M‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ÍŽÀs‚Å‚«‚Ü‚¹‚ñB
   ‚Ü‚½AƒƒO‚É‹L˜^‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ÌƒRƒ“ƒeƒ“ƒg‚ÍA[[\yii\httpclient\Client::contentLoggingMaxSize]] ‚É]‚Á‚ÄØ‚è‹l‚ß‚ç‚ê‚Ä‚¢‚é‚©‚à’m‚ê‚¸A]‚Á‚ÄAŽÀs‚ÉŽ¸”s‚µ‚½‚èA—\Šú‚µ‚È‚¢Œ‹‰Ê‚ð¶‚¶‚½‚è‚·‚éê‡‚ª‚ ‚é‚±‚Æ‚ðS‚É—¯‚ß‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢B

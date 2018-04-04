@@ -2,7 +2,7 @@
 ========
 
 [[\yii\httpclient\Request]] は、いくつかのイベントを提供します。
-それらは、イベントハンドラまたはビヘイビアによって処理することが出来ます。
+それらは、イベント・ハンドラまたはビヘイビアによって処理することが出来ます。
 
 - [[\yii\httpclient\Request::EVENT_BEFORE_SEND]] - リクエスト送信の前に発生。
 - [[\yii\httpclient\Request::EVENT_AFTER_SEND]] - リクエスト送信の後に発生。
@@ -22,7 +22,7 @@ $request = $client->createRequest()
     ->setUrl('http://api.domain.com')
     ->setData(['param' => 'value']);
 
-// 最終的なデータセットに基づくシグニチャの生成を保証する
+// 最終的なデータ・セットに基づくシグニチャの生成を保証する
 $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) {
     $data = $event->request->getData();
 
@@ -32,7 +32,7 @@ $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) {
     $event->request->setData($data);
 });
 
-// レスポンスデータを正規化する
+// レスポンス・データを正規化する
 $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) {
     $data = $event->response->getData();
 
@@ -44,7 +44,7 @@ $request->on(Request::EVENT_AFTER_SEND, function (RequestEvent $event) {
 $response = $request->send();
 ```
 
-[[\yii\httpclient\Request]] のインスタンスにイベントハンドラをアタッチするのは、あまり現実的ではありません。
+[[\yii\httpclient\Request]] のインスタンスにイベント・ハンドラをアタッチするのは、あまり現実的ではありません。
 同じユースケースは、[[\yii\httpclient\Client]] クラスのイベントを使って処理することが出来ます。
 
 - [[\yii\httpclient\Client::EVENT_BEFORE_SEND]] - リクエスト送信の前に発生。

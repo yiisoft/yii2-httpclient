@@ -4,12 +4,12 @@
 [[\yii\httpclient\Request::options]] を使って、特定のリクエストの実行を調整することが出来ます。
 以下のオプションがサポートされています。
  - timeout: integer、リクエストの実行に許容される最大秒数。
- - proxy: string、プロキシサーバのアドレスを指定する URI (例えば、tcp://proxy.example.com:5100)。
+ - proxy: string、プロキシ・サーバのアドレスを指定する URI (例えば、tcp://proxy.example.com:5100)。
  - userAgent: string、HTTP リクエストに使用される "User-Agent: " ヘッダの内容。
  - followLocation: boolean、サーバが HTTP ヘッダの一部として送信するすべての "Location:" ヘッダに従うか否か。
  - maxRedirects: integer、redirect に従う最大回数。
  - sslVerifyPeer: boolean、peer の証明書の検証をするか否か。
- - sslCafile: string、ローカルのファイルシステム上の Certificate Authority (CA) ファイルの場所。'sslVerifyPeer' オプションによってリモートの peer の identity を認証する際にこの CA ファイルを用いる。
+ - sslCafile: string、ローカルのファイル・システム上の Certificate Authority (CA) ファイルの場所。'sslVerifyPeer' オプションによってリモートの peer の identity を認証する際にこの CA ファイルを用いる。
  - sslCapath: string、複数の CA 証明書を保持するディレクトリ。
 
 例えば、
@@ -30,8 +30,8 @@ $response = $client->createRequest()
     ->send();
 ```
 
-> Tip: デフォルトのリクエストオプションを [[\yii\httpclient\Client::requestConfig]] によって設定することが出来ます。
-  その場合、特別なリクエストオプションを追加したいときは、設定済みのオプションを保持するために [[\yii\httpclient\Request::addOptions()]] を使ってください。
+> Tip: デフォルトのリクエスト・オプションを [[\yii\httpclient\Client::requestConfig]] によって設定することが出来ます。
+  その場合、特別なリクエスト・オプションを追加したいときは、設定済みのオプションを保持するために [[\yii\httpclient\Request::addOptions()]] を使ってください。
 
 特定のリクエストのトランスポートに対してのみ適用するオプションを渡すことも出来ます。
 [[\yii\httpclient\CurlTransport]] を使う場合は、通常、そのようにします。
@@ -56,4 +56,4 @@ $response = $client->createRequest()
     ->send();
 ```
 
-固有のオプションのサポートについては、個別のトランスポートクラスのドキュメントを参照してください。
+固有のオプションのサポートについては、個別のトランスポート・クラスのドキュメントを参照してください。

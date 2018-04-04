@@ -1,4 +1,4 @@
-Yii 2 HTTP クライアント エクステンション
+Yii 2 HTTP クライアント・エクステンション
 ========================================
 
 このエクステンションは [Yii フレームワーク 2.0](http://www.yiiframework.com) に HTTP クライアントを提供するものです。
@@ -16,8 +16,8 @@ Yii 2 HTTP クライアント エクステンション
 * [データ形式](usage-data-formats.md)
 * [トランスポート](usage-transports.md)
 * [リクエストのオプション](usage-request-options.md)
-* [マルチパートコンテント](usage-multi-part-content.md)
-* [バッチリクエスト送信](usage-batch-request-sending.md)
+* [マルチパート・コンテント](usage-multi-part-content.md)
+* [バッチ・リクエスト送信](usage-batch-request-sending.md)
 * [イベント](usage-events.md)
 * [ロギングとプロファイリング](usage-logging.md)
 * [クライアントのインスタンスをセットアップする](usage-setup-client-instance.md)
@@ -25,4 +25,4 @@ Yii 2 HTTP クライアント エクステンション
 追加のトピック
 --------------
 
-* [HTTP Client DebugPanel を使う](topics-debug.md)
+* [HTTP クライアント・デバッグ・パネルを使う](topics-debug.md)
