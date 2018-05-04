@@ -12,8 +12,7 @@
  - [[\yii\httpclient\Client::FORMAT_XML]] - XML 形式
 
 それぞれの形式は二つの実体、'formatter' と 'parser' によってカバーされます。
-Formatter は、リクエストのコンテントがデータから作成される方法を決定します。
-Parser は、生のレスポンスコンテントがデータに解析される方法を決定します。
+Formatter は、リクエストのコンテントがデータから作成される方法を決定します。Parser は、生のレスポンスコンテントがデータに解析される方法を決定します。
 
 [[\yii\httpclient\Client]] は、上述の形式すべてについて、自動的に対応する formatter と parser を選択します。
 ただし、この振る舞いは、[[\yii\httpclient\Client::formatters]] と [[\yii\httpclient\Client::parsers]] を使って変更することが出来ます。
@@ -32,8 +31,7 @@ $client = new Client([
 ```
 
 あなた自身の parser を作成するときは [[\yii\httpclient\ParserInterface]] を実装しなければなりません。
-formatter の場合は  [[\yii\httpclient\ParserInterface]] です。
-例えば、
+formatter の場合は  [[\yii\httpclient\ParserInterface]] です。例えば、
 
 ```php
 use yii\httpclient\FormatterInterface;

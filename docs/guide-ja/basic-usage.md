@@ -41,7 +41,8 @@ $client->post('subscriptions', ['user_id' => $newUserResponse->data['id'], 'arti
 ## さまざまなコンテント形式を使う
 
 デフォルトでは、HTTP リクエス・トデータは 'form-urlencoded'、例えば、`param1=value1&param2=value2` として送信されます。
-これはウェブ・フォームでは一般的な形式ですが、REST API にとってはそうではなく、通常はコンテントが JSON または XML の形式であることが要求されます。
+これはウェブ・フォームでは一般的な形式ですが、REST API にとってはそうではなく、
+通常はコンテントが JSON または XML の形式であることが要求されます。
 リクエスト・コンテントに使用される形式は、`format` プロパティまたは `setFormat()` メソッドを使用して設定することが出来ます。
 下記の形式がサポートされています。
 
@@ -82,8 +83,7 @@ $article = $response->data[0] // 最初の記事を取得
 ## 生のコンテントを扱う
 
 誰もあなたに対して内蔵された形式に依存することを強制するものではありません。
-HTTP リクエストに生のコンテントを使用する事も、レスポンスの生のコンテントを処理することも可能です。
-例えば、
+HTTP リクエストに生のコンテントを使用する事も、レスポンスの生のコンテントを処理することも可能です。例えば、
 
 ```php
 use yii\httpclient\Client;
@@ -105,7 +105,9 @@ echo $response->content;
 
 ## リクエストとレスポンスのオブジェクトを事前に構成する
 
-いくつかの似たようなリクエストを単一の [[\yii\httpclient\Client]] インスタンスを使って処理する場合、例えば REST API を扱うような場合は、リクエストとレスポンスのオブジェクトのためにあなた自身の構成情報を宣言することによって、コードを単純化して高速化することが出来ます。
+いくつかの似たようなリクエストを単一の [[\yii\httpclient\Client]] インスタンスを使って処理する場合、
+例えば REST API を扱うような場合は、リクエストとレスポンスのオブジェクトのためにあなた自身の構成情報を宣言することによって、
+コードを単純化して高速化することが出来ます。
 そのためには、[[\yii\httpclient\Client]] の `requestConfig` および `responsConfig` のフィールドを使用します。
 例えば、特定のクライアントによって作成される全てのリクエストに対して JSON 形式をセットアップしたい場合は、次のようにします。
 
@@ -126,7 +128,8 @@ $request = $client->createRequest();
 echo $request->format; // 出力: 'json'
 ```
 
-> Tip: 何らかの追加の機能を利用するために、構成情報配列の 'class' キーを使って、リクエストとレスポンスのオブジェクトにあなた自身のクラスを指定することも可能です。
+> Tip: 何らかの追加の機能を利用するために、構成情報配列の 'class' キーを使って、
+  リクエストとレスポンスのオブジェクトにあなた自身のクラスを指定することも可能です。
 
 
 ## ヘッダを扱う
@@ -147,7 +150,8 @@ $request->getHeaders()->add('accept-language', 'en-US;en');
 $request->headers->set('user-agent', 'User agent override');
 ```
 
-レスポンス・オブジェクトを取得した後は、`getHeaders()` メソッドまたは `headers` プロパティを使って、すべてのレスポンス・ヘッダにアクセスすることが出来ます。
+レスポンス・オブジェクトを取得した後は、`getHeaders()` メソッドまたは `headers` プロパティを使って、
+すべてのレスポンス・ヘッダにアクセスすることが出来ます。
 
 ```php
 $response = $request->send();
@@ -158,7 +162,8 @@ echo $response->headers->get('content-encoding');
 
 ## クッキーを扱う
 
-クッキーはヘッダの値として送受信されるだけのものですが、[[\yii\httpclient\Request]] と [[\yii\httpclient\Request]] は、[[\yii\web\Cookie]] および [[\yii\web\CookieCollection]] を使ってクッキーを扱うための独立したインターフェイスを提供しています。
+クッキーはヘッダの値として送受信されるだけのものですが、[[\yii\httpclient\Request]] と [[\yii\httpclient\Request]] は、
+[[\yii\web\Cookie]] および [[\yii\web\CookieCollection]] を使ってクッキーを扱うための独立したインターフェイスを提供しています。
 
 リクエストのクッキーは `setCookies()` または `addCookies()` メソッドで指定することが出来ます。
 また、`getCookies()` メソッドまたは `cookies` プロパティを使うと、既に定義されているクッキーを [[\yii\web\CookieCollection]] のインスタンスとして取得することが出来ます。
@@ -181,7 +186,8 @@ $request = $client->createRequest()
 $request->cookies->add(['name' => 'display-notification', 'value' => '0']);
 ```
 
-レスポンス・オブジェクトを取得した後は、`getCookies()` メソッドまたは `cookies` プロパティを使って、レスポンスのクッキー全てにアクセスすることが出来ます。
+レスポンス・オブジェクトを取得した後は、`getCookies()` メソッドまたは `cookies` プロパティを使って、
+レスポンスのクッキー全てにアクセスすることが出来ます。
 
 ```php
 $response = $request->send();
