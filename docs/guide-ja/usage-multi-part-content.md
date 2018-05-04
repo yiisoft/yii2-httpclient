@@ -17,8 +17,10 @@ $response = $client->createRequest()
     ->send();
 ```
 
-リクエストがマルチ・パートであるとマークされている場合であっても、[[\yii\httpclient\Request::data]] が指定されている場合は、その値がコンテントの一部として自動的に送信されます。
+リクエストがマルチ・パートであるとマークされている場合であっても、[[\yii\httpclient\Request::data]] が指定されている場合は、
+その値がコンテントの一部として自動的に送信されます。
 例えば、次のようなフォームの送信をエミュレートしたいと仮定しましょう。
+
 ```html
 <form name="profile-form" method="post" action="http://domain.com/user/profile" enctype="multipart/form-data">
     <input type="text" name="username" value="">
@@ -42,5 +44,21 @@ $response = $client->createRequest()
         'email' => 'johndoe@domain.com',
     ])
     ->addFile('avatar', '/path/to/source/image.jpg')
+    ->send();
+```
+
+同じ名前で複数のファイルを添付すると、最後のファイルでそれらが上書きされることに注意して下さい。
+その場合、添付ファイルのための表形式入力のインデックスは、あなた自身が制御しなければなりません。例えば、
+
+```php
+use yii\httpclient\Client;
+
+$client = new Client();
+$response = $client->createRequest()
+    ->setMethod('POST')
+    ->setUrl('http://domain.com/gallery')
+    ->addFile('avatar[0]', '/path/to/source/image1.jpg')
+    ->addFile('avatar[1]', '/path/to/source/image2.jpg')
+    ...
     ->send();
 ```

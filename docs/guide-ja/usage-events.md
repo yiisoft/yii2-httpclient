@@ -1,8 +1,7 @@
 イベント
 ========
 
-[[\yii\httpclient\Request]] は、いくつかのイベントを提供します。
-それらは、イベント・ハンドラまたはビヘイビアによって処理することが出来ます。
+[[\yii\httpclient\Request]] は、いくつかのイベントを提供します。それらは、イベント・ハンドラまたはビヘイビアによって処理することが出来ます。
 
 - [[\yii\httpclient\Request::EVENT_BEFORE_SEND]] - リクエスト送信の前に発生。
 - [[\yii\httpclient\Request::EVENT_AFTER_SEND]] - リクエスト送信の後に発生。
@@ -50,7 +49,8 @@ $response = $request->send();
 - [[\yii\httpclient\Client::EVENT_BEFORE_SEND]] - リクエスト送信の前に発生。
 - [[\yii\httpclient\Client::EVENT_AFTER_SEND]] - リクエスト送信の後に発生。
 
-これらのイベントは、クライアントによって生成されるすべてのリクエストに対して、[[\yii\httpclient\Request]] が発生させるイベントと同じタイミングとシグニチャを持って発生させられます。
+これらのイベントは、クライアントによって生成されるすべてのリクエストに対して、
+[[\yii\httpclient\Request]] が発生させるイベントと同じタイミングとシグニチャを持って発生させられます。
 例えば、
 
 ```php
@@ -68,5 +68,4 @@ $client->on(Client::EVENT_AFTER_SEND, function (RequestEvent $event) {
 ```
 
 > Note: [[\yii\httpclient\Client]] と [[\yii\httpclient\Request]] は、`EVENT_BEFORE_SEND` および
-  `EVENT_AFTER_SEND` のイベントについて、同じ名前を共有します。
-  従って、両方のクラスに適用できるビヘイビアを作成することが可能です。
+  `EVENT_AFTER_SEND` のイベントについて、同じ名前を共有します。従って、両方のクラスに適用できるビヘイビアを作成することが可能です。
