@@ -82,11 +82,13 @@ class Request extends Message
      * This method can be use during request formatting and preparation.
      * Do not use it for the target URL specification, use [[setUrl()]] instead.
      * @param string $fullUrl full target URL.
+     * @return $this self reference.
      * @since 2.0.3
      */
     public function setFullUrl($fullUrl)
     {
         $this->_fullUrl = $fullUrl;
+        return $this;
     }
 
     /**
