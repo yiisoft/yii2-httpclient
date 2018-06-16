@@ -1,5 +1,5 @@
 {
-    "name": "yiisoft/yii2-httpclient",
+    "name": "harrytang/yii2-httpclient",
     "description": "HTTP client extension for the Yii framework",
     "keywords": ["yii2", "http", "httpclient", "curl"],
     "type": "yii2-extension",
@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "2.1.x-dev"
+        "yiisoft/yii2": "3.0.x-dev"
     },
     "autoload": {
         "psr-4": {"yii\\httpclient\\": "src"}
