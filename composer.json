@@ -1,5 +1,5 @@
 {
-    "name": "yiisoft/yii2-httpclient",
+    "name": "harrytang/yii2-httpclient",
     "description": "HTTP client extension for the Yii framework",
     "keywords": ["yii2", "http", "httpclient", "curl"],
     "type": "yii2-extension",
