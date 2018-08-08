@@ -159,6 +159,18 @@ echo $response->getHeaders()->get('content-type');
 echo $response->headers->get('content-encoding');
 ```
 
+### HTTP Basic Authentication
+
+The client has no built-in support for HTTP Authentication. If you want to use HTTP Basic Authentication you need to add
+an appropriate header that follows the [format of HTTP Basic Authentication](https://tools.ietf.org/html/rfc2617#section-2).
+You can authenticate by adding an `Authorization` header, that contains the word `Basic`, followed by a whitespace and
+the base64 encoded string of `username:password`:
+
+```php
+$username = 'yii':
+$password = 'verysecret';
+$request->headers->set('Authorization', 'Basic ' . base64_encode("$username:$password"));
+```
 
 ## Working with cookies
 
