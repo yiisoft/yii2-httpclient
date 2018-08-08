@@ -172,6 +172,9 @@ $password = 'verysecret';
 $request->headers->set('Authorization', 'Basic ' . base64_encode("$username:$password"));
 ```
 
+> Note: HTTP Basic Authentication sends username and password in plain text, so it should only be used
+> over secure connections using HTTPS.
+
 ## Working with cookies
 
 Although Cookies are transferred just as header values, [[\yii\httpclient\Request]] and [[\yii\httpclient\Request]]
