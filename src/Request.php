@@ -416,7 +416,8 @@ class Request extends Message
 
     /**
      * Sends this request.
-     * @return Response response instance.
+     * @return Response
+     * @throws Exception
      */
     public function send()
     {
