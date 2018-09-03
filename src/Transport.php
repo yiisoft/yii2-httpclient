@@ -32,6 +32,7 @@ abstract class Transport extends Component
      * Keys of the response array correspond the ones from request array.
      * @param Request[] $requests requests to perform.
      * @return Response[] responses list.
+     * @throws Exception
      */
     public function batchSend(array $requests)
     {
