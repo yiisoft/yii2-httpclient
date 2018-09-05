@@ -230,6 +230,7 @@ class Request extends Message
      *  - fileName - string, base name of the uploading file, if not set it base name of the source file will be used.
      *  - mimeType - string, file mime type, if not set it will be determine automatically from source file.
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     public function addFile($name, $fileName, $options = [])
     {
@@ -417,6 +418,7 @@ class Request extends Message
     /**
      * Sends this request.
      * @return Response response instance.
+     * @throws Exception
      */
     public function send()
     {
@@ -486,6 +488,7 @@ class Request extends Message
 
     /**
      * @return FormatterInterface message formatter instance.
+     * @throws \yii\base\InvalidConfigException
      */
     private function getFormatter()
     {

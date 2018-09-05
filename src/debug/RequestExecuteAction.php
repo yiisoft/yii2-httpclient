@@ -31,6 +31,8 @@ class RequestExecuteAction extends Action
      * @param bool $passthru whether to send response to the browser or render it as plain text
      * @return Response
      * @throws HttpException
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\httpclient\Exception
      */
     public function run($seq, $tag, $passthru = false)
     {
@@ -69,6 +71,7 @@ class RequestExecuteAction extends Action
      * Creates an HTTP request instance from log entry.
      * @param string $requestLog HTTP request log entry
      * @return \yii\httpclient\Request request instance.
+     * @throws \yii\base\InvalidConfigException
      */
     protected function createRequestFromLog($requestLog)
     {

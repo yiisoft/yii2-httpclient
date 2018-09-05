@@ -71,6 +71,7 @@ class Response extends Message
     /**
      * Checks if response status code is OK (status code = 20x)
      * @return bool whether response is OK.
+     * @throws Exception
      */
     public function getIsOk()
     {
@@ -190,6 +191,7 @@ class Response extends Message
     /**
      * @return ParserInterface message parser instance.
      * @throws Exception if unable to detect parser.
+     * @throws \yii\base\InvalidConfigException
      */
     private function getParser()
     {

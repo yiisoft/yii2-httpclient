@@ -50,6 +50,7 @@ class HttpClientPanel extends Panel
 
     /**
      * @return \yii\httpclient\Client
+     * @throws \yii\base\InvalidConfigException
      */
     public function getHttpClient()
     {
