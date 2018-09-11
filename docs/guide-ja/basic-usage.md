@@ -159,6 +159,21 @@ echo $response->getHeaders()->get('content-type');
 echo $response->headers->get('content-encoding');
 ```
 
+### HTTP Basic 認証
+
+クライアントは HTTP 認証に対するサポートを内蔵していません。HTTP Basic 認証を使いたい場合は
+[HTTP Basic 認証の形式](https://tools.ietf.org/html/rfc2617#section-2) に準拠した適切なヘッダを自分で追加しなければなりません。
+`Basic` という単語に続けて、一つの空白と、base64 エンコードされた `username:password` の文字列とを置いた
+`Authorizaton` ヘッダを追加すれば認証できます。
+
+```php
+$username = 'yii':
+$password = 'verysecret';
+$request->headers->set('Authorization', 'Basic ' . base64_encode("$username:$password"));
+```
+
+> Note: HTTP Basic 認証はユーザ名とパスワードを平文で送信しますので、
+> HTTPS を使う安全な接続を通じてのみ使用されるべきです。
 
 ## クッキーを扱う
 
