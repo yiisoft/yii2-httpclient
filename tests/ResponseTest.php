@@ -72,6 +72,10 @@ class ResponseTest extends TestCase
                 Client::FORMAT_JSON
             ],
             [
+                '[{"name1":"value1", "name2":"value2"},{"name1":"value3", "name2":"value4"}]',
+                Client::FORMAT_JSON
+            ],
+            [
                 '<?xml version="1.0" encoding="utf-8"?><root></root>',
                 Client::FORMAT_XML
             ],
