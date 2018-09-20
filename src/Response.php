@@ -124,7 +124,7 @@ class Response extends Message
      */
     protected function detectFormatByContent($content)
     {
-        if (preg_match('/^\\{.*\\}$/is', $content)) {
+        if (preg_match('/^(\\{|\\[\\{).*(\\}|\\}\\])$/is', $content)) {
             return Client::FORMAT_JSON;
         }
         if (preg_match('/^([^=&])+=[^=&]+(&[^=&]+=[^=&]+)*$/', $content)) {
