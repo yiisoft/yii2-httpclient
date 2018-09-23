@@ -79,7 +79,7 @@ class Request extends Message
 
     /**
      * Sets full target URL.
-     * This method can be use during request formatting and preparation.
+     * This method can be used during request formatting and preparation.
      * Do not use it for the target URL specification, use [[setUrl()]] instead.
      * @param string $fullUrl full target URL.
      * @return $this self reference.
