@@ -130,7 +130,7 @@ class Response extends Message
         if (preg_match('/^([^=&])+=[^=&]+(&[^=&]+=[^=&]+)*$/', $content)) {
             return Client::FORMAT_URLENCODED;
         }
-        if (preg_match('/^<.*>$/s', $content)) {
+        if (preg_match('/^<\?xml.*>$/s', $content)) {
             return Client::FORMAT_XML;
         }
         return null;

@@ -87,6 +87,17 @@ class ResponseTest extends TestCase
                 'some-plain-string',
                 null
             ],
+            [   // do not detect HTML as XML
+                <<<HTML
+<!DOCTYPE html>
+<html>
+<head><title>Some title</title></head>
+<body>some text</body>
+</html>
+HTML
+                ,
+                null
+            ],
         ];
     }
 
