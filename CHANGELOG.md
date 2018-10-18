@@ -4,6 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.8 under development
 -----------------------
 
+- Enh #153: Allow configuring `JsonParser` to parse JSON as objects instead of arrays (CeBe)
 - Bug #168: `Response::detectFormatByContent` falsely detected HTML as XML (CeBe)
 
 
