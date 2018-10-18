@@ -21,6 +21,20 @@ class JsonParserTest extends TestCase
         $this->assertEquals($data, $parser->parse($document));
     }
 
+    public function testParseAsObject()
+    {
+        $document = new Response();
+        $data = new \stdClass();
+        $data->name1 = 'value1';
+        $data->name2 = 'value2';
+        $document->setContent(Json::encode($data));
+
+        $parser = new JsonParser([
+            'asArray' => false,
+        ]);
+        $this->assertEquals($data, $parser->parse($document));
+    }
+
     public function testParse2()
     {
         $document = new Response();
