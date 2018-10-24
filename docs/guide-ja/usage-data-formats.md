@@ -28,7 +28,7 @@ $client = new Client([
         Client::FORMAT_XML => 'app\components\http\MyXMLFormatter', // デフォルトの XML formatter をオーバーライド
     ],
     'parsers' => [
-        // configure options of the JsonParser, parse JSON as objects
+        // JsonParser のオプションを構成し、JSON をオブジェクトとしてパース
         Client::FORMAT_JSON => [
             'class' => 'yii\httpclient\JsonParser',
             'asArray' => false,
