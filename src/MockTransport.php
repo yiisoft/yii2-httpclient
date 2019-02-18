@@ -49,8 +49,13 @@ final class MockTransport extends Transport
             throw new Exception('No Response available');
         }
 
+        $nextResponse = array_shift($this->responses);
+        if (null === $nextResponse->client) {
+            $nextResponse->client = $request->client;
+        }
+
         $this->requests[] = $request;
 
-        return array_shift($this->responses);
+        return $nextResponse;
     }
 }
