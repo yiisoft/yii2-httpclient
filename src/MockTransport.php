@@ -15,11 +15,11 @@ final class MockTransport extends Transport
      * @var Request[]
      */
     private $requests = [];
-
     /**
      * @var Response[]
      */
     private $responses = [];
+
 
     /**
      * @param Response $response
