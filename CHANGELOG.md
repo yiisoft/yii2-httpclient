@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 -----------------------
 
 - Enh #153: Allow configuring `JsonParser` to parse JSON as objects instead of arrays (CeBe)
+- Enh #174: Add `MockTransport` for test environments (Slamdunk)
 - Bug #168: `Response::detectFormatByContent` falsely detected HTML as XML (CeBe)
 - Bug #173: Added extra check to `Message::addData()` to prevent error on trying to merge non-array (samdark)
 

@@ -10,6 +10,8 @@ Predefined transports are:
  - [[\yii\httpclient\CurlTransport]] - sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
    This transport requires PHP 'curl' extension to be installed, but provides support for advanced features, like
    batch sending.
+ - [[\yii\httpclient\MockTransport]] - useful in test automation context. It does not send any real request and returns
+   the responses it is instructed to return.
 
 You may configure the transport to be used by particular client using [[\yii\httpclient\Client::$transport]]:
 
