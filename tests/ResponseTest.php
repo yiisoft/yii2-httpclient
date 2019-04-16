@@ -216,6 +216,6 @@ Content-Type: text/html; charset=UTF-8
 
 <html>Content</html>
 EOL;
-        $this->assertEquals($expectedResult, $response->toString());
+        $this->assertEqualsWithoutLE($expectedResult, $response->toString());
     }
 }

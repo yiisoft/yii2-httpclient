@@ -32,16 +32,21 @@ abstract class TransportTestCase extends TestCase
         return new Client(['transport' => $this->transport()]);
     }
 
+    private function assertResponseIsOK(Response $response)
+    {
+        $this->assertTrue($response->getIsOk(), 'Response code was not OK but ' . $response->getStatusCode() . ': ' . $response->getContent());
+    }
+
     public function testSend()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net/';
         $response = $client->createRequest()
             ->setMethod('GET')
             ->setUrl('docs.php')
             ->send();
 
-        $this->assertTrue($response->getIsOk());
+        $this->assertResponseIsOK($response);
         $content = $response->getContent();
         $this->assertNotEmpty($content);
         $this->assertContains('<h1>Documentation</h1>', $content);
@@ -53,13 +58,13 @@ abstract class TransportTestCase extends TestCase
     public function testSendPost()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net/';
         $response = $client->createRequest()
             ->setMethod('POST')
             ->setUrl('search.php')
             ->setData(['pattern' => 'curl'])
             ->send();
-        $this->assertTrue($response->getIsOk());
+        $this->assertResponseIsOK($response);
     }
 
     /**
@@ -68,7 +73,7 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSend()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net/';
 
         $requests = [];
         $requests['docs'] = $client->createRequest()
@@ -82,7 +87,7 @@ abstract class TransportTestCase extends TestCase
         $this->assertCount(count($requests), $responses);
 
         foreach ($responses as $name => $response) {
-            $this->assertTrue($response->getIsOk());
+            $this->assertResponseIsOK($response);
         }
 
         $this->assertTrue($responses['docs'] instanceof Response, $responses);
@@ -98,7 +103,7 @@ abstract class TransportTestCase extends TestCase
     public function testFollowLocation()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net/';
 
         $request = $client->createRequest()
             ->setMethod('GET')
@@ -116,7 +121,7 @@ abstract class TransportTestCase extends TestCase
         $response = $request->setOptions([
             'followLocation' => true,
         ])->send();
-        $this->assertTrue($response->getIsOk());
+        $this->assertResponseIsOK($response);
     }
 
     /**
@@ -142,7 +147,7 @@ abstract class TransportTestCase extends TestCase
     public function testSendEvents()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net/';
 
         $request = $client->createRequest()
             ->setMethod('GET')
@@ -175,7 +180,7 @@ abstract class TransportTestCase extends TestCase
     public function testClientSendEvents()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net/';
 
         $request = $client->createRequest()
             ->setMethod('GET')
@@ -209,7 +214,7 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSendEvents()
     {
         $client = $this->createClient();
-        $client->baseUrl = 'http://php.net';
+        $client->baseUrl = 'https://www.php.net';
 
         $beforeSendUrls = [];
         $client->on(Client::EVENT_BEFORE_SEND, function(RequestEvent $event) use (&$beforeSendUrls) {
@@ -242,8 +247,8 @@ abstract class TransportTestCase extends TestCase
     public function testInvalidUrl()
     {
         $client = $this->createClient();
-        $request = $client->get('http:/example.com');
-        $this->assertEquals('http:/example.com', $request->fullUrl);
+        $request = $client->get('httpz:/example.com');
+        $this->assertEquals('httpz:/example.com', $request->fullUrl);
 
         $this->expectException('yii\httpclient\Exception');
         $request->send();
@@ -297,7 +302,7 @@ abstract class TransportTestCase extends TestCase
             ])
             ->send();
 
-        $this->assertTrue($response->getIsOk());
+        $this->assertResponseIsOK($response);
         $content = $response->getContent();
         $this->assertNotEmpty($content);
         $this->assertContains('<h1>Documentation</h1>', $content);
