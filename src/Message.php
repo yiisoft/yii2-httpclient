@@ -243,6 +243,9 @@ class Message extends Component
         if (empty($this->_data)) {
             $this->_data = $data;
         } else {
+            if (!is_array($this->_data)) {
+                throw new \yii\base\Exception('Unable to merge existing data with new data. Existing data is not an array.');
+            }
             $this->_data = array_merge($this->_data, $data);
         }
         return $this;
