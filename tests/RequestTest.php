@@ -159,7 +159,7 @@ Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
 name=value
 EOL;
-        $this->assertEquals($expectedResult, $request->toString());
+        $this->assertEqualsWithoutLE($expectedResult, $request->toString());
 
         // @see https://github.com/yiisoft/yii2-httpclient/issues/70
         $request = new Request([
@@ -267,7 +267,7 @@ Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
 param1=value1
 EOL;
-        $this->assertEquals($expectedResult, $request->toString());
+        $this->assertEqualsWithoutLE($expectedResult, $request->toString());
 
         $data = [
             'param2' => 'value2',
@@ -280,7 +280,7 @@ Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 
 param2=value2
 EOL;
-        $this->assertEquals($expectedResult, $request->toString());
+        $this->assertEqualsWithoutLE($expectedResult, $request->toString());
     }
 
     public function testMultiPartRequest()
