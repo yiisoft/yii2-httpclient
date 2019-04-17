@@ -62,4 +62,30 @@ class CurlTransportTest extends TransportTestCase
         ];
         $this->assertEquals($expectedContextOptions, $contextOptions);
     }
+
+    public function testPreparePostRequestWithEmptyBody()
+    {
+        $client = new Client([
+            'transport' => 'yii\httpclient\CurlTransport',
+        ]);
+        $request = $client->createRequest();
+        $request->setMethod('POST');
+        $request->setUrl('http://app.test/full/url');
+
+        $transport = $this->createClient()->getTransport();
+        $curlOptions = $this->invoke($transport, 'prepare', [$request]);
+
+        $expectedCurlOptions = [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => null,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => 'http://app.test/full/url',
+            CURLOPT_HTTPHEADER => [
+                0 => 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8',
+                1 => 'Content-Length: 0',
+            ],
+        ];
+
+        $this->assertEquals($expectedCurlOptions, $curlOptions);
+    }
 }
