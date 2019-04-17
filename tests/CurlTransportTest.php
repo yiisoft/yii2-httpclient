@@ -2,6 +2,7 @@
 
 namespace yiiunit\extensions\httpclient;
 
+use yii\httpclient\Client;
 use yii\httpclient\CurlTransport;
 
 /**
