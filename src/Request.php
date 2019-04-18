@@ -54,6 +54,11 @@ class Request extends Message
      */
     private $isPrepared = false;
 
+    /**
+     * @var resource
+     */
+    private $_file;
+
 
     /**
      * Sets target URL.
@@ -493,5 +498,21 @@ class Request extends Message
     private function getFormatter()
     {
         return $this->client->getFormatter($this->getFormat());
+    }
+
+    /**
+     * @return resource
+     */
+    public function getFile()
+    {
+        return $this->_file;
+    }
+
+    /**
+     * @param resource $file
+     */
+    public function setFile($file)
+    {
+        $this->_file = $file;
     }
 }
