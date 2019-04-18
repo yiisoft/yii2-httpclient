@@ -2,8 +2,8 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\UrlEncodedFormatter;
 use yii\httpclient\Request;
+use yii\httpclient\UrlEncodedFormatter;
 
 class UrlEncodedFormatterTest extends TestCase
 {
@@ -61,5 +61,18 @@ class UrlEncodedFormatterTest extends TestCase
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertNull($request->getContent());
+    }
+
+    public function testFormatPostRequestWithEmptyBody()
+    {
+        $request = new Request();
+        $request->setMethod('POST');
+
+        $formatter = new UrlEncodedFormatter();
+        $formatter->format($request);
+
+        $headers = $request->getHeaders();
+
+        $this->assertEquals('0', $headers['content-length'][0]);
     }
 }

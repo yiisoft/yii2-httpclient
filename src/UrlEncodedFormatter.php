@@ -60,6 +60,8 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
 
         if (isset($content)) {
             $request->setContent($content);
+        } else {
+            $request->getHeaders()->set('Content-Length', '0');
         }
 
         return $request;
