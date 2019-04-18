@@ -200,8 +200,8 @@ class ClientTest extends TestCase
         $client = new Client();
         $response = $client->createResponse('content', null);
         $headersCollection = $response->getHeaders();
-        $this->assertInstanceOf( Response::class, $response);
-        $this->assertInstanceOf(HeaderCollection::class, $headersCollection);
+        $this->assertTrue($response instanceof Response);
+        $this->assertTrue($headersCollection instanceof HeaderCollection);
         $this->assertEquals([], $headersCollection->toArray());
     }
 
@@ -210,8 +210,8 @@ class ClientTest extends TestCase
         $client = new Client();
         $response = $client->createResponse('content', []);
         $headersCollection = $response->getHeaders();
-        $this->assertInstanceOf( Response::class, $response);
-        $this->assertInstanceOf(HeaderCollection::class, $headersCollection);
+        $this->assertTrue($response instanceof Response);
+        $this->assertTrue($headersCollection instanceof HeaderCollection);
         $this->assertEquals([], $headersCollection->toArray());
     }
 }
