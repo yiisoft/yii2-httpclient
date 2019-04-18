@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 -----------------------
 
 - Bug #171: Add "Content-Length: 0" header when sending request with empty body (alexkart)
+- Bug #149: Fix type error in `StreamTransport` when `$http_response_header = null` (alexkart)
 
 
 2.0.8 April 16, 2019
