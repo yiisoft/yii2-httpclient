@@ -202,9 +202,8 @@ class Client extends Component
      * @return Response request instance.
      * @throws \yii\base\InvalidConfigException
      */
-    public function createResponse($content = null, $headers = null)
+    public function createResponse($content = null, array $headers = [])
     {
-        $headers = (array) $headers;
         $config = $this->responseConfig;
         if (!isset($config['class'])) {
             $config['class'] = Response::className();

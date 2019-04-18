@@ -195,23 +195,13 @@ class ClientTest extends TestCase
         $this->assertEquals($responseContent, $response->getContent());
     }
 
-    public function testCreateResponseWithHeadersEqualToNull()
-    {
-        $client = new Client();
-        $response = $client->createResponse('content', null);
-        $headersCollection = $response->getHeaders();
-        $this->assertTrue($response instanceof Response);
-        $this->assertTrue($headersCollection instanceof HeaderCollection);
-        $this->assertEquals([], $headersCollection->toArray());
-    }
-
     public function testCreateResponseWithHeadersEqualToEmptyArray()
     {
         $client = new Client();
         $response = $client->createResponse('content', []);
         $headersCollection = $response->getHeaders();
-        $this->assertTrue($response instanceof Response);
-        $this->assertTrue($headersCollection instanceof HeaderCollection);
+        $this->assertInstanceOf(Response::className(), $response);
+        $this->assertInstanceOf(HeaderCollection::className(), $headersCollection);
         $this->assertEquals([], $headersCollection->toArray());
     }
 }
