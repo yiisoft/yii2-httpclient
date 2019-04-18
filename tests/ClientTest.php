@@ -3,16 +3,17 @@
 namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\Client;
+use yii\httpclient\CurlTransport;
 use yii\httpclient\JsonFormatter;
-use yii\httpclient\UrlEncodedFormatter;
-use yii\httpclient\XmlFormatter;
 use yii\httpclient\JsonParser;
-use yii\httpclient\UrlEncodedParser;
-use yii\httpclient\XmlParser;
 use yii\httpclient\Request;
 use yii\httpclient\Response;
 use yii\httpclient\Transport;
-use yii\httpclient\CurlTransport;
+use yii\httpclient\UrlEncodedFormatter;
+use yii\httpclient\UrlEncodedParser;
+use yii\httpclient\XmlFormatter;
+use yii\httpclient\XmlParser;
+use yii\web\HeaderCollection;
 
 class ClientTest extends TestCase
 {
@@ -193,4 +194,24 @@ class ClientTest extends TestCase
         $this->assertEquals($responseFormat, $response->getFormat());
         $this->assertEquals($responseContent, $response->getContent());
     }
-} 
+
+    public function testCreateResponseWithHeadersEqualToNull()
+    {
+        $client = new Client();
+        $response = $client->createResponse('content', null);
+        $headersCollection = $response->getHeaders();
+        $this->assertInstanceOf( Response::class, $response);
+        $this->assertInstanceOf(HeaderCollection::class, $headersCollection);
+        $this->assertEquals([], $headersCollection->toArray());
+    }
+
+    public function testCreateResponseWithHeadersEqualToEmptyArray()
+    {
+        $client = new Client();
+        $response = $client->createResponse('content', []);
+        $headersCollection = $response->getHeaders();
+        $this->assertInstanceOf( Response::class, $response);
+        $this->assertInstanceOf(HeaderCollection::class, $headersCollection);
+        $this->assertEquals([], $headersCollection->toArray());
+    }
+}
