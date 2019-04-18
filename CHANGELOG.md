@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.9 under development
 -----------------------
 
-- no changes in this release.
+- Bug #171: Add "Content-Length: 0" header when sending request with empty body (alexkart)
 
 
 2.0.8 April 16, 2019
