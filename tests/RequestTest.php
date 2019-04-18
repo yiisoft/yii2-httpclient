@@ -327,7 +327,7 @@ Content-Disposition: form-data; name="data1"
 data1=123
 
 PART1;
-        $this->assertEquals(str_replace("\r", '', $expectedPart1), str_replace("\r", '', $parts[1]));
+        $this->assertEqualsWithoutLE($expectedPart1, $parts[1]);
         $expectedPart2 = <<<PART2
 
 Content-Disposition: form-data; name="data2"
@@ -336,7 +336,7 @@ Content-Type: text/plain
 data2=456
 
 PART2;
-        $this->assertEquals(str_replace("\r", '', $expectedPart2), str_replace("\r", '', $parts[2]));
+        $this->assertEqualsWithoutLE($expectedPart2, $parts[2]);
         $expectedPart3 = <<<PART3
 
 Content-Disposition: form-data; name="data3"; filename="file1.txt"
@@ -345,7 +345,7 @@ Content-Type: application/octet-stream
 file1
 
 PART3;
-        $this->assertEquals(str_replace("\r", '', $expectedPart3), str_replace("\r", '', $parts[3]));
+        $this->assertEqualsWithoutLE($expectedPart3, $parts[3]);
         $expectedPart4 = <<<PART4
 
 Content-Disposition: form-data; name="data4"; filename="file2.txt"
@@ -354,7 +354,7 @@ Content-Type: text/plain
 file2
 
 PART4;
-        $this->assertEquals(str_replace("\r", '', $expectedPart4), str_replace("\r", '', $parts[4]));
+        $this->assertEqualsWithoutLE($expectedPart4, $parts[4]);
     }
 
     /**
