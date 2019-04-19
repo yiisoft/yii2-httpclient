@@ -55,9 +55,9 @@ class Request extends Message
     private $isPrepared = false;
 
     /**
-     * @var resource
+     * @var resource The file that the transfer should be written to.
      */
-    private $_file;
+    private $_outputFile;
 
 
     /**
@@ -503,16 +503,16 @@ class Request extends Message
     /**
      * @return resource
      */
-    public function getFile()
+    public function getOutputFile()
     {
-        return $this->_file;
+        return $this->_outputFile;
     }
 
     /**
      * @param resource $file
      */
-    public function setFile($file)
+    public function setOutputFile($file)
     {
-        $this->_file = $file;
+        $this->_outputFile = $file;
     }
 }

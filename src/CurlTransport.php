@@ -152,8 +152,8 @@ class CurlTransport extends Transport
         $curlOptions[CURLOPT_URL] = $request->getFullUrl();
         $curlOptions[CURLOPT_HTTPHEADER] = $request->composeHeaderLines();
 
-        if ($request->getFile()) {
-            $curlOptions[CURLOPT_FILE] = $request->getFile();
+        if ($request->getOutputFile()) {
+            $curlOptions[CURLOPT_FILE] = $request->getOutputFile();
         }
 
         return $curlOptions;
