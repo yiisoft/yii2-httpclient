@@ -10,6 +10,8 @@
  - [[\yii\httpclient\CurlTransport]] - HTTP メッセージを送信するのに [Client URL ライブラリ (cURL)](http://php.net/manual/ja/book.curl.php) を使用します。
    このトランスポートは PHP 'curl' 拡張がインストールされていることを要求しますが、
    バッチ送信のような高度な機能に対するサポートを提供します。
+ - [[\yii\httpclient\MockTransport]] - テスト自動化の文脈で有用なトランスポートです。本物のリクエストは何も送信せずに、
+   指示された内容のレスポンスを返します。
 
 特定のクライアントによって使用されるべきトランスポートを [[\yii\httpclient\Client::transport]] を使って構成することが出来ます。
 
