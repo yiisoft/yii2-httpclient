@@ -514,10 +514,13 @@ class Request extends Message
      * Used with [[CurlTransport]] to set the file that the transfer should be written to
      * @see CURLOPT_FILE
      * @param resource $file
+     * @return $this self reference.
      * @since 2.0.9
      */
     public function setOutputFile($file)
     {
         $this->_outputFile = $file;
+
+        return $this;
     }
 }
