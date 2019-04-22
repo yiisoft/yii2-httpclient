@@ -501,7 +501,9 @@ class Request extends Message
     }
 
     /**
+     * Gets the outputFile property
      * @return resource
+     * @since 2.0.9
      */
     public function getOutputFile()
     {
@@ -509,7 +511,10 @@ class Request extends Message
     }
 
     /**
+     * Used with [[CurlTransport]] to set the file that the transfer should be written to
+     * @see CURLOPT_FILE
      * @param resource $file
+     * @since 2.0.9
      */
     public function setOutputFile($file)
     {
