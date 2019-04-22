@@ -54,6 +54,11 @@ class Request extends Message
      */
     private $isPrepared = false;
 
+    /**
+     * @var resource The file that the transfer should be written to.
+     */
+    private $_outputFile;
+
 
     /**
      * Sets target URL.
@@ -493,5 +498,26 @@ class Request extends Message
     private function getFormatter()
     {
         return $this->client->getFormatter($this->getFormat());
+    }
+
+    /**
+     * Gets the outputFile property
+     * @return resource
+     * @since 2.0.9
+     */
+    public function getOutputFile()
+    {
+        return $this->_outputFile;
+    }
+
+    /**
+     * Used with [[CurlTransport]] to set the file that the transfer should be written to
+     * @see CURLOPT_FILE
+     * @param resource $file
+     * @since 2.0.9
+     */
+    public function setOutputFile($file)
+    {
+        $this->_outputFile = $file;
     }
 }

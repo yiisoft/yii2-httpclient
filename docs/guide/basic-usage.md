@@ -230,3 +230,23 @@ $client->post('account/profile', ['birthDate' => '10/11/1982'])
     ->setCookies($loginResponse->cookies) // transfer response cookies to request
     ->send();
 ```
+
+## Downloading files using `CurlTransport`
+
+You can download a file without loading its entire content into memory (it is especially useful for big files). 
+Use `setOutputFile()` method to pass a stream resource (using `fopen()`, for example) to the request object. It will be 
+passed to the `CURLOPT_FILE` cURL option.
+
+```php
+use yii\httpclient\Client;
+
+$fh = fopen('/path/to/local/file', 'w');
+$client = new Client([
+    'transport' => 'yii\httpclient\CurlTransport'
+]);
+$response = $client->createRequest()
+    ->setMethod('GET')
+    ->setUrl('http://example.com/path/to/remote/file')
+    ->setOutputFile($fh)
+    ->send();
+```  

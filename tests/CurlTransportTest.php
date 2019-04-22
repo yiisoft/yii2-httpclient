@@ -115,4 +115,29 @@ class CurlTransportTest extends TransportTestCase
 
         $this->assertEquals($expectedCurlOptions, $curlOptions);
     }
+
+    public function testPrepareGetRequestWithOutputFile()
+    {
+        $client = new Client([
+            'transport' => 'yii\httpclient\CurlTransport',
+        ]);
+        $request = $client->createRequest();
+        $request->setMethod('GET');
+        $request->setUrl('http://app.test/full/url');
+        $request->setOutputFile('file_handle');
+
+        $transport = $this->createClient()->getTransport();
+        $curlOptions = $this->invoke($transport, 'prepare', [$request]);
+
+        $expectedCurlOptions = [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => 'http://app.test/full/url',
+            CURLOPT_HTTPHEADER => [],
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_POSTFIELDS => null,
+            CURLOPT_FILE => 'file_handle'
+        ];
+
+        $this->assertEquals($expectedCurlOptions, $curlOptions);
+    }
 }
