@@ -34,7 +34,7 @@ class CurlTransport extends Transport
         $responseHeaders = [];
         $this->setHeaderOutput($curlResource, $responseHeaders);
 
-        $token = $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], $request->getContent());
+        $token = $request->client->createRequestLogToken($request->getMethod(), $curlOptions[CURLOPT_URL], $curlOptions[CURLOPT_HTTPHEADER], print_r($request->getContent(), true));
         Yii::info($token, __METHOD__);
         Yii::beginProfile($token, __METHOD__);
         $responseContent = curl_exec($curlResource);

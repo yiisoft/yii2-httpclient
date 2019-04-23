@@ -49,6 +49,11 @@ class Client extends Component
      * XML format
      */
     const FORMAT_XML = 'xml';
+    /**
+     * CURL format
+     * @since 2.0.9
+     */
+    const FORMAT_CURL = 'curl';
 
     /**
      * @var string base request URL.
@@ -135,6 +140,7 @@ class Client extends Component
                 'encodingType' => PHP_QUERY_RFC3986
             ],
             self::FORMAT_XML => 'yii\httpclient\XmlFormatter',
+            self::FORMAT_CURL => 'yii\httpclient\CurlFormatter',
         ];
 
         if (!isset($this->formatters[$format])) {
