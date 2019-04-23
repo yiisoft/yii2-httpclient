@@ -16,19 +16,15 @@ class CurlFormatterTest extends TestCase
 
     public function testFormat()
     {
+        $data = [
+            'name1' => 'value1',
+            'name2' => 'value2',
+        ];
         if (class_exists('\CURLFile')) {
-            $data = [
-                'name1' => 'value1',
-                'name2' => 'value2',
-                'file1' => new \CURLFile('/path/to/file1'),
-                'file2' => new \CURLFile('/path/to/file2'),
-            ];
-        } else {
-            $data = [
-                'name1' => 'value1',
-                'name2' => 'value2',
-            ];
+            $data['file1'] = new \CURLFile('/path/to/file1');
+            $data['file2'] = new \CURLFile('/path/to/file2');
         }
+
         $request = new Request();
         $request->setMethod('POST');
         $request->setData($data);
