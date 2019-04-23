@@ -51,6 +51,7 @@ class Client extends Component
     const FORMAT_XML = 'xml';
     /**
      * CURL format
+     * @since 2.0.9
      */
     const FORMAT_CURL = 'curl';
 
