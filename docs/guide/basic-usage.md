@@ -252,14 +252,16 @@ $response = $client->createRequest()
 ```  
 
 ## Uploading files using `CurlTransport` and `CurlFormatter`
+
 You can upload a file without loading its entire content into memory (it is especially useful for big files) 
 using `CURLFile` (PHP 5 >= 5.5.0, PHP 7).
+
 ```php
 use yii\httpclient\Client;
 
 $client = new Client([
-     'transport' => 'yii\httpclient\CurlTransport',     
- ]);
+    'transport' => 'yii\httpclient\CurlTransport',     
+]);
 $response = $client->createRequest()
     ->setFormat(Client::FORMAT_CURL)
     ->setMethod('POST')
