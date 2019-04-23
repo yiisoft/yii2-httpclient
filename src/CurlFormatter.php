@@ -36,7 +36,7 @@ class CurlFormatter extends BaseObject implements FormatterInterface
     {
         $data = $request->getData();
 
-        if (strncasecmp('GET', $request->getMethod()) === 0) {
+        if (strcasecmp('GET', $request->getMethod()) === 0) {
             if ($data !== null) {
                 $content = http_build_query((array)$data, '', '&', $this->encodingType);
                 $request->setFullUrl(null);
