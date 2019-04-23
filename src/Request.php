@@ -53,7 +53,6 @@ class Request extends Message
      * @see prepare()
      */
     private $isPrepared = false;
-
     /**
      * @var resource The file that the transfer should be written to.
      */

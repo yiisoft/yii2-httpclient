@@ -29,6 +29,7 @@ class CurlFormatter extends BaseObject implements FormatterInterface
      */
     public $encodingType = PHP_QUERY_RFC1738;
 
+
     /**
      * {@inheritdoc}
      */
