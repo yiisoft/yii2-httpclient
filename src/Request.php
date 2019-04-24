@@ -58,6 +58,11 @@ class Request extends Message
      */
     private $_outputFile;
 
+    /**
+     * @var array Stores map (alias => name) of the content parameters
+     */
+    private $_contentMap = [];
+
 
     /**
      * Sets target URL.
@@ -220,6 +225,7 @@ class Request extends Message
             $multiPartContent = [];
         }
         $options['content'] = $content;
+        $name = $this->generateContentAlias($name);
         $multiPartContent[$name] = $options;
         $this->setContent($multiPartContent);
         return $this;
@@ -351,6 +357,7 @@ class Request extends Message
         // process content parts :
         foreach ($content as $name => $contentParams) {
             $headers = [];
+            $name = $this->getNameByAlias($name);
             $name = str_replace($disallowedChars, '_', $name);
             $contentDisposition = 'Content-Disposition: form-data; name="' . $name . '"';
             if (isset($contentParams['fileName'])) {
@@ -521,5 +528,41 @@ class Request extends Message
         $this->_outputFile = $file;
 
         return $this;
+    }
+
+    /**
+     * Generates unique alias for the content and stores it in the content map
+     * @param $name string
+     * @return string
+     */
+    private function generateContentAlias($name)
+    {
+        $alias = $name;
+        while ($this->hasContent($alias)) {
+            $alias = uniqid($name . '_');
+        }
+        $this->addContentMap($name, $alias);
+
+        return $alias;
+    }
+
+    /**
+     * Adds alias to the content map
+     * @param $name string
+     * @param $alias string
+     */
+    private function addContentMap($name, $alias)
+    {
+        $this->_contentMap[$alias] = $name;
+    }
+
+    /**
+     * Returns name by alias from the content map
+     * @param $alias string
+     * @return string
+     */
+    private function getNameByAlias($alias)
+    {
+        return isset($this->_contentMap[$alias]) ? $this->_contentMap[$alias] : $alias;
     }
 }

@@ -213,6 +213,19 @@ class Message extends Component
     }
 
     /**
+     * Checks if content with provided name exists
+     * @param $key string Name of the content parameter
+     * @return bool
+     */
+    public function hasContent($key)
+    {
+        $content = $this->getContent();
+        return is_array($content) && isset($content[$key]);
+    }
+
+
+
+    /**
      * Sets the data fields, which composes message content.
      * @param mixed $data content data fields.
      * @return $this self reference.
