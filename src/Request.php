@@ -225,8 +225,9 @@ class Request extends Message
             $multiPartContent = [];
         }
         $options['content'] = $content;
-        $name = $this->generateContentAlias($name);
-        $multiPartContent[$name] = $options;
+        $alias = $this->generateContentAlias($name);
+        $this->addAliasToContentMap($name, $alias);
+        $multiPartContent[$alias] = $options;
         $this->setContent($multiPartContent);
         return $this;
     }
@@ -531,7 +532,7 @@ class Request extends Message
     }
 
     /**
-     * Generates unique alias for the content and stores it in the content map
+     * Generates unique alias for the content
      * @param $name string
      * @return string
      */
@@ -541,7 +542,6 @@ class Request extends Message
         while ($this->hasContent($alias)) {
             $alias = uniqid($name . '_');
         }
-        $this->addContentMap($name, $alias);
 
         return $alias;
     }
@@ -551,7 +551,7 @@ class Request extends Message
      * @param $name string
      * @param $alias string
      */
-    private function addContentMap($name, $alias)
+    private function addAliasToContentMap($name, $alias)
     {
         $this->_contentMap[$alias] = $name;
     }

@@ -216,6 +216,7 @@ class Message extends Component
      * Checks if content with provided name exists
      * @param $key string Name of the content parameter
      * @return bool
+     * @since 2.0.10
      */
     public function hasContent($key)
     {
