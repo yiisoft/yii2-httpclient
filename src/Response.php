@@ -196,9 +196,6 @@ class Response extends Message
     private function getParser()
     {
         $format = $this->getFormat();
-        if ($format === null) {
-            throw new Exception("Unable to detect format for content parsing. Raw response:\n\n" . $this->toString());
-        }
         return $this->client->getParser($format);
     }
 }

@@ -140,6 +140,11 @@ HTML
             $statusCode,
         ]]);
         $this->assertEquals($statusCode, $response->getStatusCode());
+
+        $this->expectException('\yii\httpclient\Exception');
+        $this->expectExceptionMessage('Unable to get status code: referred header information is missing.');
+        $response->setHeaders([]);
+        $response->getStatusCode();
     }
 
     /**
