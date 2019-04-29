@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.10 under development
 ------------------------
 
-- no changes in this release.
+- Enh #167: Added support of multiple parameters with the same name for multipart requests (alexkart)
 
 
 2.0.9 April 23, 2019
