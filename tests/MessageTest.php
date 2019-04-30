@@ -175,7 +175,11 @@ class MessageTest extends TestCase
         ];
         $message->addData($additionalData);
         $this->assertEquals(array_merge($data, $additionalData), $message->getData());
+    }
 
+    public function testUnableToMergeData()
+    {
+        $message = new Message();
         $this->expectException('\yii\base\Exception');
         $this->expectExceptionMessage('Unable to merge existing data with new data. Existing data is not an array.');
         $message->setData('not an array');

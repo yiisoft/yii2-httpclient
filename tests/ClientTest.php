@@ -34,7 +34,11 @@ class ClientTest extends TestCase
         $formatter = $client->getFormatter('testConfig');
         $this->assertTrue($formatter instanceof UrlEncodedFormatter);
         $this->assertEquals(PHP_QUERY_RFC3986, $formatter->encodingType);
+    }
 
+    public function testGetUnrecognizedFormatter()
+    {
+        $client = new Client();
         $unrecognizedFormat = 'unrecognizedFormat';
         $this->expectException('\yii\base\InvalidParamException');
         $this->expectExceptionMessage("Unrecognized format '{$unrecognizedFormat}'");
@@ -98,7 +102,11 @@ class ClientTest extends TestCase
 
         $parser = $client->getParser('testConfig');
         $this->assertTrue($parser instanceof UrlEncodedParser);
+    }
 
+    public function testGetUnrecognizedParser()
+    {
+        $client = new Client();
         $unrecognizedParser = 'unrecognizedParser';
         $this->expectException('\yii\base\InvalidParamException');
         $this->expectExceptionMessage("Unrecognized format '{$unrecognizedParser}'");
@@ -255,7 +263,7 @@ class ClientTest extends TestCase
                 [$this->equalTo('DELETE'), $this->equalTo($url), $this->equalTo($data), $this->equalTo($headers), $this->equalTo($options)],
                 [$this->equalTo('HEAD'), $this->equalTo($url), $this->equalTo(null), $this->equalTo($headers), $this->equalTo($options)],
                 [$this->equalTo('OPTIONS'), $this->equalTo($url), $this->equalTo(null), $this->equalTo([]), $this->equalTo($options)]
-                );
+            );
 
         $client->get($url, $data, $headers, $options);
         $client->post($url, $data, $headers, $options);

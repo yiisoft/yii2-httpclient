@@ -90,6 +90,35 @@ class CurlTransportTest extends TransportTestCase
         $this->assertEquals($expectedCurlOptions, $curlOptions);
     }
 
+    public function testPrepareRequestWithOptions()
+    {
+        $client = new Client([
+            'transport' => 'yii\httpclient\CurlTransport',
+        ]);
+        $request = $client->createRequest();
+        $request->setMethod('GET');
+        $request->setUrl('http://app.test/full/url');
+        $request->setOptions([
+            'maxRedirects' => 1,
+            CURLOPT_MAXCONNECTS => 1,
+        ]);
+
+        $transport = $this->createClient()->getTransport();
+        $curlOptions = $this->invoke($transport, 'prepare', [$request]);
+
+        $expectedCurlOptions = [
+            CURLOPT_POSTFIELDS => null,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => 'http://app.test/full/url',
+            CURLOPT_HTTPHEADER => [],
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_MAXREDIRS => 1,
+            CURLOPT_MAXCONNECTS => 1,
+        ];
+
+        $this->assertEquals($expectedCurlOptions, $curlOptions);
+    }
+
     public function testPrepareHeadRequestShouldNotHaveBody()
     {
         $client = new Client([
