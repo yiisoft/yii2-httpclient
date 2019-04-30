@@ -57,7 +57,6 @@ class Request extends Message
      * @var resource The file that the transfer should be written to.
      */
     private $_outputFile;
-
     /**
      * @var array Stores map (alias => name) of the content parameters
      */
