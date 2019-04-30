@@ -401,6 +401,62 @@ PART4;
         $this->assertEqualsWithoutLE($expectedPart4, $parts[4]);
     }
 
+    public function testMultiPartRequestWithParamsWithTheSameNames()
+    {
+        $request = new Request([
+            'client' => new Client([
+                'baseUrl' => '/api'
+            ]),
+            'method' => 'POST',
+        ]);
+
+        $request->addContent('x', '1');
+        $request->addContent('x', '2');
+        $request->addContent('y', '3');
+        $request->addContent('z', '4');
+        $this->assertCount(4, $request->getContent());
+
+        $request->prepare();
+
+        $requestString = $request->toString();
+        $this->assertTrue((bool)preg_match('~Content-Type: multipart/form-data; boundary=([\w-]+)\n.*\1~s', $requestString, $matches));
+        $boundary = $matches[1];
+        $parts = explode("--$boundary", $requestString);
+        $this->assertCount(6, $parts);
+        $expectedPart1 = <<<PART1
+
+Content-Disposition: form-data; name="x"
+
+1
+
+PART1;
+        $this->assertEqualsWithoutLE($expectedPart1, $parts[1]);
+        $expectedPart2 = <<<PART2
+
+Content-Disposition: form-data; name="x"
+
+2
+
+PART2;
+        $this->assertEqualsWithoutLE($expectedPart2, $parts[2]);
+        $expectedPart3 = <<<PART3
+
+Content-Disposition: form-data; name="y"
+
+3
+
+PART3;
+        $this->assertEqualsWithoutLE($expectedPart3, $parts[3]);
+        $expectedPart4 = <<<PART4
+
+Content-Disposition: form-data; name="z"
+
+4
+
+PART4;
+        $this->assertEqualsWithoutLE($expectedPart4, $parts[4]);
+    }
+
     public function testMultiPartRequestWithFormInputs()
     {
         $request = new Request([
