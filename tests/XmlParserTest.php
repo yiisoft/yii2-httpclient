@@ -2,8 +2,8 @@
 
 namespace yiiunit\extensions\httpclient;
 
-use yii\httpclient\XmlParser;
 use yii\httpclient\Response;
+use yii\httpclient\XmlParser;
 
 class XmlParserTest extends TestCase
 {
@@ -109,5 +109,21 @@ XML;
         ];
         $parser = new XmlParser();
         $this->assertEquals($data, $parser->parse($document));
+    }
+
+    public function testConvertXmlToArray()
+    {
+        $string = <<<XML
+<?xml version='1.0'?> 
+<document>
+ <title>test</title>
+</document>
+XML;
+        $expectedArray = [
+            'title' => 'test',
+        ];
+        $parser = new XmlParser();
+        $array = $this->invoke($parser, 'convertXmlToArray', [$string]);
+        $this->assertEquals($expectedArray, $array);
     }
 }

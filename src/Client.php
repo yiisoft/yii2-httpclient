@@ -407,7 +407,7 @@ class Client extends Component
      * @return Request request instance.
      * @throws \yii\base\InvalidConfigException
      */
-    private function createRequestShortcut($method, $url, $data, $headers, $options)
+    protected function createRequestShortcut($method, $url, $data, $headers, $options)
     {
         $request = $this->createRequest()
             ->setMethod($method)

@@ -36,6 +36,15 @@ class ClientTest extends TestCase
         $this->assertEquals(PHP_QUERY_RFC3986, $formatter->encodingType);
     }
 
+    public function testGetUnrecognizedFormatter()
+    {
+        $client = new Client();
+        $unrecognizedFormat = 'unrecognizedFormat';
+        $this->expectException('\yii\base\InvalidParamException');
+        $this->expectExceptionMessage("Unrecognized format '{$unrecognizedFormat}'");
+        $client->getFormatter($unrecognizedFormat);
+    }
+
     /**
      * Data provider for [[testGetDefaultFormatters]]
      * @return array test data
@@ -93,6 +102,15 @@ class ClientTest extends TestCase
 
         $parser = $client->getParser('testConfig');
         $this->assertTrue($parser instanceof UrlEncodedParser);
+    }
+
+    public function testGetUnrecognizedParser()
+    {
+        $client = new Client();
+        $unrecognizedParser = 'unrecognizedParser';
+        $this->expectException('\yii\base\InvalidParamException');
+        $this->expectExceptionMessage("Unrecognized format '{$unrecognizedParser}'");
+        $client->getParser($unrecognizedParser);
     }
 
     /**
@@ -203,5 +221,56 @@ class ClientTest extends TestCase
         $this->assertInstanceOf(Response::className(), $response);
         $this->assertInstanceOf(HeaderCollection::className(), $headersCollection);
         $this->assertEquals([], $headersCollection->toArray());
+    }
+
+    public function testCreateRequestShortcut()
+    {
+        $method = 'POST';
+        $url = 'url';
+        $data = ['data'];
+        $headers = ['headers'];
+        $options = ['options'];
+
+        $client = new Client();
+        /** @var Request $request */
+        $request = $this->invoke($client, 'createRequestShortcut', [$method, $url, $data, $headers, $options]);
+
+        $this->assertEquals($method, $request->getMethod());
+        $this->assertEquals($url, $request->getUrl());
+        $this->assertEquals($data, $request->getData());
+        $this->assertEquals($headers, $request->getHeaders()->toArray()[0]);
+        $this->assertEquals($options, $request->getOptions());
+    }
+
+    public function testRequestShortcutMethods()
+    {
+        $url = 'url';
+        $data = 'data';
+        $headers = ['headers'];
+        $options = ['options'];
+
+        $client = $this->getMockBuilder('\yii\httpclient\Client')
+            ->setMethods(['createRequestShortcut'])
+            ->getMock();
+
+        $client->expects($this->exactly(7))
+            ->method('createRequestShortcut')
+            ->withConsecutive(
+                [$this->equalTo('GET'), $this->equalTo($url), $this->equalTo($data), $this->equalTo($headers), $this->equalTo($options)],
+                [$this->equalTo('POST'), $this->equalTo($url), $this->equalTo($data), $this->equalTo($headers), $this->equalTo($options)],
+                [$this->equalTo('PUT'), $this->equalTo($url), $this->equalTo($data), $this->equalTo($headers), $this->equalTo($options)],
+                [$this->equalTo('PATCH'), $this->equalTo($url), $this->equalTo($data), $this->equalTo($headers), $this->equalTo($options)],
+                [$this->equalTo('DELETE'), $this->equalTo($url), $this->equalTo($data), $this->equalTo($headers), $this->equalTo($options)],
+                [$this->equalTo('HEAD'), $this->equalTo($url), $this->equalTo(null), $this->equalTo($headers), $this->equalTo($options)],
+                [$this->equalTo('OPTIONS'), $this->equalTo($url), $this->equalTo(null), $this->equalTo([]), $this->equalTo($options)]
+            );
+
+        $client->get($url, $data, $headers, $options);
+        $client->post($url, $data, $headers, $options);
+        $client->put($url, $data, $headers, $options);
+        $client->patch($url, $data, $headers, $options);
+        $client->delete($url, $data, $headers, $options);
+        $client->head($url, $headers, $options);
+        $client->options($url, $options);
     }
 }

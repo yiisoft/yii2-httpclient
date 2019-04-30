@@ -4,8 +4,9 @@ namespace yiiunit\extensions\httpclient;
 
 use DOMDocument;
 use DOMElement;
-use yii\httpclient\XmlFormatter;
+use yii\base\Arrayable;
 use yii\httpclient\Request;
+use yii\httpclient\XmlFormatter;
 
 class XmlFormatterTest extends TestCase
 {
@@ -33,6 +34,19 @@ class XmlFormatterTest extends TestCase
 XML;
         $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
         $this->assertEquals('application/xml; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
+    }
+
+    public function testFormatStringData()
+    {
+        $request = new Request();
+        $formatter = new XmlFormatter();
+        $request->setData('data');
+        $formatter->format($request);
+        $expectedContent1 = <<<XML1
+<?xml version="1.0" encoding="UTF-8"?>
+<request>data</request>
+XML1;
+        $this->assertEqualsWithoutLE($expectedContent1, $request->getContent());
     }
 
     /**
@@ -93,6 +107,27 @@ XML;
         $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
     }
 
+    public function testFormatArrayable()
+    {
+        $request = new Request();
+
+        $postsStack = new \SplStack();
+        $post = new ArrayableClass();
+        $postsStack->push($post);
+
+        $request->setData($postsStack);
+
+        $formatter = new XmlFormatter();
+
+        $formatter->useTraversableAsArray = true;
+        $formatter->format($request);
+        $expectedContent = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<request><ArrayableClass><name1>value1</name1></ArrayableClass></request>
+XML;
+        $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
+    }
+
     /**
      * @depends testFormat
      */
@@ -142,5 +177,21 @@ XML;
         $formatter = new XmlFormatter();
         $formatter->format($request);
         $this->assertNull($request->getContent());
+    }
+}
+
+class ArrayableClass implements Arrayable
+{
+    public function fields()
+    {
+    }
+
+    public function extraFields()
+    {
+    }
+
+    public function toArray(array $fields = [], array $expand = [], $recursive = true)
+    {
+        return ['name1' => 'value1'];
     }
 }
