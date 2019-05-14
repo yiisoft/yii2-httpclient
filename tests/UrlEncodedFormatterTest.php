@@ -75,4 +75,32 @@ class UrlEncodedFormatterTest extends TestCase
 
         $this->assertEquals('0', $headers['content-length'][0]);
     }
+
+    public function testFormatPutRequestWithInfileOption()
+    {
+        $fh = fopen(__DIR__ . '/test_file.txt', 'r');
+
+        $request = new Request();
+        $request->setMethod('PUT');
+        $request->setOptions([
+            CURLOPT_INFILE => $fh,
+            CURLOPT_INFILESIZE => filesize(__DIR__ . '/test_file.txt'),
+            CURLOPT_BINARYTRANSFER => true,
+            CURLOPT_PUT => 1,
+        ]);
+
+        $formatter = new UrlEncodedFormatter();
+        $formatter->format($request);
+
+        $headers = $request->getHeaders()->toArray();
+
+        $expectedHeaders = [
+            'content-type' =>
+                [
+                    0 => 'application/x-www-form-urlencoded; charset=UTF-8',
+                ],
+        ];
+
+        $this->assertEquals($expectedHeaders, $headers);
+    }
 }
