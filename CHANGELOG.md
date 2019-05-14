@@ -1,8 +1,8 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.11 under development
-------------------------
+2.0.11 May 14, 2019
+-------------------
 
 - Bug #189: Fixed Content-Length header when using `CURLOPT_INFILE` option (alexkart)
 
