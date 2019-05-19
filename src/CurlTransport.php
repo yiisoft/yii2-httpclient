@@ -144,7 +144,9 @@ class CurlTransport extends Transport
 
         if ($method === 'HEAD') {
             $curlOptions[CURLOPT_NOBODY] = true;
-        } else {
+        }
+
+        if ($content !== null) {
             $curlOptions[CURLOPT_POSTFIELDS] = $content;
         }
 

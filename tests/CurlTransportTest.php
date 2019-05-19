@@ -78,7 +78,6 @@ class CurlTransportTest extends TransportTestCase
 
         $expectedCurlOptions = [
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => null,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => 'http://app.test/full/url',
             CURLOPT_HTTPHEADER => [
@@ -107,7 +106,6 @@ class CurlTransportTest extends TransportTestCase
         $curlOptions = $this->invoke($transport, 'prepare', [$request]);
 
         $expectedCurlOptions = [
-            CURLOPT_POSTFIELDS => null,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => 'http://app.test/full/url',
             CURLOPT_HTTPHEADER => [],
@@ -163,7 +161,6 @@ class CurlTransportTest extends TransportTestCase
             CURLOPT_URL => 'http://app.test/full/url',
             CURLOPT_HTTPHEADER => [],
             CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_POSTFIELDS => null,
             CURLOPT_FILE => 'file_handle'
         ];
 
