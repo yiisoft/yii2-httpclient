@@ -230,3 +230,47 @@ $client->post('account/profile', ['birthDate' => '10/11/1982'])
     ->setCookies($loginResponse->cookies) // レスポンスのクッキーをリクエストのクッキーに転送
     ->send();
 ```
+
+## `CurlTransport` を使ってファイルをダウンロードする
+
+ファイルの中身全体をメモリに読み込まずにファイルをダウンロードすることが出来ます(これは巨大なファイルの場合に特に有用な機能です)。
+`setOutputFile()` メソッドを使って、リクエスト・オブジェクトに(例えば `fopen()` を使って)ストリーム・リソースを渡します。
+これが cURL の `CURLOPT_FILE` オプションに渡されます。
+
+```php
+use yii\httpclient\Client;
+
+$fh = fopen('/path/to/local/file', 'w');
+$client = new Client([
+    'transport' => 'yii\httpclient\CurlTransport'
+]);
+$response = $client->createRequest()
+    ->setMethod('GET')
+    ->setUrl('http://example.com/path/to/remote/file')
+    ->setOutputFile($fh)
+    ->send();
+```  
+
+## `CurlTransport` と `CurlFormatter` を使ってファイルをアップロードする
+
+ファイルの中身全体をメモリに読み込まずにファイルをアップロードすることが出来ます(これは巨大なファイルの場合に特に有用な機能です)。
+`CURLFile` を使いますので、PHP 5.5.0 以上または PHP 7 が要求されます。
+
+```php
+use yii\httpclient\Client;
+
+$client = new Client([
+    'transport' => 'yii\httpclient\CurlTransport',     
+]);
+$response = $client->createRequest()
+    ->setFormat(Client::FORMAT_CURL)
+    ->setMethod('POST')
+    ->setUrl('http://example.com')
+    ->setData([
+        'name' => 'John Doe',
+        'email' => 'johndoe@example.com',
+        'file1' => new \CURLFile('/path/to/file1'), 'text/plain', 'file1'),
+        'file2' => new \CURLFile('/path/to/file2'), 'text/plain', 'file2'),
+    ])
+    ->send();
+```  
