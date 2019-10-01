@@ -479,9 +479,10 @@ class Request extends Message
     }
 
     /**
-     * return the responsetime in seconds
+     * Return the response time in seconds
      *
      * @return float the seconds elapsed from request to response
+     * @since 2.0.12
      */
     public function responseTime()
     {
