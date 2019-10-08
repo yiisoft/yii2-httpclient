@@ -61,12 +61,10 @@ class Request extends Message
      * @var array Stores map (alias => name) of the content parameters
      */
     private $_contentMap = [];
-
     /** 
      * @var float stores the starttime of the current request with microsecond-precession
      */
     private $_startTime;
-
     /**
      * @var float stores the seconds of how long does it take to get a response
      */

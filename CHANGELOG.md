@@ -1,8 +1,8 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.12 under development
-------------------------
+2.0.12 October 08, 2019
+-----------------------
 
 - Enh #192: Implement `Request::responseTime()` which returns the seconds (microtime precession) elapsed from request to response (HenryVolkmer)
 
