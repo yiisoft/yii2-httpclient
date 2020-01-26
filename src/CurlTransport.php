@@ -125,7 +125,7 @@ class CurlTransport extends Transport
      * @param Request $request request instance.
      * @return array cURL options.
      */
-    private function prepare($request)
+    protected function prepare($request)
     {
         $request->prepare();
 
