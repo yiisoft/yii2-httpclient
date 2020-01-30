@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.13 under development
 ------------------------
 
-- no changes in this release.
+- Bug #195 change  `CurlTransport::prepare()` visibility from private to protected (HenryVolkmer)
 
 
 2.0.12 October 08, 2019
