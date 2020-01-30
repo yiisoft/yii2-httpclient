@@ -30,6 +30,11 @@ class JsonParser extends BaseObject implements ParserInterface
      */
     public function parse(Response $response)
     {
-        return Json::decode($response->getContent(), $this->asArray);
+        $content = $response->getContent();
+        if(mb_detect_encoding($content) == 'UTF-8') {
+            $content = preg_replace('/[^(\x20-\x7F)]*/','', $content);    
+        }
+        
+        return Json::decode($content, $this->asArray);
     }
 }
