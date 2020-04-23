@@ -167,7 +167,7 @@ You can authenticate by adding an `Authorization` header, that contains the word
 the base64 encoded string of `username:password`:
 
 ```php
-$username = 'yii':
+$username = 'yii';
 $password = 'verysecret';
 $request->headers->set('Authorization', 'Basic ' . base64_encode("$username:$password"));
 ```
