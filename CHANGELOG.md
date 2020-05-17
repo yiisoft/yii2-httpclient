@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.13 under development
 ------------------------
 
-- no changes in this release.
+- Enh #204: added additional keys to `Message::getHeaders()` to make full http status line details available to `Client::getHeaders()` (ClintZeringue)
 
 
 2.0.12 October 08, 2019
