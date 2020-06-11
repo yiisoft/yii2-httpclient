@@ -167,7 +167,7 @@ echo $response->headers->get('content-encoding');
 `Authorizaton` ヘッダを追加すれば認証できます。
 
 ```php
-$username = 'yii':
+$username = 'yii';
 $password = 'verysecret';
 $request->headers->set('Authorization', 'Basic ' . base64_encode("$username:$password"));
 ```
