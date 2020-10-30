@@ -14,7 +14,7 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-httpclient/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-httpclient/downloads.png)](https://packagist.org/packages/yiisoft/yii2-httpclient)
-[![Build Status](https://travis-ci.com/yiisoft/yii2-httpclient.svg?branch=master)](https://travis-ci.com/yiisoft/yii2-httpclient)
+[![Build Status](https://github.com/yiisoft/yii2-httpclient/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-httpclient/actions)
 
 
 Installation
