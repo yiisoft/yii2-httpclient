@@ -13,8 +13,8 @@ use yii\web\HeaderCollection;
 /**
  * Response represents HTTP request response.
  *
- * @property bool $isOk Whether response is OK. This property is read-only.
- * @property string $statusCode Status code. This property is read-only.
+ * @property-read bool $isOk Whether response is OK. This property is read-only.
+ * @property-read string $statusCode Status code. This property is read-only.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

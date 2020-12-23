@@ -15,7 +15,7 @@ use yii\helpers\FileHelper;
  *
  * @property string $fullUrl Full target URL.
  * @property string $method Request method.
- * @property array $options Request options. This property is read-only.
+ * @property-read array $options Request options. This property is read-only.
  * @property string|array $url Target URL or URL parameters.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
