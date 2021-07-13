@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.14 under development
 ------------------------
 
-- no changes in this release.
+- Enh #215: Added possibility to skip charset in header on `UrlEncodedFormatter::format()` (egorrishe)
 
 
 2.0.13 December 23, 2020
