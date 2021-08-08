@@ -5,7 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 ------------------------
 
 - Enh #215: Added possibility to skip charset in header on `UrlEncodedFormatter::format()` (egorrishe)
-- Enh: Use `random_int()` when generating boundary (samdark)
+- Enh #216: Use `random_int()` when generating boundary (samdark)
 
 2.0.13 December 23, 2020
 ------------------------
