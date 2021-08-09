@@ -18,7 +18,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.13"
+        "yiisoft/yii2": "~2.0.13",
+        "paragonie/random_compat": ">=1"
     },
     "require-dev": {
         "cweagans/composer-patches": "^1.7",
