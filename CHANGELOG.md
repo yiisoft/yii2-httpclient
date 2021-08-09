@@ -1,6 +1,12 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
+2.0.15 under development
+------------------------
+
+- no changes in this release.
+
+
 2.0.14 August 09, 2021
 ----------------------
 
