@@ -1,11 +1,12 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.14 under development
-------------------------
+2.0.14 August 09, 2021
+----------------------
 
 - Enh #215: Added possibility to skip charset in header on `UrlEncodedFormatter::format()` (egorrishe)
 - Enh #216: Use `random_int()` when generating boundary (samdark)
+
 
 2.0.13 December 23, 2020
 ------------------------
