@@ -29,7 +29,7 @@ class Response extends Message
         $data = parent::getData();
         if ($data === null) {
             $content = $this->getContent();
-            if (!empty($content)) {
+            if (is_string($content) && strlen($content) > 0) {
                 $data = $this->getParser()->parse($this);
                 $this->setData($data);
             }
