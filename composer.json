@@ -31,6 +31,11 @@
             "url": "https://asset-packagist.org"
         }
     ],
+    "config": {
+        "allow-plugins": {
+            "cweagans/composer-patches": true
+        }
+    },
     "autoload": {
         "psr-4": { "yii\\httpclient\\": "src" }
     },
