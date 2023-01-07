@@ -114,16 +114,57 @@ HTML
         $this->assertEquals($expectedFormat, $response->getFormat());
     }
 
-    public function testParseBody()
+    /**
+     * Data provider for [[testParseBody()]]
+     * @return array test data
+     */
+    public function dataProviderParseBody()
+    {
+        return [
+            [
+                'name=value&age=30',
+                Client::FORMAT_URLENCODED,
+                ['name' => 'value', 'age' => '30'],
+            ],
+            [
+                '0',
+                Client::FORMAT_JSON,
+                0,
+            ],
+            [
+                '"0"',
+                Client::FORMAT_JSON,
+                '0',
+            ],
+            [
+                'null',
+                Client::FORMAT_JSON,
+                null,
+            ],
+            [
+                'false',
+                Client::FORMAT_JSON,
+                false,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider dataProviderParseBody
+     *
+     * @param string $content
+     * @param string $format
+     * @param mixed $expected
+     */
+    public function testParseBody($content, $format, $expected)
     {
         $response = new Response([
             'client' => new Client(),
-            'format' => Client::FORMAT_URLENCODED,
+            'format' => $format,
         ]);
 
-        $content = 'name=value';
         $response->setContent($content);
-        $this->assertEquals(['name' => 'value'], $response->getData());
+        $this->assertSame($expected, $response->getData());
     }
 
     public function testGetStatusCode()
