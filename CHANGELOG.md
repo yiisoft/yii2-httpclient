@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 ------------------------
 
 - Bug #224: Parse content when it is not an empty string (pawmaster)
+- Bug #226: Fix error in debug panel due to PHP 8.1 deprecation of implicit float to int conversion (lacek)
 
 
 2.0.14 August 09, 2021
