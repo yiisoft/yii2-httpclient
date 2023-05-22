@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\httpclient;
@@ -13,8 +13,8 @@ use yii\web\HeaderCollection;
 /**
  * Response represents HTTP request response.
  *
- * @property-read bool $isOk Whether response is OK. This property is read-only.
- * @property-read string $statusCode Status code. This property is read-only.
+ * @property-read bool $isOk Whether response is OK.
+ * @property-read string $statusCode Status code.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
