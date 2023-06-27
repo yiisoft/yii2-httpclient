@@ -1,7 +1,7 @@
 基于 Yii 2 的 HTTP 客户端扩展
 ===============================
 
-此扩展为 [Yii framework 2.0](http://www.yiiframework.com) 提供了 HTTP 客户端.
+此扩展为 [Yii framework 2.0](https://www.yiiframework.com) 提供了 HTTP 客户端.
 
 
 起步

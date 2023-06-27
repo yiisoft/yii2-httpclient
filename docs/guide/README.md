@@ -1,7 +1,7 @@
 HTTP Client Extension for Yii 2
 ===============================
 
-This extension provides the HTTP client for the [Yii framework 2.0](http://www.yiiframework.com).
+This extension provides the HTTP client for the [Yii framework 2.0](https://www.yiiframework.com).
 
 
 Getting Started

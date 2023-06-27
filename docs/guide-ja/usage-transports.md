@@ -4,10 +4,10 @@
 [[\yii\httpclient\Client]] は、実際に HTTP メッセージを送信するいくつかの異なる方法、すなわち、いくつかのトランスポートをサポートしています。
 事前定義されているトランスポートは以下のものです。
 
- - [[\yii\httpclient\StreamTransport]] - HTTP メッセージを送信するのに [Streams](http://php.net/manual/ja/book.stream.php) を使います。
+ - [[\yii\httpclient\StreamTransport]] - HTTP メッセージを送信するのに [Streams](https://php.net/manual/ja/book.stream.php) を使います。
    このトランスポートがデフォルトとして使用されます。
    これは、何らかの PHP 拡張を追加したり、ライブラリをインストールしたりすることを要求しませんが、バッチ送信のような高度な機能はサポートしません。
- - [[\yii\httpclient\CurlTransport]] - HTTP メッセージを送信するのに [Client URL ライブラリ (cURL)](http://php.net/manual/ja/book.curl.php) を使用します。
+ - [[\yii\httpclient\CurlTransport]] - HTTP メッセージを送信するのに [Client URL ライブラリ (cURL)](https://php.net/manual/ja/book.curl.php) を使用します。
    このトランスポートは PHP 'curl' 拡張がインストールされていることを要求しますが、
    バッチ送信のような高度な機能に対するサポートを提供します。
  - [[\yii\httpclient\MockTransport]] - テスト自動化の文脈で有用なトランスポートです。本物のリクエストは何も送信せずに、
