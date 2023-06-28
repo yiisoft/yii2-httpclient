@@ -4,10 +4,10 @@
 [[\yii\httpclient\Client]] предоставляет несколько различных способов отправки HTTP-сообщения в виде транспортов.
 Предопределенные транспорты:
 
- - [[\yii\httpclient\StreamTransport]] - отправляет HTTP-сообщения, используя [потоки](http://php.net/manual/ru/book.stream.php).
+ - [[\yii\httpclient\StreamTransport]] - отправляет HTTP-сообщения, используя [потоки](https://php.net/manual/ru/book.stream.php).
    Этот транспорт используется по умолчанию. Он не требует каких-либо установленных дополнительных PHP расширений или библиотек,
    но не поддерживает расширенные функции, такие как пакетная отправка.
- - [[\yii\httpclient\CurlTransport]] - отправляет HTTP-сообщения, используя [cURL](http://php.net/manual/ru/book.curl.php)
+ - [[\yii\httpclient\CurlTransport]] - отправляет HTTP-сообщения, используя [cURL](https://php.net/manual/ru/book.curl.php)
    Для этого транспорта требуется установленное PHP расширение 'curl', но он поддерживает такие функции, как 
    пакетная отправка.
 

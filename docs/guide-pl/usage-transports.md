@@ -4,10 +4,10 @@ Przesyłanie danych
 [[\yii\httpclient\Client]] dostarcza kilku różnych metod do przesyłania wiadomości HTTP - transportów.
 Predefiniowane transporty to:
 
- - [[\yii\httpclient\StreamTransport]] - wysyła wiadomości HTTP za pomocą [Streams](http://php.net/manual/pl/book.stream.php).
+ - [[\yii\httpclient\StreamTransport]] - wysyła wiadomości HTTP za pomocą [Streams](https://php.net/manual/pl/book.stream.php).
    Ten transport jest używany domyślnie. Nie wymaga on instalowania dodatkowych rozszerzeń lub bibliotek PHP, ale nie 
    wspiera zaawansowanych funkcjonalności jak wysyłanie serii żądań.
- - [[\yii\httpclient\CurlTransport]] - wysyła wiadomości HTTP za pomocą [Client URL Library (cURL)](http://php.net/manual/pl/book.curl.php)
+ - [[\yii\httpclient\CurlTransport]] - wysyła wiadomości HTTP za pomocą [Client URL Library (cURL)](https://php.net/manual/pl/book.curl.php)
    Ten transport wymaga zainstalowanego rozszerzenia PHP 'curl', ale zapewnia zaawansowane funkcjonalności jak wysyłanie serii żądań.
 
 Można skonfigurować transport używany przez poszczególnego klienta za pomocą [[\yii\httpclient\Client::$transport]]:
