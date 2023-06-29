@@ -10,11 +10,11 @@ namespace yii\httpclient;
 use Yii;
 
 /**
- * CurlTransport sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
+ * CurlTransport sends HTTP messages using [Client URL Library (cURL)](https://php.net/manual/en/book.curl.php)
  *
  * Note: this transport requires PHP 'curl' extension installed.
  *
- * For this transport, you may setup request options as [cURL Options](http://php.net/manual/en/function.curl-setopt.php)
+ * For this transport, you may setup request options as [cURL Options](https://php.net/manual/en/function.curl-setopt.php)
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

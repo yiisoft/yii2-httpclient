@@ -20,7 +20,7 @@ class JsonFormatter extends BaseObject implements FormatterInterface
 {
     /**
      * @var int the encoding options. For more details please refer to
-     * <http://www.php.net/manual/en/function.json-encode.php>.
+     * <https://www.php.net/manual/en/function.json-encode.php>.
      */
     public $encodeOptions = 0;
 
