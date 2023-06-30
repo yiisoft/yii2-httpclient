@@ -12,9 +12,9 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 
 /**
- * StreamTransport sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
+ * StreamTransport sends HTTP messages using [Streams](https://php.net/manual/en/book.stream.php)
  *
- * For this transport, you may setup request options using [Context Options](http://php.net/manual/en/context.php)
+ * For this transport, you may setup request options using [Context Options](https://php.net/manual/en/context.php)
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -60,7 +60,7 @@ class StreamTransport extends Transport
             $context = stream_context_create($contextOptions);
             $stream = fopen($url, 'rb', false, $context);
             $responseContent = stream_get_contents($stream);
-            // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
+            // see https://php.net/manual/en/reserved.variables.httpresponseheader.php
             $responseHeaders = (array)$http_response_header;
             fclose($stream);
         } catch (\Exception $e) {

@@ -37,12 +37,12 @@ class Client extends Component
     const FORMAT_JSON = 'json';
     /**
      * urlencoded by RFC1738 query string, like name1=value1&name2=value2
-     * @see http://php.net/manual/en/function.urlencode.php
+     * @see https://php.net/manual/en/function.urlencode.php
      */
     const FORMAT_URLENCODED = 'urlencoded';
     /**
      * urlencoded by PHP_QUERY_RFC3986 query string, like name1=value1&name2=value2
-     * @see http://php.net/manual/en/function.rawurlencode.php
+     * @see https://php.net/manual/en/function.rawurlencode.php
      */
     const FORMAT_RAW_URLENCODED = 'raw-urlencoded';
     /**
