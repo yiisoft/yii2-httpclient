@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.16 under development
 ------------------------
 
-- no changes in this release.
+- Enh: #239 Support for PHP 8.1 (rhertogh)
 
 
 2.0.15 May 22, 2023
