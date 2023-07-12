@@ -48,7 +48,7 @@ class UrlEncodedFormatter extends BaseObject implements FormatterInterface
             if (!empty($content)) {
                 $request->setFullUrl(null);
                 $url = $request->getFullUrl();
-                $url .= (strpos($url, '?') === false) ? '?' : '&';
+                $url .= ($url === null || strpos($url, '?') === false) ? '?' : '&';
                 $url .= $content;
                 $request->setFullUrl($url);
             }
