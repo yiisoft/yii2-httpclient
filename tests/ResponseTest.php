@@ -199,8 +199,10 @@ HTML
     public function dataProviderIsOk()
     {
         return [
+            [100, false],
             [200, true],
             [201, true],
+            [226, true],
             [400, false],
         ];
     }

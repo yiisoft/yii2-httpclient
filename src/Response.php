@@ -69,13 +69,14 @@ class Response extends Message
     }
 
     /**
-     * Checks if response status code is OK (status code = 20x)
+     * Checks if response status code is OK (status code = 2xx)
      * @return bool whether response is OK.
      * @throws Exception
      */
     public function getIsOk()
     {
-        return strncmp('20', $this->getStatusCode(), 2) === 0;
+        $statusCode = (int)$this->getStatusCode();
+        return $statusCode >= 200 && $statusCode < 300;
     }
 
     /**
