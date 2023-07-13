@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.16 under development
 ------------------------
 
-- no changes in this release.
+- Bug #240: Fixed `\yii\httpclient\Response::getIsOk()` to include entire 2xx response code range (rhertogh)
 
 
 2.0.15 May 22, 2023
