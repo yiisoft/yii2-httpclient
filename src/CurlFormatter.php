@@ -42,7 +42,7 @@ class CurlFormatter extends BaseObject implements FormatterInterface
                 $content = http_build_query((array)$data, '', '&', $this->encodingType);
                 $request->setFullUrl(null);
                 $url = $request->getFullUrl();
-                $url .= ($url === null || strpos($url, '?') === false) ? '?' : '&';
+                $url .= (strpos($url, '?') === false) ? '?' : '&';
                 $url .= $content;
                 $request->setFullUrl($url);
             }

@@ -42,6 +42,7 @@ class UrlEncodedFormatterTest extends TestCase
             'name2' => 'value2',
         ];
         $request->setData($data);
+        $request->setUrl('https://yiiframework.com/');
 
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
