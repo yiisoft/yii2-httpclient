@@ -294,7 +294,7 @@ EOL;
         $request = new Request(['client' => $client]);
 
         $this->expectException('yii\\base\\InvalidCallException');
-        var_dump($request->getFullUrl());
+        $request->getFullUrl();
     }
 
     /**
