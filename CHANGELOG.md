@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 ------------------------
 
 - Enh: #239 Support for PHP 8.1 (rhertogh)
+- Bug: #240: Fixed `\yii\httpclient\Response::getIsOk()` to include entire 2xx response code range (rhertogh)
 
 
 2.0.15 May 22, 2023
