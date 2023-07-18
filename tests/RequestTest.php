@@ -288,6 +288,15 @@ EOL;
         $this->assertEquals($expectedFullUrl, $request->getFullUrl());
     }
 
+    public function testGetFullUrlWithoutUrlAndClientBaseUrl()
+    {
+        $client = new Client();
+        $request = new Request(['client' => $client]);
+
+        $this->expectException('yii\\base\\InvalidCallException');
+        $request->getFullUrl();
+    }
+
     /**
      * @depends testToString
      */

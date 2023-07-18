@@ -41,6 +41,7 @@ class CurlFormatterTest extends TestCase
     public function testFormatMethodGet()
     {
         $request = new Request();
+        $request->setUrl('https://yiiframework.com/');
         $request->setMethod('GET');
         $data = [
             'name1' => 'value1',
