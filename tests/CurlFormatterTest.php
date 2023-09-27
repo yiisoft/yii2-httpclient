@@ -7,7 +7,7 @@ use yii\httpclient\Request;
 
 class CurlFormatterTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
@@ -52,7 +52,7 @@ class CurlFormatterTest extends TestCase
         $formatter = new CurlFormatter();
         $formatter->format($request);
         $this->assertEmpty($request->getContent());
-        $this->assertContains(http_build_query($data), $request->getFullUrl());
+        $this->assertStringContainsString(http_build_query($data), $request->getFullUrl());
         $this->assertFalse($request->getHeaders()->has('Content-Type'));
     }
 
