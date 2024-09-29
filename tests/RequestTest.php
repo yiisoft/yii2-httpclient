@@ -7,7 +7,7 @@ use yii\httpclient\Request;
 
 class RequestTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
@@ -216,8 +216,8 @@ EOL;
         $request->addFileContent('some-file', 'some content');
 
         $result = $request->toString();
-        $this->assertContains('Content-Type: multipart/form-data; boundary=', $result);
-        $this->assertContains('some content', $result);
+        $this->assertStringContainsString('Content-Type: multipart/form-data; boundary=', $result);
+        $this->assertStringContainsString('some content', $result);
     }
 
     /**
