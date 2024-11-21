@@ -51,3 +51,76 @@ class MyTransport extends Transport
 
 You may as well override `batchSend()` method if there is a way to send multiple requests with better performance
 like sending them asynchronously in parallel.
+
+## Example usage for MockTransport
+
+In order to mock [[\yii\httpclient\Client]] requests in your tests, you can use the [[\yii\httpclient\MockTransport]]
+`transport` and craft your own responses using `appendResponse()`.
+
+For example, if you have a component consuming an API like this:
+
+```php
+use yii\httpclient\Client;
+
+/**
+ * @property-read Client $client
+ */
+class ApiConsumer extends \yii\base\Component
+{
+    public $transport = 'yii\httpclient\StreamTransport';
+
+    private $_client = null;
+
+    public function getClient()
+    {
+        if (!$this->_client) {
+            $this->_client = new Client(['transport' => $this->transport]);
+        }
+
+        return $this->_client;
+    }
+
+    public function getAuthToken()
+    {
+        $response = $this->client->createRequest()
+          ->setUrl(["https://example.com/oauth/v2/token", "refresh_token" => "TEST_TOKEN", "client_id" => "CLIENT_ID", /* ... */])
+          ->send();
+
+        if (!isset($response->data->access_token)) {
+          throw new \yii\base\Exception("Could not find access_token in API response.");
+        }
+
+        return $response->data->access_token;
+    }
+}
+```
+
+You can mock the HTTP exchange by swapping transport in your test:
+
+```php
+use yii\httpclient\Client;
+use yii\httpclient\MockTransport;
+
+class ApiConsumerTest extends \Codeception\Test\Unit
+{
+    public function testCanLogin()
+    {
+        // Override the transport
+        $consumer = new ApiConsumer(['endpoint' => 'yii\httpclient\MockTransport']);
+
+        // Mock the next response for the send() call
+        $consumer->client->transport->appendResponse(
+            $consumer->client->createResponse(json_encode([
+                "access_token" => "1000.11112222333334444455555666666.aaaaaabbbbbbbccccccdddddddeeeeee",
+                "api_domain" => "https://www.example.com",
+                "token_type" => "Bearer",
+                "expires_in" => 3600,
+            ]), ["HTTP/1.1 200 OK"])
+        );
+
+        $token = $consumer->login();
+
+        verify($token)->equals("1000.11112222333334444455555666666.aaaaaabbbbbbbccccccdddddddeeeeee");
+    }
+}
+```
