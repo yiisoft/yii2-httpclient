@@ -14,7 +14,7 @@ use yii\httpclient\Response;
  */
 abstract class TransportTestCase extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
@@ -49,7 +49,7 @@ abstract class TransportTestCase extends TestCase
         $this->assertResponseIsOK($response);
         $content = $response->getContent();
         $this->assertNotEmpty($content);
-        $this->assertContains('<h1>Documentation</h1>', $content);
+        $this->assertStringContainsString('<h1>Documentation</h1>', $content);
     }
 
     /**
@@ -90,11 +90,10 @@ abstract class TransportTestCase extends TestCase
             $this->assertResponseIsOK($response);
         }
 
-        $this->assertTrue($responses['docs'] instanceof Response, $responses);
-        $this->assertTrue($responses['support'] instanceof Response, $responses);
-
-        $this->assertContains('<h1>Documentation</h1>', $responses['docs']->getContent());
-        $this->assertContains('Mailing Lists', $responses['support']->getContent());
+        $this->assertInstanceOf(Response::class, $responses['docs']);
+        $this->assertInstanceOf(Response::class, $responses['support']);
+        $this->assertStringContainsString('<h1>Documentation</h1>', $responses['docs']->getContent());
+        $this->assertStringContainsString('Mailing Lists', $responses['support']->getContent());
     }
 
     /**
@@ -305,6 +304,6 @@ abstract class TransportTestCase extends TestCase
         $this->assertResponseIsOK($response);
         $content = $response->getContent();
         $this->assertNotEmpty($content);
-        $this->assertContains('<h1>Documentation</h1>', $content);
+        $this->assertStringContainsString('<h1>Documentation</h1>', $content);
     }
 }

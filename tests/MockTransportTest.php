@@ -19,7 +19,7 @@ final class MockTransportTest extends TestCase
      */
     private $transport;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->transport = new MockTransport();
         $this->client = new Client(['transport' => $this->transport]);
