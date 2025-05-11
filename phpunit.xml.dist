@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phpunit
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   bootstrap="./tests/bootstrap.php"
-  colors="true" convertErrorsToExceptions="true"
+  colors="true"
+  convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
   stopOnFailure="false"
-  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
 >
-
-  <php>
-    <ini name="error_reporting" value="-1"/>
-  </php>
-
   <testsuites>
     <testsuite name="Yii2-HttpClient">
       <directory>./tests</directory>
     </testsuite>
   </testsuites>
-
   <coverage>
     <include>
-        <directory>./src</directory>
+      <directory suffix=".php">src</directory>
     </include>
   </coverage>
 </phpunit>
