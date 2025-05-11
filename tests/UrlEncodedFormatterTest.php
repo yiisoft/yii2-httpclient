@@ -86,8 +86,8 @@ class UrlEncodedFormatterTest extends TestCase
         $request->setOptions([
             CURLOPT_INFILE => $fh,
             CURLOPT_INFILESIZE => filesize(__DIR__ . '/test_file.txt'),
-            CURLOPT_BINARYTRANSFER => true,
             CURLOPT_PUT => 1,
+            CURLOPT_RETURNTRANSFER => 1,
         ]);
 
         $formatter = new UrlEncodedFormatter();
