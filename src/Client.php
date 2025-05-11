@@ -203,7 +203,7 @@ class Client extends Component
 
     /**
      * Creates a response instance.
-     * @param string $content raw content
+     * @param string|null $content raw content
      * @param array $headers headers list.
      * @return Response request instance.
      * @throws \yii\base\InvalidConfigException
@@ -285,7 +285,7 @@ class Client extends Component
     /**
      * Creates 'GET' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -298,7 +298,7 @@ class Client extends Component
     /**
      * Creates 'POST' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -311,7 +311,7 @@ class Client extends Component
     /**
      * Creates 'PUT' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -324,7 +324,7 @@ class Client extends Component
     /**
      * Creates 'PATCH' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -337,7 +337,7 @@ class Client extends Component
     /**
      * Creates 'DELETE' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
