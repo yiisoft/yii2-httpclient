@@ -9,7 +9,7 @@ namespace yii\httpclient;
 
 use yii\base\Component;
 use Yii;
-use yii\base\InvalidParamException;
+use yii\base\InvalidArgumentException;
 use yii\helpers\StringHelper;
 
 /**
@@ -124,7 +124,7 @@ class Client extends Component
      * Returns HTTP message formatter instance for the specified format.
      * @param string $format format name.
      * @return FormatterInterface formatter instance.
-     * @throws InvalidParamException on invalid format name.
+     * @throws InvalidArgumentException on invalid format name.
      * @throws \yii\base\InvalidConfigException
      */
     public function getFormatter($format)
@@ -145,7 +145,7 @@ class Client extends Component
 
         if (!isset($this->formatters[$format])) {
             if (!isset($defaultFormatters[$format])) {
-                throw new InvalidParamException("Unrecognized format '{$format}'");
+                throw new InvalidArgumentException("Unrecognized format '{$format}'");
             }
             $this->formatters[$format] = $defaultFormatters[$format];
         }
@@ -161,7 +161,7 @@ class Client extends Component
      * Returns HTTP message parser instance for the specified format.
      * @param string $format format name
      * @return ParserInterface parser instance.
-     * @throws InvalidParamException on invalid format name.
+     * @throws InvalidArgumentException on invalid format name.
      * @throws \yii\base\InvalidConfigException
      */
     public function getParser($format)
@@ -175,7 +175,7 @@ class Client extends Component
 
         if (!isset($this->parsers[$format])) {
             if (!isset($defaultParsers[$format])) {
-                throw new InvalidParamException("Unrecognized format '{$format}'");
+                throw new InvalidArgumentException("Unrecognized format '{$format}'");
             }
             $this->parsers[$format] = $defaultParsers[$format];
         }
