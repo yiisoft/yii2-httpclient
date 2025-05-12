@@ -37,10 +37,5 @@
     },
     "autoload": {
         "psr-4": { "yii\\httpclient\\": "src" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "22.0.x-dev"
-        }
     }
 }
