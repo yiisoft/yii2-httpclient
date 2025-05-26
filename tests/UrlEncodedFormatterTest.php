@@ -7,7 +7,7 @@ use yii\httpclient\UrlEncodedFormatter;
 
 class UrlEncodedFormatterTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
@@ -47,7 +47,7 @@ class UrlEncodedFormatterTest extends TestCase
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertEmpty($request->getContent());
-        $this->assertContains(http_build_query($data), $request->getFullUrl());
+        $this->assertStringContainsString(http_build_query($data), $request->getFullUrl());
         $this->assertFalse($request->getHeaders()->has('Content-Type'));
     }
 
@@ -86,8 +86,8 @@ class UrlEncodedFormatterTest extends TestCase
         $request->setOptions([
             CURLOPT_INFILE => $fh,
             CURLOPT_INFILESIZE => filesize(__DIR__ . '/test_file.txt'),
-            CURLOPT_BINARYTRANSFER => true,
             CURLOPT_PUT => 1,
+            CURLOPT_RETURNTRANSFER => 1,
         ]);
 
         $formatter = new UrlEncodedFormatter();

@@ -40,7 +40,7 @@ class ClientTest extends TestCase
     {
         $client = new Client();
         $unrecognizedFormat = 'unrecognizedFormat';
-        $this->expectException('\yii\base\InvalidParamException');
+        $this->expectException('\yii\base\InvalidArgumentException');
         $this->expectExceptionMessage("Unrecognized format '{$unrecognizedFormat}'");
         $client->getFormatter($unrecognizedFormat);
     }
@@ -108,7 +108,7 @@ class ClientTest extends TestCase
     {
         $client = new Client();
         $unrecognizedParser = 'unrecognizedParser';
-        $this->expectException('\yii\base\InvalidParamException');
+        $this->expectException('\yii\base\InvalidargumentException');
         $this->expectExceptionMessage("Unrecognized format '{$unrecognizedParser}'");
         $client->getParser($unrecognizedParser);
     }

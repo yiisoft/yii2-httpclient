@@ -9,7 +9,7 @@ namespace yii\httpclient;
 
 use yii\base\Component;
 use Yii;
-use yii\base\InvalidParamException;
+use yii\base\InvalidArgumentException;
 use yii\helpers\StringHelper;
 
 /**
@@ -124,7 +124,7 @@ class Client extends Component
      * Returns HTTP message formatter instance for the specified format.
      * @param string $format format name.
      * @return FormatterInterface formatter instance.
-     * @throws InvalidParamException on invalid format name.
+     * @throws InvalidArgumentException on invalid format name.
      * @throws \yii\base\InvalidConfigException
      */
     public function getFormatter($format)
@@ -145,7 +145,7 @@ class Client extends Component
 
         if (!isset($this->formatters[$format])) {
             if (!isset($defaultFormatters[$format])) {
-                throw new InvalidParamException("Unrecognized format '{$format}'");
+                throw new InvalidArgumentException("Unrecognized format '{$format}'");
             }
             $this->formatters[$format] = $defaultFormatters[$format];
         }
@@ -161,7 +161,7 @@ class Client extends Component
      * Returns HTTP message parser instance for the specified format.
      * @param string $format format name
      * @return ParserInterface parser instance.
-     * @throws InvalidParamException on invalid format name.
+     * @throws InvalidArgumentException on invalid format name.
      * @throws \yii\base\InvalidConfigException
      */
     public function getParser($format)
@@ -175,7 +175,7 @@ class Client extends Component
 
         if (!isset($this->parsers[$format])) {
             if (!isset($defaultParsers[$format])) {
-                throw new InvalidParamException("Unrecognized format '{$format}'");
+                throw new InvalidArgumentException("Unrecognized format '{$format}'");
             }
             $this->parsers[$format] = $defaultParsers[$format];
         }
@@ -203,7 +203,7 @@ class Client extends Component
 
     /**
      * Creates a response instance.
-     * @param string $content raw content
+     * @param string|null $content raw content
      * @param array $headers headers list.
      * @return Response request instance.
      * @throws \yii\base\InvalidConfigException
@@ -285,7 +285,7 @@ class Client extends Component
     /**
      * Creates 'GET' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -298,7 +298,7 @@ class Client extends Component
     /**
      * Creates 'POST' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -311,7 +311,7 @@ class Client extends Component
     /**
      * Creates 'PUT' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -324,7 +324,7 @@ class Client extends Component
     /**
      * Creates 'PATCH' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
@@ -337,7 +337,7 @@ class Client extends Component
     /**
      * Creates 'DELETE' request.
      * @param array|string $url target URL.
-     * @param array|string $data if array - request data, otherwise - request content.
+     * @param array|string|null $data if array - request data, otherwise - request content.
      * @param array $headers request headers.
      * @param array $options request options.
      * @return Request request instance.
