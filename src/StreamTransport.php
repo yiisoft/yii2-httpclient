@@ -59,6 +59,10 @@ class StreamTransport extends Transport
         try {
             $context = stream_context_create($contextOptions);
             $stream = fopen($url, 'rb', false, $context);
+            if (false === $stream) {
+                $error = error_get_last();
+                throw new Exception(sprintf('Error while fopen(%s): %s', $url, $error['message'] ?? 'Unknown error'));
+            }
             $responseContent = stream_get_contents($stream);
             // see https://php.net/manual/en/reserved.variables.httpresponseheader.php
             $responseHeaders = (array)$http_response_header;
