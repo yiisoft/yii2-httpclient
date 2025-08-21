@@ -68,7 +68,7 @@ class StreamTransport extends Transport
             $responseHeaders = (array)$http_response_header;
             fclose($stream);
         } catch (\Exception $e) {
-            if (is_resource($stream)) {
+            if (isset($stream) && is_resource($stream)) {
                 fclose($stream);
             }
             Yii::endProfile($token, __METHOD__);
