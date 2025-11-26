@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 ------------------------
 
 - Bug #250: Fixed `TypeError: stream_get_contents(): Argument #1 ($stream) must be of type resource, bool given` in case PHP error reporting is turned off (shaperman)
+- Bug #251: Fixed `The predefined locally scoped $http_response_header variable is deprecated` since PHP 8.5 (Arkeins)
 
 
 2.0.16 February 13, 2025

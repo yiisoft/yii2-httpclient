@@ -65,6 +65,9 @@ class StreamTransport extends Transport
             }
             $responseContent = stream_get_contents($stream);
             // see https://php.net/manual/en/reserved.variables.httpresponseheader.php
+            if (function_exists('http_get_last_response_headers')) {
+                $http_response_header = http_get_last_response_headers();
+            }
             $responseHeaders = (array)$http_response_header;
             fclose($stream);
         } catch (\Exception $e) {
