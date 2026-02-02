@@ -4,10 +4,17 @@ on:
   pull_request: &ignore-paths
     paths-ignore:
       - 'docs/**'
+      - '.github/CONTRIBUTING.md'
+      - '.github/FUNDING.yml'
+      - '.github/SECURITY.md'
       - 'README.md'
       - 'CHANGELOG.md'
+      - 'LICENSE.md'
       - '.gitignore'
       - '.gitattributes'
+      - '.editorconfig'
+      - 'docker-compose.yml'
+      - 'Makefile'
 
   push: *ignore-paths
 
