@@ -1,9 +1,15 @@
 name: build
 
-on: [push, pull_request]
+on:
+  pull_request: &ignore-paths
+    paths-ignore:
+      - 'docs/**'
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - '.gitignore'
+      - '.gitattributes'
 
-env:
-    DEFAULT_COMPOSER_FLAGS: "--prefer-dist --no-interaction --no-progress --optimize-autoloader --ansi"
+  push: *ignore-paths
 
 jobs:
     phpunit:
@@ -16,25 +22,7 @@ jobs:
                 php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
 
         steps:
-            - name: Checkout
-              uses: actions/checkout@v5
-            - name: Install PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-            - name: Get composer cache directory
-              id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-            - name: Cache composer dependencies
-              uses: actions/cache@v4
-              with:
-                  path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: ${{ runner.os }}-composer-
-            - name: Install dependencies
-              run: composer update $DEFAULT_COMPOSER_FLAGS
-            - name: Run unit tests with coverage
-              run: vendor/bin/phpunit --verbose --coverage-clover=coverage.clover --colors=always
+            - uses: yiisoft/actions/.github/workflows/phpunit.yml@master
 
             - name: Upload coverage to Codecov.
               uses: codecov/codecov-action@v5
