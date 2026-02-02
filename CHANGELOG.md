@@ -8,7 +8,7 @@ Yii Framework 2 HTTP client extension Change Log
 - Bug #251: Fixed `The predefined locally scoped $http_response_header variable is deprecated` since PHP 8.5 (Arkeins)
 - Bug #253: Fixed `curl_close()` and `curl_multi_close()` deprecation since PHP 8.5 (samdark)
 - Enh #255: Applying Yii2 coding standards (@s1lver)
-- Enh #255: Raise min version to PHP 7.4
+- Enh #255: Raise min version to PHP 7.4 (@s1lver)
 
 2.0.16 February 13, 2025
 ------------------------
