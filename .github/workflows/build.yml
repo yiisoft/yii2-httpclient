@@ -13,4 +13,4 @@ on:
 
 jobs:
   phpunit:
-    uses: yiisoft/actions/.github/workflows/phpunit.yml@master
+    uses: yiisoft/yii2-actions/.github/workflows/phpunit.yml@master
