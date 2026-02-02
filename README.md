@@ -15,10 +15,15 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-httpclient/v)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-httpclient/downloads)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![Build Status](https://github.com/yiisoft/yii2-httpclient/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-httpclient/actions)
+[![codecov](https://codecov.io/gh/yiisoft/yii2-httpclient/graph/badge.svg)](https://codecov.io/gh/yiisoft/yii2-httpclient)
 
 
 Installation
 ------------
+
+> [!IMPORTANT]
+> - The minimum required [PHP](https://www.php.net/) version is PHP `7.4`.
+> - It works best with PHP `8`.
 
 The preferred way to install this extension is through [composer](https://getcomposer.org/download/).
 
