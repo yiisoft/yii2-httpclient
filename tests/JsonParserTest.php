@@ -8,7 +8,7 @@ use yii\httpclient\Response;
 
 class JsonParserTest extends TestCase
 {
-    public function testParse()
+    public function testParse(): void
     {
         $document = new Response();
         $data = [
@@ -21,7 +21,7 @@ class JsonParserTest extends TestCase
         $this->assertEquals($data, $parser->parse($document));
     }
 
-    public function testParseAsObject()
+    public function testParseAsObject(): void
     {
         $document = new Response();
         $data = new \stdClass();
@@ -35,7 +35,7 @@ class JsonParserTest extends TestCase
         $this->assertEquals($data, $parser->parse($document));
     }
 
-    public function testParse2()
+    public function testParse2(): void
     {
         $document = new Response();
         $data = [

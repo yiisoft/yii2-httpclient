@@ -1,4 +1,5 @@
 <?php
+
 /* @var $panel yii\httpclient\debug\HttpClientPanel */
 /* @var $searchModel yii\httpclient\debug\SearchModel */
 /* @var $dataProvider yii\data\ArrayDataProvider */
@@ -48,7 +49,7 @@ echo GridView::widget([
             'attribute' => 'type',
             'value' => function ($data) {
                     return Html::encode($data['type']);
-                },
+            },
             'filter' => $panel->getTypes(),
         ],
         [

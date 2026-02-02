@@ -17,7 +17,7 @@ use yii\web\HeaderCollection;
 
 class ClientTest extends TestCase
 {
-    public function testSetupFormatters()
+    public function testSetupFormatters(): void
     {
         $client = new Client();
         $client->formatters = [
@@ -36,7 +36,7 @@ class ClientTest extends TestCase
         $this->assertEquals(PHP_QUERY_RFC3986, $formatter->encodingType);
     }
 
-    public function testGetUnrecognizedFormatter()
+    public function testGetUnrecognizedFormatter(): void
     {
         $client = new Client();
         $unrecognizedFormat = 'unrecognizedFormat';
@@ -49,13 +49,13 @@ class ClientTest extends TestCase
      * Data provider for [[testGetDefaultFormatters]]
      * @return array test data
      */
-    public function dataProviderDefaultFormatters()
+    public function dataProviderDefaultFormatters(): array
     {
         return [
-            [Client::FORMAT_JSON, JsonFormatter::className()],
-            [Client::FORMAT_URLENCODED, UrlEncodedFormatter::className()],
-            [Client::FORMAT_RAW_URLENCODED, UrlEncodedFormatter::className()],
-            [Client::FORMAT_XML, XmlFormatter::className()],
+            [Client::FORMAT_JSON, JsonFormatter::class],
+            [Client::FORMAT_URLENCODED, UrlEncodedFormatter::class],
+            [Client::FORMAT_RAW_URLENCODED, UrlEncodedFormatter::class],
+            [Client::FORMAT_XML, XmlFormatter::class],
         ];
     }
 
@@ -65,7 +65,7 @@ class ClientTest extends TestCase
      * @param string $format
      * @param string $expectedClass
      */
-    public function testGetDefaultFormatters($format, $expectedClass)
+    public function testGetDefaultFormatters($format, $expectedClass): void
     {
         $client = new Client();
 
@@ -77,7 +77,7 @@ class ClientTest extends TestCase
      * @depends testSetupFormatters
      * @depends testGetDefaultFormatters
      */
-    public function testOverrideDefaultFormatter()
+    public function testOverrideDefaultFormatter(): void
     {
         $client = new Client();
         $client->formatters = [
@@ -87,7 +87,7 @@ class ClientTest extends TestCase
         $this->assertTrue($formatter instanceof UrlEncodedFormatter);
     }
 
-    public function testSetupParsers()
+    public function testSetupParsers(): void
     {
         $client = new Client();
         $client->parsers = [
@@ -104,7 +104,7 @@ class ClientTest extends TestCase
         $this->assertTrue($parser instanceof UrlEncodedParser);
     }
 
-    public function testGetUnrecognizedParser()
+    public function testGetUnrecognizedParser(): void
     {
         $client = new Client();
         $unrecognizedParser = 'unrecognizedParser';
@@ -117,13 +117,13 @@ class ClientTest extends TestCase
      * Data provider for [[testGetDefaultParsers]]
      * @return array test data
      */
-    public function dataProviderDefaultParsers()
+    public function dataProviderDefaultParsers(): array
     {
         return [
-            [Client::FORMAT_JSON, JsonParser::className()],
-            [Client::FORMAT_URLENCODED, UrlEncodedParser::className()],
-            [Client::FORMAT_RAW_URLENCODED, UrlEncodedParser::className()],
-            [Client::FORMAT_XML, XmlParser::className()],
+            [Client::FORMAT_JSON, JsonParser::class],
+            [Client::FORMAT_URLENCODED, UrlEncodedParser::class],
+            [Client::FORMAT_RAW_URLENCODED, UrlEncodedParser::class],
+            [Client::FORMAT_XML, XmlParser::class],
         ];
     }
 
@@ -133,7 +133,7 @@ class ClientTest extends TestCase
      * @param string $format
      * @param string $expectedClass
      */
-    public function testGetDefaultParsers($format, $expectedClass)
+    public function testGetDefaultParsers($format, $expectedClass): void
     {
         $client = new Client();
 
@@ -145,7 +145,7 @@ class ClientTest extends TestCase
      * @depends testSetupParsers
      * @depends testGetDefaultParsers
      */
-    public function testOverrideDefaultParser()
+    public function testOverrideDefaultParser(): void
     {
         $client = new Client();
         $client->parsers = [
@@ -156,7 +156,7 @@ class ClientTest extends TestCase
         $this->assertTrue($parser instanceof UrlEncodedParser);
     }
 
-    public function testSetupTransport()
+    public function testSetupTransport(): void
     {
         $client = new Client();
 
@@ -172,14 +172,14 @@ class ClientTest extends TestCase
     /**
      * @depends testSetupTransport
      */
-    public function testGetDefaultTransport()
+    public function testGetDefaultTransport(): void
     {
         $client = new Client();
         $transport = $client->getTransport();
         $this->assertTrue($transport instanceof Transport);
     }
 
-    public function testCreateRequest()
+    public function testCreateRequest(): void
     {
         $client = new Client();
 
@@ -195,7 +195,7 @@ class ClientTest extends TestCase
         $this->assertEquals($requestContent, $request->getContent());
     }
 
-    public function testCreateResponse()
+    public function testCreateResponse(): void
     {
         $client = new Client();
 
@@ -213,7 +213,7 @@ class ClientTest extends TestCase
         $this->assertEquals($responseContent, $response->getContent());
     }
 
-    public function testCreateResponseWithHeadersEqualToEmptyArray()
+    public function testCreateResponseWithHeadersEqualToEmptyArray(): void
     {
         $client = new Client();
         $response = $client->createResponse('content', []);
@@ -223,7 +223,7 @@ class ClientTest extends TestCase
         $this->assertEquals([], $headersCollection->toArray());
     }
 
-    public function testCreateRequestShortcut()
+    public function testCreateRequestShortcut(): void
     {
         $method = 'POST';
         $url = 'url';
@@ -242,7 +242,7 @@ class ClientTest extends TestCase
         $this->assertEquals($options, $request->getOptions());
     }
 
-    public function testRequestShortcutMethods()
+    public function testRequestShortcutMethods(): void
     {
         $url = 'url';
         $data = 'data';

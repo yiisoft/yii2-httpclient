@@ -20,7 +20,7 @@ class StreamTransportTest extends TransportTestCase
     /**
      * {@inheritdoc}
      */
-    public function testFollowLocation()
+    public function testFollowLocation(): void
     {
         if (defined('HHVM_VERSION')) {
             $this->markTestSkipped('HHVM does not support `follow_location` option for stream');
@@ -29,7 +29,7 @@ class StreamTransportTest extends TransportTestCase
         parent::testFollowLocation();
     }
 
-    public function testComposeContextOptions()
+    public function testComposeContextOptions(): void
     {
         $transport = $this->createClient()->getTransport();
 

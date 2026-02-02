@@ -7,14 +7,14 @@ use yii\httpclient\UrlEncodedFormatter;
 
 class UrlEncodedFormatterTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
 
     // Tests :
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $request = new Request();
         $request->setMethod('POST');
@@ -33,7 +33,7 @@ class UrlEncodedFormatterTest extends TestCase
     /**
      * @depends testFormat
      */
-    public function testFormatMethodGet()
+    public function testFormatMethodGet(): void
     {
         $request = new Request();
         $request->setMethod('GET');
@@ -47,14 +47,14 @@ class UrlEncodedFormatterTest extends TestCase
         $formatter = new UrlEncodedFormatter();
         $formatter->format($request);
         $this->assertEmpty($request->getContent());
-        $this->assertContains(http_build_query($data), $request->getFullUrl());
+        $this->assertStringContainsString(http_build_query($data), $request->getFullUrl());
         $this->assertFalse($request->getHeaders()->has('Content-Type'));
     }
 
     /**
      * @depends testFormatMethodGet
      */
-    public function testFormatEmpty()
+    public function testFormatEmpty(): void
     {
         $request = new Request();
         $request->setMethod('head');
@@ -64,7 +64,7 @@ class UrlEncodedFormatterTest extends TestCase
         $this->assertNull($request->getContent());
     }
 
-    public function testFormatPostRequestWithEmptyBody()
+    public function testFormatPostRequestWithEmptyBody(): void
     {
         $request = new Request();
         $request->setMethod('POST');
@@ -77,7 +77,7 @@ class UrlEncodedFormatterTest extends TestCase
         $this->assertEquals('0', $headers['content-length'][0]);
     }
 
-    public function testFormatPutRequestWithInfileOption()
+    public function testFormatPutRequestWithInfileOption(): void
     {
         $fh = fopen(__DIR__ . '/test_file.txt', 'r');
 
@@ -86,7 +86,7 @@ class UrlEncodedFormatterTest extends TestCase
         $request->setOptions([
             CURLOPT_INFILE => $fh,
             CURLOPT_INFILESIZE => filesize(__DIR__ . '/test_file.txt'),
-            CURLOPT_BINARYTRANSFER => true,
+            CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_PUT => 1,
         ]);
 
