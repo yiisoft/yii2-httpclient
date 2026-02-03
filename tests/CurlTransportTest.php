@@ -15,19 +15,19 @@ class CurlTransportTest extends TransportTestCase
      */
     protected function transport()
     {
-        return CurlTransport::className();
+        return CurlTransport::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function testCustomSslCertificate()
+    public function testCustomSslCertificate(): void
     {
         $this->markTestSkipped('Unable to test custom SSL certificate since CURL is too strict checking it.');
         //parent::testCustomSslCertificate();
     }
 
-    public function testComposeCurlOptions()
+    public function testComposeCurlOptions(): void
     {
         $transport = $this->createClient()->getTransport();
 
@@ -64,7 +64,7 @@ class CurlTransportTest extends TransportTestCase
         $this->assertEquals($expectedContextOptions, $contextOptions);
     }
 
-    public function testPreparePostRequestWithEmptyBody()
+    public function testPreparePostRequestWithEmptyBody(): void
     {
         $client = new Client([
             'transport' => 'yii\httpclient\CurlTransport',
@@ -89,7 +89,7 @@ class CurlTransportTest extends TransportTestCase
         $this->assertEquals($expectedCurlOptions, $curlOptions);
     }
 
-    public function testPrepareRequestWithOptions()
+    public function testPrepareRequestWithOptions(): void
     {
         $client = new Client([
             'transport' => 'yii\httpclient\CurlTransport',
@@ -117,7 +117,7 @@ class CurlTransportTest extends TransportTestCase
         $this->assertEquals($expectedCurlOptions, $curlOptions);
     }
 
-    public function testPrepareHeadRequestShouldNotHaveBody()
+    public function testPrepareHeadRequestShouldNotHaveBody(): void
     {
         $client = new Client([
             'transport' => 'yii\httpclient\CurlTransport',
@@ -143,7 +143,7 @@ class CurlTransportTest extends TransportTestCase
         $this->assertEquals($expectedCurlOptions, $curlOptions);
     }
 
-    public function testPrepareGetRequestWithOutputFile()
+    public function testPrepareGetRequestWithOutputFile(): void
     {
         $client = new Client([
             'transport' => 'yii\httpclient\CurlTransport',

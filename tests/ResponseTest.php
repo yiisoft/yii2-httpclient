@@ -12,7 +12,7 @@ class ResponseTest extends TestCase
      * Data provider for [[testDetectFormatByHeaders()]]
      * @return array test data
      */
-    public function dataProviderDetectFormatByHeaders()
+    public function dataProviderDetectFormatByHeaders(): array
     {
         return [
             [
@@ -36,7 +36,7 @@ class ResponseTest extends TestCase
      * @param string $contentType
      * @param string $expectedFormat
      */
-    public function testDetectFormatByHeaders($contentType, $expectedFormat)
+    public function testDetectFormatByHeaders($contentType, $expectedFormat): void
     {
         $response = new Response();
         $response->setHeaders(['Content-type' => $contentType]);
@@ -46,7 +46,7 @@ class ResponseTest extends TestCase
     /**
      * @depends testDetectFormatByHeaders
      */
-    public function testDetectFormatByHeadersMultiple()
+    public function testDetectFormatByHeadersMultiple(): void
     {
         $response = new Response();
         $response->setHeaders(['Content-type' => [
@@ -60,7 +60,7 @@ class ResponseTest extends TestCase
      * Data provider for [[testDetectFormatByContent()]]
      * @return array test data
      */
-    public function dataProviderDetectFormatByContent()
+    public function dataProviderDetectFormatByContent(): array
     {
         return [
             [
@@ -107,7 +107,7 @@ HTML
      * @param string $content
      * @param string $expectedFormat
      */
-    public function testDetectFormatByContent($content, $expectedFormat)
+    public function testDetectFormatByContent($content, $expectedFormat): void
     {
         $response = new Response();
         $response->setContent($content);
@@ -118,7 +118,7 @@ HTML
      * Data provider for [[testParseBody()]]
      * @return array test data
      */
-    public function dataProviderParseBody()
+    public function dataProviderParseBody(): array
     {
         return [
             [
@@ -156,7 +156,7 @@ HTML
      * @param string $format
      * @param mixed $expected
      */
-    public function testParseBody($content, $format, $expected)
+    public function testParseBody($content, $format, $expected): void
     {
         $response = new Response([
             'client' => new Client(),
@@ -167,7 +167,7 @@ HTML
         $this->assertSame($expected, $response->getData());
     }
 
-    public function testGetStatusCode()
+    public function testGetStatusCode(): void
     {
         $response = new Response();
 
@@ -183,7 +183,7 @@ HTML
         $this->assertEquals($statusCode, $response->getStatusCode());
     }
 
-    public function testUnableToGetStatusCode()
+    public function testUnableToGetStatusCode(): void
     {
         $response = new Response();
         $this->expectException('\yii\httpclient\Exception');
@@ -196,7 +196,7 @@ HTML
      * Data provider for [[testIsOk()]]
      * @return array test data.
      */
-    public function dataProviderIsOk()
+    public function dataProviderIsOk(): array
     {
         return [
             [100, false],
@@ -214,14 +214,14 @@ HTML
      * @param int $statusCode
      * @param bool $isOk
      */
-    public function testIsOk($statusCode, $isOk)
+    public function testIsOk($statusCode, $isOk): void
     {
         $response = new Response();
         $response->setHeaders(['http-code' => $statusCode]);
         $this->assertEquals($isOk, $response->getIsOk());
     }
 
-    public function testParseCookieHeader()
+    public function testParseCookieHeader(): void
     {
         $response = new Response();
         $this->assertEquals(0, $response->getCookies()->count());
@@ -254,7 +254,7 @@ HTML
         $this->assertTrue($cookie instanceof Cookie);
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $response = new Response([
             'headers' => [

@@ -10,14 +10,14 @@ use yii\httpclient\XmlFormatter;
 
 class XmlFormatterTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
 
     // Tests :
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $request = new Request();
         $data = [
@@ -36,7 +36,7 @@ XML;
         $this->assertEquals('application/xml; charset=UTF-8', $request->getHeaders()->get('Content-Type'));
     }
 
-    public function testFormatStringData()
+    public function testFormatStringData(): void
     {
         $request = new Request();
         $formatter = new XmlFormatter();
@@ -52,7 +52,7 @@ XML1;
     /**
      * @depends testFormat
      */
-    public function testFormatArrayWithNumericKey()
+    public function testFormatArrayWithNumericKey(): void
     {
         $request = new Request();
         $data = [
@@ -77,7 +77,7 @@ XML;
     /**
      * @depends testFormat
      */
-    public function testFormatTraversable()
+    public function testFormatTraversable(): void
     {
         $request = new Request();
 
@@ -107,7 +107,7 @@ XML;
         $this->assertEqualsWithoutLE($expectedContent, $request->getContent());
     }
 
-    public function testFormatArrayable()
+    public function testFormatArrayable(): void
     {
         $request = new Request();
 
@@ -131,7 +131,7 @@ XML;
     /**
      * @depends testFormat
      */
-    public function testFormatFromDom()
+    public function testFormatFromDom(): void
     {
         $request = new Request();
         $data = new DOMDocument('1.0', 'UTF-8');
@@ -151,7 +151,7 @@ XML;
     /**
      * @depends testFormat
      */
-    public function testFormatFromSimpleXml()
+    public function testFormatFromSimpleXml(): void
     {
         $request = new Request();
 
@@ -170,7 +170,7 @@ XML;
     /**
      * @depends testFormat
      */
-    public function testFormatEmpty()
+    public function testFormatEmpty(): void
     {
         $request = new Request();
 

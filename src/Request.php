@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -28,11 +29,11 @@ class Request extends Message
     /**
      * @event RequestEvent an event raised right before sending request.
      */
-    const EVENT_BEFORE_SEND = 'beforeSend';
+    public const EVENT_BEFORE_SEND = 'beforeSend';
     /**
      * @event RequestEvent an event raised right after request has been sent.
      */
-    const EVENT_AFTER_SEND = 'afterSend';
+    public const EVENT_AFTER_SEND = 'afterSend';
 
     /**
      * @var string|array target URL.
@@ -389,7 +390,6 @@ class Request extends Message
 
         // generate safe boundary :
         do {
-
             $boundary = '---------------------' . md5(random_int(0, PHP_INT_MAX) . microtime());
         } while (preg_grep("/{$boundary}/", $contentParts));
 
@@ -474,7 +474,7 @@ class Request extends Message
      */
     public function afterSend($response)
     {
-        $this->_timeElapsed = microtime(true)-$this->_startTime;
+        $this->_timeElapsed = microtime(true) - $this->_startTime;
         $this->client->afterSend($this, $response);
 
         $event = new RequestEvent();

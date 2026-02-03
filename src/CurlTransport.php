@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -229,7 +230,7 @@ class CurlTransport extends Transport
      */
     private function setHeaderOutput($curlResource, array &$output)
     {
-        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function($resource, $headerString) use (&$output) {
+        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function ($resource, $headerString) use (&$output) {
             $header = trim($headerString, "\n\r");
             if (strlen($header) > 0) {
                 $output[] = $header;

@@ -7,14 +7,14 @@ use yii\httpclient\Request;
 
 class CurlFormatterTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockApplication();
     }
 
     // Tests :
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $data = [
             'name1' => 'value1',
@@ -38,7 +38,7 @@ class CurlFormatterTest extends TestCase
     /**
      * @depends testFormat
      */
-    public function testFormatMethodGet()
+    public function testFormatMethodGet(): void
     {
         $request = new Request();
         $request->setUrl('https://yiiframework.com/');
@@ -52,14 +52,14 @@ class CurlFormatterTest extends TestCase
         $formatter = new CurlFormatter();
         $formatter->format($request);
         $this->assertEmpty($request->getContent());
-        $this->assertContains(http_build_query($data), $request->getFullUrl());
+        $this->assertStringContainsString(http_build_query($data), $request->getFullUrl());
         $this->assertFalse($request->getHeaders()->has('Content-Type'));
     }
 
     /**
      * @depends testFormatMethodGet
      */
-    public function testFormatEmpty()
+    public function testFormatEmpty(): void
     {
         $request = new Request();
         $request->setMethod('head');
@@ -69,7 +69,7 @@ class CurlFormatterTest extends TestCase
         $this->assertNull($request->getContent());
     }
 
-    public function testFormatPostRequestWithEmptyBody()
+    public function testFormatPostRequestWithEmptyBody(): void
     {
         $request = new Request();
         $request->setMethod('POST');
