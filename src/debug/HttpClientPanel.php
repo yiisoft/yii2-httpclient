@@ -19,8 +19,8 @@ use Yii;
  *
  * @property \yii\httpclient\Client $httpClient Note that the type of this property differs in getter and
  * setter. See [[getHttpClient()]] and [[setHttpClient()]] for details.
- * @property array $methods This property is read-only.
- * @property array $types This property is read-only.
+ * @property-read array $methods
+ * @property-read array $types
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

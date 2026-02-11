@@ -463,13 +463,13 @@ parameters:
 			path: src/Request.php
 
 		-
-			message: '#^Class yii\\httpclient\\Request has PHPDoc tag @property for property \$url with no value type specified in iterable type array\.$#'
+			message: '#^Class yii\\httpclient\\Request has PHPDoc tag @property for property \$options with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Request.php
 
 		-
-			message: '#^Class yii\\httpclient\\Request has PHPDoc tag @property\-read for property \$options with no value type specified in iterable type array\.$#'
+			message: '#^Class yii\\httpclient\\Request has PHPDoc tag @property for property \$url with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Request.php
@@ -757,13 +757,13 @@ parameters:
 			path: src/debug/HttpClientPanel.php
 
 		-
-			message: '#^Class yii\\httpclient\\debug\\HttpClientPanel has PHPDoc tag @property for property \$methods with no value type specified in iterable type array\.$#'
+			message: '#^Class yii\\httpclient\\debug\\HttpClientPanel has PHPDoc tag @property\-read for property \$methods with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/debug/HttpClientPanel.php
 
 		-
-			message: '#^Class yii\\httpclient\\debug\\HttpClientPanel has PHPDoc tag @property for property \$types with no value type specified in iterable type array\.$#'
+			message: '#^Class yii\\httpclient\\debug\\HttpClientPanel has PHPDoc tag @property\-read for property \$types with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/debug/HttpClientPanel.php
