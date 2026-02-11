@@ -140,7 +140,7 @@ class MessageTest extends TestCase
         $this->assertFalse($message->hasCookies());
 
         // cookie name must be a string
-        $message->getCookies()->add(new Cookie(['name' => 'coockie-test']));
+        $message->getCookies()->add(new Cookie(['name' => 'cookie-test']));
         $this->assertTrue($message->hasCookies());
     }
 
