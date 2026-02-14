@@ -4,8 +4,8 @@
 [[\yii\httpclient\Client]] 提供了几种不同的方式来发送HTTP消息。
 预定义的传输方式是：
 
- - [[\yii\httpclient\StreamTransport]] - 使用 [Streams](http://php.net/manual/en/book.stream.php) 发送HTTP消息。默认情况下使用此传输。 它不需要安装任何额外的PHP扩展或库，但不支持高级功能，如批量请求。
- - [[\yii\httpclient\CurlTransport]] - 使用 [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php) 发送HTTP消息，此传输需要安装 PHP 'curl' 扩展，但支持高级功能， 例如批量请求。
+ - [[\yii\httpclient\StreamTransport]] - 使用 [Streams](https://php.net/manual/en/book.stream.php) 发送HTTP消息。默认情况下使用此传输。 它不需要安装任何额外的PHP扩展或库，但不支持高级功能，如批量请求。
+ - [[\yii\httpclient\CurlTransport]] - 使用 [Client URL Library (cURL)](https://php.net/manual/en/book.curl.php) 发送HTTP消息，此传输需要安装 PHP 'curl' 扩展，但支持高级功能， 例如批量请求。
 
 可以使用 [[\yii\httpclient\Client::$transport]] 配置客户端使用的传输方式：
 

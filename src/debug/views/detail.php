@@ -1,4 +1,5 @@
 <?php
+
 /* @var $panel yii\httpclient\debug\HttpClientPanel */
 /* @var $searchModel yii\httpclient\debug\SearchModel */
 /* @var $dataProvider yii\data\ArrayDataProvider */
@@ -26,7 +27,7 @@ echo GridView::widget([
                 $timeInSeconds = $data['timestamp'] / 1000;
                 $millisecondsDiff = (int) (($timeInSeconds - (int) $timeInSeconds) * 1000);
 
-                return date('H:i:s.', $timeInSeconds) . sprintf('%03d', $millisecondsDiff);
+                return date('H:i:s.', (int) $timeInSeconds) . sprintf('%03d', $millisecondsDiff);
             },
             'headerOptions' => [
                 'class' => 'sort-numerical'
@@ -48,7 +49,7 @@ echo GridView::widget([
             'attribute' => 'type',
             'value' => function ($data) {
                     return Html::encode($data['type']);
-                },
+            },
             'filter' => $panel->getTypes(),
         ],
         [

@@ -1,7 +1,7 @@
 HTTP-клиент для Yii 2
 ===============================
 
-Данное расширение предоставляет HTTP-клиент для [Yii framework 2.0](http://www.yiiframework.com).
+Данное расширение предоставляет HTTP-клиент для [Yii framework 2.0](https://www.yiiframework.com).
 
 
 Первое знакомство

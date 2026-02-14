@@ -1,8 +1,9 @@
 <?php
+
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\httpclient;
@@ -90,7 +91,8 @@ class XmlFormatter extends BaseObject implements FormatterInterface
      */
     protected function buildXml($element, $data)
     {
-        if (is_array($data) ||
+        if (
+            is_array($data) ||
             ($data instanceof \Traversable && $this->useTraversableAsArray && !$data instanceof Arrayable)
         ) {
             foreach ($data as $name => $value) {

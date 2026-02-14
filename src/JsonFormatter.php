@@ -1,8 +1,9 @@
 <?php
+
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\httpclient;
@@ -20,7 +21,7 @@ class JsonFormatter extends BaseObject implements FormatterInterface
 {
     /**
      * @var int the encoding options. For more details please refer to
-     * <http://www.php.net/manual/en/function.json-encode.php>.
+     * <https://www.php.net/manual/en/function.json-encode.php>.
      */
     public $encodeOptions = 0;
 

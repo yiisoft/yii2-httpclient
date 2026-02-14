@@ -1,8 +1,9 @@
 <?php
+
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\httpclient;
@@ -12,9 +13,9 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 
 /**
- * StreamTransport sends HTTP messages using [Streams](http://php.net/manual/en/book.stream.php)
+ * StreamTransport sends HTTP messages using [Streams](https://php.net/manual/en/book.stream.php)
  *
- * For this transport, you may setup request options using [Context Options](http://php.net/manual/en/context.php)
+ * For this transport, you may setup request options using [Context Options](https://php.net/manual/en/context.php)
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -59,11 +60,21 @@ class StreamTransport extends Transport
         try {
             $context = stream_context_create($contextOptions);
             $stream = fopen($url, 'rb', false, $context);
+            if (false === $stream) {
+                $error = error_get_last();
+                throw new Exception(sprintf('Error while fopen(%s): %s', $url, isset($error['message']) ? $error['message'] : 'Unknown error'));
+            }
             $responseContent = stream_get_contents($stream);
-            // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
+            // see https://php.net/manual/en/reserved.variables.httpresponseheader.php
+            if (function_exists('http_get_last_response_headers')) {
+                $http_response_header = http_get_last_response_headers();
+            }
             $responseHeaders = (array)$http_response_header;
             fclose($stream);
         } catch (\Exception $e) {
+            if (isset($stream) && is_resource($stream)) {
+                fclose($stream);
+            }
             Yii::endProfile($token, __METHOD__);
             throw new Exception($e->getMessage(), $e->getCode(), $e);
         }

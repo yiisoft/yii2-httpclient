@@ -19,13 +19,13 @@ final class MockTransportTest extends TestCase
      */
     private $transport;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->transport = new MockTransport();
         $this->client = new Client(['transport' => $this->transport]);
     }
 
-    public function testResponseIsGivenByTheUser()
+    public function testResponseIsGivenByTheUser(): void
     {
         $request = $this->client->createRequest();
         $response = $this->client->createResponse();
@@ -36,14 +36,14 @@ final class MockTransportTest extends TestCase
         $this->assertSame([$request], $this->transport->flushRequests());
     }
 
-    public function testCallingSendWithoutSettingTheResponseRaiseException()
+    public function testCallingSendWithoutSettingTheResponseRaiseException(): void
     {
         $this->expectException('yii\httpclient\Exception');
 
         $this->client->send($this->client->createRequest());
     }
 
-    public function testBatchResponsesAreFlushedInGivenOrder()
+    public function testBatchResponsesAreFlushedInGivenOrder(): void
     {
         $requests = [
             $this->client->createRequest(),
@@ -62,7 +62,7 @@ final class MockTransportTest extends TestCase
         $this->assertSame($requests, $this->transport->flushRequests());
     }
 
-    public function testParseResponseContentOnCustomResponseInjection()
+    public function testParseResponseContentOnCustomResponseInjection(): void
     {
         $value = uniqid('foo_');
 

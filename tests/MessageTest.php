@@ -9,7 +9,7 @@ use yii\web\HeaderCollection;
 
 class MessageTest extends TestCase
 {
-    public function testSetupHeaders()
+    public function testSetupHeaders(): void
     {
         $message = new Message();
 
@@ -42,7 +42,7 @@ class MessageTest extends TestCase
     /**
      * @depends testSetupHeaders
      */
-    public function testSetupRawHeaders()
+    public function testSetupRawHeaders(): void
     {
         $message = new Message();
 
@@ -63,7 +63,7 @@ class MessageTest extends TestCase
     /**
      * @depends testSetupRawHeaders
      */
-    public function testParseHttpCode()
+    public function testParseHttpCode(): void
     {
         $message = new Message();
 
@@ -85,7 +85,7 @@ class MessageTest extends TestCase
     /**
      * @depends testSetupHeaders
      */
-    public function testHasHeaders()
+    public function testHasHeaders(): void
     {
         $message = new Message();
 
@@ -98,7 +98,7 @@ class MessageTest extends TestCase
         $this->assertTrue($message->hasHeaders());
     }
 
-    public function testSetupCookies()
+    public function testSetupCookies(): void
     {
         $message = new Message();
 
@@ -130,7 +130,7 @@ class MessageTest extends TestCase
     /**
      * @depends testSetupCookies
      */
-    public function testHasCookies()
+    public function testHasCookies(): void
     {
         $message = new Message();
 
@@ -139,11 +139,12 @@ class MessageTest extends TestCase
         $message->getCookies(); // instantiate `CookieCollection`
         $this->assertFalse($message->hasCookies());
 
-        $message->getCookies()->add(new Cookie());
+        // cookie name must be a string
+        $message->getCookies()->add(new Cookie(['name' => 'cookie-test']));
         $this->assertTrue($message->hasCookies());
     }
 
-    public function testSetupFormat()
+    public function testSetupFormat(): void
     {
         $message = new Message();
 
@@ -152,7 +153,7 @@ class MessageTest extends TestCase
         $this->assertEquals($format, $message->getFormat());
     }
 
-    public function testSetupBody()
+    public function testSetupBody(): void
     {
         $message = new Message();
         $content = 'test raw body';
@@ -160,7 +161,7 @@ class MessageTest extends TestCase
         $this->assertEquals($content, $message->getContent());
     }
 
-    public function testSetupData()
+    public function testSetupData(): void
     {
         $message = new Message();
         $data = [
@@ -177,7 +178,7 @@ class MessageTest extends TestCase
         $this->assertEquals(array_merge($data, $additionalData), $message->getData());
     }
 
-    public function testUnableToMergeData()
+    public function testUnableToMergeData(): void
     {
         $message = new Message();
         $this->expectException('\yii\base\Exception');
@@ -186,7 +187,7 @@ class MessageTest extends TestCase
         $message->addData(['array']);
     }
 
-    public function testToStringMagicMethod()
+    public function testToStringMagicMethod(): void
     {
         $message = new Message();
         $message->setContent('content');

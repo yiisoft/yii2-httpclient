@@ -1,7 +1,7 @@
 Klient HTTP dla Yii 2
 =====================
 
-To rozszerzenie dodaje funkcjonalność klienta HTTP dla [platformy Yii 2.0](http://www.yiiframework.com).
+To rozszerzenie dodaje funkcjonalność klienta HTTP dla [platformy Yii 2.0](https://www.yiiframework.com).
 
 
 Przygotowanie

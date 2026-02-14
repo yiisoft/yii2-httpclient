@@ -1,0 +1,1195 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:afterSend\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:beforeSend\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:createRequestLogToken\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:createRequestShortcut\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:createRequestShortcut\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:createRequestShortcut\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:createRequestShortcut\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:createResponse\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:delete\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:delete\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:delete\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:delete\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:get\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:get\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:get\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:get\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:head\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:head\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:head\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:options\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:options\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:patch\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:patch\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:patch\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:patch\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:post\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:post\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:post\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:post\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:put\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:put\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:put\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:put\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:setTransport\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Method yii\\httpclient\\Client\:\:setTransport\(\) has parameter \$transport with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Parameter \#1 \$type of static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\) expects array\{class\?\: class\-string\<mixed\>, __class\?\: class\-string\<mixed\>\}\|\(callable\(\)\: mixed\)\|class\-string\<mixed\>, array\|\(callable\(\)\: mixed\)\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Parameter \#3 \$data of method yii\\httpclient\\Client\:\:createRequestShortcut\(\) expects array\|string, array\|string\|null given\.$#'
+			identifier: argument.type
+			count: 5
+			path: src/Client.php
+
+		-
+			message: '#^Parameter \#3 \$data of method yii\\httpclient\\Client\:\:createRequestShortcut\(\) expects array\|string, null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Client.php
+
+		-
+			message: '#^Property yii\\httpclient\\Client\:\:\$_transport type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Property yii\\httpclient\\Client\:\:\$formatters type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Property yii\\httpclient\\Client\:\:\$parsers type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Property yii\\httpclient\\Client\:\:\$requestConfig type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Property yii\\httpclient\\Client\:\:\$responseConfig type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/Client.php
+
+		-
+			message: '#^Unable to resolve the template type T in call to static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\)$#'
+			identifier: argument.templateType
+			count: 4
+			path: src/Client.php
+
+		-
+			message: '#^Parameter \#1 \$fullUrl of method yii\\httpclient\\Request\:\:setFullUrl\(\) expects string, null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/CurlFormatter.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\CurlTransport\:\:composeCurlOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\CurlTransport\:\:composeCurlOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\CurlTransport\:\:initCurl\(\) has parameter \$curlOptions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\CurlTransport\:\:prepare\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\CurlTransport\:\:setHeaderOutput\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\CurlTransport\:\:setHeaderOutput\(\) has parameter \$output with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Client\:\:createResponse\(\) expects string\|null, bool\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/CurlTransport.php
+
+		-
+			message: '#^Call to function is_array\(\) with string will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Call to function is_int\(\) with \*NEVER\* will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Call to function is_object\(\) with \*NEVER\* will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Call to function is_object\(\) with yii\\web\\Cookie will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Call to function is_object\(\) with yii\\web\\CookieCollection will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: src/Message.php
+
+		-
+			message: '#^Call to function is_object\(\) with yii\\web\\HeaderCollection will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: src/Message.php
+
+		-
+			message: '#^If condition is always true\.$#'
+			identifier: if.alwaysTrue
+			count: 2
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:addData\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:addHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:composeHeaderLines\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:getContent\(\) should return string but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:hasContent\(\) has parameter \$key with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:setHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:setHeaders\(\) has parameter \$headers with no value type specified in iterable type array\|yii\\web\\HeaderCollection\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Offset mixed on \*NEVER\* in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.offset
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Property yii\\httpclient\\Message\:\:\$_cookies \(yii\\web\\CookieCollection\) does not accept array\<yii\\web\\Cookie\>\|\(iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection\)\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Property yii\\httpclient\\Message\:\:\$_headers \(yii\\web\\HeaderCollection\) does not accept array\|yii\\web\\HeaderCollection\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 3
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\MockTransport\:\:appendResponse\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/MockTransport.php
+
+		-
+			message: '#^Call to function is_array\(\) with string will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 2
+			path: src/Request.php
+
+		-
+			message: '#^Class yii\\httpclient\\Request has PHPDoc tag @property for property \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addAliasToContentMap\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addAliasToContentMap\(\) has parameter \$alias with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addAliasToContentMap\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addContent\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addData\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addFile\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addFileContent\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:addOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:afterSend\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:beforeSend\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:composeFormInputs\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:composeFormInputs\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:composeHeaderLines\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:createFullUrl\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:generateContentAlias\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:getNameByAlias\(\) has parameter \$alias with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:getOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:getUrl\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:prepareMultiPartContent\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:prepareMultiPartContent\(\) has parameter \$content with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:setOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Method yii\\httpclient\\Request\:\:setUrl\(\) has parameter \$url with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, array\<string, array\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, null given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Request.php
+
+		-
+			message: '#^Parameter \#1 \$url of method yii\\httpclient\\Request\:\:createFullUrl\(\) expects array\|string, array\|string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Parameter \#2 \$content of method yii\\httpclient\\Request\:\:addContent\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Property yii\\httpclient\\Request\:\:\$_contentMap type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Property yii\\httpclient\\Request\:\:\$_options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Property yii\\httpclient\\Request\:\:\$_url type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between string and null will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 2
+			path: src/Request.php
+
+		-
+			message: '#^Argument of an invalid type array\<string\>\|null supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Response.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Response.php
+
+		-
+			message: '#^Method yii\\httpclient\\Response\:\:getStatusCode\(\) should return string but returns string\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Response.php
+
+		-
+			message: '#^Method yii\\httpclient\\StreamTransport\:\:composeContextOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/StreamTransport.php
+
+		-
+			message: '#^Method yii\\httpclient\\StreamTransport\:\:composeContextOptions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/StreamTransport.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/StreamTransport.php
+
+		-
+			message: '#^Parameter \#1 \$fullUrl of method yii\\httpclient\\Request\:\:setFullUrl\(\) expects string, null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/UrlEncodedFormatter.php
+
+		-
+			message: '#^Argument of an invalid type object supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/XmlFormatter.php
+
+		-
+			message: '#^Method yii\\httpclient\\XmlFormatter\:\:buildXml\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/XmlFormatter.php
+
+		-
+			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/XmlFormatter.php
+
+		-
+			message: '#^Method yii\\httpclient\\XmlParser\:\:convertXmlToArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/XmlParser.php
+
+		-
+			message: '#^Parameter \#1 \$node of function simplexml_import_dom expects DOMNode, DOMElement\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/XmlParser.php
+
+		-
+			message: '#^Parameter \#1 \$xml of method yii\\httpclient\\XmlParser\:\:convertXmlToArray\(\) expects SimpleXMLElement\|string, SimpleXMLElement\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/XmlParser.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/XmlParser.php
+
+		-
+			message: '#^Call to an undefined method yii\\console\\Request\|yii\\web\\Request\:\:getQueryParams\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Cannot access property \$messages on array\|string\|yii\\debug\\LogTarget\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Cannot call method filterMessages\(\) on array\|string\|yii\\debug\\LogTarget\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:calculateTimings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:getHttpClient\(\) should return yii\\httpclient\\Client but returns object\.$#'
+			identifier: return.type
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:getMethods\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:getModels\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:getTotalRequestTime\(\) has parameter \$timings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:getTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:init\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:setHttpClient\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\HttpClientPanel\:\:setHttpClient\(\) has parameter \$httpClient with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Parameter \#2 \$type of static method yii\\di\\Instance\:\:ensure\(\) expects class\-string\<object\>\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Property yii\\httpclient\\debug\\HttpClientPanel\:\:\$_httpClient \(array\|string\|yii\\httpclient\\Client\) does not accept object\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Property yii\\httpclient\\debug\\HttpClientPanel\:\:\$_httpClient type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Property yii\\httpclient\\debug\\HttpClientPanel\:\:\$_models type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Property yii\\httpclient\\debug\\HttpClientPanel\:\:\$_timings type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Unable to resolve the template type T in call to static method yii\\di\\Instance\:\:ensure\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Call to an undefined method yii\\base\\Controller\:\:loadData\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/debug/RequestExecuteAction.php
+
+		-
+			message: '#^Class yii\\httpclient\\debug\\RequestExecuteAction extends generic class yii\\base\\Action but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/debug/RequestExecuteAction.php
+
+		-
+			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/debug/RequestExecuteAction.php
+
+		-
+			message: '#^Parameter \#2 \$value of method yii\\web\\HeaderCollection\:\:set\(\) expects string, array\<string\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/debug/RequestExecuteAction.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\SearchModel\:\:search\(\) has parameter \$models with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/SearchModel.php
+
+		-
+			message: '#^Method yii\\httpclient\\debug\\SearchModel\:\:search\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/debug/SearchModel.php
+
+		-
+			message: '#^Cannot access property \$summary on yii\\console\\Controller\<yii\\base\\Module\>\|yii\\web\\Controller\<yii\\base\\Module\>\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/debug/views/detail.php
+
+		-
+			message: '#^Variable \$dataProvider might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/debug/views/detail.php
+
+		-
+			message: '#^Variable \$panel might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: src/debug/views/detail.php
+
+		-
+			message: '#^Variable \$searchModel might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/debug/views/detail.php
+
+		-
+			message: '#^Variable \$panel might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/debug/views/summary.php
+
+		-
+			message: '#^Variable \$queryCount might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/debug/views/summary.php
+
+		-
+			message: '#^Variable \$queryTime might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: src/debug/views/summary.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertTrue\(\) with true will always evaluate to true\.$#'
+			identifier: method.alreadyNarrowedType
+			count: 4
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Instanceof between yii\\httpclient\\CurlTransport and yii\\httpclient\\CurlTransport will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Instanceof between yii\\httpclient\\Request and yii\\httpclient\\Request will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Instanceof between yii\\httpclient\\Response and yii\\httpclient\\Response will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Instanceof between yii\\httpclient\\Transport and yii\\httpclient\\Transport will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ClientTest\:\:dataProviderDefaultFormatters\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ClientTest\:\:dataProviderDefaultParsers\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Parameter \#1 \$expected of method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) expects class\-string\<object\>, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/ClientTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertNull\(\) with string will always evaluate to false\.$#'
+			identifier: method.impossibleType
+			count: 1
+			path: tests/CurlFormatterTest.php
+
+		-
+			message: '#^Offset 0 might not exist on string\|null\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/CurlFormatterTest.php
+
+		-
+			message: '#^Parameter \#1 \$file of method yii\\httpclient\\Request\:\:setOutputFile\(\) expects resource, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/CurlTransportTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertNull\(\) with string will always evaluate to false\.$#'
+			identifier: method.impossibleType
+			count: 1
+			path: tests/JsonFormatterTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertTrue\(\) with true will always evaluate to true\.$#'
+			identifier: method.alreadyNarrowedType
+			count: 3
+			path: tests/MessageTest.php
+
+		-
+			message: '#^Instanceof between iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection and yii\\web\\CookieCollection will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: tests/MessageTest.php
+
+		-
+			message: '#^Instanceof between yii\\web\\HeaderCollection and yii\\web\\HeaderCollection will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: tests/MessageTest.php
+
+		-
+			message: '#^Parameter \#1 \$cookies of method yii\\httpclient\\Message\:\:addCookies\(\) expects array\<yii\\web\\Cookie\>, array\<int, array\<string, string\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/MessageTest.php
+
+		-
+			message: '#^Parameter \#1 \$cookies of method yii\\httpclient\\Message\:\:setCookies\(\) expects array\<yii\\web\\Cookie\>\|\(iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection\), array\<int, array\<string, string\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/MessageTest.php
+
+		-
+			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/MockTransportTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\RequestTest\:\:dataProviderGetFullUrl\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/RequestTest.php
+
+		-
+			message: '#^Parameter \#1 \$cookies of method yii\\httpclient\\Message\:\:setCookies\(\) expects array\<yii\\web\\Cookie\>\|\(iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection\), array\<int, array\<string, string\>\> given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/RequestTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/RequestTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ResponseTest\:\:dataProviderDetectFormatByContent\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/ResponseTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ResponseTest\:\:dataProviderDetectFormatByHeaders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/ResponseTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ResponseTest\:\:dataProviderIsOk\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/ResponseTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ResponseTest\:\:dataProviderParseBody\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/ResponseTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:invoke\(\) has parameter \$args with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:mockApplication\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:mockApplication\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:mockWebApplication\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:mockWebApplication\(\) has parameter \$appClass with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:mockWebApplication\(\) has parameter \$config with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Static property yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:\$app \(yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''yii\\\\httpclient\\\\Response'' and yii\\httpclient\\Response will always evaluate to true\.$#'
+			identifier: method.alreadyNarrowedType
+			count: 2
+			path: tests/TransportTestCase.php
+
+		-
+			message: '#^Parameter \#1 \$csr of function openssl_csr_export expects resource\|string, resource\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/TransportTestCase.php
+
+		-
+			message: '#^Parameter \#1 \$csr of function openssl_csr_sign expects resource\|string, resource\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/TransportTestCase.php
+
+		-
+			message: '#^Parameter \#1 \$x509 of function openssl_x509_export expects resource\|string, resource\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/TransportTestCase.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertNull\(\) with string will always evaluate to false\.$#'
+			identifier: method.impossibleType
+			count: 1
+			path: tests/UrlEncodedFormatterTest.php
+
+		-
+			message: '#^Offset 0 might not exist on string\|null\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: tests/UrlEncodedFormatterTest.php
+
+		-
+			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertNull\(\) with string will always evaluate to false\.$#'
+			identifier: method.impossibleType
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:extraFields\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:extraFields\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:fields\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:fields\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:toArray\(\) has parameter \$expand with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:toArray\(\) has parameter \$fields with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/XmlFormatterTest.php
+
+		-
+			message: '#^Method yiiunit\\extensions\\httpclient\\ArrayableClass\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/XmlFormatterTest.php

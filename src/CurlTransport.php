@@ -1,8 +1,9 @@
 <?php
+
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\httpclient;
@@ -10,11 +11,11 @@ namespace yii\httpclient;
 use Yii;
 
 /**
- * CurlTransport sends HTTP messages using [Client URL Library (cURL)](http://php.net/manual/en/book.curl.php)
+ * CurlTransport sends HTTP messages using [Client URL Library (cURL)](https://php.net/manual/en/book.curl.php)
  *
  * Note: this transport requires PHP 'curl' extension installed.
  *
- * For this transport, you may setup request options as [cURL Options](http://php.net/manual/en/function.curl-setopt.php)
+ * For this transport, you may setup request options as [cURL Options](https://php.net/manual/en/function.curl-setopt.php)
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -44,10 +45,12 @@ class CurlTransport extends Transport
         $errorNumber = curl_errno($curlResource);
         $errorMessage = curl_error($curlResource);
 
-        curl_close($curlResource);
+        if (PHP_VERSION_ID < 80500) {
+            curl_close($curlResource);
+        }
 
         if ($errorNumber > 0) {
-            throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage);
+            throw new Exception('Curl error: #' . $errorNumber . ' - ' . $errorMessage, $errorNumber);
         }
 
         $response = $request->client->createResponse($responseContent, $responseHeaders);
@@ -109,7 +112,9 @@ class CurlTransport extends Transport
             curl_multi_remove_handle($curlBatchResource, $curlResource);
         }
 
-        curl_multi_close($curlBatchResource);
+        if (PHP_VERSION_ID < 80500) {
+            curl_multi_close($curlBatchResource);
+        }
 
         $responses = [];
         foreach ($requests as $key => $request) {
@@ -225,7 +230,7 @@ class CurlTransport extends Transport
      */
     private function setHeaderOutput($curlResource, array &$output)
     {
-        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function($resource, $headerString) use (&$output) {
+        curl_setopt($curlResource, CURLOPT_HEADERFUNCTION, function ($resource, $headerString) use (&$output) {
             $header = trim($headerString, "\n\r");
             if (strlen($header) > 0) {
                 $output[] = $header;

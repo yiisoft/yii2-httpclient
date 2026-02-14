@@ -1,10 +1,41 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-2.0.13 under development
+3.0.0 under development
 ------------------------
 
 - Enh #204: added additional keys to `Message::getHeaders()` to make full HTTP status line details available to `Client::getHeaders()` (ClintZeringue)
+- Bug #250: Fixed `TypeError: stream_get_contents(): Argument #1 ($stream) must be of type resource, bool given` in case PHP error reporting is turned off (shaperman)
+- Bug #251: Fixed `The predefined locally scoped $http_response_header variable is deprecated` since PHP 8.5 (Arkeins)
+- Bug #253: Fixed `curl_close()` and `curl_multi_close()` deprecation since PHP 8.5 (samdark)
+- Enh #255: Applying Yii2 coding standards (@s1lver)
+- Enh #255: Raise min version to PHP 7.4 (@s1lver)
+
+2.0.16 February 13, 2025
+------------------------
+
+- Bug #240: Fixed `\yii\httpclient\Response::getIsOk()` to include entire 2xx response code range (rhertogh)
+- Enh #239: Support for PHP 8.1 (rhertogh)
+
+
+2.0.15 May 22, 2023
+-------------------
+
+- Bug #224: Parse content when it is not an empty string (pawmaster)
+- Bug #226: Fix error in debug panel due to PHP 8.1 deprecation of implicit float to int conversion (lacek)
+
+
+2.0.14 August 09, 2021
+----------------------
+
+- Enh #215: Added possibility to skip charset in header on `UrlEncodedFormatter::format()` (egorrishe)
+- Enh #216: Use `random_int()` when generating boundary (samdark)
+
+
+2.0.13 December 23, 2020
+------------------------
+
+- Bug #209: Fixed error code, thrown by Exception in `CurlTransport` (kwazaro)
 
 
 2.0.12 October 08, 2019
