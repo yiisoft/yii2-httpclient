@@ -194,4 +194,23 @@ class MessageTest extends TestCase
         $string = $message . '';
         $this->assertEqualsWithoutLE('content', $string);
     }
+
+    public function testParseHttpStatusLineDetails(): void
+    {
+        $message = new Message();
+
+        $message->setHeaders(
+            [
+                'HTTP/1.1 404 RequestNotFound',
+                'header1: value1',
+            ],
+        );
+
+        $headers = $message->getHeaders();
+
+        $this->assertSame('404', $headers->get('http-code'));
+        $this->assertSame('HTTP/1.1 404 RequestNotFound', $headers->get('http-status-line'));
+        $this->assertSame('HTTP/1.1', $headers->get('http-version'));
+        $this->assertSame('404 RequestNotFound', $headers->get('http-status-code-reason-phrase'));
+    }
 }
