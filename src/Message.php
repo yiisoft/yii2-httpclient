@@ -85,7 +85,24 @@ class Message extends Component
                         $rawHeader = $value;
                         if (strpos($rawHeader, 'HTTP/') === 0) {
                             $parts = explode(' ', $rawHeader, 3);
-                            $headerCollection->add('http-code', $parts[1]);
+                            $statusCode = $parts[1] ?? '';
+                            $reasonPhrase = isset($parts[2]) ? trim($parts[2]) : '';
+                            $headerCollection->add(
+                                'http-code',
+                                $statusCode,
+                            );
+                            $headerCollection->add(
+                                'http-status-line',
+                                $rawHeader,
+                            );
+                            $headerCollection->add(
+                                'http-version',
+                                $parts[0],
+                            );
+                            $headerCollection->add(
+                                'http-reason-phrase',
+                                trim("{$statusCode} {$reasonPhrase}"),
+                            );
                         } elseif (($separatorPos = strpos($rawHeader, ':')) !== false) {
                             $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
                             $value = trim(substr($rawHeader, $separatorPos + 1));
