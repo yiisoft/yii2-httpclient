@@ -211,6 +211,6 @@ class MessageTest extends TestCase
         $this->assertSame('404', $headers->get('http-code'));
         $this->assertSame('HTTP/1.1 404 RequestNotFound', $headers->get('http-status-line'));
         $this->assertSame('HTTP/1.1', $headers->get('http-version'));
-        $this->assertSame('404 RequestNotFound', $headers->get('http-status-code-reason-phrase'));
+        $this->assertSame('404 RequestNotFound', $headers->get('http-reason-phrase'));
     }
 }

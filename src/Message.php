@@ -100,7 +100,7 @@ class Message extends Component
                                 $parts[0],
                             );
                             $headerCollection->add(
-                                'http-status-code-reason-phrase',
+                                'http-reason-phrase',
                                 trim("{$statusCode} {$reasonPhrase}"),
                             );
                         } elseif (($separatorPos = strpos($rawHeader, ':')) !== false) {
