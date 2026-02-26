@@ -661,12 +661,6 @@ parameters:
 			path: src/Response.php
 
 		-
-			message: '#^Method yii\\httpclient\\Response\:\:getStatusCode\(\) should return string but returns string\|null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Response.php
-
-		-
 			message: '#^Method yii\\httpclient\\StreamTransport\:\:composeContextOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1052,12 +1046,6 @@ parameters:
 
 		-
 			message: '#^Method yiiunit\\extensions\\httpclient\\ResponseTest\:\:dataProviderDetectFormatByHeaders\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/ResponseTest.php
-
-		-
-			message: '#^Method yiiunit\\extensions\\httpclient\\ResponseTest\:\:dataProviderIsOk\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/ResponseTest.php
