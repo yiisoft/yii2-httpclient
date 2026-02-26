@@ -171,16 +171,13 @@ HTML
     {
         $response = new Response();
 
-        $statusCode = 123;
+        $statusCode = '123';
         $response->setHeaders(['http-code' => $statusCode]);
-        $this->assertEquals($statusCode, $response->getStatusCode());
+        $this->assertSame($statusCode, $response->getStatusCode());
 
-        $statusCode = 123;
-        $response->setHeaders(['http-code' => [
-            $statusCode + 10,
-            $statusCode,
-        ]]);
-        $this->assertEquals($statusCode, $response->getStatusCode());
+        $statusCode = '123';
+        $response->setHeaders(['http-code' => ['133', $statusCode]]);
+        $this->assertSame($statusCode, $response->getStatusCode());
     }
 
     public function testUnableToGetStatusCode(): void
@@ -194,31 +191,28 @@ HTML
 
     /**
      * Data provider for [[testIsOk()]]
-     * @return array test data.
+     * @return list<array{string, bool}> test data.
      */
     public function dataProviderIsOk(): array
     {
         return [
-            [100, false],
-            [200, true],
-            [201, true],
-            [226, true],
-            [400, false],
+            ['100', false],
+            ['200', true],
+            ['201', true],
+            ['226', true],
+            ['400', false],
         ];
     }
 
     /**
      * @dataProvider dataProviderIsOk
      * @depends      testGetStatusCode
-     *
-     * @param int $statusCode
-     * @param bool $isOk
      */
-    public function testIsOk($statusCode, $isOk): void
+    public function testIsOk(string $statusCode, bool $isOk): void
     {
         $response = new Response();
         $response->setHeaders(['http-code' => $statusCode]);
-        $this->assertEquals($isOk, $response->getIsOk());
+        $this->assertSame($isOk, $response->getIsOk());
     }
 
     public function testParseCookieHeader(): void
