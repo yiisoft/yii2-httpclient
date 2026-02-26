@@ -10,6 +10,7 @@ Yii Framework 2 HTTP client extension Change Log
 - Bug #253: Fixed `curl_close()` and `curl_multi_close()` deprecation since PHP 8.5 (samdark)
 - Enh #255: Applying Yii2 coding standards (@s1lver)
 - Enh #255: Raise min version to PHP 7.4 (@s1lver)
+- Bug #258: Fix `@var` annotation for `Response::$statusCode` and `@return` annotation for `Response::getStatusCode()` (@mspirkov)
 
 2.0.16 February 13, 2025
 ------------------------
