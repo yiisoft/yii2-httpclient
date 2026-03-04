@@ -45,7 +45,7 @@ to the require section of your composer.json.
 
 ## Documentation
 
-- [Internals](docs/guide/internals.md)
+- [the guide](docs/guide/README.md)
 
 ## Support the project
 
