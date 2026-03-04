@@ -12,8 +12,6 @@ This extension provides the HTTP client for the [Yii framework 2.0](https://www.
 
 For license information check the [LICENSE](LICENSE.md)-file.
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-httpclient.svg?style=for-the-badge&label=Stable&logo=packagist)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-httpclient.svg?style=for-the-badge&label=Downloads)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![build](https://img.shields.io/github/actions/workflow/status/yiisoft/yii2-httpclient/build.yml?style=for-the-badge&logo=github&label=Build)](https://github.com/yiisoft/yii2-httpclient/actions?query=workflow%3Abuild)
