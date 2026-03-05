@@ -10,10 +10,6 @@
 
 This extension provides the HTTP client for the [Yii framework 2.0](https://www.yiiframework.com).
 
-For license information check the [LICENSE](LICENSE.md)-file.
-
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-httpclient.svg?style=for-the-badge&label=Stable&logo=packagist)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-httpclient.svg?style=for-the-badge&label=Downloads)](https://packagist.org/packages/yiisoft/yii2-httpclient)
 [![build](https://img.shields.io/github/actions/workflow/status/yiisoft/yii2-httpclient/build.yml?style=for-the-badge&logo=github&label=Build)](https://github.com/yiisoft/yii2-httpclient/actions?query=workflow%3Abuild)
@@ -45,7 +41,7 @@ to the require section of your composer.json.
 
 ## Documentation
 
-- [Internals](docs/internals.md)
+- [the guide](docs/guide/README.md)
 
 ## Support the project
 
@@ -57,3 +53,7 @@ to the require section of your composer.json.
 [![Follow on X](https://img.shields.io/badge/-Follow%20on%20X-1DA1F2.svg?style=for-the-badge&logo=x&logoColor=white&labelColor=000000)](https://x.com/yiiframework)
 [![Telegram](https://img.shields.io/badge/telegram-join-1DA1F2?style=for-the-badge&logo=telegram)](https://t.me/yii_framework_in_english)
 [![Slack](https://img.shields.io/badge/slack-join-1DA1F2?style=for-the-badge&logo=slack)](https://yiiframework.com/go/slack)
+
+## License
+
+[![License](https://img.shields.io/badge/License-BSD--3--Clause-brightgreen.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=555555)](LICENSE.md)
