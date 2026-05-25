@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "yiisoft/yii2": "~2.0.54",
+        "yiisoft/yii2": "~2.0.55",
         "paragonie/random_compat": ">=1"
     },
     "require-dev": {
