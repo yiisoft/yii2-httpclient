@@ -1,16 +1,17 @@
 Yii Framework 2 HTTP client extension Change Log
 ================================================
 
-3.0.0 under development
+2.0.17 under development
 ------------------------
 
-- Enh #204: Added additional keys to `Message::getHeaders()` to make full HTTP status line details available to `Client::getHeaders()` (ClintZeringue)
 - Bug #250: Fixed `TypeError: stream_get_contents(): Argument #1 ($stream) must be of type resource, bool given` in case PHP error reporting is turned off (shaperman)
 - Bug #251: Fixed `The predefined locally scoped $http_response_header variable is deprecated` since PHP 8.5 (Arkeins)
 - Bug #253: Fixed `curl_close()` and `curl_multi_close()` deprecation since PHP 8.5 (samdark)
+- Bug #258: Fix `@var` annotation for `Response::$statusCode` and `@return` annotation for `Response::getStatusCode()` (@mspirkov)
+- Enh #204: Added additional keys to `Message::getHeaders()` to make full HTTP status line details available to `Client::getHeaders()` (ClintZeringue)
 - Enh #255: Applying Yii2 coding standards (@s1lver)
 - Enh #255: Raise min version to PHP 7.4 (@s1lver)
-- Bug #258: Fix `@var` annotation for `Response::$statusCode` and `@return` annotation for `Response::getStatusCode()` (@mspirkov)
+
 
 2.0.16 February 13, 2025
 ------------------------

@@ -679,6 +679,12 @@ parameters:
 			path: src/StreamTransport.php
 
 		-
+			message: '#^Cannot access property \$charset on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/UrlEncodedFormatter.php
+
+		-
 			message: '#^Parameter \#1 \$fullUrl of method yii\\httpclient\\Request\:\:setFullUrl\(\) expects string, null given\.$#'
 			identifier: argument.type
 			count: 1
@@ -687,6 +693,12 @@ parameters:
 		-
 			message: '#^Argument of an invalid type object supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
+			count: 1
+			path: src/XmlFormatter.php
+
+		-
+			message: '#^Cannot access property \$charset on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/XmlFormatter.php
 
@@ -736,6 +748,18 @@ parameters:
 			message: '#^Cannot access property \$messages on array\|string\|yii\\debug\\LogTarget\.$#'
 			identifier: property.nonObject
 			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Cannot access property \$request on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/debug/HttpClientPanel.php
+
+		-
+			message: '#^Cannot access property \$view on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
+			count: 2
 			path: src/debug/HttpClientPanel.php
 
 		-
@@ -841,12 +865,6 @@ parameters:
 			path: src/debug/RequestExecuteAction.php
 
 		-
-			message: '#^Class yii\\httpclient\\debug\\RequestExecuteAction extends generic class yii\\base\\Action but does not specify its types\: T$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/debug/RequestExecuteAction.php
-
-		-
 			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, string\|null given\.$#'
 			identifier: argument.type
 			count: 1
@@ -871,7 +889,13 @@ parameters:
 			path: src/debug/SearchModel.php
 
 		-
-			message: '#^Cannot access property \$summary on yii\\console\\Controller\<yii\\base\\Module\>\|yii\\web\\Controller\<yii\\base\\Module\>\|null\.$#'
+			message: '#^Cannot access property \$controller on yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\|null\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/debug/views/detail.php
+
+		-
+			message: '#^Cannot access property \$summary on yii\\console\\Controller\|yii\\web\\Controller\|null\.$#'
 			identifier: property.nonObject
 			count: 2
 			path: src/debug/views/detail.php
@@ -1089,12 +1113,6 @@ parameters:
 		-
 			message: '#^Method yiiunit\\extensions\\httpclient\\TestCase\:\:mockWebApplication\(\) has parameter \$config with no type specified\.$#'
 			identifier: missingType.parameter
-			count: 1
-			path: tests/TestCase.php
-
-		-
-			message: '#^Static property yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:\$app \(yii\\console\\Application\|yii\\web\\Application\<yii\\web\\IdentityInterface\>\) does not accept null\.$#'
-			identifier: assign.propertyType
 			count: 1
 			path: tests/TestCase.php
 
