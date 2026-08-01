@@ -211,7 +211,7 @@ parameters:
 			path: src/Client.php
 
 		-
-			message: '#^Parameter \#1 \$type of static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\) expects array\{class\?\: class\-string\<mixed\>, __class\?\: class\-string\<mixed\>\}\|\(callable\(\)\: mixed\)\|class\-string\<mixed\>, array\|\(callable\(\)\: mixed\)\|string given\.$#'
+			message: '#^Parameter \#1 \$type of static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\) expects array\{class\?\: class\-string\<mixed\>, __class\?\: class\-string\<mixed\>, \.\.\.\}\|\(callable\(\)\: mixed\)\|class\-string\<mixed\>, array\|\(callable\(\)\: mixed\)\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Client.php
@@ -429,12 +429,6 @@ parameters:
 		-
 			message: '#^Property yii\\httpclient\\Message\:\:\$_headers \(yii\\web\\HeaderCollection\) does not accept array\|yii\\web\\HeaderCollection\.$#'
 			identifier: assign.propertyType
-			count: 1
-			path: src/Message.php
-
-		-
-			message: '#^Result of && is always false\.$#'
-			identifier: booleanAnd.alwaysFalse
 			count: 1
 			path: src/Message.php
 
