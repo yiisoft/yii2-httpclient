@@ -4,7 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.18 under development
 ------------------------
 
-- no changes in this release.
+- Bug #TBD: Fix `@property` annotations in `Client`, `Message`, `Request` and `HttpClientPanel` (@mspirkov)
 
 2.0.17 May 25, 2026
 -------------------
