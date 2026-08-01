@@ -17,10 +17,10 @@ use Yii;
 /**
  * Debugger panel that collects and displays HTTP requests performed.
  *
- * @property \yii\httpclient\Client $httpClient Note that the type of this property differs in getter and
- * setter. See [[getHttpClient()]] and [[setHttpClient()]] for details.
- * @property-read array<string,string> $methods
- * @property-read array<string,string> $types
+ * @property-read \yii\httpclient\Client $httpClient
+ * @property-write array $httpClient
+ * @property-read array $methods
+ * @property-read array $types
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
