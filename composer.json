@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "yiisoft/yii2": "~2.0.54",
+        "yiisoft/yii2": "~2.0.55",
         "paragonie/random_compat": ">=1"
     },
     "require-dev": {
@@ -51,8 +51,8 @@
         }
     },
     "scripts": {
-        "cs": "./vendor/bin/phpcs -q src tests",
-        "cs-fix": "./vendor/bin/phpcbf -q src tests",
+        "cs": "./vendor/bin/phpcs",
+        "cs-fix": "./vendor/bin/phpcbf",
         "static": "./vendor/bin/phpstan --memory-limit=-1",
         "tests": "./vendor/bin/phpunit"
     }

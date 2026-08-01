@@ -40,16 +40,16 @@ abstract class TransportTestCase extends TestCase
     public function testSend(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net/';
+        $client->baseUrl = 'https://www.yiiframework.com/';
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('docs.php')
+            ->setUrl('doc/guide/2.0/en/start-installation')
             ->send();
 
         $this->assertResponseIsOK($response);
         $content = $response->getContent();
         $this->assertNotEmpty($content);
-        $this->assertStringContainsString('<h1>Documentation</h1>', $content);
+        $this->assertStringContainsString('The Definitive Guide to Yii 2.0', $content);
     }
 
     /**
@@ -58,13 +58,15 @@ abstract class TransportTestCase extends TestCase
     public function testSendPost(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net/';
+        $client->baseUrl = 'https://postman-echo.com/';
         $response = $client->createRequest()
             ->setMethod('POST')
-            ->setUrl('search.php')
-            ->setData(['pattern' => 'curl'])
+            ->setUrl('post')
+            ->setData(['q' => 'yii'])
             ->send();
+
         $this->assertResponseIsOK($response);
+        $this->assertNotEmpty($response->getContent());
     }
 
     /**
@@ -73,15 +75,15 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSend(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net/';
+        $client->baseUrl = 'https://www.yiiframework.com/';
 
         $requests = [];
         $requests['docs'] = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('docs.php');
+            ->setUrl('doc/guide/2.0/en/start-installation');
         $requests['support'] = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('support.php');
+            ->setUrl('community');
 
         $responses = $client->batchSend($requests);
         $this->assertCount(count($requests), $responses);
@@ -93,8 +95,8 @@ abstract class TransportTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $responses['docs']);
         $this->assertInstanceOf(Response::class, $responses['support']);
 
-        $this->assertStringContainsString('<h1>Documentation</h1>', $responses['docs']->getContent());
-        $this->assertStringContainsString('Mailing Lists', $responses['support']->getContent());
+        $this->assertStringContainsString('The Definitive Guide to Yii 2.0', $responses['docs']->getContent());
+        $this->assertStringContainsString('Community Resources', $responses['support']->getContent());
     }
 
     /**
@@ -103,15 +105,11 @@ abstract class TransportTestCase extends TestCase
     public function testFollowLocation(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net/';
+        $client->baseUrl = 'https://www.yiiframework.com/';
 
         $request = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('search.php')
-            ->setData([
-                'show' => 'quickref',
-                'pattern' => 'array_merge'
-            ]);
+            ->setUrl('doc/guide');
 
         $response = $request->setOptions([
             'followLocation' => false,
@@ -147,11 +145,11 @@ abstract class TransportTestCase extends TestCase
     public function testSendEvents(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net/';
+        $client->baseUrl = 'https://www.yiiframework.com/';
 
         $request = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('docs.php');
+            ->setUrl('doc/guide/2.0/en/start-installation');
 
         $beforeSendEvent = null;
         $request->on(Request::EVENT_BEFORE_SEND, function (RequestEvent $event) use (&$beforeSendEvent) {
@@ -180,11 +178,11 @@ abstract class TransportTestCase extends TestCase
     public function testClientSendEvents(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net/';
+        $client->baseUrl = 'https://www.yiiframework.com/';
 
         $request = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('docs.php');
+            ->setUrl('doc/guide/2.0/en/start-installation');
 
         $beforeSendEvent = null;
         $client->on(Client::EVENT_BEFORE_SEND, function (RequestEvent $event) use (&$beforeSendEvent) {
@@ -214,7 +212,7 @@ abstract class TransportTestCase extends TestCase
     public function testBatchSendEvents(): void
     {
         $client = $this->createClient();
-        $client->baseUrl = 'https://www.php.net';
+        $client->baseUrl = 'https://www.yiiframework.com';
 
         $beforeSendUrls = [];
         $client->on(Client::EVENT_BEFORE_SEND, function (RequestEvent $event) use (&$beforeSendUrls) {
@@ -229,16 +227,16 @@ abstract class TransportTestCase extends TestCase
         $requests = [];
         $requests['docs'] = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('docs.php');
+            ->setUrl('doc/guide/2.0/en/start-installation');
         $requests['support'] = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('support.php');
+            ->setUrl('community');
 
         $responses = $client->batchSend($requests);
 
         $expectedUrls = [
-            $client->baseUrl . '/docs.php',
-            $client->baseUrl . '/support.php',
+            $client->baseUrl . '/doc/guide/2.0/en/start-installation',
+            $client->baseUrl . '/community',
         ];
         $this->assertEquals($expectedUrls, $beforeSendUrls);
         $this->assertEquals($expectedUrls, $afterSendUrls);
@@ -291,10 +289,10 @@ abstract class TransportTestCase extends TestCase
         file_put_contents($privateKeyFilename, $privateKey);
 
         $client = $this->createClient();
-        $client->baseUrl = 'https://secure.php.net/';
+        $client->baseUrl = 'https://www.yiiframework.com/';
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('docs.php')
+            ->setUrl('doc/guide/2.0/en/start-installation')
             ->setOptions([
                 'sslLocalCert' => $publicKeyFilename,
                 'sslLocalPk' => $privateKeyFilename,
@@ -305,6 +303,6 @@ abstract class TransportTestCase extends TestCase
         $this->assertResponseIsOK($response);
         $content = $response->getContent();
         $this->assertNotEmpty($content);
-        $this->assertStringContainsString('<h1>Documentation</h1>', $content);
+        $this->assertStringContainsString('The Definitive Guide to Yii 2.0', $content);
     }
 }
