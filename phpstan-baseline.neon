@@ -211,7 +211,7 @@ parameters:
 			path: src/Client.php
 
 		-
-			message: '#^Parameter \#1 \$type of static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\) expects array\{class\?\: class\-string\<mixed\>, __class\?\: class\-string\<mixed\>\}\|\(callable\(\)\: mixed\)\|class\-string\<mixed\>, array\|\(callable\(\)\: mixed\)\|string given\.$#'
+			message: '#^Parameter \#1 \$type of static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\) expects array\{class\?\: class\-string\<mixed\>, __class\?\: class\-string\<mixed\>, \.\.\.\}\|\(callable\(\)\: mixed\)\|class\-string\<mixed\>, array\|\(callable\(\)\: mixed\)\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Client.php
@@ -349,12 +349,6 @@ parameters:
 			path: src/Message.php
 
 		-
-			message: '#^Call to function is_object\(\) with yii\\web\\Cookie will always evaluate to true\.$#'
-			identifier: function.alreadyNarrowedType
-			count: 1
-			path: src/Message.php
-
-		-
 			message: '#^Call to function is_object\(\) with yii\\web\\CookieCollection will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 2
@@ -370,6 +364,12 @@ parameters:
 			message: '#^If condition is always true\.$#'
 			identifier: if.alwaysTrue
 			count: 2
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:addCookies\(\) has parameter \$cookies with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
 			path: src/Message.php
 
 		-
@@ -403,6 +403,18 @@ parameters:
 			path: src/Message.php
 
 		-
+			message: '#^Method yii\\httpclient\\Message\:\:setCookies\(\) has parameter \$cookies with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Method yii\\httpclient\\Message\:\:setCookies\(\) has parameter \$cookies with no value type specified in iterable type array\|yii\\web\\CookieCollection\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Message.php
+
+		-
 			message: '#^Method yii\\httpclient\\Message\:\:setHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -421,7 +433,13 @@ parameters:
 			path: src/Message.php
 
 		-
-			message: '#^Property yii\\httpclient\\Message\:\:\$_cookies \(yii\\web\\CookieCollection\) does not accept array\<yii\\web\\Cookie\>\|\(iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection\)\.$#'
+			message: '#^Parameter \#1 \$cookie of method yii\\web\\CookieCollection\:\:add\(\) expects yii\\web\\Cookie, object given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Message.php
+
+		-
+			message: '#^Property yii\\httpclient\\Message\:\:\$_cookies \(yii\\web\\CookieCollection\) does not accept array\|yii\\web\\CookieCollection\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: src/Message.php
@@ -429,12 +447,6 @@ parameters:
 		-
 			message: '#^Property yii\\httpclient\\Message\:\:\$_headers \(yii\\web\\HeaderCollection\) does not accept array\|yii\\web\\HeaderCollection\.$#'
 			identifier: assign.propertyType
-			count: 1
-			path: src/Message.php
-
-		-
-			message: '#^Result of && is always false\.$#'
-			identifier: booleanAnd.alwaysFalse
 			count: 1
 			path: src/Message.php
 
@@ -1027,18 +1039,6 @@ parameters:
 			path: tests/MessageTest.php
 
 		-
-			message: '#^Parameter \#1 \$cookies of method yii\\httpclient\\Message\:\:addCookies\(\) expects array\<yii\\web\\Cookie\>, array\<int, array\<string, string\>\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/MessageTest.php
-
-		-
-			message: '#^Parameter \#1 \$cookies of method yii\\httpclient\\Message\:\:setCookies\(\) expects array\<yii\\web\\Cookie\>\|\(iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection\), array\<int, array\<string, string\>\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/MessageTest.php
-
-		-
 			message: '#^Parameter \#1 \$content of method yii\\httpclient\\Message\:\:setContent\(\) expects string, string\|false given\.$#'
 			identifier: argument.type
 			count: 1
@@ -1048,12 +1048,6 @@ parameters:
 			message: '#^Method yiiunit\\extensions\\httpclient\\RequestTest\:\:dataProviderGetFullUrl\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: tests/RequestTest.php
-
-		-
-			message: '#^Parameter \#1 \$cookies of method yii\\httpclient\\Message\:\:setCookies\(\) expects array\<yii\\web\\Cookie\>\|\(iterable\<yii\\web\\Cookie\>&yii\\web\\CookieCollection\), array\<int, array\<string, string\>\> given\.$#'
-			identifier: argument.type
-			count: 2
 			path: tests/RequestTest.php
 
 		-
