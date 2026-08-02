@@ -16,8 +16,8 @@ use yii\helpers\StringHelper;
 /**
  * Client provide high level interface for HTTP requests execution.
  *
- * @property Transport $transport HTTP message transport instance. Note that the type of this property differs
- * in getter and setter. See [[getTransport()]] and [[setTransport()]] for details.
+ * @property-read Transport $transport HTTP message transport instance.
+ * @property-write Transport|array|string $transport HTTP message transport.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

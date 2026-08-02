@@ -5,6 +5,7 @@ Yii Framework 2 HTTP client extension Change Log
 ------------------------
 
 - Bug #266: Fix union types in PHPDoc annotations (mspirkov)
+- Bug #267: Fix `@property` annotations in `Client`, `Message`, `Request` and `HttpClientPanel` (@mspirkov)
 
 2.0.17 May 25, 2026
 -------------------
