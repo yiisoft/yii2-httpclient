@@ -19,12 +19,13 @@ use Yii;
  * Message represents a base HTTP message.
  *
  * @property string $content Raw body.
- * @property CookieCollection|Cookie[] $cookies The cookie collection. Note that the type of this property
- * differs in getter and setter. See [[getCookies()]] and [[setCookies()]] for details.
+ * @property-read CookieCollection|Cookie[] $cookies The cookie collection.
+ * @property-write CookieCollection|Cookie[]|array $cookies Cookie collection or cookies list.
  * @property mixed $data Content data fields.
  * @property string $format Body format name.
- * @property HeaderCollection $headers The header collection. Note that the type of this property differs in
- * getter and setter. See [[getHeaders()]] and [[setHeaders()]] for details.
+ * @property-read HeaderCollection $headers The header collection.
+ * @property-write array|HeaderCollection $headers Headers collection or headers list in format: [headerName
+ * => headerValue].
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

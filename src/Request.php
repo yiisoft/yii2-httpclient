@@ -17,10 +17,12 @@ use yii\helpers\FileHelper;
  *
  * @property string $fullUrl Full target URL.
  * @property string $method Request method.
- * @property array<array-key, mixed> $options Request options.
+ * @property array $options Request options.
  * @property resource $outputFile
- * @property string|array|null $url Target URL or URL parameters. Note that the type of this property differs
- * in getter and setter. See [[getUrl()]] and [[setUrl()]] for details.
+ * @property-read string|array|null $url Target URL or URL parameters.
+ * @property-write string|array $url Use a string to represent a URL (e.g. `http://some-domain.com`,
+ * `item/list`), or an array to represent a URL with query parameters (e.g. `['item/list', 'param1' =>
+ * 'value1']`).
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
