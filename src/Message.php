@@ -150,7 +150,7 @@ class Message extends Component
 
     /**
      * Sets the cookies associated with HTTP message.
-     * @param CookieCollection|Cookie[]|array $cookies cookie collection or cookies list.
+     * @param CookieCollection|array $cookies cookie collection or cookies list.
      * @return $this self reference.
      */
     public function setCookies($cookies)
@@ -183,7 +183,7 @@ class Message extends Component
 
     /**
      * Adds more cookies to the already defined ones.
-     * @param Cookie[]|array $cookies additional cookies.
+     * @param array $cookies additional cookies.
      * @return $this self reference.
      */
     public function addCookies(array $cookies)
