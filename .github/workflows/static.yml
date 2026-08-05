@@ -1,4 +1,7 @@
-name: build
+name: static analysis
+
+permissions:
+  contents: read
 
 on:
   pull_request: &ignore-paths
@@ -18,13 +21,6 @@ on:
 
   push: *ignore-paths
 
-permissions:
-  contents: read
-
 jobs:
-  phpunit:
-    uses: yiisoft/yii2-actions/.github/workflows/phpunit.yml@master
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    with:
-      php-version: '["8.3","8.4","8.5"]'
+  phpstan:
+    uses: yiisoft/yii2-actions/.github/workflows/phpstan.yml@master

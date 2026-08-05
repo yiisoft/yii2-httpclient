@@ -8,7 +8,7 @@ use yii\httpclient\Request;
 
 class JsonFormatterTest extends TestCase
 {
-    public function testFormat()
+    public function testFormat(): void
     {
         $request = new Request();
         $data = [
@@ -26,7 +26,7 @@ class JsonFormatterTest extends TestCase
     /**
      * @depends testFormat
      */
-    public function testFormatEmpty()
+    public function testFormatEmpty(): void
     {
         $request = new Request();
 
@@ -34,4 +34,4 @@ class JsonFormatterTest extends TestCase
         $formatter->format($request);
         $this->assertNull($request->getContent());
     }
-} 
+}

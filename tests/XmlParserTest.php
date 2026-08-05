@@ -7,7 +7,7 @@ use yii\httpclient\XmlParser;
 
 class XmlParserTest extends TestCase
 {
-    public function testParse()
+    public function testParse(): void
     {
         $document = new Response();
         $xml = <<<XML
@@ -30,7 +30,7 @@ XML;
     /**
      * @depends testParse
      */
-    public function testParseCData()
+    public function testParseCData(): void
     {
         $document = new Response();
         $xml = <<<XML
@@ -53,7 +53,7 @@ XML;
     /**
      * @depends testParse
      */
-    public function testParseEncoding()
+    public function testParseEncoding(): void
     {
         $response = new Response();
         $xml = <<<XML
@@ -77,7 +77,7 @@ XML;
      *
      * @depends testParse
      */
-    public function testParseGroupTag()
+    public function testParseGroupTag(): void
     {
         $document = new Response();
         $xml = <<<XML
@@ -111,10 +111,10 @@ XML;
         $this->assertEquals($data, $parser->parse($document));
     }
 
-    public function testConvertXmlToArray()
+    public function testConvertXmlToArray(): void
     {
         $string = <<<XML
-<?xml version='1.0'?> 
+<?xml version='1.0'?>
 <document>
  <title>test</title>
 </document>

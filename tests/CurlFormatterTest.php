@@ -14,7 +14,7 @@ class CurlFormatterTest extends TestCase
 
     // Tests :
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $data = [
             'name1' => 'value1',
@@ -38,7 +38,7 @@ class CurlFormatterTest extends TestCase
     /**
      * @depends testFormat
      */
-    public function testFormatMethodGet()
+    public function testFormatMethodGet(): void
     {
         $request = new Request();
         $request->setUrl('https://yiiframework.com/');
@@ -59,7 +59,7 @@ class CurlFormatterTest extends TestCase
     /**
      * @depends testFormatMethodGet
      */
-    public function testFormatEmpty()
+    public function testFormatEmpty(): void
     {
         $request = new Request();
         $request->setMethod('head');
@@ -69,7 +69,7 @@ class CurlFormatterTest extends TestCase
         $this->assertNull($request->getContent());
     }
 
-    public function testFormatPostRequestWithEmptyBody()
+    public function testFormatPostRequestWithEmptyBody(): void
     {
         $request = new Request();
         $request->setMethod('POST');
