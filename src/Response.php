@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -14,7 +15,7 @@ use yii\web\HeaderCollection;
  * Response represents HTTP request response.
  *
  * @property-read bool $isOk Whether response is OK.
- * @property-read string $statusCode Status code.
+ * @property-read string|null $statusCode Status code.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -55,7 +56,7 @@ class Response extends Message
     /**
      * Returns status code.
      * @throws Exception on failure.
-     * @return string status code.
+     * @return string|null status code.
      */
     public function getStatusCode()
     {

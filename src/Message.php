@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -8,7 +9,6 @@
 namespace yii\httpclient;
 
 use yii\base\Component;
-use yii\base\ErrorHandler;
 use yii\web\Cookie;
 use yii\web\CookieCollection;
 use yii\web\HeaderCollection;
@@ -18,12 +18,13 @@ use Yii;
  * Message represents a base HTTP message.
  *
  * @property string $content Raw body.
- * @property CookieCollection|Cookie[] $cookies The cookie collection. Note that the type of this property
- * differs in getter and setter. See [[getCookies()]] and [[setCookies()]] for details.
+ * @property-read CookieCollection|Cookie[] $cookies The cookie collection.
+ * @property-write CookieCollection|Cookie[]|array $cookies Cookie collection or cookies list.
  * @property mixed $data Content data fields.
  * @property string $format Body format name.
- * @property HeaderCollection $headers The header collection. Note that the type of this property differs in
- * getter and setter. See [[getHeaders()]] and [[setHeaders()]] for details.
+ * @property-read HeaderCollection $headers The header collection.
+ * @property-write array|HeaderCollection $headers Headers collection or headers list in format: [headerName
+ * => headerValue].
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -84,7 +85,24 @@ class Message extends Component
                         $rawHeader = $value;
                         if (strpos($rawHeader, 'HTTP/') === 0) {
                             $parts = explode(' ', $rawHeader, 3);
-                            $headerCollection->add('http-code', $parts[1]);
+                            $statusCode = $parts[1] ?? '';
+                            $reasonPhrase = isset($parts[2]) ? trim($parts[2]) : '';
+                            $headerCollection->add(
+                                'http-code',
+                                $statusCode,
+                            );
+                            $headerCollection->add(
+                                'http-status-line',
+                                $rawHeader,
+                            );
+                            $headerCollection->add(
+                                'http-version',
+                                $parts[0],
+                            );
+                            $headerCollection->add(
+                                'http-reason-phrase',
+                                trim("{$statusCode} {$reasonPhrase}"),
+                            );
                         } elseif (($separatorPos = strpos($rawHeader, ':')) !== false) {
                             $name = strtolower(trim(substr($rawHeader, 0, $separatorPos)));
                             $value = trim(substr($rawHeader, $separatorPos + 1));
@@ -131,7 +149,7 @@ class Message extends Component
 
     /**
      * Sets the cookies associated with HTTP message.
-     * @param CookieCollection|Cookie[]|array $cookies cookie collection or cookies list.
+     * @param CookieCollection|array $cookies cookie collection or cookies list.
      * @return $this self reference.
      */
     public function setCookies($cookies)
@@ -164,7 +182,7 @@ class Message extends Component
 
     /**
      * Adds more cookies to the already defined ones.
-     * @param Cookie[]|array $cookies additional cookies.
+     * @param array $cookies additional cookies.
      * @return $this self reference.
      */
     public function addCookies(array $cookies)
@@ -340,16 +358,10 @@ class Message extends Component
     /**
      * PHP magic method that returns the string representation of this object.
      * @return string the string representation of this object.
+     * @throws \Throwable when the message cannot be converted to a string.
      */
     public function __toString()
     {
-        // __toString cannot throw exception
-        // use trigger_error to bypass this limitation
-        try {
-            return $this->toString();
-        } catch (\Exception $e) {
-            ErrorHandler::convertExceptionToError($e);
-            return '';
-        }
+        return $this->toString();
     }
 }

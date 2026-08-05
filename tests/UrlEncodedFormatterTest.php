@@ -14,7 +14,7 @@ class UrlEncodedFormatterTest extends TestCase
 
     // Tests :
 
-    public function testFormat()
+    public function testFormat(): void
     {
         $request = new Request();
         $request->setMethod('POST');
@@ -33,7 +33,7 @@ class UrlEncodedFormatterTest extends TestCase
     /**
      * @depends testFormat
      */
-    public function testFormatMethodGet()
+    public function testFormatMethodGet(): void
     {
         $request = new Request();
         $request->setMethod('GET');
@@ -54,7 +54,7 @@ class UrlEncodedFormatterTest extends TestCase
     /**
      * @depends testFormatMethodGet
      */
-    public function testFormatEmpty()
+    public function testFormatEmpty(): void
     {
         $request = new Request();
         $request->setMethod('head');
@@ -64,7 +64,7 @@ class UrlEncodedFormatterTest extends TestCase
         $this->assertNull($request->getContent());
     }
 
-    public function testFormatPostRequestWithEmptyBody()
+    public function testFormatPostRequestWithEmptyBody(): void
     {
         $request = new Request();
         $request->setMethod('POST');
@@ -77,7 +77,7 @@ class UrlEncodedFormatterTest extends TestCase
         $this->assertEquals('0', $headers['content-length'][0]);
     }
 
-    public function testFormatPutRequestWithInfileOption()
+    public function testFormatPutRequestWithInfileOption(): void
     {
         $fh = fopen(__DIR__ . '/test_file.txt', 'r');
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -16,9 +17,12 @@ use yii\helpers\FileHelper;
  *
  * @property string $fullUrl Full target URL.
  * @property string $method Request method.
- * @property-read array $options Request options.
- * @property string|array|null $url Target URL or URL parameters. Note that the type of this property differs
- * in getter and setter. See [[getUrl()]] and [[setUrl()]] for details.
+ * @property array $options Request options.
+ * @property resource $outputFile
+ * @property-read string|array|null $url Target URL or URL parameters.
+ * @property-write string|array $url Use a string to represent a URL (e.g. `http://some-domain.com`,
+ * `item/list`), or an array to represent a URL with query parameters (e.g. `['item/list', 'param1' =>
+ * 'value1']`).
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -28,11 +32,11 @@ class Request extends Message
     /**
      * @event RequestEvent an event raised right before sending request.
      */
-    const EVENT_BEFORE_SEND = 'beforeSend';
+    public const EVENT_BEFORE_SEND = 'beforeSend';
     /**
      * @event RequestEvent an event raised right after request has been sent.
      */
-    const EVENT_AFTER_SEND = 'afterSend';
+    public const EVENT_AFTER_SEND = 'afterSend';
 
     /**
      * @var string|array target URL.
@@ -389,7 +393,6 @@ class Request extends Message
 
         // generate safe boundary :
         do {
-
             $boundary = '---------------------' . md5(random_int(0, PHP_INT_MAX) . microtime());
         } while (preg_grep("/{$boundary}/", $contentParts));
 
@@ -474,7 +477,7 @@ class Request extends Message
      */
     public function afterSend($response)
     {
-        $this->_timeElapsed = microtime(true)-$this->_startTime;
+        $this->_timeElapsed = microtime(true) - $this->_startTime;
         $this->client->afterSend($this, $response);
 
         $event = new RequestEvent();

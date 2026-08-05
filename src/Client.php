@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -15,8 +16,8 @@ use yii\helpers\StringHelper;
 /**
  * Client provide high level interface for HTTP requests execution.
  *
- * @property Transport $transport HTTP message transport instance. Note that the type of this property differs
- * in getter and setter. See [[getTransport()]] and [[setTransport()]] for details.
+ * @property-read Transport $transport HTTP message transport instance.
+ * @property-write Transport|array|string $transport HTTP message transport.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0
@@ -26,34 +27,34 @@ class Client extends Component
     /**
      * @event RequestEvent an event raised right before sending request.
      */
-    const EVENT_BEFORE_SEND = 'beforeSend';
+    public const EVENT_BEFORE_SEND = 'beforeSend';
     /**
      * @event RequestEvent an event raised right after request has been sent.
      */
-    const EVENT_AFTER_SEND = 'afterSend';
+    public const EVENT_AFTER_SEND = 'afterSend';
     /**
      * JSON format
      */
-    const FORMAT_JSON = 'json';
+    public const FORMAT_JSON = 'json';
     /**
      * urlencoded by RFC1738 query string, like name1=value1&name2=value2
      * @see https://php.net/manual/en/function.urlencode.php
      */
-    const FORMAT_URLENCODED = 'urlencoded';
+    public const FORMAT_URLENCODED = 'urlencoded';
     /**
      * urlencoded by PHP_QUERY_RFC3986 query string, like name1=value1&name2=value2
      * @see https://php.net/manual/en/function.rawurlencode.php
      */
-    const FORMAT_RAW_URLENCODED = 'raw-urlencoded';
+    public const FORMAT_RAW_URLENCODED = 'raw-urlencoded';
     /**
      * XML format
      */
-    const FORMAT_XML = 'xml';
+    public const FORMAT_XML = 'xml';
     /**
      * CURL format
      * @since 2.0.9
      */
-    const FORMAT_CURL = 'curl';
+    public const FORMAT_CURL = 'curl';
 
     /**
      * @var string base request URL.

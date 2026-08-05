@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -6,8 +7,6 @@
  */
 
 namespace yii\httpclient;
-
-use Yii;
 
 final class MockTransport extends Transport
 {

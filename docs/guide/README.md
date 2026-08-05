@@ -26,3 +26,7 @@ Additional topics
 -----------------
 
 * [Using the HTTP client DebugPanel](topics-debug.md)
+
+Contributing
+------------
+* [Internals](internals.md)

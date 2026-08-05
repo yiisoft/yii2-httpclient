@@ -7,7 +7,7 @@ use yii\httpclient\Response;
 
 class UrlEncodedParserTest extends TestCase
 {
-    public function testParse()
+    public function testParse(): void
     {
         $document = new Response();
         $data = [
@@ -19,4 +19,4 @@ class UrlEncodedParserTest extends TestCase
         $parser = new UrlEncodedParser();
         $this->assertEquals($data, $parser->parse($document));
     }
-} 
+}
