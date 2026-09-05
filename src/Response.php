@@ -10,12 +10,16 @@ namespace yii\httpclient;
 
 use yii\web\Cookie;
 use yii\web\HeaderCollection;
+use yii\web\CookieCollection;
 
 /**
  * Response represents HTTP request response.
  *
  * @property-read bool $isOk Whether response is OK.
  * @property-read string|null $statusCode Status code.
+ * @property-read CookieCollection $cookies The cookie collection.
+ * @property-write CookieCollection|array<Cookie>|array<array<string, mixed>> $cookies Cookie collection
+ * or cookies list.
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 2.0

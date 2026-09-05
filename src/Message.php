@@ -19,8 +19,9 @@ use Yii;
  * Message represents a base HTTP message.
  *
  * @property string $content Raw body.
- * @property-read CookieCollection|Cookie[] $cookies The cookie collection.
- * @property-write CookieCollection|Cookie[]|array $cookies Cookie collection or cookies list.
+ * @property-read CookieCollection $cookies The cookie collection.
+ * @property-write CookieCollection|array<Cookie>|array<array<string, mixed>> $cookies Cookie collection
+ * or cookies list.
  * @property mixed $data Content data fields.
  * @property string $format Body format name.
  * @property-read HeaderCollection $headers The header collection.
@@ -42,7 +43,7 @@ class Message extends Component
      */
     private $_headers;
     /**
-     * @var CookieCollection cookies.
+     * @var CookieCollection|array<Cookie>|array<array<string, mixed>> cookies.
      */
     private $_cookies;
     /**
@@ -150,7 +151,8 @@ class Message extends Component
 
     /**
      * Sets the cookies associated with HTTP message.
-     * @param CookieCollection|array $cookies cookie collection or cookies list.
+     * @param CookieCollection|array<Cookie>|array<array<string, mixed>> $cookies cookie collection
+     * or cookies list.
      * @return $this self reference.
      */
     public function setCookies($cookies)
@@ -162,7 +164,7 @@ class Message extends Component
     /**
      * Returns the cookie collection.
      * The cookie collection contains the cookies associated with HTTP message.
-     * @return CookieCollection|Cookie[] the cookie collection.
+     * @return CookieCollection the cookie collection.
      */
     public function getCookies()
     {

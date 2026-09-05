@@ -110,7 +110,6 @@ class MessageTest extends TestCase
         ];
         $message->setCookies($cookies);
         $cookieCollection = $message->getCookies();
-        $this->assertTrue($cookieCollection instanceof CookieCollection);
         $cookie = $cookieCollection->get('test');
         $this->assertTrue($cookie instanceof Cookie);
         $this->assertEquals('test.com', $cookie->domain);

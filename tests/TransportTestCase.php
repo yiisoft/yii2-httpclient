@@ -95,8 +95,8 @@ abstract class TransportTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $responses['docs']);
         $this->assertInstanceOf(Response::class, $responses['support']);
 
-        $this->assertStringContainsString('The Definitive Guide to Yii 2.0', $responses['docs']->getContent());
-        $this->assertStringContainsString('Community Resources', $responses['support']->getContent());
+        $this->assertStringContainsString('Installing Yii', $responses['docs']->getContent());
+        $this->assertStringContainsString('Community Places', $responses['support']->getContent());
     }
 
     /**
