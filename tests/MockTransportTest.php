@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * @link https://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license https://www.yiiframework.com/license/
+ */
+
 namespace yiiunit\extensions\httpclient;
 
 use yii\httpclient\Client;
 use yii\httpclient\MockTransport;
-use yii\httpclient\Request;
 use yii\httpclient\Response;
 
 final class MockTransportTest extends TestCase

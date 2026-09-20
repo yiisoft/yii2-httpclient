@@ -32,3 +32,7 @@ phpunit.phar
 # local tests configuration
 /tests/data/config.local.php
 /tests/runtime
+
+# PHP CS Fixer
+.php-cs-fixer.php
+.php-cs-fixer.cache
