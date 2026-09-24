@@ -13,7 +13,6 @@ use yii\base\ErrorHandler;
 use yii\web\Cookie;
 use yii\web\CookieCollection;
 use yii\web\HeaderCollection;
-use Yii;
 
 /**
  * Message represents a base HTTP message.
@@ -244,7 +243,6 @@ class Message extends Component
         $content = $this->getContent();
         return is_array($content) && isset($content[$key]);
     }
-
 
 
     /**

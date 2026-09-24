@@ -8,7 +8,6 @@
 
 namespace yii\httpclient;
 
-use Yii;
 use yii\base\BaseObject;
 
 /**

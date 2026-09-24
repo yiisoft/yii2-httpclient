@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license https://www.yiiframework.com/license/
+ */
+
 namespace yiiunit\extensions\httpclient;
 
 use yii\helpers\Json;
@@ -53,7 +59,8 @@ class JsonParserTest extends TestCase
             ],
             'errors' => null,
         ];
-        $document->setContent(<<<JSON
+        $document->setContent(
+            <<<JSON
 {
   "code": 412,
   "httpMessage": "Precondition Failed",
