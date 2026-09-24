@@ -59,7 +59,8 @@ class JsonParserTest extends TestCase
             ],
             'errors' => null,
         ];
-        $document->setContent(<<<JSON
+        $document->setContent(
+            <<<JSON
 {
   "code": 412,
   "httpMessage": "Precondition Failed",

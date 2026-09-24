@@ -27,10 +27,8 @@
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
         "yiisoft/yii2-debug": "^2.1",
-        "yiisoft/yii2-coding-standards": "^3.0",
         "rector/rector": "^2.6",
         "mspirkov/yii2-rector": "^0.1",
-        "slevomat/coding-standard": "^8.31",
         "friendsofphp/php-cs-fixer": "^3.95"
     },
     "repositories": [
@@ -41,8 +39,7 @@
     ],
     "config": {
         "allow-plugins": {
-            "yiisoft/yii2-composer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "yiisoft/yii2-composer": true
         }
     },
     "autoload": {
@@ -56,8 +53,8 @@
         }
     },
     "scripts": {
-        "cs": "./vendor/bin/phpcs && ./vendor/bin/php-cs-fixer check",
-        "cs-fix": "./vendor/bin/phpcbf && ./vendor/bin/php-cs-fixer fix",
+        "cs": "./vendor/bin/php-cs-fixer check",
+        "cs-fix": "./vendor/bin/php-cs-fixer fix",
         "static": "./vendor/bin/phpstan --memory-limit=-1",
         "tests": "./vendor/bin/phpunit",
         "rector": "./vendor/bin/rector"
