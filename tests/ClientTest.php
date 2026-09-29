@@ -279,4 +279,81 @@ class ClientTest extends TestCase
         $client->head($url, $headers, $options);
         $client->options($url, $options);
     }
+
+    /**
+     * @dataProvider sensitiveHeaderDataProvider
+     */
+    public function testCreateRequestLogTokenMasksSensitiveHeaders(string $header, string $expected): void
+    {
+        $client = new Client();
+        $headers = [$header, 'Accept: application/json'];
+
+        $this->assertSame(
+            "POST https://example.com/\n" . $expected . "\nAccept: application/json\n\nbody",
+            $client->createRequestLogToken('post', 'https://example.com/', $headers, 'body')
+        );
+        $this->assertSame([$header, 'Accept: application/json'], $headers);
+    }
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public function sensitiveHeaderDataProvider(): array
+    {
+        return [
+            'basic credentials' => ['Authorization: Basic dXNlcjpwYXNzd29yZA==', 'Authorization: ***'],
+            'bearer token' => ['authorization: Bearer secret', 'authorization: ***'],
+            'mixed case' => ['AUTHORIZATION: Bearer secret', 'AUTHORIZATION: ***'],
+            'proxy credentials' => ['Proxy-Authorization: Basic secret', 'Proxy-Authorization: ***'],
+            'cookies' => ['Cookie: session=secret; token=secret', 'Cookie: ***'],
+            'no space' => ['Authorization:secret', 'Authorization: ***'],
+            'colon in value' => ['Authorization: user:password', 'Authorization: ***'],
+            'unrelated header' => ['X-Authorization-Info: public', 'X-Authorization-Info: public'],
+        ];
+    }
+
+    public function testCreateRequestLogTokenMasksCustomHeaders(): void
+    {
+        $client = new Client();
+        $client->sensitiveHeaders[] = 'X-Api-Key';
+
+        $this->assertSame(
+            "GET https://example.com/\nAuthorization: ***\nx-api-key: ***\nX-Api-Key: ***",
+            $client->createRequestLogToken('GET', 'https://example.com/', [
+                'Authorization: Bearer secret',
+                'x-api-key: first-secret',
+                'X-Api-Key: second-secret',
+            ], null)
+        );
+    }
+
+    public function testCreateRequestLogTokenCanDisableHeaderMasking(): void
+    {
+        $client = new Client(['sensitiveHeaders' => []]);
+
+        $this->assertSame(
+            "GET https://example.com/\nAuthorization: Bearer secret",
+            $client->createRequestLogToken('GET', 'https://example.com/', ['Authorization: Bearer secret'], null)
+        );
+    }
+
+    public function testCreateRequestLogTokenDoesNotModifyRequest(): void
+    {
+        $client = new Client(['contentLoggingMaxSize' => 4]);
+        $request = $client->post('https://example.com/', 'public body', [
+            'Authorization' => 'Bearer secret',
+            'Cookie' => 'session=secret',
+        ]);
+        $headers = $request->composeHeaderLines();
+
+        $this->assertSame(
+            "POST https://example.com/\nAuthorization: ***\nCookie: ***\n\npubl...",
+            $client->createRequestLogToken($request->getMethod(), $request->getFullUrl(), $headers, $request->getContent())
+        );
+        $this->assertSame($headers, $request->composeHeaderLines());
+        $this->assertSame('Bearer secret', $request->getHeaders()->get('Authorization'));
+        $this->assertSame('session=secret', $request->getHeaders()->get('Cookie'));
+        $this->assertSame('public body', $request->getContent());
+    }
+
 }

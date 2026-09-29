@@ -4,6 +4,7 @@ Yii Framework 2 HTTP client extension Change Log
 2.0.18 under development
 ------------------------
 
+- Bug #271: Mask sensitive request headers in log and profile messages (samdark)
 - Bug #266: Fix union types in PHPDoc annotations (mspirkov)
 - Bug #267: Fix `@property` annotations in `Client`, `Message`, `Request` and `HttpClientPanel` (@mspirkov)
 - Enh #269: Add the missing `@property` tags (mspirkov)

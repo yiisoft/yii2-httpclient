@@ -86,6 +86,13 @@ class Client extends Component
      * @see createRequestLogToken()
      */
     public $contentLoggingMaxSize = 2000;
+    /**
+     * @var string[] header names whose values are replaced with `***` in log and profile messages.
+     * Names are matched case-insensitively. This does not affect the headers sent with the request.
+     * Set to an empty array to disable header masking.
+     * @since 2.0.18
+     */
+    public $sensitiveHeaders = ['Authorization', 'Proxy-Authorization', 'Cookie'];
 
     /**
      * @var Transport|array|string|callable HTTP message transport.
@@ -266,13 +273,20 @@ class Client extends Component
      * @param string $method request method name.
      * @param string $url request URL.
      * @param array $headers request headers.
-     * @param string $content request content.
+     * @param string|null $content request content.
      * @return string log token.
      */
     public function createRequestLogToken($method, $url, $headers, $content)
     {
         $token = strtoupper($method) . ' ' . $url;
         if (!empty($headers)) {
+            $sensitiveHeaders = array_fill_keys(array_map('strtolower', $this->sensitiveHeaders), true);
+            foreach ($headers as $key => $header) {
+                $separator = strpos($header, ':');
+                if ($separator !== false && isset($sensitiveHeaders[strtolower(trim(substr($header, 0, $separator)))])) {
+                    $headers[$key] = substr($header, 0, $separator) . ': ***';
+                }
+            }
             $token .= "\n" . implode("\n", $headers);
         }
         if ($content !== null) {

@@ -29,3 +29,7 @@ a text representation or pass it directly to the browser.
 > Note: only regular logged HTTP requests can be executed via debug panel, requests sending in batch can not.
   Also keep in mind that content of logged request can be trimmed according to [[\yii\httpclient\Client::$contentLoggingMaxSize]],
   so its execution may fail or produce unexpected results.
+
+Since version 2.0.18, sensitive headers are masked in logged requests according to
+[[\yii\httpclient\Client::$sensitiveHeaders]]. The debug panel cannot recover these values,
+so replaying a request that needs these credentials may fail authentication.
