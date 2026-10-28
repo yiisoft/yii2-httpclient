@@ -265,12 +265,6 @@ parameters:
 			path: src/Client.php
 
 		-
-			message: '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#'
-			identifier: notIdentical.alwaysTrue
-			count: 1
-			path: src/Client.php
-
-		-
 			message: '#^Unable to resolve the template type T in call to static method yii\\BaseYii\<yii\\web\\IdentityInterface\>\:\:createObject\(\)$#'
 			identifier: argument.templateType
 			count: 4
